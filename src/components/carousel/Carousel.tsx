@@ -5,7 +5,7 @@ import {
   ButtonNext,
   DotGroup,
   Slide,
-  Slider,
+  Slider
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import React, { Fragment } from "react";

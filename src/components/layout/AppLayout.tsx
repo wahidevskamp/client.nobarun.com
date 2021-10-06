@@ -1,11 +1,11 @@
-import Footer from "@component/footer/Footer";
-import Header from "@component/header/Header";
-import MobileNavigationBar from "@component/mobile-navigation/MobileNavigationBar";
-import Sticky from "@component/sticky/Sticky";
-import Topbar from "@component/topbar/Topbar";
-import Head from "next/head";
-import React from "react";
-import StyledAppLayout from "./AppLayoutStyle";
+import Footer from '@component/footer/Footer';
+import Header from '@component/header/Header';
+import MobileNavigationBar from '@component/mobile-navigation/MobileNavigationBar';
+import Sticky from '@component/sticky/Sticky';
+import Topbar from '@component/topbar/Topbar';
+import Head from 'next/head';
+import React from 'react';
+import StyledAppLayout from './AppLayoutStyle';
 
 type Props = {
   title?: string;
@@ -15,7 +15,7 @@ type Props = {
 const AppLayout: React.FC<Props> = ({
   children,
   navbar,
-  title = "Nobarun International | Get all the equipment with a hassle-free experience",
+  title = 'Nobarun International | Get all the equipment with a hassle-free experience',
 }) => (
   <StyledAppLayout>
     <Head>

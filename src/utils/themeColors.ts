@@ -43,6 +43,12 @@ const secondaryColor = {
   100: "#F3F6F9",
 };
 
+const tertiaryColor = {
+  light: "#96d9ff",
+  main: "#188BCC",
+};
+
+
 const warningColor = {
   main: "#FFCD4E",
   text: textColor.primary,
@@ -68,6 +74,7 @@ export const colors = {
   default: defaultColor,
   primary: primaryColor,
   secondary: secondaryColor,
+  tertiary: tertiaryColor,
   warn: warningColor,
   error: errorColor,
   success: successColor,

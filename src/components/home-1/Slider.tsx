@@ -1,9 +1,10 @@
-import Box from "@component/Box";
-import CarouselCard1 from "@component/carousel-cards/CarouselCard1";
-import Carousel from "@component/carousel/Carousel";
-import Container from "@component/Container";
-import Navbar from "@component/navbar/Navbar";
-import React, { Fragment } from "react";
+import Box from '@component/Box';
+import CarouselCard1 from '@component/carousel-cards/CarouselCard1';
+import Carousel from '@component/carousel/Carousel';
+import Container from '@component/Container';
+import Navbar from '@component/navbar/Navbar';
+import React, { Fragment } from 'react';
+import Clients from './Clients';
 
 const Section1: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const Section1: React.FC = () => {
             <CarouselCard1 />
             <CarouselCard1 />
           </Carousel>
+          <Clients />
         </Container>
       </Box>
     </Fragment>

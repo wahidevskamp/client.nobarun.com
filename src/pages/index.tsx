@@ -1,5 +1,4 @@
 import Section13 from "@component/home-1/Section13";
-import Section1 from "../components/home-1/Section1";
 import Section10 from "../components/home-1/Section10";
 import Section11 from "../components/home-1/Section11";
 import Section12 from "../components/home-1/Section12";
@@ -11,12 +10,13 @@ import Section6 from "../components/home-1/Section6";
 import Section7 from "../components/home-1/Section7";
 import Section8 from "../components/home-1/Section8";
 import Section9 from "../components/home-1/Section9";
+import Slider from "../components/home-1/Slider";
 import AppLayout from "../components/layout/AppLayout";
 
 const IndexPage = () => {
   return (
     <main>
-      <Section1 />
+      <Slider />
       <Section2 />
       <Section3 />
       <Section4 />
