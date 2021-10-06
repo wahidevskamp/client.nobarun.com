@@ -19,11 +19,7 @@ const Clients: React.FC = () => {
   }, [width]);
 
   return (
-<<<<<<< HEAD
     <Box mb="-4rem" ml="30rem" style={{ transform: 'translateY(-4.5rem)' }}>
-=======
-    <Box mb="3.75rem" ml="30rem" style={{ transform: 'translateY(-4.5rem)' }}>
->>>>>>> 46ceae59b435c13f042d7fd6a47e863492570adb
       <Container pb="1rem">
         <Box mt="-0.25rem" mb="-0.25rem" style={{ width: '45rem' }}>
           <Carousel
@@ -32,43 +28,21 @@ const Clients: React.FC = () => {
           >
             {productList.map((item, ind) => (
               <Box key={ind}>
-<<<<<<< HEAD
                 <Box>
-=======
-                <Box
-                // style={{ height: 135, width: 110 }}
-                >
->>>>>>> 46ceae59b435c13f042d7fd6a47e863492570adb
                   <HoverBox borderRadius={5}>
                     <LazyImage
                       src={item.imgUrl}
                       width={130}
                       height={130}
-<<<<<<< HEAD
                       layout="responsive"
-=======
-                      // layout="responsive"
->>>>>>> 46ceae59b435c13f042d7fd6a47e863492570adb
                       objectFit="cover"
                       alt={item.title}
                     />
                   </HoverBox>
-<<<<<<< HEAD
                   <H4 fontSize="14px" fontWeight="600">
                     {item.title}
                   </H4>
                 </Box>
-=======
-                  <H4
-                    fontSize="14px"
-                    fontWeight="600"
-                    // backgroundColor="#777"
-                  >
-                    {item.title}
-                  </H4>
-                </Box>
-                {/* <h4>Hey</h4> */}
->>>>>>> 46ceae59b435c13f042d7fd6a47e863492570adb
               </Box>
             ))}
           </Carousel>
