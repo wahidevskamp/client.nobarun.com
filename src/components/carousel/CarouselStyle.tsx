@@ -85,8 +85,10 @@ export const StyledCarousel = styled(
 
   .custom-dot {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     margin-top: ${(props) => props.dotGroupMarginTop || "0px"};
+    margin-left: 280px;
+    padding: 0 30px;
   }
 
   .dot {
