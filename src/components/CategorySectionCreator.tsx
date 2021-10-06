@@ -1,7 +1,7 @@
-import React from "react";
-import Box from "./Box";
-import CategorySectionHeader from "./CategorySectionHeader";
-import Container from "./Container";
+import React from 'react';
+import Box from './Box';
+import CategorySectionHeader from './CategorySectionHeader';
+import Container from './Container';
 
 export interface CategorySectionCreatorProps {
   iconName?: string;
@@ -16,7 +16,7 @@ const CategorySectionCreator: React.FC<CategorySectionCreatorProps> = ({
   children,
 }) => {
   return (
-    <Box mb="3.75rem">
+    <Box mb="5.75rem" mt="6rem">
       <Container pb="1rem">
         {title && (
           <CategorySectionHeader

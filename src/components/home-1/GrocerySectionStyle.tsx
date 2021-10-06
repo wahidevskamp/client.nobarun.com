@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { deviceSize } from 'utils/constants';
+import styled from "styled-components";
+import { deviceSize } from "utils/constants";
 
 export const GrocerySection1Wrapper = styled.div`
   border-radius: 8px;
@@ -38,8 +38,6 @@ export const GrocerySection6Wrapper = styled.div`
 `;
 
 export const GrocerySection10Wrapper = styled.div`
-  max-width: 115rem;
-  margin: 0 auto 6rem;
   .quote {
     position: absolute;
 

@@ -1,20 +1,23 @@
-import { deviceSize } from "@utils/constants";
-import styled from "styled-components";
-import { space } from "styled-system";
-import { getTheme } from "../../utils/utils";
-import Card from "../Card";
+import { deviceSize } from '@utils/constants';
+import styled from 'styled-components';
+import { space } from 'styled-system';
+import { getTheme } from '../../utils/utils';
+import Card from '../Card';
 
 export const StyledProductCard1 = styled(Card)`
-  transition: all 250ms ease-in-out;
+  transition: height 1250ms ease-in-out;
   margin: auto;
   overflow: hidden;
-  height: 100%;
+  /* height: 25rem; */
+  /* height: 398px; */
+  /* height: 50rem; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   &:hover {
     .details {
+      height: 100%;
       .add-cart {
         display: flex;
       }
@@ -47,7 +50,7 @@ export const StyledProductCard1 = styled(Card)`
 
   .details {
     padding: 1rem;
-
+    height: 7.3rem;
     .title,
     .categories {
       white-space: nowrap;
@@ -67,7 +70,7 @@ export const StyledProductCard1 = styled(Card)`
     }
     .outlined-icon {
       svg path {
-        fill: ${getTheme("colors.text.hint")};
+        fill: ${getTheme('colors.text.hint')};
       }
     }
     .add-cart {
@@ -100,22 +103,22 @@ export const StyledProductCard2 = styled.div`
   .title {
     margin-top: 0.75rem;
     margin-bottom: 0.25rem;
-    color: ${getTheme("colors.text.secondary")};
+    color: ${getTheme('colors.text.secondary')};
   }
   .price {
     margin: 0;
-    color: ${getTheme("colors.primary.main")};
+    color: ${getTheme('colors.primary.main')};
   }
 `;
 
 export const StyledProductCard3 = styled.div`
   display: inline-block;
   border-radius: 8px;
-  background-color: ${getTheme("colors.body.default")};
+  background-color: ${getTheme('colors.body.default')};
   transition: all 250ms ease-in-out;
 
   &:hover {
-    box-shadow: ${getTheme("shadows.6")};
+    box-shadow: ${getTheme('shadows.6')};
     .details {
       .add-cart {
         display: flex;
@@ -137,7 +140,7 @@ export const StyledProductCard3 = styled.div`
       border-radius: 500px;
       color: white;
       font-size: 13px;
-      background: ${getTheme("colors.primary.main")};
+      background: ${getTheme('colors.primary.main')};
     }
   }
 
@@ -146,7 +149,7 @@ export const StyledProductCard3 = styled.div`
 
     h4 {
       margin: 0 0 0.5rem;
-      color: ${getTheme("colors.text.secondary")};
+      color: ${getTheme('colors.text.secondary')};
     }
 
     .price {
@@ -157,10 +160,10 @@ export const StyledProductCard3 = styled.div`
       h4 {
         margin: 0px;
         padding-right: 0.5rem;
-        color: ${getTheme("colors.primary.main")};
+        color: ${getTheme('colors.primary.main')};
       }
       del {
-        color: ${getTheme("colors.text.hint")};
+        color: ${getTheme('colors.text.hint')};
       }
     }
 
@@ -176,7 +179,7 @@ export const StyledProductCard3 = styled.div`
     }
     .outlined-icon {
       svg path {
-        fill: ${getTheme("colors.text.hint")};
+        fill: ${getTheme('colors.text.hint')};
       }
     }
     .add-cart {
@@ -207,7 +210,7 @@ export const StyledProductCard5 = styled.div`
     margin-bottom: 0px;
     font-size: 18px;
     font-weight: 700;
-    color: ${getTheme("colors.text.primary")};
+    color: ${getTheme('colors.text.primary')};
   }
 `;
 
@@ -216,8 +219,8 @@ export const StyledProductCard7 = styled.div`
   display: flex;
   border-radius: 10px;
   overflow: hidden;
-  background-color: ${getTheme("colors.body.paper")};
-  box-shadow: ${getTheme("shadows.4")};
+  background-color: ${getTheme('colors.body.paper')};
+  box-shadow: ${getTheme('shadows.4')};
 
   .product-details {
     padding: 20px;
@@ -260,13 +263,13 @@ export const StyledProductCard9 = styled(Card)`
       margin-right: 0.5rem;
       text-decoration: underline;
       font-size: 14px;
-      color: ${getTheme("colors.text.hint")};
+      color: ${getTheme('colors.text.hint')};
     }
   }
 
   h4 {
     margin: 0.5rem 0px;
-    color: ${getTheme("colors.text.secondary")};
+    color: ${getTheme('colors.text.secondary')};
     text-align: left;
   }
 
@@ -278,10 +281,10 @@ export const StyledProductCard9 = styled(Card)`
     h4 {
       margin: 0px;
       padding-right: 0.5rem;
-      color: ${getTheme("colors.primary.main")};
+      color: ${getTheme('colors.primary.main')};
     }
     del {
-      color: ${getTheme("colors.text.hint")};
+      color: ${getTheme('colors.text.hint')};
     }
   }
 
@@ -297,7 +300,7 @@ export const StyledProductCard9 = styled(Card)`
   }
   .outlined-icon {
     svg path {
-      fill: ${getTheme("colors.text.hint")};
+      fill: ${getTheme('colors.text.hint')};
     }
   }
   .add-cart {

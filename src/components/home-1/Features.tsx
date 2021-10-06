@@ -1,12 +1,12 @@
-import React from "react";
-import Card from "../Card";
-import Container from "../Container";
-import FlexBox from "../FlexBox";
-import Grid from "../grid/Grid";
-import Icon from "../icon/Icon";
-import { H4, SemiSpan } from "../Typography";
+import React from 'react';
+import Card from '../Card';
+import Container from '../Container';
+import FlexBox from '../FlexBox';
+import Grid from '../grid/Grid';
+import Icon from '../icon/Icon';
+import { H4, SemiSpan } from '../Typography';
 
-const Section12: React.FC = () => {
+const Features: React.FC = () => {
   return (
     <Container mb="70px">
       <Grid container spacing={6}>
@@ -36,36 +36,38 @@ const Section12: React.FC = () => {
               <H4 mt="20px" mb="10px" textAlign="center">
                 {item.title}
               </H4>
-              <SemiSpan textAlign="center">
-                We offer competitive prices on our 100 million plus product any
-                range.
-              </SemiSpan>
+              <SemiSpan textAlign="center">{item.content}</SemiSpan>
             </FlexBox>
           </Grid>
         ))}
       </Grid>
-      {/* </Card> */}
     </Container>
   );
 };
 
 const serviceList = [
   {
-    iconName: "truck",
-    title: "Worldwide Delivery",
+    iconName: 'truck',
+    title: '500+ Customers',
+    content:
+      'We offer competitive prices on our 100 million plus product any range.',
   },
   {
-    iconName: "credit",
-    title: "Safe Payment",
+    iconName: 'credit',
+    title: 'Safe Payment',
+    content: 'Pay with the world’s most popular and secure payment methods.',
   },
   {
-    iconName: "shield",
-    title: "Shop With Confidence",
+    iconName: 'shield',
+    title: 'Shop With Confidence',
+    content:
+      'Our Buyer Protection covers your purchase from click to delivery.',
   },
   {
-    iconName: "customer-service",
-    title: "24/7 Support",
+    iconName: 'customer-service',
+    title: '24/7 Support',
+    content: 'Round-the-clock assistance for a smooth shopping experience.',
   },
 ];
 
-export default Section12;
+export default Features;
