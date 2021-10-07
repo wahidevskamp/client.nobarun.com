@@ -1,11 +1,10 @@
-import styled from "styled-components";
-import { getTheme } from "../../utils/utils";
+import styled from 'styled-components';
+import { getTheme } from '../../utils/utils';
 
 const StyledNavbar = styled.div`
   position: relative;
-  height: 60px;
-  background: ${getTheme("colors.tertiary.main")};
-  box-shadow: ${getTheme("shadows.regular")};
+  background: ${getTheme('colors.tertiary.main')};
+  box-shadow: ${getTheme('shadows.regular')};
 
   .nav-link {
     font-size: 15px;
@@ -14,7 +13,7 @@ const StyledNavbar = styled.div`
     cursor: pointer;
     color: #fff;
     :hover {
-      color: ${getTheme("colors.tertiary.light")} !important;
+      color: ${getTheme('colors.tertiary.light')} !important;
     }
   }
   .nav-link:last-child {
@@ -46,7 +45,7 @@ const StyledNavbar = styled.div`
   }
 
   .dropdown-icon {
-    color: ${getTheme("colors.text.muted")};
+    color: ${getTheme('colors.text.muted')};
   }
   @media only screen and (max-width: 900px) {
     display: none;

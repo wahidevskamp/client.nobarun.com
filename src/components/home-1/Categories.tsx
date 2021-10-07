@@ -9,7 +9,7 @@ import ProductCard5 from '../product-cards/ProductCard5';
 
 const Categories: React.FC = () => {
   return (
-    <Box mb="3.75rem">
+    <Box mb="10rem">
       <Container>
         <Box>
           <CategorySectionHeader

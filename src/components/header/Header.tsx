@@ -1,20 +1,16 @@
-import IconButton from "@component/buttons/IconButton";
-import Image from "@component/Image";
-import { useAppContext } from "@context/app/AppContext";
-import Link from "next/link";
-import React, { useState } from "react";
-import Box from "../Box";
-import Categories from "../categories/Categories";
-import Container from "../Container";
-import FlexBox from "../FlexBox";
-import Icon from "../icon/Icon";
-import MiniCart from "../mini-cart/MiniCart";
-import SearchBox from "../search-box/SearchBox";
-import Login from "../sessions/Login";
-import Sidenav from "../sidenav/Sidenav";
-import { Tiny } from "../Typography";
-import StyledHeader from "./HeaderStyle";
-import UserLoginDialog from "./UserLoginDialog";
+import Box from '@component/Box';
+import IconButton from '@component/buttons/IconButton';
+import Image from '@component/Image';
+import { useAppContext } from '@context/app/AppContext';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import Categories from '../categories/Categories';
+import Container from '../Container';
+import FlexBox from '../FlexBox';
+import Icon from '../icon/Icon';
+import SearchBox from '../search-box/SearchBox';
+import { Span, Tiny } from '../Typography';
+import StyledHeader from './HeaderStyle';
 
 type HeaderProps = {
   isFixed?: boolean;
@@ -83,29 +79,32 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
           <SearchBox />
         </FlexBox>
 
-        <FlexBox className="header-right" alignItems="center">
-          <UserLoginDialog
-            handle={
-              <IconButton ml="1rem" bg="gray.200" p="8px">
-                <Icon size="28px">user</Icon>
-              </IconButton>
-            }
+        <a
+          target="_blank"
+          href="https://api.whatsapp.com/send?phone=+8801711998626&text=Hello!%20Can%20you%20please%20tell%20me%20more%20about%20your%20services?"
+        >
+          <FlexBox
+            alignItems="center"
+            border="2px solid #188BCC"
+            borderRadius="1.2rem"
+            // px="1rem"
+            // py=".5rem"
           >
-            <Box>
-              <Login />
+            <Box
+              backgroundColor="#188BCC"
+              px="1rem"
+              py=".5rem"
+              borderTopLeftRadius="1rem"
+              borderBottomLeftRadius="1rem"
+              color="#fff"
+            >
+              <Icon className="close" color="inherit" variant="small">
+                whatsapp
+              </Icon>
             </Box>
-          </UserLoginDialog>
-
-          <Sidenav
-            handle={cartHandle}
-            position="right"
-            open={open}
-            width={380}
-            toggleSidenav={toggleSidenav}
-          >
-            <MiniCart toggleSidenav={toggleSidenav} />
-          </Sidenav>
-        </FlexBox>
+            <Span px="1rem">01711 998626</Span>
+          </FlexBox>
+        </a>
       </Container>
     </StyledHeader>
   );

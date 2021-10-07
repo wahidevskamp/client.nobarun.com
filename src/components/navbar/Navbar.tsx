@@ -1,16 +1,16 @@
-import Box from "@component/Box";
-import Card from "@component/Card";
-import MenuItem from "@component/MenuItem";
-import navbarNavigations from "@data/navbarNavigations";
-import React from "react";
-import Button from "../buttons/Button";
-import Categories from "../categories/Categories";
-import Container from "../Container";
-import FlexBox from "../FlexBox";
-import Icon from "../icon/Icon";
-import NavLink from "../nav-link/NavLink";
-import Typography, { Span } from "../Typography";
-import StyledNavbar from "./NavbarStyle";
+import Box from '@component/Box';
+import Card from '@component/Card';
+import MenuItem from '@component/MenuItem';
+import navbarNavigations from '@data/navbarNavigations';
+import React from 'react';
+import Button from '../buttons/Button';
+import Categories from '../categories/Categories';
+import Container from '../Container';
+import FlexBox from '../FlexBox';
+import Icon from '../icon/Icon';
+import NavLink from '../nav-link/NavLink';
+import Typography, { Span } from '../Typography';
+import StyledNavbar from './NavbarStyle';
 
 export interface NavbarProps {
   navListOpen?: boolean;
@@ -113,7 +113,16 @@ const Navbar: React.FC<NavbarProps> = ({ navListOpen }) => {
         height="100%"
       >
         <Categories open={navListOpen}>
-          <Button width="278px" height="40px" bg="body.default" variant="text">
+          <Button
+            width="278px"
+            height="40px"
+            style={{
+              width: '278px',
+              padding: '1.8rem 1.5rem',
+              backgroundColor: '#fff',
+            }}
+            variant="text"
+          >
             <Icon>categories</Icon>
             <Typography
               fontWeight="600"
