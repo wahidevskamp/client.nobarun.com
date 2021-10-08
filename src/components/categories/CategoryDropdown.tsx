@@ -1,47 +1,48 @@
-import navigations from "@data/navigations";
-import React from "react";
-import CategoryMenuItem from "./category-menu-item/CategoryMenuItem";
-import { StyledCategoryDropdown } from "./CategoryDropdownStyle";
-import MegaMenu1 from "./mega-menu/MegaMenu1";
-import MegaMenu2 from "./mega-menu/MegaMenu2";
+import useAllProductCategories from '@hook/Home/useAllProductCategories';
+import React from 'react';
+import CategoryMenuItem from './category-menu-item/CategoryMenuItem';
+import { StyledCategoryDropdown } from './CategoryDropdownStyle';
+import MegaMenu from './mega-menu/MegaMenu2';
 
 export interface CategoryDropdownProps {
   open: boolean;
-  position?: "absolute" | "relative";
+  position?: 'absolute' | 'relative';
 }
 
 const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
   open,
   position,
 }) => {
-  const megaMenu = {
-    MegaMenu1,
-    MegaMenu2,
-  };
+  const [categories, setCategories] = React.useState([]);
+
+  React.useEffect(() => {
+    useAllProductCategories().then((data) => {
+      return setCategories(data);
+    });
+  }, []);
 
   return (
     <StyledCategoryDropdown open={open} position={position}>
-      {navigations.map((item) => {
-        let MegaMenu = megaMenu[item.menuComponent];
-
-        return (
-          <CategoryMenuItem
-            title={item.title}
-            href={item.href}
-            icon={item.icon}
-            caret={!!item.menuData}
-            key={item.title}
-          >
-            <MegaMenu data={item.menuData || {}} />
-          </CategoryMenuItem>
-        );
-      })}
+      {categories.length > 0 &&
+        categories.map((item) => {
+          return (
+            <CategoryMenuItem
+              title={item.name}
+              href={`/product/search/bikes`}
+              icon={item.image}
+              caret={item.children}
+              key={item.id}
+            >
+              <MegaMenu data={item.children || {}} />
+            </CategoryMenuItem>
+          );
+        })}
     </StyledCategoryDropdown>
   );
 };
 
 CategoryDropdown.defaultProps = {
-  position: "absolute",
+  position: 'absolute',
 };
 
 export default CategoryDropdown;

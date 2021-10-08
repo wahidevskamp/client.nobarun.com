@@ -1,13 +1,13 @@
-import Link from "next/link";
-import React from "react";
-import Icon from "../../icon/Icon";
-import { StyledCategoryMenuItem } from "./CategoryMenuItemStyle";
+import Link from 'next/link';
+import React from 'react';
+import Icon from '../../icon/Icon';
+import { StyledCategoryMenuItem } from './CategoryMenuItemStyle';
 
 interface CategoryMenuItemProps {
   href: string;
   icon?: string;
   title: string;
-  caret?: boolean;
+  caret?: any[];
 }
 
 const CategoryMenuItem: React.FC<CategoryMenuItemProps> = ({
@@ -17,13 +17,17 @@ const CategoryMenuItem: React.FC<CategoryMenuItemProps> = ({
   caret,
   children,
 }) => {
+  console.log(icon);
   return (
     <StyledCategoryMenuItem>
       <Link href={href}>
         <div className="category-dropdown-link">
-          {icon && <Icon variant="small">{icon}</Icon>}
+          {icon && (
+            // <Icon variant="small">{icon}</Icon>
+            <img src={icon} height="30" width="30" />
+          )}
           <span className="title">{title}</span>
-          {caret && <Icon variant="small">chevron-right</Icon>}
+          {caret.length > 0 && <Icon variant="small">chevron-right</Icon>}
         </div>
       </Link>
       {children}
@@ -32,7 +36,7 @@ const CategoryMenuItem: React.FC<CategoryMenuItemProps> = ({
 };
 
 CategoryMenuItem.defaultProps = {
-  caret: true,
+  caret: [],
 };
 
 export default CategoryMenuItem;

@@ -5,6 +5,7 @@ import { useAppContext } from '@context/app/AppContext';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import Categories from '../categories/Categories';
+import Menus from '../categories/Menu';
 import Container from '../Container';
 import FlexBox from '../FlexBox';
 import Icon from '../icon/Icon';
@@ -64,14 +65,20 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
           </Link>
 
           {isFixed && (
-            <div className="category-holder">
+            <FlexBox className="category-holder">
               <Categories>
                 <FlexBox color="text.hint" alignItems="center" ml="1rem">
                   <Icon>categories</Icon>
                   <Icon>arrow-down-filled</Icon>
                 </FlexBox>
               </Categories>
-            </div>
+              {/* <Menus>
+                <FlexBox color="text.hint" alignItems="center" ml="1rem">
+                  <Icon>categories</Icon>
+                  <Icon>arrow-down-filled</Icon>
+                </FlexBox>
+              </Menus> */}
+            </FlexBox>
           )}
         </FlexBox>
 

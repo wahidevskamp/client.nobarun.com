@@ -1,4 +1,5 @@
 import Card from '@component/Card';
+import useFeaturedCategories from '@hook/Home/useFeaturedCategories';
 import Link from 'next/link';
 import React from 'react';
 import Box from '../Box';
@@ -8,6 +9,12 @@ import Grid from '../grid/Grid';
 import ProductCard5 from '../product-cards/ProductCard5';
 
 const Categories: React.FC = () => {
+  const [categories, setCategories] = React.useState<any[]>([]);
+  React.useEffect(() => {
+    useFeaturedCategories().then((data) => {
+      setCategories(data);
+    });
+  }, []);
   return (
     <Box mb="10rem">
       <Container>
@@ -19,7 +26,7 @@ const Categories: React.FC = () => {
           />
           <Card p="1rem">
             <Grid container spacing={4}>
-              {brandList.map((item) => (
+              {categories.map((item) => (
                 <Grid item sm={3} xs={6} key={item.title}>
                   <Link href={item.productUrl}>
                     <a>

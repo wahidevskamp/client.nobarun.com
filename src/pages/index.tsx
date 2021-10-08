@@ -1,4 +1,4 @@
-import Categories from '@component/home-1/Categories';
+import FeaturedCategories from '@component/home-1/FeaturedCategories';
 import SpecialCollections from '@component/home-1/SpecialCollections';
 import Testimonials from '@component/home-1/Testimonials';
 import Features from '../components/home-1/Features';
@@ -9,7 +9,7 @@ const IndexPage = () => {
   return (
     <main>
       <Slider />
-      <Categories />
+      <FeaturedCategories />
       <SpecialCollections />
       <Testimonials />
       <Features />

@@ -27,7 +27,7 @@ const Section1: React.FC = () => {
             <CarouselCard1 />
             <CarouselCard1 />
           </Carousel>
-          <Clients />
+          {/* <Clients /> */}
         </Container>
       </Box>
     </Fragment>

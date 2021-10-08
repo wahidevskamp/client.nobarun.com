@@ -30,7 +30,7 @@ const AppLayout: React.FC<Props> = ({
       <Header />
     </Sticky>
 
-    {/* {navbar && <div className="section-after-sticky">{navbar}</div>} */}
+    {navbar && <div className="section-after-sticky">{navbar}</div>}
     {!navbar ? (
       <div className="section-after-sticky">{children}</div>
     ) : (
