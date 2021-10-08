@@ -1,6 +1,5 @@
 import Box from '@component/Box';
 import HoverBox from '@component/HoverBox';
-import LazyImage from '@component/LazyImage';
 import { H4 } from '@component/Typography';
 import React from 'react';
 

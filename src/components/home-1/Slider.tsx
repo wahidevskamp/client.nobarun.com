@@ -4,7 +4,6 @@ import Carousel from '@component/carousel/Carousel';
 import Container from '@component/Container';
 import Navbar from '@component/navbar/Navbar';
 import React, { Fragment } from 'react';
-import Clients from './Clients';
 
 const Section1: React.FC = () => {
   return (

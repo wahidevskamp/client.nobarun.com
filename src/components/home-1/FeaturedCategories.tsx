@@ -43,27 +43,4 @@ const Categories: React.FC = () => {
   );
 };
 
-const brandList = [
-  {
-    imgUrl: '/assets/images/products/london-britches.png',
-    title: 'London Britches',
-    productUrl: '/product/e1',
-  },
-  {
-    imgUrl: '/assets/images/products/jim and jiko.png',
-    title: 'Jim & Jago',
-    productUrl: '/product/e14',
-  },
-  {
-    imgUrl: '/assets/images/products/jim and jiko.png',
-    title: 'Jim & Jago',
-    productUrl: '/product/e14',
-  },
-  {
-    imgUrl: '/assets/images/products/jim and jiko.png',
-    title: 'Jim & Jago',
-    productUrl: '/product/e14',
-  },
-];
-
 export default Categories;
