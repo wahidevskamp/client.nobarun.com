@@ -1,5 +1,6 @@
 import Box from '@component/Box';
 import Image from '@component/Image';
+import navbarNavigations from '@data/navbarNavigations';
 import Link from 'next/link';
 import React from 'react';
 import Categories from '../categories/Categories';
@@ -32,25 +33,25 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
           </Link>
 
           {isFixed && (
-            <FlexBox className="category-holder">
-              <Categories>
+            <FlexBox className="category-holder" ml="10px">
+              <Categories menu={navbarNavigations} isFixed={isFixed}>
                 <FlexBox color="text.hint" alignItems="center" ml="1rem">
-                  <Icon>categories</Icon>
+                  <Icon size="19px">stream-solid</Icon>
                   <Icon>arrow-down-filled</Icon>
                 </FlexBox>
               </Categories>
-              {/* <Menus>
+              <Categories isFixed={isFixed}>
                 <FlexBox color="text.hint" alignItems="center" ml="1rem">
-                  <Icon>categories</Icon>
+                  <Icon size="24px">categories</Icon>
                   <Icon>arrow-down-filled</Icon>
                 </FlexBox>
-              </Menus> */}
+              </Categories>
             </FlexBox>
           )}
         </FlexBox>
 
         <FlexBox justifyContent="center" flex="1 1 0">
-          <SearchBox />
+          <SearchBox isFixed={isFixed} />
         </FlexBox>
 
         <a

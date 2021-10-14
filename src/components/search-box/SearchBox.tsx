@@ -1,20 +1,22 @@
-import Card from "@component/Card";
-import { Span } from "@component/Typography";
-import { debounce } from "lodash";
-import Link from "next/link";
-import React, { useCallback, useEffect, useState } from "react";
-import Box from "../Box";
-import FlexBox from "../FlexBox";
-import Icon from "../icon/Icon";
-import Menu from "../Menu";
-import MenuItem from "../MenuItem";
-import TextField from "../text-field/TextField";
-import StyledSearchBox from "./SearchBoxStyle";
+import Card from '@component/Card';
+import { Span } from '@component/Typography';
+import { debounce } from 'lodash';
+import Link from 'next/link';
+import React, { useCallback, useEffect, useState } from 'react';
+import Box from '../Box';
+import FlexBox from '../FlexBox';
+import Icon from '../icon/Icon';
+import Menu from '../Menu';
+import MenuItem from '../MenuItem';
+import TextField from '../text-field/TextField';
+import StyledSearchBox from './SearchBoxStyle';
 
-export interface SearchBoxProps {}
+export interface SearchBoxProps {
+  isFixed: boolean;
+}
 
-const SearchBox: React.FC<SearchBoxProps> = () => {
-  const [category, setCategory] = useState("All Categories");
+const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
+  const [category, setCategory] = useState('All Categories');
   const [resultList, setResultList] = useState([]);
 
   const handleCategoryChange = (cat) => () => {
@@ -38,14 +40,19 @@ const SearchBox: React.FC<SearchBoxProps> = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("click", handleDocumentClick);
+    window.addEventListener('click', handleDocumentClick);
     return () => {
-      window.removeEventListener("click", handleDocumentClick);
+      window.removeEventListener('click', handleDocumentClick);
     };
   }, []);
 
   return (
-    <Box position="relative" flex="1 1 0" maxWidth="670px" mx="auto">
+    <Box
+      position="relative"
+      flex="1 1 0"
+      maxWidth={isFixed ? '600px' : '670px'}
+      mx="auto"
+    >
       <StyledSearchBox>
         <Icon className="search-icon" size="18px">
           search
@@ -100,21 +107,21 @@ const SearchBox: React.FC<SearchBoxProps> = () => {
 };
 
 const categories = [
-  "All Categories",
-  "Car",
-  "Clothes",
-  "Electronics",
-  "Laptop",
-  "Desktop",
-  "Camera",
-  "Toys",
+  'All Categories',
+  'Car',
+  'Clothes',
+  'Electronics',
+  'Laptop',
+  'Desktop',
+  'Camera',
+  'Toys',
 ];
 
 const dummySearchResult = [
-  "Macbook Air 13",
-  "Ksus K555LA",
-  "Acer Aspire X453",
-  "iPad Mini 3",
+  'Macbook Air 13',
+  'Ksus K555LA',
+  'Acer Aspire X453',
+  'iPad Mini 3',
 ];
 
 export default SearchBox;

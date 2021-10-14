@@ -11,6 +11,7 @@ import Icon from '../icon/Icon';
 import NavLink from '../nav-link/NavLink';
 import Typography, { Span } from '../Typography';
 import StyledNavbar from './NavbarStyle';
+import RecentViewedProducts from './RecentViewedProducts';
 
 export interface NavbarProps {
   navListOpen?: boolean;
@@ -139,7 +140,43 @@ const Navbar: React.FC<NavbarProps> = ({ navListOpen }) => {
           </Button>
         </Categories>
 
-        <FlexBox>{renderNestedNav(navbarNavigations, true)}</FlexBox>
+        <FlexBox
+          style={{ flexGrow: 1 }}
+          justifyContent="space-between"
+          px="40px"
+        >
+          <div>{renderNestedNav(navbarNavigations, true)}</div>
+          <FlexBox
+            className="root"
+            position="relative"
+            flexDirection="column"
+            alignItems="center"
+          >
+            <Span className="nav-link">
+              <FlexBox alignItems="center">
+                Your Recent Views
+                <Icon size="16px" ml="5px" mt="3px" defaultcolor="currentColor">
+                  angle-double-down-solid
+                </Icon>
+              </FlexBox>
+            </Span>
+            <Box
+              className="root-child"
+              style={{ right: '-2.5rem', left: 'unset', zIndex: 100 }}
+            >
+              <Card
+                mt="1.25rem"
+                py="0.5rem"
+                boxShadow="large"
+                minWidth="1200px"
+              >
+                <RecentViewedProducts />
+              </Card>
+            </Box>
+          </FlexBox>
+
+          {/* </FlexBox> */}
+        </FlexBox>
       </Container>
     </StyledNavbar>
   );

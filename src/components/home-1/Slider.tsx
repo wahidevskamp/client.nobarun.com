@@ -3,9 +3,27 @@ import CarouselCard1 from '@component/carousel-cards/CarouselCard1';
 import Carousel from '@component/carousel/Carousel';
 import Container from '@component/Container';
 import Navbar from '@component/navbar/Navbar';
-import React, { Fragment } from 'react';
+import useWindowSize from '@hook/useWindowSize';
+import React, { Fragment, useState, useEffect } from 'react';
+import Clients from './Clients';
 
 const Section1: React.FC = () => {
+  const [blockClient, setBlockClient] = useState(false);
+  console.log(blockClient);
+
+  const width = useWindowSize();
+
+  useEffect(() => {
+    // if (width < 500) setVisibleSlides(2);
+    // else if (width < 650) setVisibleSlides(3);
+    // else if (width < 950) setVisibleSlides(4);
+    // else
+    if (width < 1200) {
+      console.log(width);
+      setBlockClient(true);
+    }
+  }, [width]);
+
   return (
     <Fragment>
       <Navbar navListOpen={true} />
@@ -26,9 +44,10 @@ const Section1: React.FC = () => {
             <CarouselCard1 />
             <CarouselCard1 />
           </Carousel>
-          {/* <Clients /> */}
+          {blockClient && <Clients />}
         </Container>
       </Box>
+      {!blockClient && <Clients />}
     </Fragment>
   );
 };

@@ -23,7 +23,12 @@ const SpecialCollections: React.FC = () => {
       seeMoreLink="#"
     >
       <Box mt="-0.25rem" mb="-0.25rem">
-        <Carousel totalSlides={10} visibleSlides={visibleSlides}>
+        <Carousel
+          totalSlides={10}
+          visibleSlides={visibleSlides}
+          leftButtonStyle={{ top: '225px' }}
+          rightButtonStyle={{ top: '225px' }}
+        >
           {productList.map((item, ind) => (
             <Box py="0.25rem" key={ind}>
               <ProductCard1

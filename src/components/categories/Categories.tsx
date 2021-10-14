@@ -1,13 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import CategoryDropdown from "./CategoryDropdown";
-import { StyledCategory } from "./CategoryStyle";
+import React, { useEffect, useRef, useState } from 'react';
+import CategoryDropdown from './CategoryDropdown';
+import { StyledCategory } from './CategoryStyle';
 
 export interface CategoriesProps {
   open?: boolean;
   children: React.ReactElement;
+  menu?: any;
+  isFixed?: boolean;
 }
 
-const Categories: React.FC<CategoriesProps> = ({ open: isOpen, children }) => {
+const Categories: React.FC<CategoriesProps> = ({
+  open: isOpen,
+  menu,
+  isFixed,
+  children,
+}) => {
   const [open, setOpen] = useState(isOpen);
   const popoverRef = useRef(open);
   popoverRef.current = open;
@@ -22,11 +29,26 @@ const Categories: React.FC<CategoriesProps> = ({ open: isOpen, children }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("click", handleDocumentClick);
+    window.addEventListener('click', handleDocumentClick);
     return () => {
-      window.removeEventListener("click", handleDocumentClick);
+      window.removeEventListener('click', handleDocumentClick);
     };
   }, []);
+
+  const ref = useRef(null);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        if (isFixed) {
+          setOpen(false);
+        }
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref]);
 
   return (
     <StyledCategory open={open}>
@@ -35,7 +57,7 @@ const Categories: React.FC<CategoriesProps> = ({ open: isOpen, children }) => {
         className: `${children.props.className} cursor-pointer`,
         onClick: toggleMenu,
       })}
-      <CategoryDropdown open={open} />
+      <CategoryDropdown ref={ref} open={open} menu={menu} />
     </StyledCategory>
   );
 };

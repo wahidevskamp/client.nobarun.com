@@ -6,17 +6,24 @@ import FlexBox from '@component/FlexBox';
 import { GrocerySection10Wrapper } from '@component/home-2/GrocerySectionStyle';
 import Icon from '@component/icon/Icon';
 import { H5, SemiSpan, Span } from '@component/Typography';
-import React from 'react';
+import useWindowSize from '@hook/useWindowSize';
+import React, { useState, useEffect } from 'react';
 
 const Testimonials: React.FC = () => {
-  return (
-    // <Container>
+  const [visibleSlides, setVisibleSlides] = useState(2);
+  const width = useWindowSize();
 
+  useEffect(() => {
+    if (width < 1200) setVisibleSlides(1);
+    else setVisibleSlides(2);
+  }, [width]);
+
+  return (
     <GrocerySection10Wrapper>
       <Box m="-0.25rem">
         <Carousel
           totalSlides={3}
-          visibleSlides={2}
+          visibleSlides={visibleSlides}
           showDots={true}
           spacing="0px"
           arrowButtonColor="inherit"

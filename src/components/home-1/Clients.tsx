@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import Box from '@component/Box';
 import Carousel from '@component/carousel/Carousel';
 import Container from '@component/Container';
@@ -5,7 +6,6 @@ import HoverBox from '@component/HoverBox';
 import LazyImage from '@component/LazyImage';
 import { H4 } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
-import React, { useEffect, useState } from 'react';
 
 const Clients: React.FC = () => {
   const [visibleSlides, setVisibleSlides] = useState(6);
