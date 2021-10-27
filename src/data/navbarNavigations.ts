@@ -4,16 +4,16 @@ const navbarNavigations = [
     url: '/',
   },
   {
-    title: 'Specials',
-    url: '/product/specials',
-  },
-  {
-    title: 'Our Clients',
-    url: '/clients',
-  },
-  {
     title: 'About Us',
     url: '/about',
+  },
+  {
+    title: 'Sitemap',
+    url: '/sitemap',
+  },
+  {
+    title: 'Blog',
+    url: '/blog',
   },
   {
     title: 'Contact Us',

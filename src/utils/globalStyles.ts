@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 export const GlobalStyles = createGlobalStyle`
   html,
   body {
@@ -12,6 +12,7 @@ export const GlobalStyles = createGlobalStyle`
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     sans-serif;
     line-height: 1.5;
+    overflow-x: hidden;
   }
 
   html {
@@ -24,6 +25,11 @@ export const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
     color: ${({ theme }: any) => theme.colors.body.text};
+  }
+  ul,ol{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
   }
   .cursor-pointer {
     cursor: pointer;

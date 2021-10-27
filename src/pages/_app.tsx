@@ -7,6 +7,8 @@ import { AppProvider } from '../contexts/app/AppContext';
 import { GlobalStyles } from '../utils/globalStyles';
 import { theme } from '../utils/theme';
 
+import '../styles/main.scss';
+
 //Binding events.
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());

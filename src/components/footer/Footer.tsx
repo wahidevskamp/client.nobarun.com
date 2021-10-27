@@ -1,112 +1,87 @@
-import AppStore from "@component/AppStore";
-import Image from "@component/Image";
-import Link from "next/link";
-import React from "react";
-import styled from "styled-components";
-import { getTheme } from "../../utils/utils";
-import Box from "../Box";
-import Container from "../Container";
-import FlexBox from "../FlexBox";
-import Grid from "../grid/Grid";
-import Icon from "../icon/Icon";
-import Typography, { Paragraph } from "../Typography";
+import Link from 'next/link';
+import React from 'react';
+import styled from 'styled-components';
+import { getTheme } from '../../utils/utils';
+import Box from '../Box';
+import Container from '../Container';
+import FlexBox from '../FlexBox';
+import Grid from '../grid/Grid';
+import Icon from '../icon/Icon';
+import Typography, { Paragraph } from '../Typography';
 
 const StyledLink = styled.a`
   position: relative;
   display: block;
   padding: 0.3rem 0rem;
-  color: ${getTheme("colors.gray.500")};
+  color: ${getTheme('colors.gray.500')};
   cursor: pointer;
   border-radius: 4px;
   :hover {
-    color: ${getTheme("colors.gray.100")};
+    color: ${getTheme('colors.gray.100')};
   }
 `;
 
 const Footer: React.FC = () => {
   return (
     <footer>
-      <Box bg="#0F3460">
+      <Box
+        style={{
+          backgroundImage: 'linear-gradient(#1CA346,#6FBA1A)',
+        }}
+      >
         <Container p="1rem" color="white">
           <Box py="5rem" overflow="hidden">
             <Grid container spacing={6}>
+              <Grid item lg={3} md={6} sm={6} xs={12}>
+                <Typography
+                  fontSize="25px"
+                  fontWeight="600"
+                  mb="1.25rem"
+                  lineHeight="1"
+                >
+                  Corporate Office
+                </Typography>
+                <Typography py="0.3rem">Planet Ornate</Typography>
+                <Typography py="0.3rem">
+                  H#199(1st Floor), R#01,Mohakhali New DOHS
+                </Typography>
+                <Typography py="0.3rem">Dhaka 1206, Bangladesh.</Typography>
+                <Typography py="0.3rem" mb="1rem">
+                  Email: nobarunbd@gmail.com
+                  <br />
+                  Phone: +8801711 998626
+                </Typography>
+              </Grid>
+
+              <Grid item lg={5} md={6} sm={6} xs={12}>
+                <Typography
+                  fontSize="25px"
+                  fontWeight="600"
+                  mb="1.25rem"
+                  lineHeight="1"
+                >
+                  Recent Blog Post
+                </Typography>
+
+                <div>
+                  {[1, 2, 3].map((blog) => (
+                    <Link href="/" key={blog}>
+                      <StyledLink style={{ color: '#fff' }}>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing
+                        elit. Atque molestiae officiis quas. Commodi, dolor
+                        minus.
+                      </StyledLink>
+                    </Link>
+                  ))}
+                </div>
+              </Grid>
               <Grid item lg={4} md={6} sm={6} xs={12}>
-                <Link href="/">
-                  <a>
-                    <Image
-                      mb="1.25rem"
-                      src="/assets/images/logo.png"
-                      alt="logo"
-                    />
-                  </a>
-                </Link>
-
-                <Paragraph mb="1.25rem" color="gray.500">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Auctor libero id et, in gravida. Sit diam duis mauris nulla
-                  cursus. Erat et lectus vel ut sollicitudin elit at amet.
+                <Paragraph mb="1.25rem" textAlign="justify">
+                  <strong>NOBARUN INTERNATIONAL</strong> is leading supplier of
+                  Digital Safety & Security Products, Supermarket Equipments,
+                  Slaughterhouse Equipments & Commercial Kitchen Equipments in
+                  Bangladesh.
                 </Paragraph>
-
-                <AppStore />
-              </Grid>
-
-              <Grid item lg={2} md={6} sm={6} xs={12}>
-                <Typography
-                  fontSize="25px"
-                  fontWeight="600"
-                  mb="1.25rem"
-                  lineHeight="1"
-                >
-                  About Us
-                </Typography>
-
-                <div>
-                  {aboutLinks.map((item, ind) => (
-                    <Link href="/" key={ind}>
-                      <StyledLink>{item}</StyledLink>
-                    </Link>
-                  ))}
-                </div>
-              </Grid>
-
-              <Grid item lg={3} md={6} sm={6} xs={12}>
-                <Typography
-                  fontSize="25px"
-                  fontWeight="600"
-                  mb="1.25rem"
-                  lineHeight="1"
-                >
-                  Customer Care
-                </Typography>
-
-                <div>
-                  {customerCareLinks.map((item, ind) => (
-                    <Link href="/" key={ind}>
-                      <StyledLink>{item}</StyledLink>
-                    </Link>
-                  ))}
-                </div>
-              </Grid>
-
-              <Grid item lg={3} md={6} sm={6} xs={12}>
-                <Typography
-                  fontSize="25px"
-                  fontWeight="600"
-                  mb="1.25rem"
-                  lineHeight="1"
-                >
-                  Contact Us
-                </Typography>
-                <Typography py="0.3rem" color="gray.500">
-                  70 Washington Square South, New York, NY 10012, United States
-                </Typography>
-                <Typography py="0.3rem" color="gray.500">
-                  Email: uilib.help@gmail.com
-                </Typography>
-                <Typography py="0.3rem" mb="1rem" color="gray.500">
-                  Phone: +1 1123 456 780
-                </Typography>
-
                 <FlexBox className="flex" mx="-5px">
                   {iconList.map((item) => (
                     <a
@@ -119,7 +94,7 @@ const Footer: React.FC = () => {
                         m="5px"
                         size="small"
                         p="10px"
-                        bg="rgba(0,0,0,0.2)"
+                        bg="rgba(0,0,0,0.36)"
                         borderRadius="50%"
                       >
                         <Icon size="12px" defaultcolor="auto">
@@ -129,6 +104,9 @@ const Footer: React.FC = () => {
                     </a>
                   ))}
                 </FlexBox>
+                <Typography py="0.8rem" fontWeight="bold">
+                  Copyright @Nobarun International (2017-2021)
+                </Typography>
               </Grid>
             </Grid>
           </Box>
@@ -138,31 +116,18 @@ const Footer: React.FC = () => {
   );
 };
 
-const aboutLinks = [
-  "Careers",
-  "Our Stores",
-  "Our Cares",
-  "Terms & Conditions",
-  "Privacy Policy",
-];
-
-const customerCareLinks = [
-  "Help Center",
-  "How to Buy",
-  "Track Your Order",
-  "Corporate & Bulk Purchasing",
-  "Returns & Refunds",
-];
-
 const iconList = [
-  { iconName: "facebook", url: "https://www.facebook.com/UILibOfficial" },
-  { iconName: "twitter", url: "/" },
   {
-    iconName: "youtube",
-    url: "https://www.youtube.com/channel/UCsIyD-TSO1wQFz-n2Y4i3Rg",
+    iconName: 'facebook',
+    url: 'hhttps://www.facebook.com/nobaruninternational',
   },
-  { iconName: "google", url: "/" },
-  { iconName: "instagram", url: "/" },
+  { iconName: 'twitter', url: 'https://twitter.com/nobarunbd' },
+  {
+    iconName: 'youtube',
+    url: '/',
+  },
+  { iconName: 'google', url: '/' },
+  { iconName: 'instagram', url: '/' },
 ];
 
 export default Footer;

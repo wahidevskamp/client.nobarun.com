@@ -5,10 +5,9 @@ import Container from '@component/Container';
 import Navbar from '@component/navbar/Navbar';
 import useWindowSize from '@hook/useWindowSize';
 import React, { Fragment, useState, useEffect } from 'react';
-import Clients from './Clients';
 
 const Section1: React.FC = () => {
-  const [blockClient, setBlockClient] = useState(false);
+  const [blockClient, setBlockClient] = useState(true);
   console.log(blockClient);
 
   const width = useWindowSize();
@@ -18,9 +17,9 @@ const Section1: React.FC = () => {
     // else if (width < 650) setVisibleSlides(3);
     // else if (width < 950) setVisibleSlides(4);
     // else
+    console.log(width);
     if (width < 1200) {
-      console.log(width);
-      setBlockClient(true);
+      setBlockClient(false);
     }
   }, [width]);
 
@@ -44,10 +43,8 @@ const Section1: React.FC = () => {
             <CarouselCard1 />
             <CarouselCard1 />
           </Carousel>
-          {blockClient && <Clients />}
         </Container>
       </Box>
-      {!blockClient && <Clients />}
     </Fragment>
   );
 };

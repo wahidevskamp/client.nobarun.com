@@ -38,7 +38,7 @@ export const GrocerySection6Wrapper = styled.div`
 `;
 
 export const GrocerySection10Wrapper = styled.div`
-  max-width: 115rem;
+  max-width: 1400px;
   margin: 0 auto 6rem;
   .quote {
     position: absolute;

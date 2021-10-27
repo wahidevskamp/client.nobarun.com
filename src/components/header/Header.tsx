@@ -60,11 +60,11 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
         >
           <FlexBox
             alignItems="center"
-            border="2px solid #188BCC"
+            border="2px solid #1CA346"
             borderRadius="1.2rem"
           >
             <Box
-              backgroundColor="#188BCC"
+              backgroundColor="#1CA346"
               px="1rem"
               py=".5rem"
               borderTopLeftRadius="1rem"

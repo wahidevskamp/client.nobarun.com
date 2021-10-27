@@ -3,7 +3,7 @@ import { getTheme } from '../../utils/utils';
 
 const StyledNavbar = styled.div`
   position: relative;
-  background: ${getTheme('colors.tertiary.main')};
+  background: ${getTheme('colors.default.gradient')};
   box-shadow: ${getTheme('shadows.regular')};
 
   .nav-link {
