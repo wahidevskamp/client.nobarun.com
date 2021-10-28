@@ -1,18 +1,14 @@
+import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import LazyImage from '@component/LazyImage';
-import { useAppContext } from '@context/app/AppContext';
-import { CartItem } from '@reducer/cartReducer';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import Avatar from '../avatar/Avatar';
 import Box from '../Box';
-import Button from '../buttons/Button';
 import FlexBox from '../FlexBox';
 import Grid from '../grid/Grid';
 import Icon from '../icon/Icon';
 import Rating from '../rating/Rating';
-import { H1, H2, H3, H6, SemiSpan } from '../Typography';
+import Typography, { H1, H4, Span } from '../Typography';
 
 export interface ProductIntroProps {
   imgUrl?: string[];
@@ -21,62 +17,77 @@ export interface ProductIntroProps {
   id?: string | number;
 }
 
-const ProductIntro: React.FC<ProductIntroProps> = ({
-  imgUrl,
-  title,
-  price = 200,
-  id,
-}) => {
+const ProductIntro: React.FC<ProductIntroProps> = ({ imgUrl, title }) => {
   const [selectedImage, setSelectedImage] = useState(0);
-  const { state, dispatch } = useAppContext();
-  const cartList: CartItem[] = state.cart.cartList;
-  const router = useRouter();
-  const routerId = router.query.id as string;
-  const cartItem = cartList.find(
-    (item) => item.id === id || item.id === routerId,
-  );
 
   const handleImageClick = (ind) => () => {
     setSelectedImage(ind);
   };
 
-  const handleCartAmountChange = useCallback(
-    (amount) => () => {
-      dispatch({
-        type: 'CHANGE_CART_AMOUNT',
-        payload: {
-          qty: amount,
-          name: title,
-          price,
-          imgUrl: imgUrl[0],
-          id: id || routerId,
-        },
-      });
-    },
-    [],
-  );
-
   return (
-    <Card>
-      <Box overflow="hidden" py="2rem">
-        <Grid container justifyContent="center" spacing={16}>
-          <Grid item md={6} xs={12} alignItems="center">
-            <Box>
-              <FlexBox justifyContent="center" mb="50px">
-                <LazyImage
-                  src={imgUrl[selectedImage]}
-                  alt={title}
-                  height="300px"
-                  width="auto"
-                  loading="eager"
-                  objectFit="contain"
-                />
-              </FlexBox>
-              <FlexBox overflow="auto">
-                {imgUrl.map((url, ind) => (
+    <Card position="relative">
+      <Box
+        display="inline-block"
+        bg="#EC1C24"
+        color="#fff"
+        px="10px"
+        py="10px"
+        pr="25px"
+        position="absolute"
+        top="50%"
+        style={{
+          clipPath: 'polygon(0% 0%, 100% 0, 93% 41%, 83% 100%, 0% 100%)',
+          transform: 'translateY(-50%)',
+        }}
+      >
+        Ready Stock
+      </Box>
+      <Box overflow="hidden" px="3em" py="2rem">
+        <FlexBox justifyContent="space-between" alignItems="center" mb="2em">
+          <Box>
+            <H1>Commercial Bone Saw Machine</H1>
+            <Typography>Product Code: NI1876</Typography>
+            <FlexBox alignItems="center" mt=".4em">
+              <H4 mr="1.5em" color="#EC1C24">
+                Price: 2,75,000 Taka
+              </H4>
+              <Rating outof={5} value={3} color="warn" size="medium" />
+              <Span ml="1em" color="#0082C9">
+                22 Real Customer Reviews
+              </Span>
+            </FlexBox>
+          </Box>
+          <Button variant="contained" color="primary">
+            বাংলায় পড়ুন
+          </Button>
+        </FlexBox>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          spacing={16}
+        >
+          <Grid item md={8} xs={12} alignItems="center">
+            <FlexBox justifyContent="center" mb="50px">
+              <LazyImage
+                src={imgUrl[selectedImage]}
+                alt={title}
+                height="300px"
+                width="auto"
+                loading="eager"
+                objectFit="contain"
+              />
+            </FlexBox>
+          </Grid>
+
+          <Grid item md={3} xs={12} alignItems="center">
+            <Grid container justifyContent="center">
+              {imgUrl.map((url, ind) => (
+                <Grid item xs={6}>
                   <Box
-                    size={70}
-                    minWidth={70}
+                    size={80}
+                    minWidth={80}
+                    mb=".5rem"
                     bg="white"
                     borderRadius="10px"
                     display="flex"
@@ -85,8 +96,8 @@ const ProductIntro: React.FC<ProductIntroProps> = ({
                     cursor="pointer"
                     border="1px solid"
                     key={ind}
-                    ml={ind === 0 && 'auto'}
-                    mr={ind === imgUrl.length - 1 ? 'auto' : '10px'}
+                    // ml={ind === 0 && 'auto'}
+                    // mr={ind === imgUrl.length - 1 ? 'auto' : '10px'}
                     borderColor={
                       selectedImage === ind ? 'primary.main' : 'gray.400'
                     }
@@ -94,82 +105,102 @@ const ProductIntro: React.FC<ProductIntroProps> = ({
                   >
                     <Avatar src={url} borderRadius="10px" size={40} />
                   </Box>
-                ))}
-              </FlexBox>
-            </Box>
-          </Grid>
-
-          <Grid item md={6} xs={12} alignItems="center">
-            <H1 mb="1rem">{title}</H1>
-
-            <FlexBox alignItems="center" mb="1rem">
-              <SemiSpan>Brand:</SemiSpan>
-              <H6 ml="8px">Ziaomi</H6>
-            </FlexBox>
-
-            <FlexBox alignItems="center" mb="1rem">
-              <SemiSpan>Rated:</SemiSpan>
-              <Box ml="8px" mr="8px">
-                <Rating color="warn" value={4} outof={5} />
-              </Box>
-              <H6>(50)</H6>
-            </FlexBox>
-
-            <Box mb="24px">
-              <H2 color="primary.main" mb="4px" lineHeight="1">
-                ${price.toFixed(2)}
-              </H2>
-              <SemiSpan color="inherit">Stock Available</SemiSpan>
-            </Box>
-
-            {!cartItem?.qty ? (
-              <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                mb="36px"
-                onClick={handleCartAmountChange(1)}
-              >
-                Add to Cart
-              </Button>
-            ) : (
-              <FlexBox alignItems="center" mb="36px">
-                <Button
-                  p="9px"
-                  variant="outlined"
-                  size="small"
-                  color="primary"
-                  onClick={handleCartAmountChange(cartItem?.qty - 1)}
-                >
-                  <Icon variant="small">minus</Icon>
-                </Button>
-                <H3 fontWeight="600" mx="20px">
-                  {cartItem?.qty.toString().padStart(2, '0')}
-                </H3>
-                <Button
-                  p="9px"
-                  variant="outlined"
-                  size="small"
-                  color="primary"
-                  onClick={handleCartAmountChange(cartItem?.qty + 1)}
-                >
-                  <Icon variant="small">plus</Icon>
-                </Button>
-              </FlexBox>
-            )}
-
-            <FlexBox alignItems="center" mb="1rem">
-              <SemiSpan>Sold By:</SemiSpan>
-              <Link href="/shop/fdfdsa">
-                <a>
-                  <H6 lineHeight="1" ml="8px">
-                    Mobile Store
-                  </H6>
-                </a>
-              </Link>
-            </FlexBox>
+                </Grid>
+              ))}
+              {imgUrl.map((url, ind) => (
+                <Grid item xs={6}>
+                  <Box
+                    size={80}
+                    minWidth={80}
+                    mb=".5rem"
+                    bg="white"
+                    borderRadius="10px"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    cursor="pointer"
+                    border="1px solid"
+                    key={ind}
+                    // ml={ind === 0 && 'auto'}
+                    // mr={ind === imgUrl.length - 1 ? 'auto' : '10px'}
+                    borderColor={
+                      selectedImage === ind ? 'primary.main' : 'gray.400'
+                    }
+                    onClick={handleImageClick(ind)}
+                  >
+                    <Avatar src={url} borderRadius="10px" size={40} />
+                  </Box>
+                </Grid>
+              ))}
+              {imgUrl.map((url, ind) => (
+                <Grid item xs={6}>
+                  <Box
+                    size={80}
+                    minWidth={80}
+                    mb=".5rem"
+                    bg="white"
+                    borderRadius="10px"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    cursor="pointer"
+                    border="1px solid"
+                    key={ind}
+                    // ml={ind === 0 && 'auto'}
+                    // mr={ind === imgUrl.length - 1 ? 'auto' : '10px'}
+                    borderColor={
+                      selectedImage === ind ? 'primary.main' : 'gray.400'
+                    }
+                    onClick={handleImageClick(ind)}
+                  >
+                    <Avatar src={url} borderRadius="10px" size={40} />
+                  </Box>
+                </Grid>
+              ))}
+              {imgUrl.map((url, ind) => (
+                <Grid item xs={6}>
+                  <Box
+                    size={80}
+                    minWidth={80}
+                    mb=".5rem"
+                    bg="white"
+                    borderRadius="10px"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    cursor="pointer"
+                    border="1px solid"
+                    key={ind}
+                    // ml={ind === 0 && 'auto'}
+                    // mr={ind === imgUrl.length - 1 ? 'auto' : '10px'}
+                    borderColor={
+                      selectedImage === ind ? 'primary.main' : 'gray.400'
+                    }
+                    onClick={handleImageClick(ind)}
+                  >
+                    <Avatar src={url} borderRadius="10px" size={40} />
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+            {/* <FlexBox
+              overflow="auto"
+              flexDirection="column"
+              alignItems="flex-start"
+            ></FlexBox> */}
           </Grid>
         </Grid>
+        <Button
+          variant="contained"
+          bg="#0082C9"
+          //@ts-ignore
+          color="#fff"
+        >
+          <Icon size="1em" mr="1em">
+            share-solid
+          </Icon>
+          Share
+        </Button>
       </Box>
     </Card>
   );

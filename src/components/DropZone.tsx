@@ -1,15 +1,16 @@
-import React, { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
-import Box from "./Box";
-import Button from "./buttons/Button";
-import Divider from "./Divider";
-import Typography, { H5, Small } from "./Typography";
+import React, { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import Box from './Box';
+import Button from './buttons/Button';
+import Divider from './Divider';
+import Typography, { H5, Small } from './Typography';
 
 export interface DropZoneProps {
+  label?: string;
   onChange?: (files: []) => void;
 }
 
-const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
+const DropZone: React.FC<DropZoneProps> = ({ label, onChange }) => {
   const onDrop = useCallback((acceptedFiles) => {
     if (onChange) onChange(acceptedFiles);
   }, []);
@@ -17,7 +18,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     multiple: true,
-    accept: ".jpeg,.jpg,.png,.gif",
+    accept: '.jpeg,.jpg,.png,.gif',
     maxFiles: 10,
   });
 
@@ -31,20 +32,20 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
       border="1px dashed"
       borderColor="gray.400"
       borderRadius="10px"
-      bg={isDragActive && "gray.200"}
+      bg={isDragActive && 'gray.200'}
       transition="all 250ms ease-in-out"
-      style={{ outline: "none" }}
+      style={{ outline: 'none' }}
       {...getRootProps()}
     >
       <input {...getInputProps()} />
       <H5 mb="18px" color="text.muted">
-        Drag & drop product image here
+        {label || 'Drag & drop product image here'}
       </H5>
 
       <Divider width="200px" mx="auto" />
       <Typography
         color="text.muted"
-        bg={isDragActive ? "gray.200" : "body.paper"}
+        bg={isDragActive ? 'gray.200' : 'body.paper'}
         lineHeight="1"
         px="1rem"
         mt="-10px"
@@ -63,7 +64,10 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
         Select files
       </Button>
 
-      <Small color="text.muted">Upload 280*280 image</Small>
+      <Small color="text.muted">
+        Allowed file types: jpg, gif, png,mp4,avi max total size of files:
+        100MB, max number of files: 8!
+      </Small>
     </Box>
   );
 };

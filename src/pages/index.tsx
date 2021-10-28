@@ -9,7 +9,7 @@ const IndexPage = () => {
   return (
     <main>
       <Slider />
-      <Clients />
+      <Clients slides={8} />
       <FeaturedCategories />
       <SpecialCollections />
       <Testimonials />

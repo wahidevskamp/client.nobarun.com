@@ -8,7 +8,11 @@ import { H2, H4 } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import FlexBox from '@component/FlexBox';
 
-const Clients: React.FC = () => {
+interface ClientProps {
+  slides?: number;
+  isProductDetails?: boolean;
+}
+const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
   const [visibleSlides, setVisibleSlides] = useState(6);
   const width = useWindowSize();
   console.log(visibleSlides);
@@ -20,7 +24,10 @@ const Clients: React.FC = () => {
   }, [width]);
 
   return (
-    <Box pt="3rem" pb="7rem">
+    <Box
+      pt={isProductDetails ? '4rem' : '3rem'}
+      pb={isProductDetails ? '4rem' : '7rem'}
+    >
       <FlexBox justifyContent="center" alignItems="center" mb="3rem">
         <FlexBox alignItems="center">
           <H2 fontWeight="bold" textAlign="center" lineHeight="1">
@@ -30,7 +37,7 @@ const Clients: React.FC = () => {
       </FlexBox>
       <Container pb="1rem">
         <Box mb="-0.25rem">
-          <Carousel totalSlides={productList.length} visibleSlides={8}>
+          <Carousel totalSlides={productList.length} visibleSlides={slides}>
             {productList.map((item, ind) => (
               <Box key={ind}>
                 <Box>
