@@ -1,6 +1,5 @@
 import Button from '@component/buttons/Button';
 import Image from '@component/Image';
-import LazyImage from '@component/LazyImage';
 import Link from 'next/link';
 import React, { useCallback, useState } from 'react';
 import { CSSProperties } from 'styled-components';

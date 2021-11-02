@@ -1,6 +1,5 @@
 import Button from '@component/buttons/Button';
 import Card from '@component/Card';
-import LazyImage from '@component/LazyImage';
 import useWindowSize from '@hook/useWindowSize';
 import React, { useState } from 'react';
 import Avatar from '../avatar/Avatar';
@@ -19,7 +18,7 @@ export interface ProductIntroProps {
   id?: string | number;
 }
 
-const ProductIntro: React.FC<ProductIntroProps> = ({ data, imgUrl, title }) => {
+const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
   const [selectedImage, setSelectedImage] = useState('');
   const width = useWindowSize();
 

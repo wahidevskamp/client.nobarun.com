@@ -1,4 +1,3 @@
-import { parse } from 'node-html-parser';
 import Accordian from '@component/accordion/Accordian';
 import Button from '@component/buttons/Button';
 import Card from '@component/Card';

@@ -1,40 +1,40 @@
-import Accordion from "@component/accordion/Accordion";
-import AccordionHeader from "@component/accordion/AccordionHeader";
-import Box from "@component/Box";
-import Card from "@component/Card";
-import FlexBox from "@component/FlexBox";
-import Icon from "@component/icon/Icon";
-import NavLink from "@component/nav-link/NavLink";
-import { SemiSpan } from "@component/Typography";
-import groceryNavigations from "@data/groceryNavigations";
-import React, { Fragment } from "react";
+import Accordion from '@component/accordion/Accordion';
+import AccordionHeader from '@component/accordion/AccordionHeader';
+import Box from '@component/Box';
+import Card from '@component/Card';
+import FlexBox from '@component/FlexBox';
+import Icon from '@component/icon/Icon';
+import NavLink from '@component/nav-link/NavLink';
+import { SemiSpan } from '@component/Typography';
+import groceryNavigations from '@data/groceryNavigations';
+import React, { Fragment } from 'react';
 
 export interface GrocerySidenavProps {
   isFixed?: boolean;
 }
 
 const GrocerySidenav: React.FC<GrocerySidenavProps> = ({ isFixed }) => {
-  const renderChild = (childList: any[], type = "parent") => {
-    if (type === "parent")
+  const renderChild = (childList: any[], type = 'parent') => {
+    if (type === 'parent')
       return childList.map((item) => (
-        <Fragment key={item.title}>
-          <NavLink href={item.href} color="gray.700">
+        <Fragment key={item?.title}>
+          <NavLink href={item?.href} color="gray.700">
             <FlexBox>
               <SemiSpan ml="2rem" py="6px" color="inherit" flex="1 1 0">
-                {item.title}
+                {item?.title}
               </SemiSpan>
             </FlexBox>
           </NavLink>
 
-          {item.child && renderChild(item.child, "child")}
+          {item?.child && renderChild(item?.child, 'child')}
         </Fragment>
       ));
     else
       return childList.map((item) => (
-        <NavLink href={item.href} color="gray.700">
-          <FlexBox key={item.title}>
+        <NavLink href={item?.href} color="gray.700">
+          <FlexBox key={item?.title}>
             <SemiSpan ml="3rem" py="6px" color="inherit" flex="1 1 0">
-              {item.title}
+              {item?.title}
             </SemiSpan>
           </FlexBox>
         </NavLink>
@@ -48,11 +48,11 @@ const GrocerySidenav: React.FC<GrocerySidenavProps> = ({ isFixed }) => {
       boxShadow="large"
       height="100%"
       borderRadius={0}
-      overflow={isFixed ? "auto" : "unset"}
+      overflow={isFixed ? 'auto' : 'unset'}
     >
-      {groceryNavigations.map((item) => (
-        <Box mb="0.5rem" key={item.title} color="gray.700">
-          {item.child ? (
+      {groceryNavigations.map((item: any) => (
+        <Box mb="0.5rem" key={item?.title} color="gray.700">
+          {item?.child ? (
             <Accordion expanded>
               <AccordionHeader
                 px="0px"
@@ -61,14 +61,14 @@ const GrocerySidenav: React.FC<GrocerySidenavProps> = ({ isFixed }) => {
                 justifyContent="flex-start"
               >
                 <Box flex="1 1 0">
-                  <NavLink href={item.href} color="gray.700">
+                  <NavLink href={item?.href} color="gray.700">
                     <FlexBox flex="1 1 0">
                       <Icon
                         variant="small"
                         mr="0.75rem"
                         defaultcolor="currentColor"
                       >
-                        {item.icon}
+                        {item?.icon}
                       </Icon>
                       <SemiSpan
                         color="inherit"
@@ -76,19 +76,19 @@ const GrocerySidenav: React.FC<GrocerySidenavProps> = ({ isFixed }) => {
                         mr="9px"
                         flex="1 1 0"
                       >
-                        {item.title}
+                        {item?.title}
                       </SemiSpan>
                     </FlexBox>
                   </NavLink>
                 </Box>
               </AccordionHeader>
-              {item.child ? renderChild(item.child) : null}
+              {item?.child ? renderChild(item?.child) : null}
             </Accordion>
           ) : (
-            <NavLink href={item.href} color="gray.700">
-              <FlexBox py="6px" color="inherit" key={item.title}>
+            <NavLink href={item?.href} color="gray.700">
+              <FlexBox py="6px" color="inherit" key={item?.title}>
                 <Icon variant="small" mr="0.75rem">
-                  {item.icon}
+                  {item?.icon}
                 </Icon>
                 <SemiSpan
                   color="inherit"
@@ -96,7 +96,7 @@ const GrocerySidenav: React.FC<GrocerySidenavProps> = ({ isFixed }) => {
                   mr="9px"
                   flex="1 1 0"
                 >
-                  {item.title}
+                  {item?.title}
                 </SemiSpan>
               </FlexBox>
             </NavLink>

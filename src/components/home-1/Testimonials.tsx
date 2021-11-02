@@ -6,17 +6,9 @@ import Image from '@component/Image';
 import { GrocerySection10Wrapper } from '@component/home-2/GrocerySectionStyle';
 import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
-import useWindowSize from '@hook/useWindowSize';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const Testimonials: React.FC = () => {
-  const [visibleSlides, setVisibleSlides] = useState(2);
-  const width = useWindowSize();
-  useEffect(() => {
-    if (width < 1200) setVisibleSlides(1);
-    else setVisibleSlides(2);
-  }, [width]);
-
   return (
     <GrocerySection10Wrapper>
       <Box m="-0.25rem" position="relative">

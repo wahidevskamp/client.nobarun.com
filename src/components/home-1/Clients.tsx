@@ -3,7 +3,6 @@ import Box from '@component/Box';
 import Carousel from '@component/carousel/Carousel';
 import Container from '@component/Container';
 import HoverBox from '@component/HoverBox';
-import LazyImage from '@component/LazyImage';
 import { H2, H4 } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import FlexBox from '@component/FlexBox';
