@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import getDay from 'date-fns/getDay';
 
 import Card from '@component/Card';
@@ -7,11 +7,15 @@ import Icon from '@component/icon/Icon';
 import Image from '@component/Image';
 import Typography, { H5 } from '@component/Typography';
 import ProductCard from '@component/product-cards/ProductCard12';
+import Button from '@component/buttons/Button';
+import AddQuery from '@component/Shared/AddQuery';
 
-const Contacts = ({ contact }) => {
+const Contacts = ({ id, contact }) => {
   const day = getDay(new Date());
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <Fragment>
+      <AddQuery id={id} isOpen={isOpen} setIsOpen={setIsOpen} />
       <Card px="1rem" py="1rem" mb="2rem">
         <div className="product__contact-logo">
           <Image src="/assets/images/logo.png" alt="logo" maxHeight="60px" />
@@ -40,6 +44,16 @@ const Contacts = ({ contact }) => {
           </div>
           <Typography ml="1.2rem">{contact?.address}</Typography>
         </FlexBox>
+        <Button
+          variant="contained"
+          color="primary"
+          fullwidth
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          Get A Quote
+        </Button>
       </Card>
       <ProductCard
         title={day === 1 ? 'Today Closed' : 'Today Open 09:00 am - 07:00 pm'}

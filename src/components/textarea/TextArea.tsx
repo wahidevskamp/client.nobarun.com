@@ -1,7 +1,7 @@
-import { TextareaHTMLAttributes } from "react";
-import { BorderProps, SpaceProps } from "styled-system";
-import { colorOptions } from "../../interfaces";
-import { SyledTextArea, TextAreaWrapper } from "./TextAreaStyle";
+import { TextareaHTMLAttributes } from 'react';
+import { BorderProps, SpaceProps } from 'styled-system';
+import { colorOptions } from '../../interfaces';
+import { SyledTextArea, TextAreaWrapper } from './TextAreaStyle';
 
 export interface TextAreaProps
   extends SpaceProps,
@@ -26,7 +26,7 @@ const TextArea: React.FC<TextAreaProps> = ({
   let otherProps = {};
 
   for (const key in props) {
-    if (key.startsWith("m") || key.startsWith("p"))
+    if (key.startsWith('m') || key.startsWith('p'))
       spacingProps[key] = props[key];
     else otherProps[key] = props[key];
   }
@@ -45,8 +45,8 @@ const TextArea: React.FC<TextAreaProps> = ({
 };
 
 TextArea.defaultProps = {
-  id: "textArea",
-  color: "default",
+  id: 'textArea',
+  color: 'default',
 };
 
 export default TextArea;

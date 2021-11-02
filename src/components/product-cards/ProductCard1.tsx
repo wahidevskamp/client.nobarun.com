@@ -1,15 +1,14 @@
 import Button from '@component/buttons/Button';
 import Image from '@component/Image';
+import AddQuery from '@component/Shared/AddQuery';
 import Link from 'next/link';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { CSSProperties } from 'styled-components';
 import Box from '../Box';
-import Card, { CardProps } from '../Card';
+import { CardProps } from '../Card';
 import { Chip } from '../Chip';
 import FlexBox from '../FlexBox';
 import Icon from '../icon/Icon';
-import Modal from '../modal/Modal';
-import ProductIntro from '../products/ProductIntro';
 import Rating from '../rating/Rating';
 import { H3, H6, SemiSpan } from '../Typography';
 import { StyledProductCard1 } from './ProductCardStyle';
@@ -38,12 +37,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
   noOfRating,
   ...props
 }) => {
-  console.log(props);
   const [open, setOpen] = useState(false);
-  const toggleDialog = useCallback(() => {
-    setOpen((open) => !open);
-  }, []);
-
   return (
     <StyledProductCard1 {...props}>
       <div className="image-holder">
@@ -63,12 +57,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
         )}
 
         <FlexBox className="extra-icons">
-          <Icon
-            color="secondary"
-            variant="small"
-            mb="0.5rem"
-            onClick={toggleDialog}
-          >
+          <Icon color="secondary" variant="small" mb="0.5rem">
             eye-alt
           </Icon>
           <Icon className="favorite-icon outlined-icon" variant="small">
@@ -133,6 +122,9 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
               color="primary"
               style={{ width: '100%' }}
               mt="15px"
+              onClick={() => {
+                setOpen(true);
+              }}
             >
               <Icon className="favorite-icon" variant="small" mr="1rem">
                 plus-circle
@@ -181,77 +173,10 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
                 </a>
               </Link>
             </FlexBox>
-            {/* <FlexBox alignItems="center" mt="10px">
-              <SemiSpan pr="0.5rem" fontWeight="600" color="primary.main">
-                ${(price - (price * off) / 100).toFixed(2)}
-              </SemiSpan>
-              {!!off && (
-                <SemiSpan color="text.muted" fontWeight="600">
-                  <del>{price?.toFixed(2)}</del>
-                </SemiSpan>
-              )}
-            </FlexBox> */}
           </Box>
-
-          {/* <FlexBox
-            flexDirection="column-reverse"
-            alignItems="center"
-            justifyContent={!!cartItem?.qty ? 'space-between' : 'flex-start'}
-            width="30px"
-          > */}
-          {/* <div className="add-cart"> */}
-          {/* <Button
-              variant="outlined"
-              color="primary"
-              padding="3px"
-              size="none"
-              borderColor="primary.light"
-              onClick={handleCartAmountChange((cartItem?.qty || 0) + 1)}
-            >
-              <Icon variant="small">plus</Icon>
-            </Button>
-
-            {!!cartItem?.qty && (
-              <Fragment>
-                <SemiSpan color="text.primary" fontWeight="600">
-                  {cartItem?.qty}
-                </SemiSpan>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  padding="3px"
-                  size="none"
-                  borderColor="primary.light"
-                  onClick={handleCartAmountChange(cartItem?.qty - 1)}
-                >
-                  <Icon variant="small">minus</Icon>
-                </Button>
-              </Fragment>
-            )}
-          </FlexBox>*/}
         </FlexBox>
       </div>
-
-      <Modal open={open} onClose={toggleDialog}>
-        <Card p="1rem" position="relative">
-          <ProductIntro imgUrl={[imgUrl]} title={title} price={price} id={id} />
-          <Box
-            position="absolute"
-            top="0.75rem"
-            right="0.75rem"
-            cursor="pointer"
-          >
-            <Icon
-              className="close"
-              color="primary"
-              variant="small"
-              onClick={toggleDialog}
-            >
-              close
-            </Icon>
-          </Box>
-        </Card>
-      </Modal>
+      <AddQuery id={id as string} isOpen={open} setIsOpen={setOpen} />
     </StyledProductCard1>
   );
 };

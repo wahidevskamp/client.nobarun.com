@@ -1,18 +1,21 @@
+import React, { useEffect, useState } from 'react';
 import Box from '@component/Box';
 import Card from '@component/Card';
 import Carousel from '@component/carousel/Carousel';
 import HoverBox from '@component/HoverBox';
-import LazyImage from '@component/LazyImage';
 import { H4 } from '@component/Typography';
-import productDatabase from '@data/product-database';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
 
 const RecentViewedProducts: React.FC = () => {
   const [visibleSlides, setVisibleSlides] = useState(6);
+  const [products, setProducts] = useState([]);
   const width = useWindowSize();
 
+  useEffect(() => {
+    const products = JSON.parse(localStorage.getItem('recentlyViewed'));
+    setProducts(products);
+  }, []);
   useEffect(() => {
     if (width < 370) setVisibleSlides(1);
     else if (width < 650) setVisibleSlides(2);
@@ -21,45 +24,24 @@ const RecentViewedProducts: React.FC = () => {
   }, [width]);
 
   return (
-    // <CategorySectionCreator
-    //   iconName="gift"
-    //   title="Big Discounts"
-    //   seeMoreLink="#"
-    // >
     <Box py=".5rem" px="1.5rem">
       <Carousel totalSlides={9} visibleSlides={visibleSlides}>
-        {productDatabase.slice(60, 69).map((item, ind) => (
-          <Box py="0.25rem" key={item.id}>
+        {products.map((product) => (
+          <Box py="0.25rem" key={product.id}>
             <Card p="1rem">
-              <Link href={`/product/${ind + 20}`}>
+              <Link href={`/product/${product.id}`}>
                 <a>
                   <HoverBox borderRadius={8} mb="0.5rem">
-                    <LazyImage
-                      src={item.imgUrl}
+                    <img
+                      src={product.image}
                       width="100%"
                       height="auto"
-                      layout="responsive"
-                      alt={item.title}
+                      alt={product.title}
                     />
                   </HoverBox>
                   <H4 fontWeight="600" fontSize="14px" mb="0.25rem">
-                    {item.title}
+                    {product.title}
                   </H4>
-
-                  {/* <FlexBox>
-                      <H4
-                        fontWeight="600"
-                        fontSize="14px"
-                        color="primary.main"
-                        mr="0.5rem"
-                      >
-                        ${Math.ceil(item.price).toLocaleString()}
-                      </H4>
-
-                      <H4 fontWeight="600" fontSize="14px" color="text.muted">
-                        <del>${Math.ceil(item.price).toLocaleString()}</del>
-                      </H4>
-                    </FlexBox> */}
                 </a>
               </Link>
             </Card>

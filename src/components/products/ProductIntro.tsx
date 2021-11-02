@@ -1,10 +1,9 @@
 import Button from '@component/buttons/Button';
 import Card from '@component/Card';
+import Spinner from '@component/Spinner';
 import useWindowSize from '@hook/useWindowSize';
-import { truncateSync } from 'fs';
 import getYoutubeId from 'helpers/getYoutubeId';
 import React, { useEffect, useState } from 'react';
-import { boolean } from 'yup/lib/locale';
 import Avatar from '../avatar/Avatar';
 import Box from '../Box';
 import FlexBox from '../FlexBox';
@@ -22,12 +21,14 @@ export interface ProductIntroProps {
 }
 
 const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState('');
   const [isVideo, setIsVideo] = useState(false);
 
   const width = useWindowSize();
   useEffect(() => {
     setSelectedImage(data?.images[0]);
+    setIsLoading(false);
   }, [data?.images[0]]);
 
   const handleImageClick = (ind, type) => () => {
@@ -35,10 +36,6 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
     if (type === 'image') setIsVideo(false);
     if (type === 'video') setIsVideo(true);
   };
-
-  const id = getYoutubeId(selectedImage);
-  console.log(selectedImage);
-  console.log(id);
   return (
     <Card position="relative">
       <Box
@@ -106,7 +103,9 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
         >
           <Grid item md={8} xs={12} alignItems="center">
             <FlexBox justifyContent="center" mb="50px">
-              {isVideo ? (
+              {isLoading ? (
+                <Spinner />
+              ) : isVideo ? (
                 <iframe
                   width="500"
                   height="500"

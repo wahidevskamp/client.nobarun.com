@@ -10,6 +10,7 @@ const GET_PRODUCT_BY_ID = gql`
           productName
           productCode
           price
+          featured
           images
           videos
           stockStatus {
@@ -72,6 +73,7 @@ const useProductById = async (pid) => {
         rating: productById.ratingAverage,
         productCode: productById.product.productCode,
         stockStatus: productById.product.stockStatus.title,
+        featuredImage: productById.product.featured,
         images: productById.product.images,
         videos: productById.product.videos.map((video) => {
           const id = getYoutubeId(video);
