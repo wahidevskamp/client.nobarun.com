@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   color,
   ColorProps,
@@ -10,8 +10,8 @@ import {
   PositionProps,
   space,
   SpaceProps,
-} from "styled-system";
-import { layoutConstant } from "utils/constants";
+} from 'styled-system';
+import { layoutConstant } from 'utils/constants';
 
 const Container = styled.div<
   LayoutProps & ColorProps & PositionProps & SpaceProps & FlexboxProps
@@ -20,9 +20,17 @@ const Container = styled.div<
   margin-left: auto;
   margin-right: auto;
 
-  @media only screen and (max-width: 1199px) {
+  @media only screen and (max-width: 1399px) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  @media only screen and (max-width: 600px) {
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+  @media only screen and (max-width: 450px) {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
   }
 
   ${color}

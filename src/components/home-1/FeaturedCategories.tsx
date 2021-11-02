@@ -17,21 +17,19 @@ const Categories: React.FC = () => {
     });
   }, []);
   return (
-    <Box mb="10rem">
+    <Box mb="5rem">
       <Container>
         <Box>
-          <CategorySectionHeader
-            iconName="Group"
-            title="Featured Categories"
-            seeMoreLink="#"
-          />
+          <CategorySectionHeader iconName="Group" title="Featured Categories" />
           <Card p="1rem" mt="4rem" bg="transparent" boxShadow="none">
             <Grid container spacing={4}>
               {categories.map((item) => (
                 <Grid
                   item
-                  sm={3}
-                  xs={6}
+                  xl={3}
+                  lg={3}
+                  sm={6}
+                  xs={12}
                   key={item.title}
                   className="featuredCategories"
                 >
@@ -43,12 +41,7 @@ const Categories: React.FC = () => {
                           mb="0.5rem"
                           className="featuredCategories__image"
                         >
-                          <img
-                            src={item.imgUrl}
-                            // layout="responsive"
-                            // objectFit="cover"
-                            // alt={title}
-                          />
+                          <img src={item.imgUrl} />
                         </HoverBox>
                         <H4
                           fontSize="14px"

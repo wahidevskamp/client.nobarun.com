@@ -12,7 +12,6 @@ import React, { useState, useEffect } from 'react';
 const Testimonials: React.FC = () => {
   const [visibleSlides, setVisibleSlides] = useState(2);
   const width = useWindowSize();
-  console.log(visibleSlides);
   useEffect(() => {
     if (width < 1200) setVisibleSlides(1);
     else setVisibleSlides(2);
@@ -21,14 +20,15 @@ const Testimonials: React.FC = () => {
   return (
     <GrocerySection10Wrapper>
       <Box m="-0.25rem" position="relative">
-        <FlexBox mb="3rem">
-          <FlexBox alignItems="center">
-            <H2 fontWeight="bold" textAlign="center" lineHeight="1">
-              Whats Clients say about Us
-            </H2>
-          </FlexBox>
-        </FlexBox>
-
+        <H2
+          fontWeight="bold"
+          mb="3rem"
+          textAlign="left"
+          lineHeight="1"
+          className="review__headline"
+        >
+          Whats Clients say about Us
+        </H2>
         <Carousel
           totalSlides={3}
           visibleSlides={1}
@@ -60,7 +60,7 @@ const Testimonials: React.FC = () => {
                     the freshness of the produce. I had tried (another delivery
                     service) and had to cancel because of low quality.
                   </Span>
-                  <FlexBox my="2rem" justifyContent="center">
+                  <FlexBox my="2rem" flexWrap="wrap" justifyContent="center">
                     {[1, 2, 3, 4, 1, 1, 1].map((image) => (
                       <Image
                         key={image}

@@ -1,4 +1,13 @@
 .product {
+  &__intro {
+    padding: 0 !important;
+    @include respond(768px) {
+      margin-bottom: 5rem;
+    }
+    @include respond(468px) {
+      margin-bottom: 4rem;
+    }
+  }
   &__contact {
     &-logo {
       display: flex;
@@ -69,7 +78,7 @@
         height: 2rem;
         width: 2rem;
         padding: 0 0.5rem;
-        // padding-right: 1rem;
+        padding-right: 2rem;
       }
     }
   }

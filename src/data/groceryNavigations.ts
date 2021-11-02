@@ -1,86 +1,34 @@
 const groceryNavigations = [
   {
-    icon: "carrot",
-    title: "Vegetables",
-    href: "/product/search/vegetables",
+    icon: 'categories',
+    name: 'Browse All Categories',
+    slug: '#',
+    children: [],
   },
   {
-    icon: "apple",
-    title: "Fruits & Vegetables",
-    href: "/product/search/Fruits & Vegetables",
-    child: [
-      {
-        title: "Fresh Frutes",
-        href: "/product/search/Fresh Frutes",
-        child: [
-          {
-            title: "Pears, apples, quinces",
-            href: "/product/search/Pears, apples, quinces",
-          },
-          {
-            title: "Peaches, plums, apricots",
-            href: "/product/search/Peaches, plums, apricots",
-          },
-          {
-            title: "Grapes",
-            href: "/product/search/Grapes",
-          },
-        ],
-      },
-      {
-        title: "Fresh Vegetables",
-        href: "/product/search/Fresh Vegetables",
-        child: [
-          {
-            title: "Onion",
-            href: "/product/search/Onion",
-          },
-          {
-            title: "Potato",
-            href: "/product/search/Potato",
-          },
-          {
-            title: "Vegetable Pack",
-            href: "/product/search/Vegetable Pack",
-          },
-        ],
-      },
-    ],
+    icon: 'home',
+    name: 'Home',
+    slug: '',
   },
   {
-    icon: "milk",
-    title: "Dariry & Eggs",
-    href: "/product/search/Dariry & Eggs",
+    icon: 'info-circle-solid',
+    name: 'About Us',
+    slug: 'about-us',
   },
   {
-    icon: "breakfast",
-    title: "Breakfast",
-    href: "/product/search/Breakfast",
+    icon: 'sitemap-solid',
+    name: 'Sitemap',
+    slug: 'sitemap',
   },
   {
-    icon: "yogurt",
-    title: "Frozen",
-    href: "/product/search/Frozen",
+    icon: 'blog-solid',
+    name: 'Blog',
+    slug: 'blog',
   },
   {
-    icon: "honey",
-    title: "Organic",
-    href: "/product/search/Organic",
-  },
-  {
-    icon: "beer",
-    title: "Canned Food",
-    href: "/product/search/Canned Food",
-  },
-  {
-    icon: "snack",
-    title: "Coffee & Snacks",
-    href: "/product/search/Coffee & Snacks",
-  },
-  {
-    icon: "bottle",
-    title: "Sauces & Jems",
-    href: "/product/search/Sauces & Jems",
+    icon: 'users-solid',
+    name: 'Client List',
+    slug: 'clients',
   },
 ];
 

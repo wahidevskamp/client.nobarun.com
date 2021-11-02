@@ -17,7 +17,6 @@ const CategoryMenuItem: React.FC<CategoryMenuItemProps> = ({
   caret,
   children,
 }) => {
-  console.log(icon);
   return (
     <StyledCategoryMenuItem>
       <Link href={href}>

@@ -1,5 +1,7 @@
+import useRecentBlogs from '@hook/useRecentBlogs';
+import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { getTheme } from '../../utils/utils';
 import Box from '../Box';
@@ -22,6 +24,63 @@ const StyledLink = styled.a`
 `;
 
 const Footer: React.FC = () => {
+  const width = useWindowSize();
+  const [blogs, setBlogs] = useState([]);
+  useEffect(() => {
+    useRecentBlogs().then((data) => setBlogs(data));
+  }, []);
+
+  const Blog = (
+    <Grid item lg={5} md={width < 1025 ? 12 : 6}>
+      <Typography fontSize="25px" fontWeight="600" mb="1.25rem" lineHeight="1">
+        Recent Blog Post
+      </Typography>
+      <div>
+        {blogs &&
+          blogs.map((blog) => (
+            <Link href="/" key={blog}>
+              <StyledLink style={{ color: '#fff' }}>
+                {blog.blogTitle}
+              </StyledLink>
+            </Link>
+          ))}
+      </div>
+    </Grid>
+  );
+  const Contact = (
+    <Grid item lg={4} md={6} sm={12} xs={12}>
+      <Paragraph mb="1.25rem" textAlign="justify">
+        <strong>NOBARUN INTERNATIONAL</strong> is leading supplier of Digital
+        Safety & Security Products, Supermarket Equipments, Slaughterhouse
+        Equipments & Commercial Kitchen Equipments in Bangladesh.
+      </Paragraph>
+      <FlexBox className="flex" mx="-5px">
+        {iconList.map((item) => (
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noreferrer noopenner"
+            key={item.iconName}
+          >
+            <Box
+              m="5px"
+              size="small"
+              p="10px"
+              bg="rgba(0,0,0,0.36)"
+              borderRadius="50%"
+            >
+              <Icon size="12px" defaultcolor="auto">
+                {item.iconName}
+              </Icon>
+            </Box>
+          </a>
+        ))}
+      </FlexBox>
+      <Typography py="0.8rem" fontWeight="bold">
+        Copyright @Nobarun International (2017-2021)
+      </Typography>
+    </Grid>
+  );
   return (
     <footer>
       <Box
@@ -32,7 +91,7 @@ const Footer: React.FC = () => {
         <Container p="1rem" color="white">
           <Box py="5rem" overflow="hidden">
             <Grid container spacing={6}>
-              <Grid item lg={3} md={6} sm={6} xs={12}>
+              <Grid item lg={3} md={6} sm={12}>
                 <Typography
                   fontSize="25px"
                   fontWeight="600"
@@ -52,62 +111,8 @@ const Footer: React.FC = () => {
                   Phone: +8801711 998626
                 </Typography>
               </Grid>
-
-              <Grid item lg={5} md={6} sm={6} xs={12}>
-                <Typography
-                  fontSize="25px"
-                  fontWeight="600"
-                  mb="1.25rem"
-                  lineHeight="1"
-                >
-                  Recent Blog Post
-                </Typography>
-
-                <div>
-                  {[1, 2, 3].map((blog) => (
-                    <Link href="/" key={blog}>
-                      <StyledLink style={{ color: '#fff' }}>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Atque molestiae officiis quas. Commodi, dolor
-                        minus.
-                      </StyledLink>
-                    </Link>
-                  ))}
-                </div>
-              </Grid>
-              <Grid item lg={4} md={6} sm={6} xs={12}>
-                <Paragraph mb="1.25rem" textAlign="justify">
-                  <strong>NOBARUN INTERNATIONAL</strong> is leading supplier of
-                  Digital Safety & Security Products, Supermarket Equipments,
-                  Slaughterhouse Equipments & Commercial Kitchen Equipments in
-                  Bangladesh.
-                </Paragraph>
-                <FlexBox className="flex" mx="-5px">
-                  {iconList.map((item) => (
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noreferrer noopenner"
-                      key={item.iconName}
-                    >
-                      <Box
-                        m="5px"
-                        size="small"
-                        p="10px"
-                        bg="rgba(0,0,0,0.36)"
-                        borderRadius="50%"
-                      >
-                        <Icon size="12px" defaultcolor="auto">
-                          {item.iconName}
-                        </Icon>
-                      </Box>
-                    </a>
-                  ))}
-                </FlexBox>
-                <Typography py="0.8rem" fontWeight="bold">
-                  Copyright @Nobarun International (2017-2021)
-                </Typography>
-              </Grid>
+              {width > 1024 || width < 765 ? Blog : Contact}
+              {width < 1024 && width > 765 ? Blog : Contact}
             </Grid>
           </Box>
         </Container>

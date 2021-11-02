@@ -7,21 +7,37 @@ import LazyImage from '@component/LazyImage';
 import { H2, H4 } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import FlexBox from '@component/FlexBox';
+import useAllFeaturedClients from '@hook/Home/useFeaturedClients';
 
 interface ClientProps {
   slides?: number;
   isProductDetails?: boolean;
 }
 const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
-  const [visibleSlides, setVisibleSlides] = useState(6);
+  const [clients, setClients] = useState([]);
+  const [visibleSlides, setVisibleSlides] = useState(slides);
   const width = useWindowSize();
-  console.log(visibleSlides);
+
   useEffect(() => {
     if (width < 500) setVisibleSlides(2);
     else if (width < 650) setVisibleSlides(3);
-    else if (width < 950) setVisibleSlides(4);
-    else setVisibleSlides(6);
+    else if (width < 1400) setVisibleSlides(6);
+    else setVisibleSlides(slides);
+    if (isProductDetails) {
+      if (width < 768) setVisibleSlides(2);
+      else if (width < 880) setVisibleSlides(4);
+      else if (width < 1025) setVisibleSlides(5);
+      else if (width < 1300) setVisibleSlides(4);
+      else if (width < 1425) setVisibleSlides(5);
+    }
   }, [width]);
+
+  useEffect(() => {
+    useAllFeaturedClients().then((data) => {
+      console.log(data);
+      setClients(data);
+    });
+  }, []);
 
   return (
     <Box
@@ -37,17 +53,15 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
       </FlexBox>
       <Container pb="1rem">
         <Box mb="-0.25rem">
-          <Carousel totalSlides={productList.length} visibleSlides={slides}>
-            {productList.map((item, ind) => (
+          <Carousel
+            totalSlides={productList.length}
+            visibleSlides={visibleSlides}
+          >
+            {clients.map((item, ind) => (
               <Box key={ind}>
                 <Box>
                   <HoverBox borderRadius={5} className="client__body">
-                    <LazyImage
-                      src={item.imgUrl}
-                      layout="fill"
-                      objectFit="cover"
-                      alt={item.title}
-                    />
+                    <img src={item.imgUrl} style={{ width: '100%' }} />
                   </HoverBox>
                   <H4
                     fontSize="14px"

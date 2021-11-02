@@ -23,7 +23,10 @@ export interface ProductCard1Props extends CardProps {
   price?: number;
   off?: number;
   rating?: number;
+  noOfRating?: number;
   id?: string | number;
+  categoryName?: string;
+  categoryIcon?: string;
   // className?: string;
   // style?: CSSProperties;
   // imgUrl: string;
@@ -44,8 +47,10 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
   price,
   off,
   rating,
+  noOfRating,
   ...props
 }) => {
+  console.log(props);
   const [open, setOpen] = useState(false);
   const toggleDialog = useCallback(() => {
     setOpen((open) => !open);
@@ -85,13 +90,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
 
         <Link href={`/product/${id}`}>
           <a>
-            <LazyImage
-              src={imgUrl}
-              width="100%"
-              height="auto"
-              layout="responsive"
-              alt={title}
-            />
+            <img src={imgUrl} width="100%" height="auto" alt={title} />
           </a>
         </Link>
       </div>
@@ -102,15 +101,19 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
               <a>
                 <FlexBox alignItems="center">
                   <Image
-                    src="https://nobarun.s3.us-east-2.amazonaws.com/3997323.jpg"
+                    src={props.categoryIcon}
                     height="30px"
                     width="30px"
                     mr=".3rem"
                     display="block"
                     borderRadius="50%"
                   />
-                  <SemiSpan className="title" color="text.hint" title={title}>
-                    Supermarket Refrigeration
+                  <SemiSpan
+                    className="title"
+                    color="text.hint"
+                    title={props.categoryName}
+                  >
+                    {props.categoryName}
                   </SemiSpan>
                 </FlexBox>
               </a>
@@ -134,7 +137,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
             <FlexBox alignItems="center">
               <Rating value={rating || 0} outof={5} color="warn" readonly />
               <H6 ml=".5rem" color="#ddd">
-                (10)
+                ({noOfRating || 0})
               </H6>
             </FlexBox>
             <Button

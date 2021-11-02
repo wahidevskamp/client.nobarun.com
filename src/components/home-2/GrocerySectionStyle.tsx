@@ -40,6 +40,15 @@ export const GrocerySection6Wrapper = styled.div`
 export const GrocerySection10Wrapper = styled.div`
   max-width: 1400px;
   margin: 0 auto 6rem;
+  @media only screen and (max-width: 1400px) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  @media only screen and (max-width: 600px) {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
   .quote {
     position: absolute;
 

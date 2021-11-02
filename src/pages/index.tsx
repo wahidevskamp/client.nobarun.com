@@ -1,6 +1,6 @@
 import Clients from '@component/home-1/Clients';
 import FeaturedCategories from '@component/home-1/FeaturedCategories';
-import SpecialCollections from '@component/home-1/SpecialCollections';
+import CollectionWiseProduct from '@component/home-1/CollectionWiseProduct';
 import Testimonials from '@component/home-1/Testimonials';
 import Slider from '../components/home-1/Slider';
 import AppLayout from '../components/layout/AppLayout';
@@ -11,7 +11,7 @@ const IndexPage = () => {
       <Slider />
       <Clients slides={8} />
       <FeaturedCategories />
-      <SpecialCollections />
+      <CollectionWiseProduct />
       <Testimonials />
       {/* <Features /> */}
     </main>

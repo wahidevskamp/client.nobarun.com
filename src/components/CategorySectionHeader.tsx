@@ -23,7 +23,11 @@ const CategorySectionHeader: React.FC<CategorySectionHeaderProps> = ({
             {iconName}
           </Icon>
         )}
-        <H2 fontWeight="bold" lineHeight="1">
+        <H2
+          fontWeight="bold"
+          lineHeight="1"
+          style={{ textTransform: 'capitalize' }}
+        >
           {title}
         </H2>
       </FlexBox>

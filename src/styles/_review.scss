@@ -1,5 +1,11 @@
 .review {
   position: static !important;
+  &__headline {
+    @include respond(500px) {
+      text-align: center !important;
+      margin-bottom: 5rem !important;
+    }
+  }
   &__rating {
     margin: 1rem 0 !important;
     display: flex;
@@ -7,12 +13,26 @@
   }
   &__arrow-btn {
     position: absolute;
-    top: 25px !important;
+    top: 10px !important;
+    @include respond(500px) {
+      top: 70px !important;
+    }
+    @include respond(365px) {
+      top: 90px !important;
+    }
     &--left {
       right: 80px;
+      @include respond(500px) {
+        right: 35%;
+        transform: translateX(-50%);
+        margin-right: 4rem;
+      }
     }
     &--right {
       right: 20px;
+      @include respond(500px) {
+        right: 30%;
+      }
     }
   }
   &__carousel-dot {

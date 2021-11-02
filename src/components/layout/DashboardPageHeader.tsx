@@ -1,11 +1,11 @@
-import React from "react";
-import useWindowSize from "../../hooks/useWindowSize";
-import Box from "../Box";
-import FlexBox from "../FlexBox";
-import Icon from "../icon/Icon";
-import Sidenav from "../sidenav/Sidenav";
-import { H2 } from "../Typography";
-import DashboardNavigation from "./CustomerDashboardNavigation";
+import React from 'react';
+import useWindowSize from '../../hooks/useWindowSize';
+import Box from '../Box';
+import FlexBox from '../FlexBox';
+import Icon from '../icon/Icon';
+import Sidenav from '../sidenav/Sidenav';
+import { H2 } from '../Typography';
+import DashboardNavigation from './CustomerDashboardNavigation';
 
 export interface DashboardPageHeaderProps {
   iconName?: string;

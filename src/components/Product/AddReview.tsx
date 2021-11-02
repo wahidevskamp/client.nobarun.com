@@ -8,9 +8,11 @@ import Rating from '@component/rating/Rating';
 import TextField from '@component/text-field/TextField';
 import TextArea from '@component/textarea/TextArea';
 import { H1, SemiSpan, Span } from '@component/Typography';
+import useWindowSize from '@hook/useWindowSize';
 import React from 'react';
 
 const AddReview = () => {
+  const width = useWindowSize();
   return (
     <Card px="3em" py="4em">
       <H1>Submit your review</H1>
@@ -28,19 +30,19 @@ const AddReview = () => {
         />
         <Span ml="1em"> Review Rating *</Span>
       </FlexBox>
-      <Grid container spacing={10}>
-        <Grid item xs={6}>
+      <Grid container spacing={width > 767 ? 10 : 2}>
+        <Grid item md={6} xs={12}>
           <TextField label="Your Name" fullwidth />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item md={6} xs={12}>
           <TextField label="Your Company Name" fullwidth />
         </Grid>
       </Grid>
-      <Grid container spacing={10}>
-        <Grid item xs={6}>
+      <Grid container spacing={width > 767 ? 10 : 2}>
+        <Grid item md={6} xs={12}>
           <TextField label="Your Email Address" fullwidth />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item md={6} xs={12}>
           <TextField label="Your Location" fullwidth />
         </Grid>
       </Grid>
