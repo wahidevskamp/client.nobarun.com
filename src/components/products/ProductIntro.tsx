@@ -1,7 +1,10 @@
 import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import useWindowSize from '@hook/useWindowSize';
-import React, { useState } from 'react';
+import { truncateSync } from 'fs';
+import getYoutubeId from 'helpers/getYoutubeId';
+import React, { useEffect, useState } from 'react';
+import { boolean } from 'yup/lib/locale';
 import Avatar from '../avatar/Avatar';
 import Box from '../Box';
 import FlexBox from '../FlexBox';
@@ -20,12 +23,22 @@ export interface ProductIntroProps {
 
 const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
   const [selectedImage, setSelectedImage] = useState('');
-  const width = useWindowSize();
+  const [isVideo, setIsVideo] = useState(false);
 
-  const handleImageClick = (ind) => () => {
+  const width = useWindowSize();
+  useEffect(() => {
+    setSelectedImage(data?.images[0]);
+  }, [data?.images[0]]);
+
+  const handleImageClick = (ind, type) => () => {
     setSelectedImage(ind);
+    if (type === 'image') setIsVideo(false);
+    if (type === 'video') setIsVideo(true);
   };
+
+  const id = getYoutubeId(selectedImage);
   console.log(selectedImage);
+  console.log(id);
   return (
     <Card position="relative">
       <Box
@@ -93,14 +106,28 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
         >
           <Grid item md={8} xs={12} alignItems="center">
             <FlexBox justifyContent="center" mb="50px">
-              <img
-                src={selectedImage}
-                alt={data?.productName}
-                height="500"
-                width="500"
-                loading="eager"
-                // objectFit="contain"
-              />
+              {isVideo ? (
+                <iframe
+                  width="500"
+                  height="500"
+                  src={`https://www.youtube.com/embed/${getYoutubeId(
+                    selectedImage,
+                  )}`}
+                  title="YouTube video player"
+                  frameBorder={0}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <img
+                  src={selectedImage}
+                  alt={data?.productName}
+                  height="500"
+                  width="500"
+                  loading="eager"
+                  // objectFit="contain"
+                />
+              )}
             </FlexBox>
           </Grid>
 
@@ -126,19 +153,18 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                   border="1px solid"
                   key={ind}
                   ml="10px"
-                  // ml={ind === 0 && 'auto'}
-                  // mr={ind === imgUrl.length - 1 ? 'auto' : '10px'}
                   borderColor={
                     selectedImage === ind ? 'primary.main' : 'gray.400'
                   }
-                  onClick={handleImageClick(url)}
+                  onClick={handleImageClick(url, 'image')}
                 >
                   <Avatar src={url} borderRadius="10px" size={40} />
                 </Box>
               ))}
               {data?.videos.map((url, ind) => (
-                // <Grid item md={6} sm={width > 600 ? 2 : width > 430 ? 3 : 4}>
                 <Box
+                  key={ind}
+                  ml="10px"
                   size={80}
                   minWidth={80}
                   mb=".5rem"
@@ -149,14 +175,10 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                   alignItems="center"
                   cursor="pointer"
                   border="1px solid"
-                  key={ind}
-                  ml="10px"
-                  // ml={ind === 0 && 'auto'}
-                  // mr={ind === imgUrl.length - 1 ? 'auto' : '10px'}
                   borderColor={
                     selectedImage === ind ? 'primary.main' : 'gray.400'
                   }
-                  onClick={handleImageClick(ind)}
+                  onClick={handleImageClick(url, 'video')}
                 >
                   <Avatar src={url} borderRadius="10px" size={40} />
                 </Box>

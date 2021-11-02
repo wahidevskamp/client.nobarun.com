@@ -26,17 +26,6 @@ export interface ProductCard1Props extends CardProps {
   id?: string | number;
   categoryName?: string;
   categoryIcon?: string;
-  // className?: string;
-  // style?: CSSProperties;
-  // imgUrl: string;
-  // title: string;
-  // price: number;
-  // off: number;
-  // rating?: number;
-  // subcategories?: Array<{
-  //   title: string;
-  //   url: string;
-  // }>;
 }
 
 const ProductCard1: React.FC<ProductCard1Props> = ({

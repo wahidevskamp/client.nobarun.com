@@ -5,16 +5,23 @@ import Image from '@component/Image';
 import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import Avatar from '@component/avatar/Avatar';
 import Pagination from '@component/pagination/Pagination';
 import Link from 'next/link';
+import Button from '@component/buttons/Button';
+import Modal from '@component/modal/Modal';
+import getYoutubeId from 'helpers/getYoutubeId';
 
 interface ReviewProps {
   reviews: any[];
 }
 const Review: React.FC<ReviewProps> = ({ reviews }) => {
   const width = useWindowSize();
+  const [image, setImage] = useState('');
+  const [videoLink, setVideoLink] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [isVideo, setIsVideo] = useState(false);
   return (
     <Fragment>
       <Card
@@ -45,46 +52,35 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
               </a>
             </Link>
           </FlexBox>
-          <Box p="0.25rem">
-            <FlexBox alignItems="center">
-              <Avatar
-                src="	https://www.artisan-outfitters.com/image/logo.png"
-                size={80}
-              />
-              <Box ml="2em">
-                <H3 mt="0.5rem" fontWeight="700">
-                  Shamim Ahmmed
-                </H3>
-                <SemiSpan mt="10px">
-                  From <strong>The Wood House Grill</strong> on 9 sept 2021
-                </SemiSpan>
-                <Rating
-                  outof={5}
-                  value={4}
-                  size="large"
-                  readonly
-                  color="warn"
-                  style={{ padding: '.5em 0 1.5em' }}
+          <Modal
+            open={isOpen}
+            onClose={() => {
+              setIsOpen(false);
+              setIsVideo(false);
+              setVideoLink('');
+            }}
+          >
+            <Card>
+              {isVideo ? (
+                <iframe
+                  width="500"
+                  height="500"
+                  src={`https://www.youtube.com/embed/${videoLink}`}
+                  title="YouTube video player"
+                  frameBorder={0}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
                 />
-              </Box>
-            </FlexBox>
-            <Span color="gray.700">
-              Yesterday I received my first box. I was very impressed by the
-              freshness of the produce. I had tried (another delivery service)
-              and had to cancel because of low quality.
-            </Span>
-            <FlexBox my="2rem" flexWrap="wrap" justifyContent="center">
-              {[1, 2, 3, 4, 1, 1, 1].map((image) => (
-                <Image
+              ) : (
+                <img
                   key={image}
-                  src="https://nobarun.s3.us-east-2.amazonaws.com/1584049.jpg"
+                  src={image}
                   alt=""
-                  height="100px"
-                  borderRadius={8}
+                  style={{ maxHeight: '500px' }}
                 />
-              ))}
-            </FlexBox>
-          </Box>
+              )}
+            </Card>
+          </Modal>
           {reviews?.map((review) => (
             <Box p="0.25rem">
               <FlexBox alignItems="center">
@@ -118,18 +114,43 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
               </Span>
               <FlexBox my="2rem" flexWrap="wrap" justifyContent="center">
                 {review?.reviewMedia.images.map((image) => (
-                  <Image
-                    key={image}
-                    src={image}
-                    alt=""
-                    height="100px"
+                  <Button
                     borderRadius={8}
-                  />
+                    mt="1.5em"
+                    onClick={() => {
+                      setIsOpen(true);
+                      setImage(image);
+                    }}
+                  >
+                    <Image key={image} src={image} alt="" height="100px" />
+                  </Button>
                 ))}
+                {review?.reviewMedia?.videos.map((video) => {
+                  console.log(video);
+                  const id = video && getYoutubeId(video);
+                  const link = `https://img.youtube.com/vi/${id}/sddefault.jpg`;
+                  return (
+                    <Button
+                      borderRadius={8}
+                      mt="1.5em"
+                      onClick={() => {
+                        setIsOpen(true);
+                        setImage(link);
+                        setIsVideo(true);
+                        setVideoLink(id);
+                      }}
+                    >
+                      <Image key={link} src={link} alt="" height="100px" />
+                    </Button>
+                  );
+                })}
               </FlexBox>
             </Box>
           ))}
-          <FlexBox justifyContent={width < 600 ? 'center' : 'flex-end'}>
+          <FlexBox
+            mt="3em"
+            justifyContent={width < 600 ? 'center' : 'flex-end'}
+          >
             <Pagination pageCount={5} />
           </FlexBox>
         </Box>
