@@ -26,7 +26,7 @@ const CollectionWiseProduct: React.FC = () => {
   return (
     <Box>
       {collections &&
-        collections.map((collection, idx) => (
+        collections?.map((collection, idx) => (
           <CategorySectionCreator
             key={collection.name + idx}
             iconName="light"
@@ -40,7 +40,7 @@ const CollectionWiseProduct: React.FC = () => {
                 leftButtonStyle={{ top: '225px' }}
                 rightButtonStyle={{ top: '225px' }}
               >
-                {collection.products.map(
+                {collection?.products?.map(
                   ({ product, reviewCount, ratingAverage }) => (
                     <Box py="0.25rem" key={product.id}>
                       <ProductCard1
