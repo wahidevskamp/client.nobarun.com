@@ -1,9 +1,9 @@
-import Box from "@component/Box";
-import React, { useEffect, useState } from "react";
-import useWindowSize from "../../hooks/useWindowSize";
-import Carousel from "../carousel/Carousel";
-import CategorySectionCreator from "../CategorySectionCreator";
-import ProductCard1 from "../product-cards/ProductCard1";
+import Box from '@component/Box';
+import React, { useEffect, useState } from 'react';
+import useWindowSize from '../../hooks/useWindowSize';
+import Carousel from '../carousel/Carousel';
+import CategorySectionCreator from '../CategorySectionCreator';
+import ProductCard1 from '../product-cards/ProductCard1';
 
 const Section2: React.FC = () => {
   const [visibleSlides, setVisibleSlides] = useState(4);
@@ -24,7 +24,7 @@ const Section2: React.FC = () => {
     >
       <Box mt="-0.25rem" mb="-0.25rem">
         <Carousel totalSlides={10} visibleSlides={visibleSlides}>
-          {productList.map((item, ind) => (
+          {productList?.map((item, ind) => (
             <Box py="0.25rem" key={ind}>
               <ProductCard1
                 id={ind}
@@ -45,34 +45,34 @@ const Section2: React.FC = () => {
 
 const productList = [
   {
-    imgUrl: "/assets/images/products/flash-1.png",
+    imgUrl: '/assets/images/products/flash-1.png',
   },
   {
-    imgUrl: "/assets/images/products/flash-2.png",
+    imgUrl: '/assets/images/products/flash-2.png',
   },
   {
-    imgUrl: "/assets/images/products/flash-3.png",
+    imgUrl: '/assets/images/products/flash-3.png',
   },
   {
-    imgUrl: "/assets/images/products/flash-4.png",
+    imgUrl: '/assets/images/products/flash-4.png',
   },
   {
-    imgUrl: "/assets/images/products/flash-1.png",
+    imgUrl: '/assets/images/products/flash-1.png',
   },
   {
-    imgUrl: "/assets/images/products/flash-2.png",
+    imgUrl: '/assets/images/products/flash-2.png',
   },
   {
-    imgUrl: "/assets/images/products/flash-3.png",
+    imgUrl: '/assets/images/products/flash-3.png',
   },
   {
-    imgUrl: "/assets/images/products/flash-4.png",
+    imgUrl: '/assets/images/products/flash-4.png',
   },
   {
-    imgUrl: "/assets/images/products/flash-1.png",
+    imgUrl: '/assets/images/products/flash-1.png',
   },
   {
-    imgUrl: "/assets/images/products/flash-2.png",
+    imgUrl: '/assets/images/products/flash-2.png',
   },
 ];
 

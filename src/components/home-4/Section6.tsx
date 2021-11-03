@@ -1,15 +1,15 @@
-import Box from "@component/Box";
-import Button from "@component/buttons/Button";
-import IconButton from "@component/buttons/IconButton";
-import Card from "@component/Card";
-import Carousel from "@component/carousel/Carousel";
-import FlexBox from "@component/FlexBox";
-import Grid from "@component/grid/Grid";
-import Icon from "@component/icon/Icon";
-import Image from "@component/Image";
-import { H3, H4, Paragraph, SemiSpan } from "@component/Typography";
-import React, { useState } from "react";
-import styled from "styled-components";
+import Box from '@component/Box';
+import Button from '@component/buttons/Button';
+import IconButton from '@component/buttons/IconButton';
+import Card from '@component/Card';
+import Carousel from '@component/carousel/Carousel';
+import FlexBox from '@component/FlexBox';
+import Grid from '@component/grid/Grid';
+import Icon from '@component/icon/Icon';
+import Image from '@component/Image';
+import { H3, H4, Paragraph, SemiSpan } from '@component/Typography';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const SectionWrapper = styled.div`
   margin-top: -0.25rem;
@@ -59,7 +59,7 @@ const Section6: React.FC = () => {
           dotClass="dot-group"
           currentSlide={currentSlide}
         >
-          {[...new Array(totalSlides)].map((_item, ind) => (
+          {[...new Array(totalSlides)]?.map((_item, ind) => (
             <Box py="0.25rem" key={ind}>
               <Card
                 p="1rem"

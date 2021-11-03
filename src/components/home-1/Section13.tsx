@@ -1,15 +1,15 @@
-import Box from "@component/Box";
-import Card from "@component/Card";
-import Carousel from "@component/carousel/Carousel";
-import FlexBox from "@component/FlexBox";
-import HoverBox from "@component/HoverBox";
-import LazyImage from "@component/LazyImage";
-import { H4 } from "@component/Typography";
-import productDatabase from "@data/product-database";
-import useWindowSize from "@hook/useWindowSize";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import CategorySectionCreator from "../CategorySectionCreator";
+import Box from '@component/Box';
+import Card from '@component/Card';
+import Carousel from '@component/carousel/Carousel';
+import FlexBox from '@component/FlexBox';
+import HoverBox from '@component/HoverBox';
+import LazyImage from '@component/LazyImage';
+import { H4 } from '@component/Typography';
+import productDatabase from '@data/product-database';
+import useWindowSize from '@hook/useWindowSize';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import CategorySectionCreator from '../CategorySectionCreator';
 
 const Section13: React.FC = () => {
   const [visibleSlides, setVisibleSlides] = useState(6);
@@ -30,7 +30,7 @@ const Section13: React.FC = () => {
     >
       <Box my="-0.25rem">
         <Carousel totalSlides={9} visibleSlides={visibleSlides}>
-          {productDatabase.slice(60, 69).map((item, ind) => (
+          {productDatabase?.slice(60, 69)?.map((item, ind) => (
             <Box py="0.25rem" key={item.id}>
               <Card p="1rem">
                 <Link href={`/product/${ind + 20}`}>

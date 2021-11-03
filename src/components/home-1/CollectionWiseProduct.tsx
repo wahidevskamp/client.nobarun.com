@@ -44,9 +44,9 @@ const CollectionWiseProduct: React.FC = () => {
                   ({ product, reviewCount, ratingAverage }) => (
                     <Box py="0.25rem" key={product.id}>
                       <ProductCard1
-                        id={product.id}
-                        imgUrl={product.featured}
-                        title={product.productName}
+                        id={product?.id}
+                        imgUrl={product?.featured}
+                        title={product?.productName}
                         rating={ratingAverage}
                         noOfRating={reviewCount}
                         categoryName={product?.populatedCategory?.name}

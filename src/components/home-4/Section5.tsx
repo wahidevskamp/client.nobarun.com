@@ -1,15 +1,15 @@
-import Box from "@component/Box";
-import IconButton from "@component/buttons/IconButton";
-import Card from "@component/Card";
-import Carousel from "@component/carousel/Carousel";
-import FlexBox from "@component/FlexBox";
-import Grid from "@component/grid/Grid";
-import Icon from "@component/icon/Icon";
-import Image from "@component/Image";
-import { H2 } from "@component/Typography";
-import Link from "next/link";
-import React, { useState } from "react";
-import styled from "styled-components";
+import Box from '@component/Box';
+import IconButton from '@component/buttons/IconButton';
+import Card from '@component/Card';
+import Carousel from '@component/carousel/Carousel';
+import FlexBox from '@component/FlexBox';
+import Grid from '@component/grid/Grid';
+import Icon from '@component/icon/Icon';
+import Image from '@component/Image';
+import { H2 } from '@component/Typography';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const SectionWrapper = styled.div`
   margin-bottom: 3.75rem;
@@ -85,7 +85,7 @@ const Section5: React.FC = () => {
           showArrow={false}
           currentSlide={currentSlide}
         >
-          {[...new Array(totalSlides)].map((_item, ind) => (
+          {[...new Array(totalSlides)]?.map((_item, ind) => (
             <Box py="0.25rem" key={ind}>
               <Grid container spacing={6}>
                 {productList.map((item, ind) => (
@@ -134,23 +134,23 @@ const Section5: React.FC = () => {
 
 const productList = [
   {
-    imgUrl: "/assets/images/products/rayban.png",
-    brand: "Say Ban Sunglass",
+    imgUrl: '/assets/images/products/rayban.png',
+    brand: 'Say Ban Sunglass',
     off: 50,
   },
   {
-    imgUrl: "/assets/images/products/nike.png",
-    brand: "Yike Shoe Air Max",
+    imgUrl: '/assets/images/products/nike.png',
+    brand: 'Yike Shoe Air Max',
     off: 30,
   },
   {
-    imgUrl: "/assets/images/products/apple-watch.png",
-    brand: "Air Jordan",
+    imgUrl: '/assets/images/products/apple-watch.png',
+    brand: 'Air Jordan',
     off: 40,
   },
   {
-    imgUrl: "/assets/images/products/perfume.png",
-    brand: "Perfume",
+    imgUrl: '/assets/images/products/perfume.png',
+    brand: 'Perfume',
     off: 20,
   },
 ];

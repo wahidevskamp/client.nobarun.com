@@ -1,9 +1,9 @@
-import Box from "@component/Box";
-import Carousel from "@component/carousel/Carousel";
-import CategorySectionCreator from "@component/CategorySectionCreator";
-import ProductCard2 from "@component/product-cards/ProductCard2";
-import useWindowSize from "@hook/useWindowSize";
-import React, { useEffect, useState } from "react";
+import Box from '@component/Box';
+import Carousel from '@component/carousel/Carousel';
+import CategorySectionCreator from '@component/CategorySectionCreator';
+import ProductCard2 from '@component/product-cards/ProductCard2';
+import useWindowSize from '@hook/useWindowSize';
+import React, { useEffect, useState } from 'react';
 
 const Section4: React.FC = () => {
   const [visibleSlides, setVisibleSlides] = useState(6);
@@ -27,7 +27,7 @@ const Section4: React.FC = () => {
           totalSlides={productList.length}
           visibleSlides={visibleSlides}
         >
-          {productList.map((item, ind) => (
+          {productList?.map((item, ind) => (
             <Box py="0.25rem" key={ind}>
               <ProductCard2 {...item} />
             </Box>
@@ -40,58 +40,58 @@ const Section4: React.FC = () => {
 
 const productList = [
   {
-    title: "Sunglass",
+    title: 'Sunglass',
     price: 150,
-    imgUrl: "/assets/images/products/imagegoggles.png",
-    productUrl: "/product/b1",
+    imgUrl: '/assets/images/products/imagegoggles.png',
+    productUrl: '/product/b1',
   },
   {
-    title: "Makeup",
+    title: 'Makeup',
     price: 250,
-    imgUrl: "/assets/images/products/lipstick (2).png",
-    productUrl: "/product/b12",
+    imgUrl: '/assets/images/products/lipstick (2).png',
+    productUrl: '/product/b12',
   },
   {
-    title: "Smart Watch",
+    title: 'Smart Watch',
     price: 350,
-    imgUrl: "/assets/images/products/bgwatch.png",
-    productUrl: "/product/b13",
+    imgUrl: '/assets/images/products/bgwatch.png',
+    productUrl: '/product/b13',
   },
   {
-    title: "Lipstick",
+    title: 'Lipstick',
     price: 15,
-    imgUrl: "/assets/images/products/lipstick (1).png",
-    productUrl: "/product/b14",
+    imgUrl: '/assets/images/products/lipstick (1).png',
+    productUrl: '/product/b14',
   },
   {
-    title: "Green plant",
+    title: 'Green plant',
     price: 55,
-    imgUrl: "/assets/images/products/lipstick (4).png",
-    productUrl: "/product/b15",
+    imgUrl: '/assets/images/products/lipstick (4).png',
+    productUrl: '/product/b15',
   },
   {
-    title: "Bonsai tree",
+    title: 'Bonsai tree',
     price: 535,
-    imgUrl: "/assets/images/products/lipstick (3).png",
-    productUrl: "/product/b16",
+    imgUrl: '/assets/images/products/lipstick (3).png',
+    productUrl: '/product/b16',
   },
   {
-    title: "Sunglass",
+    title: 'Sunglass',
     price: 150,
-    imgUrl: "/assets/images/products/imagegoggles.png",
-    productUrl: "/product/b17",
+    imgUrl: '/assets/images/products/imagegoggles.png',
+    productUrl: '/product/b17',
   },
   {
-    title: "Makeup",
+    title: 'Makeup',
     price: 250,
-    imgUrl: "/assets/images/products/lipstick (2).png",
-    productUrl: "/product/b18",
+    imgUrl: '/assets/images/products/lipstick (2).png',
+    productUrl: '/product/b18',
   },
   {
-    title: "Smart Watch",
+    title: 'Smart Watch',
     price: 350,
-    imgUrl: "/assets/images/products/bgwatch.png",
-    productUrl: "/product/b19",
+    imgUrl: '/assets/images/products/bgwatch.png',
+    productUrl: '/product/b19',
   },
 ];
 

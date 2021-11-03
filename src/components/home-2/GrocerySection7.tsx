@@ -1,10 +1,10 @@
-import Box from "@component/Box";
-import Carousel from "@component/carousel/Carousel";
-import ProductCard10 from "@component/product-cards/ProductCard10";
-import productDatabase from "@data/product-database";
-import useWindowSize from "@hook/useWindowSize";
-import React, { useEffect, useState } from "react";
-import { H3 } from "../Typography";
+import Box from '@component/Box';
+import Carousel from '@component/carousel/Carousel';
+import ProductCard10 from '@component/product-cards/ProductCard10';
+import productDatabase from '@data/product-database';
+import useWindowSize from '@hook/useWindowSize';
+import React, { useEffect, useState } from 'react';
+import { H3 } from '../Typography';
 
 const GrocerySection7: React.FC = () => {
   const [visibleSlides, setVisibleSlides] = useState(3);
@@ -32,7 +32,7 @@ const GrocerySection7: React.FC = () => {
           arrowButtonColor="inherit"
           showArrowOnHover={true}
         >
-          {productDatabase.slice(190, 199).map((item, ind) => (
+          {productDatabase?.slice(190, 199).map((item, ind) => (
             <Box py="0.25rem">
               <ProductCard10 {...item} off={25} key={ind} />
             </Box>

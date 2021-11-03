@@ -26,7 +26,7 @@ const RecentViewedProducts: React.FC = () => {
   return (
     <Box py=".5rem" px="1.5rem">
       <Carousel totalSlides={9} visibleSlides={visibleSlides}>
-        {products.map((product) => (
+        {products?.map((product) => (
           <Box py="0.25rem" key={product.id}>
             <Card p="1rem">
               <Link href={`/product/${product.id}`}>
