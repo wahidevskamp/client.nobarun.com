@@ -26,8 +26,9 @@ const CollectionWiseProduct: React.FC = () => {
   return (
     <Box>
       {collections &&
-        collections.map((collection) => (
+        collections.map((collection, idx) => (
           <CategorySectionCreator
+            key={collection.name + idx}
             iconName="light"
             title={collection.name}
             seeMoreLink="#"

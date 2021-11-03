@@ -29,8 +29,8 @@ const Testimonials: React.FC = () => {
           arrowButtonColor="inherit"
           showArrowOnHover={true}
         >
-          {cardList.map((_item) => (
-            <Box p="0.25rem">
+          {cardList.map((_item, idx) => (
+            <Box p="0.25rem" key={_item.title + idx}>
               <Card className="carousel-card">
                 <Box maxWidth="800px" margin="auto" textAlign="center">
                   <H3 mt="0.5rem" fontWeight="700">
@@ -53,15 +53,17 @@ const Testimonials: React.FC = () => {
                     service) and had to cancel because of low quality.
                   </Span>
                   <FlexBox my="2rem" flexWrap="wrap" justifyContent="center">
-                    {[1, 2, 3, 4, 1, 1, 1].map((image) => (
-                      <Image
-                        key={image}
-                        src="https://nobarun.s3.us-east-2.amazonaws.com/1584049.jpg"
-                        alt=""
-                        height="100px"
-                        borderRadius={8}
-                      />
-                    ))}
+                    {[122, 2222, 3322, 2124, 554645, 74645, 236].map(
+                      (image, idx) => (
+                        <Image
+                          key={image + idx}
+                          src="https://nobarun.s3.us-east-2.amazonaws.com/1584049.jpg"
+                          alt=""
+                          height="100px"
+                          borderRadius={8}
+                        />
+                      ),
+                    )}
                   </FlexBox>
                 </Box>
               </Card>

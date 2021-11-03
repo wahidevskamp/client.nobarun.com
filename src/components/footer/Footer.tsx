@@ -37,8 +37,8 @@ const Footer: React.FC = () => {
       </Typography>
       <div>
         {blogs &&
-          blogs.map((blog) => (
-            <Link href="/" key={blog}>
+          blogs.map((blog, idx) => (
+            <Link href="/" key={blog.blogTitle + idx}>
               <StyledLink style={{ color: '#fff' }}>
                 {blog.blogTitle}
               </StyledLink>
