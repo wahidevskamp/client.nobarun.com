@@ -14,7 +14,7 @@ const Features = ({ features }) => {
           <Grid
             container
             justifyContent="center"
-            alignItems="center"
+            // alignItems="center"
             spacing={10}
             flexDirection={idx % 2 !== 0 ? 'row-reverse' : 'row'}
           >

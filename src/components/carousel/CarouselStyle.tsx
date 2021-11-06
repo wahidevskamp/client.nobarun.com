@@ -87,7 +87,7 @@ export const StyledCarousel = styled(
     display: flex;
     justify-content: start;
     margin-top: ${(props) => props.dotGroupMarginTop || '0px'};
-    margin-left: 320px;
+    margin-left: 308px;
     padding: 0 30px;
   }
 

@@ -1,11 +1,11 @@
 import Box from '@component/Box';
 import Image from '@component/Image';
 import Sidenav from '@component/sidenav/Sidenav';
-import navbarNavigations from '@data/navbarNavigations';
+// import navbarNavigations from '@data/navbarNavigations';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
 import React from 'react';
-import Categories from '../categories/Categories';
+// import Categories from '../categories/Categories';
 import Container from '../Container';
 import FlexBox from '../FlexBox';
 import Icon from '../icon/Icon';
@@ -100,7 +100,7 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
               </a>
             </Link>
 
-            {isFixed && (
+            {/* {isFixed && (
               <FlexBox className="category-holder" ml="10px">
                 <Categories menu={navbarNavigations} isFixed={isFixed}>
                   <FlexBox color="text.hint" alignItems="center" ml="1rem">
@@ -115,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
                   </FlexBox>
                 </Categories>
               </FlexBox>
-            )}
+            )} */}
           </FlexBox>
 
           <FlexBox justifyContent="center" flex="1 1 0">

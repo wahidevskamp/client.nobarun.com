@@ -13,7 +13,6 @@ const IndexPage = () => {
       <FeaturedCategories />
       <CollectionWiseProduct />
       <Testimonials />
-      {/* <Features /> */}
     </main>
   );
 };

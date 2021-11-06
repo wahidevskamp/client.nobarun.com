@@ -67,7 +67,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
 
         <Link href={`/product/${id}`}>
           <a>
-            <img src={imgUrl} width="100%" height="auto" alt={title} />
+            <img src={imgUrl} width="100%" height="300px" alt={title} />
           </a>
         </Link>
       </div>

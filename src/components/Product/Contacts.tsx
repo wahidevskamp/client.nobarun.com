@@ -17,35 +17,45 @@ const Contacts = ({ id, contact }) => {
     <Fragment>
       <AddQuery id={id} isOpen={isOpen} setIsOpen={setIsOpen} />
       <Card px="1rem" py="1rem" mb="2rem">
-        <div className="product__contact-logo">
-          <Image src="/assets/images/logo.png" alt="logo" maxHeight="60px" />
-        </div>
-        <FlexBox alignItems="center" mb=".8rem">
-          <div className="product__contact-icon">
-            <Icon size="1.5rem">profile</Icon>
+        {contact?.companyLogo && (
+          <div className="product__contact-logo">
+            <Image src={contact?.companyLogo} alt="logo" maxHeight="60px" />
           </div>
-          <H5 ml="1rem">{contact?.name}</H5>
-        </FlexBox>
-        <FlexBox alignItems="center" mb=".8rem">
-          <div className="product__contact-icon">
-            <Icon size="1.5rem">call 1</Icon>
-          </div>
-          <Typography ml="1rem">{contact?.whatsAppNumber}</Typography>
-        </FlexBox>
-        <FlexBox alignItems="center" mb=".8rem">
-          <div className="product__contact-icon">
-            <Icon size="1.5rem">sms 1</Icon>
-          </div>
-          <Typography ml="1rem">{contact?.email}</Typography>
-        </FlexBox>
-        <FlexBox alignItems="center" mb=".8rem">
-          <div className="product__contact-icon">
-            <Icon size="1.8rem">location 1</Icon>
-          </div>
-          <Paragraph ml="1.2rem" style={{ overflowWrap: 'anywhere' }}>
-            {contact?.address}
-          </Paragraph>
-        </FlexBox>
+        )}
+        {contact?.name && (
+          <FlexBox alignItems="center" mb=".8rem">
+            <div className="product__contact-icon">
+              <Icon size="1.5rem">profile</Icon>
+            </div>
+            <H5 ml="1rem">{contact?.name}</H5>
+          </FlexBox>
+        )}
+        {contact?.whatsAppNumber && (
+          <FlexBox alignItems="center" mb=".8rem">
+            <div className="product__contact-icon">
+              <Icon size="1.5rem">call 1</Icon>
+            </div>
+            <Typography ml="1rem">{contact?.whatsAppNumber}</Typography>
+          </FlexBox>
+        )}
+        {contact?.email && (
+          <FlexBox alignItems="center" mb=".8rem">
+            <div className="product__contact-icon">
+              <Icon size="1.5rem">sms 1</Icon>
+            </div>
+            <Typography ml="1rem">{contact?.email}</Typography>
+          </FlexBox>
+        )}
+        {contact?.address && (
+          <FlexBox alignItems="center" mb=".8rem">
+            <div className="product__contact-icon">
+              <Icon size="1.8rem">location 1</Icon>
+            </div>
+            <Paragraph ml="1.2rem" style={{ overflowWrap: 'anywhere' }}>
+              {contact?.address}
+            </Paragraph>
+          </FlexBox>
+        )}
         <Button
           variant="contained"
           color="primary"
@@ -54,6 +64,7 @@ const Contacts = ({ id, contact }) => {
             setIsOpen(true);
           }}
         >
+          <Icon mr="0.5rem">plus-circle</Icon>
           Get A Quote
         </Button>
       </Card>

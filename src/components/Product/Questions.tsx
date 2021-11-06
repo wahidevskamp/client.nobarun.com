@@ -36,15 +36,20 @@ const Questions = ({ questions }) => {
         </Button>
       </FlexBox>
 
-      {questions?.map((question, idx) => (
-        <Accordian label={idx + 1 + `.	${question.title}`}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: question?.title,
-            }}
-          ></div>
-        </Accordian>
-      ))}
+      {questions &&
+        questions?.map((question, idx) => (
+          <Accordian
+            label={`${idx.toString().length === 1 && '0'}${idx + 1}.	${
+              question.title ? question.title : `Question - ${idx + 1}`
+            }`}
+          >
+            <div
+              dangerouslySetInnerHTML={{
+                __html: question?.question,
+              }}
+            ></div>
+          </Accordian>
+        ))}
     </Card>
   );
 };

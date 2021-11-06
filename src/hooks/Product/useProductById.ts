@@ -29,6 +29,7 @@ const GET_PRODUCT_BY_ID = gql`
           }
           tags
           contactPerson {
+            companyLogo
             name
             whatsAppNumber
             email

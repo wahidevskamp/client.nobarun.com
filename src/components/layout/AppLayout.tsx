@@ -1,5 +1,6 @@
 import Footer from '@component/footer/Footer';
 import Header from '@component/header/Header';
+// import Navbar from '@component/navbar/Navbar';
 import Sticky from '@component/sticky/Sticky';
 import Head from 'next/head';
 import React from 'react';
@@ -25,7 +26,10 @@ const AppLayout: React.FC<Props> = ({
     {/* <Topbar /> */}
 
     <Sticky fixedOn={0}>
-      <Header />
+      <div>
+        <Header />
+        {/* <Navbar navListOpen={true} /> */}
+      </div>
     </Sticky>
 
     {navbar && <div className="section-after-sticky">{navbar}</div>}

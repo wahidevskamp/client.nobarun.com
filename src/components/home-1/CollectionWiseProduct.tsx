@@ -26,42 +26,49 @@ const CollectionWiseProduct: React.FC = () => {
   return (
     <Box>
       {collections &&
-        collections?.map((collection, idx) => (
-          <CategorySectionCreator
-            key={collection.name + idx}
-            iconName="light"
-            title={collection.name}
-            seeMoreLink="#"
-          >
-            <Box mt="-0.25rem" mb="-0.25rem">
-              <Carousel
-                totalSlides={10}
-                visibleSlides={visibleSlides}
-                leftButtonStyle={{ top: '225px' }}
-                rightButtonStyle={{ top: '225px' }}
+        collections?.map((collection, idx) => {
+          const hasProduct = collection?.products?.length > 0;
+          if (hasProduct) {
+            return (
+              <CategorySectionCreator
+                key={collection.name + idx}
+                iconName="light"
+                title={collection.name}
+                seeMoreLink="#"
               >
-                {collection?.products?.map(
-                  ({ product, reviewCount, ratingAverage }) => (
-                    <Box py="0.25rem" key={product.id}>
-                      <ProductCard1
-                        id={product?.id}
-                        imgUrl={product?.featured}
-                        title={product?.productName}
-                        rating={ratingAverage}
-                        noOfRating={reviewCount}
-                        categoryName={product?.populatedCategory?.name}
-                        categoryIcon={product?.populatedCategory?.icon}
-                        price={250}
-                        off={product.discount}
-                        key={product.id}
-                      />
-                    </Box>
-                  ),
-                )}
-              </Carousel>
-            </Box>
-          </CategorySectionCreator>
-        ))}
+                <Box mt="-0.25rem" mb="-0.25rem">
+                  <Carousel
+                    totalSlides={10}
+                    visibleSlides={visibleSlides}
+                    leftButtonStyle={{ top: '225px' }}
+                    rightButtonStyle={{ top: '225px' }}
+                  >
+                    {collection?.products?.map(
+                      ({ product, reviewCount, ratingAverage }) => (
+                        <Box py="0.25rem" key={product.id}>
+                          <ProductCard1
+                            id={product?.id}
+                            imgUrl={product?.featured}
+                            title={product?.productName}
+                            rating={ratingAverage}
+                            noOfRating={reviewCount}
+                            categoryName={product?.populatedCategory?.name}
+                            categoryIcon={product?.populatedCategory?.icon}
+                            price={250}
+                            off={product.discount}
+                            key={product.id}
+                          />
+                        </Box>
+                      ),
+                    )}
+                  </Carousel>
+                </Box>
+              </CategorySectionCreator>
+            );
+          } else {
+            <span>&nbsp;</span>;
+          }
+        })}
     </Box>
   );
 };

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Box from '@component/Box';
 import CarouselCard1 from '@component/carousel-cards/CarouselCard1';
-import Carousel from '@component/carousel/Carousel';
+// import Carousel from '@component/carousel/Carousel';
 import Container from '@component/Container';
 import Navbar from '@component/navbar/Navbar';
 import useWindowSize from '@hook/useWindowSize';
@@ -15,7 +15,7 @@ const Section1: React.FC = () => {
       <Navbar navListOpen={true} />
       <Box bg="gray.white" mt={isTablet ? '2.5rem' : ''} mb="3.75rem">
         <Container pb="2rem">
-          <Carousel
+          {/* <Carousel
             totalSlides={5}
             visibleSlides={1}
             infinite={true}
@@ -23,13 +23,13 @@ const Section1: React.FC = () => {
             showDots={true}
             showArrow={false}
             spacing="0px"
-          >
+          > */}
+          <CarouselCard1 />
+          {/* <CarouselCard1 />
             <CarouselCard1 />
             <CarouselCard1 />
             <CarouselCard1 />
-            <CarouselCard1 />
-            <CarouselCard1 />
-          </Carousel>
+          </Carousel> */}
         </Container>
       </Box>
     </Fragment>

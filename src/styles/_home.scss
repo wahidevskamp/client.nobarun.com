@@ -53,6 +53,9 @@
       height: 250px;
       width: 250px;
     }
+    &::after {
+      z-index: 0 !important;
+    }
 
     & > img {
       width: 100%;
@@ -77,5 +80,8 @@
       width: 160px;
       font-size: 12px !important;
     }
+  }
+  &:hover &__title {
+    background-image: linear-gradient(#379253, #79b139);
   }
 }

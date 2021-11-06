@@ -78,19 +78,39 @@ const ProductDetails = () => {
       <Grid item lg={width > 1240 ? 9 : 8} xs={12}>
         <ProductIntro data={product?.intro} {...state} />
         <Clients slides={6} isProductDetails />
-        <Features features={product?.keyPoints} />
-        <Questions questions={product?.questions} />
+        {product?.keyPoints &&
+        product?.keyPoints.length === 1 &&
+        product?.keyPoints[0].title === '' &&
+        product?.keyPoints[0].content === '' ? (
+          <span>&nbsp;</span>
+        ) : (
+          <Features features={product?.keyPoints} />
+        )}
+        {product?.questions &&
+        product?.questions.length === 1 &&
+        product?.questions[0].title === '' &&
+        product?.questions[0].question === '' ? (
+          <span>&nbsp;</span>
+        ) : (
+          <Questions questions={product?.questions} />
+        )}
         <Review reviews={product?.reviews} />
         <AddReview />
       </Grid>
       <Grid item lg={width > 1240 ? 3 : 4} xs={12}>
-        <Contacts id={pid} contact={product?.contact} />
+        {product?.contact && <Contacts id={pid} contact={product?.contact} />}
         <Ammenities />
-        <SpecialFeatures features={product?.features} />
-        <Specifications specifications={product?.specifications} />
-        <RelatedProducts products={product?.relatedProducts} />
-        <Tags chips={product?.tags} />
-        <CustomerMedia />
+        {product?.features && <SpecialFeatures features={product?.features} />}
+        {product?.specifications && (
+          <Specifications specifications={product?.specifications} />
+        )}
+        {product?.relatedProducts && product?.relatedProducts.length > 0 && (
+          <RelatedProducts products={product?.relatedProducts} />
+        )}
+        {product?.tags && product?.tags.length > 0 && (
+          <Tags chips={product?.tags} />
+        )}
+        {product?.reviews && product?.reviews.length > 0 && <CustomerMedia />}
       </Grid>
     </Grid>
   );
