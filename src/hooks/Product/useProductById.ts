@@ -72,7 +72,7 @@ const useProductById = async (pid) => {
         review: productById.reviewCount,
         rating: productById.ratingAverage,
         productCode: productById.product.productCode,
-        stockStatus: productById.product.stockStatus.title,
+        stockStatus: productById.product.stockStatus?.title,
         featuredImage: productById.product.featured,
         images: productById.product.images,
         videos: productById.product.videos.map((video) => {

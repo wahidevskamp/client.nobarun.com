@@ -9,8 +9,8 @@ const CustomerMedia = () => {
     <ProductCard12 title="Customer Submitted  Photos & Videos">
       <Grid container spacing={4}>
         {[1, 2, 2, 3, 3, 3, 3, 3, 3, 6, 7, 74, 6, 435, 345, 445, 345].map(
-          (image) => (
-            <Grid item xs={3} key={image}>
+          (image, index) => (
+            <Grid item xs={3} key={index}>
               <HoverBox>
                 <Image
                   src="https://nobarun.s3.us-east-2.amazonaws.com/1584049.jpg"

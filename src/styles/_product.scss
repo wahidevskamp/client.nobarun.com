@@ -8,6 +8,17 @@
       margin-bottom: 4rem;
     }
   }
+  &__hero {
+    &-image {
+      width: 750px;
+      height: 600px;
+    }
+    &-slider {
+      max-height: 600px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  }
   &__contact {
     &-logo {
       display: flex;

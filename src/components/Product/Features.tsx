@@ -10,7 +10,7 @@ const Features = ({ features }) => {
   return (
     <>
       {features?.map((feature, idx) => (
-        <Card px="5em" py="3em" mb="2em">
+        <Card px="5em" py="3em" mb="2em" key={idx}>
           <Grid
             container
             justifyContent="center"
@@ -18,20 +18,28 @@ const Features = ({ features }) => {
             spacing={10}
             flexDirection={idx % 2 !== 0 ? 'row-reverse' : 'row'}
           >
-            {feature?.images[0] && (
-              <Grid item sm={3}>
-                <FlexBox justifyContent="center">
-                  <span className="product__keypoints-image">
+            <Grid item sm={3}>
+              <FlexBox justifyContent="center">
+                <span className="product__keypoints-image">
+                  {feature?.images.length > 0 ? (
                     <Image
                       src={feature?.images[0]}
-                      alt=""
+                      alt="Featured Image"
                       height="300px"
                       borderRadius={8}
                     />
-                  </span>
-                </FlexBox>
-              </Grid>
-            )}
+                  ) : (
+                    <Image
+                      src="/assets/images/features.png"
+                      alt="Featured Image"
+                      height="300px"
+                      borderRadius={8}
+                    />
+                  )}
+                </span>
+              </FlexBox>
+            </Grid>
+
             <Grid item sm={9}>
               <H2 mb="15px">{feature.title}</H2>
               <Typography>

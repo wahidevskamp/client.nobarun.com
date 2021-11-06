@@ -95,96 +95,97 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
             বাংলায় পড়ুন
           </Button>
         </FlexBox>
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="center"
-          spacing={16}
-        >
-          <Grid item md={8} xs={12} alignItems="center">
-            <FlexBox justifyContent="center" mb="50px">
-              {isLoading ? (
-                <Spinner />
-              ) : isVideo ? (
-                <iframe
-                  width="500"
-                  height="500"
-                  src={`https://www.youtube.com/embed/${getYoutubeId(
-                    selectedImage,
-                  )}`}
-                  title="YouTube video player"
-                  frameBorder={0}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+        <FlexBox>
+          <FlexBox justifyContent="center" mb="50px">
+            {isLoading ? (
+              <Spinner />
+            ) : isVideo ? (
+              <iframe
+                width="500"
+                height="500"
+                src={`https://www.youtube.com/embed/${getYoutubeId(
+                  selectedImage,
+                )}`}
+                title="YouTube video player"
+                frameBorder={0}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <img
+                src={selectedImage}
+                alt={data?.productName}
+                loading="eager"
+                className="product__hero-image"
+                // objectFit="contain"
+              />
+            )}
+          </FlexBox>
+          <Box className="product__hero-slider">
+            <Grid container>
+              {data ? (
+                data?.images.map((url, ind) => (
+                  <Grid item xs={6}>
+                    <Box
+                      size={80}
+                      minWidth={80}
+                      mb=".5rem"
+                      bg="white"
+                      borderRadius="10px"
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                      cursor="pointer"
+                      border="1px solid"
+                      key={ind}
+                      ml="10px"
+                      borderColor={
+                        selectedImage === ind ? 'primary.main' : 'gray.400'
+                      }
+                      onClick={handleImageClick(url, 'image')}
+                    >
+                      <Avatar src={url} borderRadius="10px" size={40} />
+                    </Box>
+                  </Grid>
+                ))
               ) : (
-                <img
-                  src={selectedImage}
-                  alt={data?.productName}
-                  height="500"
-                  width="500"
-                  loading="eager"
-                  // objectFit="contain"
-                />
+                <Grid item xs={6}>
+                  &nbsp;
+                </Grid>
               )}
-            </FlexBox>
-          </Grid>
-
-          <Grid
-            item
-            md={4}
-            xs={12}
-            alignItems="center"
-            className="product__intro"
-          >
-            <FlexBox justifyContent="center" flexWrap="wrap">
-              {data?.images.map((url, ind) => (
-                <Box
-                  size={80}
-                  minWidth={80}
-                  mb=".5rem"
-                  bg="white"
-                  borderRadius="10px"
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  cursor="pointer"
-                  border="1px solid"
-                  key={ind}
-                  ml="10px"
-                  borderColor={
-                    selectedImage === ind ? 'primary.main' : 'gray.400'
-                  }
-                  onClick={handleImageClick(url, 'image')}
-                >
-                  <Avatar src={url} borderRadius="10px" size={40} />
-                </Box>
-              ))}
-              {data?.videos.map((url, ind) => (
-                <Box
-                  key={ind}
-                  ml="10px"
-                  size={80}
-                  minWidth={80}
-                  mb=".5rem"
-                  bg="white"
-                  borderRadius="10px"
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  cursor="pointer"
-                  border="1px solid"
-                  borderColor={
-                    selectedImage === ind ? 'primary.main' : 'gray.400'
-                  }
-                  onClick={handleImageClick(url, 'video')}
-                >
-                  <Avatar src={url} borderRadius="10px" size={40} />
-                </Box>
-              ))}
-            </FlexBox>
-          </Grid>
-        </Grid>
+              {data ? (
+                data?.videos.map((url, ind) => (
+                  <Grid item xs={6}>
+                    <Box
+                      key={ind}
+                      ml="10px"
+                      size={80}
+                      minWidth={80}
+                      mb=".5rem"
+                      bg="white"
+                      borderRadius="10px"
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                      cursor="pointer"
+                      border="1px solid"
+                      borderColor={
+                        selectedImage === ind ? 'primary.main' : 'gray.400'
+                      }
+                      onClick={handleImageClick(url, 'video')}
+                    >
+                      <Avatar src={url} borderRadius="10px" size={40} />
+                    </Box>
+                  </Grid>
+                ))
+              ) : (
+                <Grid item xs={6}>
+                  &nbsp;
+                </Grid>
+              )}
+            </Grid>
+          </Box>
+        </FlexBox>
         <Button
           variant="contained"
           bg="#0082C9"

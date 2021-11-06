@@ -3,7 +3,7 @@ import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import Image from '@component/Image';
 import Rating from '@component/rating/Rating';
-import { H2, H3, SemiSpan, Span } from '@component/Typography';
+import { H1, H2, H3, SemiSpan, Span } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import React, { Fragment, useState } from 'react';
 import Avatar from '@component/avatar/Avatar';
@@ -81,72 +81,88 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
               )}
             </Card>
           </Modal>
-          {reviews?.map((review) => (
-            <Box p="0.25rem">
-              <FlexBox alignItems="center">
-                <Avatar
-                  src="	https://www.artisan-outfitters.com/image/logo.png"
-                  size={80}
-                />
-                <Box ml="2em">
-                  <H3 mt="0.5rem" fontWeight="700">
-                    {review.name}
-                  </H3>
-                  <SemiSpan mt="10px">
-                    From <strong>The Wood House Grill</strong> on 9 sept 2021
-                  </SemiSpan>
-                  <Rating
-                    outof={5}
-                    value={review?.rating}
-                    size="large"
-                    readonly
-                    color="warn"
-                    style={{ padding: '.5em 0 1.5em' }}
+          {reviews && reviews.length > 0 ? (
+            reviews.map((review) => (
+              <Box p="0.25rem">
+                <FlexBox alignItems="center">
+                  <Avatar
+                    src="	https://www.artisan-outfitters.com/image/logo.png"
+                    size={80}
                   />
-                </Box>
-              </FlexBox>
-              <Span color="gray.700">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: review?.reviewText,
-                  }}
-                ></div>
-              </Span>
-              <FlexBox my="2rem" flexWrap="wrap" justifyContent="center">
-                {review?.reviewMedia.images.map((image) => (
-                  <Button
-                    borderRadius={8}
-                    mt="1.5em"
-                    onClick={() => {
-                      setIsOpen(true);
-                      setImage(image);
+                  <Box ml="2em">
+                    <H3 mt="0.5rem" fontWeight="700">
+                      {review.name}
+                    </H3>
+                    <SemiSpan mt="10px">
+                      From <strong>The Wood House Grill</strong> on 9 sept 2021
+                    </SemiSpan>
+                    <Rating
+                      outof={5}
+                      value={review?.rating}
+                      size="large"
+                      readonly
+                      color="warn"
+                      style={{ padding: '.5em 0 1.5em' }}
+                    />
+                  </Box>
+                </FlexBox>
+                <Span color="gray.700">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: review?.reviewText,
                     }}
-                  >
-                    <Image key={image} src={image} alt="" height="100px" />
-                  </Button>
-                ))}
-                {review?.reviewMedia?.videos.map((video) => {
-                  console.log(video);
-                  const id = video && getYoutubeId(video);
-                  const link = `https://img.youtube.com/vi/${id}/sddefault.jpg`;
-                  return (
+                  ></div>
+                </Span>
+                <FlexBox my="2rem" flexWrap="wrap" justifyContent="center">
+                  {review?.reviewMedia.images.map((image) => (
                     <Button
                       borderRadius={8}
                       mt="1.5em"
                       onClick={() => {
                         setIsOpen(true);
-                        setImage(link);
-                        setIsVideo(true);
-                        setVideoLink(id);
+                        setImage(image);
                       }}
                     >
-                      <Image key={link} src={link} alt="" height="100px" />
+                      <Image key={image} src={image} alt="" height="100px" />
                     </Button>
-                  );
-                })}
-              </FlexBox>
+                  ))}
+                  {review?.reviewMedia?.videos.map((video) => {
+                    console.log(video);
+                    const id = video && getYoutubeId(video);
+                    const link = `https://img.youtube.com/vi/${id}/sddefault.jpg`;
+                    return (
+                      <Button
+                        borderRadius={8}
+                        mt="1.5em"
+                        onClick={() => {
+                          setIsOpen(true);
+                          setImage(link);
+                          setIsVideo(true);
+                          setVideoLink(id);
+                        }}
+                      >
+                        <Image key={link} src={link} alt="" height="100px" />
+                      </Button>
+                    );
+                  })}
+                </FlexBox>
+              </Box>
+            ))
+          ) : (
+            // <Card>
+            <Box>
+              <Image
+                src="/assets/images/notfound.png"
+                alt="Featured Image"
+                height="300px"
+                borderRadius={8}
+              />
+              <H1 textAlign="center" color="#dbdbdb" fontWeight="600">
+                No Review is Available for this Product
+              </H1>
             </Box>
-          ))}
+            // </Card>
+          )}
           <FlexBox
             mt="3em"
             justifyContent={width < 600 ? 'center' : 'flex-end'}

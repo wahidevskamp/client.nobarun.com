@@ -21,7 +21,7 @@ const RelatedProducts: React.FC<RelatedProductProps> = ({ products }) => {
               spacing={6}
             >
               <Grid item xs={3}>
-                <Image src={product.image} height="70px" />
+                <Image src={product.image} height="70px" width="100%" />
               </Grid>
               <Grid item xs={9}>
                 <Typography>{product.name}</Typography>

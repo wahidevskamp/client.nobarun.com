@@ -21,7 +21,7 @@ import { useRouter } from 'next/router';
 const ProductDetails = () => {
   const router = useRouter();
   const pid = router.query.id;
-  const [product, setProduct] = useState<any>({});
+  const [product, setProduct] = useState<any>();
 
   const state = {
     title: 'Mi Note 11 Pro',
@@ -31,40 +31,43 @@ const ProductDetails = () => {
   const width = useWindowSize();
   useEffect(() => {
     useProductById(pid).then((data: any) => {
-      data && setProduct(data);
+      console.log(data);
+      if (data) {
+        setProduct(data);
+      }
 
       // Recently Viewed Data Store in LocalStorage
-      if (Object.keys(data).length > 0) {
-        let recentlyViewed: any[] = JSON.parse(
-          localStorage.getItem('recentlyViewed'),
-        );
-        if (!recentlyViewed) {
-          recentlyViewed = [
-            {
-              id: pid,
-              title: data?.intro?.productName,
-              image: data?.intro?.featuredImage,
-            },
-          ];
-          localStorage.setItem(
-            'recentlyViewed',
-            JSON.stringify(recentlyViewed),
-          );
-        } else {
-          const isExist = recentlyViewed.some((product) => product.id === pid);
-          if (!isExist) {
-            recentlyViewed.push({
-              id: pid,
-              title: data?.intro?.productName,
-              image: data?.intro?.featuredImage,
-            });
-            localStorage.setItem(
-              'recentlyViewed',
-              JSON.stringify(recentlyViewed),
-            );
-          }
-        }
-      }
+      // if (Object.keys(data).length > 0) {
+      //   let recentlyViewed: any[] = JSON.parse(
+      //     localStorage.getItem('recentlyViewed'),
+      //   );
+      //   if (!recentlyViewed) {
+      //     recentlyViewed = [
+      //       {
+      //         id: pid,
+      //         title: data?.intro?.productName,
+      //         image: data?.intro?.featuredImage,
+      //       },
+      //     ];
+      //     localStorage.setItem(
+      //       'recentlyViewed',
+      //       JSON.stringify(recentlyViewed),
+      //     );
+      //   } else {
+      //     const isExist = recentlyViewed.some((product) => product.id === pid);
+      //     if (!isExist) {
+      //       recentlyViewed.push({
+      //         id: pid,
+      //         title: data?.intro?.productName,
+      //         image: data?.intro?.featuredImage,
+      //       });
+      //       localStorage.setItem(
+      //         'recentlyViewed',
+      //         JSON.stringify(recentlyViewed),
+      //       );
+      //     }
+      //   }
+      // }
     });
   }, [pid]);
 
@@ -73,20 +76,20 @@ const ProductDetails = () => {
   return (
     <Grid container spacing={6}>
       <Grid item lg={width > 1240 ? 9 : 8} xs={12}>
-        <ProductIntro data={product.intro} {...state} />
+        <ProductIntro data={product?.intro} {...state} />
         <Clients slides={6} isProductDetails />
-        <Features features={product.keyPoints} />
-        <Questions questions={product.questions} />
-        <Review reviews={product.reviews} />
+        <Features features={product?.keyPoints} />
+        <Questions questions={product?.questions} />
+        <Review reviews={product?.reviews} />
         <AddReview />
       </Grid>
       <Grid item lg={width > 1240 ? 3 : 4} xs={12}>
-        <Contacts id={pid} contact={product.contact} />
+        <Contacts id={pid} contact={product?.contact} />
         <Ammenities />
-        <SpecialFeatures features={product.features} />
-        <Specifications specifications={product.specifications} />
-        <RelatedProducts products={product.relatedProducts} />
-        <Tags chips={product.tags} />
+        <SpecialFeatures features={product?.features} />
+        <Specifications specifications={product?.specifications} />
+        <RelatedProducts products={product?.relatedProducts} />
+        <Tags chips={product?.tags} />
         <CustomerMedia />
       </Grid>
     </Grid>

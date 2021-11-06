@@ -5,7 +5,7 @@ import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import Icon from '@component/icon/Icon';
 import Image from '@component/Image';
-import Typography, { H5 } from '@component/Typography';
+import Typography, { H5, Paragraph } from '@component/Typography';
 import ProductCard from '@component/product-cards/ProductCard12';
 import Button from '@component/buttons/Button';
 import AddQuery from '@component/Shared/AddQuery';
@@ -42,7 +42,9 @@ const Contacts = ({ id, contact }) => {
           <div className="product__contact-icon">
             <Icon size="1.8rem">location 1</Icon>
           </div>
-          <Typography ml="1.2rem">{contact?.address}</Typography>
+          <Paragraph ml="1.2rem" style={{ overflowWrap: 'anywhere' }}>
+            {contact?.address}
+          </Paragraph>
         </FlexBox>
         <Button
           variant="contained"
@@ -55,16 +57,18 @@ const Contacts = ({ id, contact }) => {
           Get A Quote
         </Button>
       </Card>
-      <ProductCard
-        title={day === 1 ? 'Today Closed' : 'Today Open 09:00 am - 07:00 pm'}
-      >
-        <iframe
-          src={contact?.maps}
-          style={{ width: '100%', height: '22rem', border: 0 }}
-          allowFullScreen
-          loading="lazy"
-        ></iframe>
-      </ProductCard>
+      {contact?.maps && (
+        <ProductCard
+          title={day === 1 ? 'Today Closed' : 'Today Open 09:00 am - 07:00 pm'}
+        >
+          <iframe
+            src={contact?.maps}
+            style={{ width: '100%', height: '22rem', border: 0 }}
+            allowFullScreen
+            loading="lazy"
+          ></iframe>
+        </ProductCard>
+      )}
     </Fragment>
   );
 };
