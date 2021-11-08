@@ -99,23 +99,6 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
                 <Image src="/assets/images/logo.png" alt="logo" />
               </a>
             </Link>
-
-            {/* {isFixed && (
-              <FlexBox className="category-holder" ml="10px">
-                <Categories menu={navbarNavigations} isFixed={isFixed}>
-                  <FlexBox color="text.hint" alignItems="center" ml="1rem">
-                    <Icon size="19px">stream-solid</Icon>
-                    <Icon>arrow-down-filled</Icon>
-                  </FlexBox>
-                </Categories>
-                <Categories isFixed={isFixed}>
-                  <FlexBox color="text.hint" alignItems="center" ml="1rem">
-                    <Icon size="24px">categories</Icon>
-                    <Icon>arrow-down-filled</Icon>
-                  </FlexBox>
-                </Categories>
-              </FlexBox>
-            )} */}
           </FlexBox>
 
           <FlexBox justifyContent="center" flex="1 1 0">

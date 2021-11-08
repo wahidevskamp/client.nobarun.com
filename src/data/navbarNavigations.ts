@@ -12,8 +12,8 @@ const navbarNavigations = [
     url: '/sitemap',
   },
   {
-    title: 'Blog',
-    url: '/blog',
+    title: 'Blogs',
+    url: '/blogs',
   },
   {
     title: 'Contact Us',

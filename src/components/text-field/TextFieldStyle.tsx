@@ -20,7 +20,9 @@ export const SyledTextField = styled.input<
       width: props.fullwidth ? '100%' : 'inherit',
       outline: 'none',
       fontFamily: 'inherit',
-
+      '::placeholder': {
+        color: '#7D879C',
+      },
       '&:hover': {
         borderColor: 'gray.500',
       },
@@ -44,8 +46,9 @@ export const TextFieldWrapper = styled.div<TextFieldProps & SpaceProps>(
       label: {
         display: 'block',
         marginBottom: '6px',
-        fontSize: '0.875rem',
-        color: 'text.hint',
+        fontSize: '1rem',
+        fontWeight: '600',
+        color: '#4B566B',
       },
 
       small: {

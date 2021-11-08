@@ -32,7 +32,6 @@ export const SyledTextArea = styled.textarea<
       outline: 'none',
       overflow: 'auto',
       fontFamily: 'inherit',
-
       '&:hover': {
         borderColor: 'gray.500',
       },
@@ -55,8 +54,9 @@ export const TextAreaWrapper = styled.div<Props>(
       '& label': {
         display: 'block',
         marginBottom: '0.5rem',
-        fontSize: '0.875rem',
-        color: 'text.hint',
+        fontSize: '1rem',
+        fontWeight: '600',
+        color: '#4B566B',
       },
 
       '& small': {

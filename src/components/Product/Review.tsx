@@ -5,7 +5,7 @@ import Image from '@component/Image';
 import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import Avatar from '@component/avatar/Avatar';
 import Pagination from '@component/pagination/Pagination';
 import Link from 'next/link';
@@ -23,7 +23,7 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
   return (
-    <Fragment>
+    <div id="#reviews">
       <Card
         px={width < 600 ? '1.5em' : '3em'}
         py={width < 600 ? '1.5em' : '4em'}
@@ -171,7 +171,7 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
           )}
         </Box>
       </Card>
-    </Fragment>
+    </div>
   );
 };
 

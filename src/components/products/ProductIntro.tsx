@@ -1,9 +1,9 @@
+import React, { useEffect, useState } from 'react';
 import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import Spinner from '@component/Spinner';
 import useWindowSize from '@hook/useWindowSize';
 import getYoutubeId from 'helpers/getYoutubeId';
-import React, { useEffect, useState } from 'react';
 import Avatar from '../avatar/Avatar';
 import Box from '../Box';
 import FlexBox from '../FlexBox';
@@ -82,9 +82,11 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                 color="warn"
                 size="medium"
               />
-              <Span ml={width > 660 ? '1em' : '0em'} color="#0082C9">
-                {data?.review} Real Customer Reviews
-              </Span>
+              <a href="#reviews">
+                <Span ml={width > 660 ? '1em' : '0em'} color="#0082C9">
+                  {data?.review} Real Customer Reviews
+                </Span>
+              </a>
             </FlexBox>
           </Box>
           <Button

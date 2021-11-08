@@ -1,6 +1,5 @@
 import Footer from '@component/footer/Footer';
 import Header from '@component/header/Header';
-// import Navbar from '@component/navbar/Navbar';
 import Sticky from '@component/sticky/Sticky';
 import Head from 'next/head';
 import React from 'react';
@@ -22,13 +21,9 @@ const AppLayout: React.FC<Props> = ({
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-
-    {/* <Topbar /> */}
-
     <Sticky fixedOn={0}>
       <div>
         <Header />
-        {/* <Navbar navListOpen={true} /> */}
       </div>
     </Sticky>
 
@@ -38,8 +33,6 @@ const AppLayout: React.FC<Props> = ({
     ) : (
       children
     )}
-
-    {/* <MobileNavigationBar /> */}
     <Footer />
   </StyledAppLayout>
 );

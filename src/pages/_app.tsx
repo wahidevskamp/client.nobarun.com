@@ -35,10 +35,10 @@ const App = ({ Component, pageProps }: any) => {
           property="og:description"
           content="Minimal, clean and Fast Next js ecommerce template. Build Super store, Grocery delivery app, Multivendor store and niche market"
         /> */}
-        <meta
+        {/* <meta
           property="og:image"
           content="/assets/images/landing/preview.png"
-        />
+        /> */}
 
         {/* Google analytics */}
         <script
