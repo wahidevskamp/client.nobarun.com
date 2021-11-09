@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductCard12 from '@component/product-cards/ProductCard12';
 import { Chip } from '@component/Chip';
 import FlexBox from '@component/FlexBox';
+import Button from '@component/buttons/Button';
 
 const Tags = ({ chips }) => {
+  const [showAll, setShowAll] = useState(false);
   return (
     <ProductCard12 title="Product Tags">
       <FlexBox flexWrap="wrap" justifyContent="center">
-        {chips?.map((chip) => (
+        {chips?.slice(0, showAll ? chips.length : 15).map((chip) => (
           <Chip
             bg="#eee"
             p="5px 10px"
@@ -19,6 +21,14 @@ const Tags = ({ chips }) => {
           </Chip>
         ))}
       </FlexBox>
+      <Button
+        style={{ margin: 'auto' }}
+        onClick={() => {
+          setShowAll(!showAll);
+        }}
+      >
+        {showAll ? 'Show Less' : 'Load More'}
+      </Button>
     </ProductCard12>
   );
 };

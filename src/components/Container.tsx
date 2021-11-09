@@ -25,12 +25,8 @@ const Container = styled.div<
     margin-right: 2rem;
   }
   @media only screen and (max-width: 600px) {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-  @media only screen and (max-width: 450px) {
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
   }
 
   ${color}

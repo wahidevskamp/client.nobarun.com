@@ -8,9 +8,10 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }: any) => theme.colors.body.default};
     color: ${({ theme }: any) => theme.colors.body.text};
     transition: all 0.50s linear;
-    font-family: Open Sans, Roboto, -apple-system, BlinkMacSystemFont, Segoe UI,
+    font-family: 'Titillium Web', sans-serif;
+    /* font-family: Open Sans, Roboto, -apple-system, BlinkMacSystemFont, Segoe UI,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-    sans-serif;
+    sans-serif; */
     line-height: 1.5;
     overflow-x: hidden;
   }

@@ -7,17 +7,19 @@ import { GrocerySection10Wrapper } from '@component/home-2/GrocerySectionStyle';
 import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
 import React from 'react';
+import useWindowSize from '@hook/useWindowSize';
 
 const Testimonials: React.FC = () => {
+  const width = useWindowSize();
   return (
     <GrocerySection10Wrapper>
       <Box m="-0.25rem" mt="3em" position="relative">
         <H2
           fontWeight="bold"
-          mb="3rem"
-          textAlign="left"
+          fontSize={width > 600 ? '32px' : '26px'}
+          mb={width > 600 ? '3rem' : '1rem'}
+          textAlign={width > 600 ? 'left' : 'center'}
           lineHeight="1"
-          className="review__headline"
         >
           Whats Clients say about Us
         </H2>

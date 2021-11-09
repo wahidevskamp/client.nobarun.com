@@ -1,5 +1,5 @@
-import { deviceSize } from '@utils/constants';
 import styled from 'styled-components';
+import { deviceSize } from '@utils/constants';
 import { space } from 'styled-system';
 import { getTheme } from '../../utils/utils';
 import Card from '../Card';
@@ -8,13 +8,11 @@ export const StyledProductCard1 = styled(Card)`
   transition: height 1250ms ease-in-out;
   margin: auto;
   overflow: hidden;
-  /* height: 25rem; */
-  /* height: 398px; */
-  /* height: 50rem; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  width: 385px;
+  max-width: 385px;
   &:hover {
     .details {
       height: 100%;
@@ -28,12 +26,56 @@ export const StyledProductCard1 = styled(Card)`
       }
     }
   }
+  @media only screen and (max-width: 1600px) {
+    width: 320px;
+    .image-holder {
+      img {
+        height: 300px;
+      }
+    }
+  }
+  @media only screen and (max-width: 1400px) {
+    width: 300px;
+    .image-holder {
+      img {
+        height: 250px;
+      }
+    }
+  }
+  @media only screen and (max-width: 1300px) {
+    width: 100%;
+    .image-holder {
+      img {
+        height: 350px;
+      }
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+    .image-holder {
+      img {
+        height: 250px;
+      }
+    }
+  }
+  @media only screen and (max-width: 450px) {
+    width: 100%;
+    .image-holder {
+      img {
+        height: 200px;
+      }
+    }
+  }
 
   .image-holder {
     position: relative;
     display: inlin-block;
     text-align: center;
-
+    img {
+      /* height: 370px; */
+      width: 100%;
+      padding: 20px 10px;
+    }
     .extra-icons {
       display: none;
       position: absolute;
@@ -51,6 +93,7 @@ export const StyledProductCard1 = styled(Card)`
   .details {
     padding: 1rem;
     height: 7.3rem;
+
     .title,
     .categories {
       white-space: nowrap;

@@ -2,6 +2,7 @@ import Card from '@component/Card';
 import HoverBox from '@component/HoverBox';
 import { H4 } from '@component/Typography';
 import useFeaturedCategories from '@hook/Home/useFeaturedCategories';
+import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
 import React from 'react';
 import Box from '../Box';
@@ -10,6 +11,7 @@ import Container from '../Container';
 import Grid from '../grid/Grid';
 
 const Categories: React.FC = () => {
+  const width = useWindowSize();
   const [categories, setCategories] = React.useState<any[]>([]);
   React.useEffect(() => {
     useFeaturedCategories().then((data) => {
@@ -17,8 +19,8 @@ const Categories: React.FC = () => {
     });
   }, []);
   return (
-    <Box mb="5rem">
-      <Container>
+    <Box mt="5rem" mb="5rem">
+      <Container style={width < 600 ? { margin: '0rem' } : {}}>
         <Box>
           <CategorySectionHeader iconName="Group" title="Featured Categories" />
           <Card p="1rem" mt="4rem" bg="transparent" boxShadow="none">
@@ -28,8 +30,10 @@ const Categories: React.FC = () => {
                   item
                   xl={3}
                   lg={3}
+                  md={4}
                   sm={6}
-                  xs={12}
+                  xs={6}
+                  // xs={12}
                   key={item.title}
                   className="featuredCategories"
                 >

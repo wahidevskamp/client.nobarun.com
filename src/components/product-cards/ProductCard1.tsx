@@ -1,6 +1,7 @@
 import Button from '@component/buttons/Button';
 import Image from '@component/Image';
 import AddQuery from '@component/Shared/AddQuery';
+import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { CSSProperties } from 'styled-components';
@@ -38,6 +39,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
   ...props
 }) => {
   const [open, setOpen] = useState(false);
+  const width = useWindowSize();
   return (
     <StyledProductCard1 {...props}>
       <div className="image-holder">
@@ -55,19 +57,9 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
             {off}% off
           </Chip>
         )}
-
-        <FlexBox className="extra-icons">
-          <Icon color="secondary" variant="small" mb="0.5rem">
-            eye-alt
-          </Icon>
-          <Icon className="favorite-icon outlined-icon" variant="small">
-            heart
-          </Icon>
-        </FlexBox>
-
         <Link href={`/product/${id}`}>
           <a>
-            <img src={imgUrl} width="100%" height="300px" alt={title} />
+            <img src={imgUrl} alt={title} />
           </a>
         </Link>
       </div>
@@ -105,6 +97,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
                   color="text.secondary"
                   mt="10px"
                   mb="5px"
+                  // style={{ whiteSpace: 'normal' }}
                   title={title}
                 >
                   {title}
@@ -120,15 +113,17 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
             <Button
               variant="contained"
               color="primary"
-              style={{ width: '100%' }}
+              style={{ width: '100%', fontSize: width > 400 ? '16px' : '12px' }}
               mt="15px"
               onClick={() => {
                 setOpen(true);
               }}
             >
-              <Icon className="favorite-icon" variant="small" mr="1rem">
-                plus-circle
-              </Icon>
+              {width > 400 && (
+                <Icon className="favorite-icon" variant="small" mr="1rem">
+                  plus-circle
+                </Icon>
+              )}
               Get a Quote
             </Button>
             <FlexBox justifyContent="space-around" alignItems="center">
@@ -136,7 +131,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
                 <a>
                   <H3
                     className="title"
-                    fontSize="16px"
+                    fontSize={width > 400 ? '16px' : '12px'}
                     textAlign="left"
                     fontWeight="600"
                     color="text.secondary"
@@ -160,7 +155,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
                 <a>
                   <H3
                     className="title"
-                    fontSize="16px"
+                    fontSize={width > 400 ? '16px' : '12px'}
                     textAlign="left"
                     fontWeight="600"
                     color="text.secondary"

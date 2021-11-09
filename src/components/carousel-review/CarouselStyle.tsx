@@ -43,6 +43,10 @@ export const StyledCarousel = styled(
     );
     transform: translateY(-50%);
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    @media only screen and (max-width: 1399px) {
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
   }
 
   .right-arrow-class {

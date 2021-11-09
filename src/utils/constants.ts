@@ -7,7 +7,7 @@ export const deviceSize = {
 
 export const layoutConstant = {
   grocerySidenavWidth: '280px',
-  containerWidth: '1400px',
+  containerWidth: '1600px',
   mobileNavHeight: '64px',
   headerHeight: '80px',
   mobileHeaderHeight: '64px',

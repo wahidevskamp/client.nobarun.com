@@ -13,8 +13,8 @@ const Section1: React.FC = () => {
   return (
     <Fragment>
       <Navbar navListOpen={true} />
-      <Box bg="gray.white" mt={isTablet ? '2.5rem' : ''} mb="3.75rem">
-        <Container pb="2rem">
+      <Box bg="gray.white" mt={isTablet ? '2.5rem' : ''}>
+        <Container>
           {/* <Carousel
             totalSlides={5}
             visibleSlides={1}

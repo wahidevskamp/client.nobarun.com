@@ -9,7 +9,7 @@ import Container from '../Container';
 import FlexBox from '../FlexBox';
 import Grid from '../grid/Grid';
 import Icon from '../icon/Icon';
-import Typography, { Paragraph } from '../Typography';
+import Typography from '../Typography';
 
 const StyledLink = styled.a`
   position: relative;
@@ -31,15 +31,21 @@ const Footer: React.FC = () => {
   }, []);
 
   const Blog = (
-    <Grid item lg={5} md={width < 1025 ? 12 : 6}>
-      <Typography fontSize="25px" fontWeight="600" mb="1.25rem" lineHeight="1">
+    <Grid item lg={4} md={width < 1025 ? 12 : 6}>
+      <Typography fontSize="26px" fontWeight="600" mb="1.25rem" lineHeight="1">
         Recent Blog Post
       </Typography>
       <div>
         {blogs &&
           blogs.map((blog, idx) => (
             <Link href="/" key={blog.blogTitle + idx}>
-              <StyledLink style={{ color: '#fff' }}>
+              <StyledLink
+                style={{
+                  color: '#fff',
+                  fontSize: '16px',
+                  textDecoration: 'underline',
+                }}
+              >
                 {blog.blogTitle}
               </StyledLink>
             </Link>
@@ -49,11 +55,11 @@ const Footer: React.FC = () => {
   );
   const Contact = (
     <Grid item lg={4} md={6} sm={12} xs={12}>
-      <Paragraph mb="1.25rem" textAlign="justify">
+      <Typography fontSize="18px" mb="1.25rem" textAlign="justify">
         <strong>NOBARUN INTERNATIONAL</strong> is leading supplier of Digital
         Safety & Security Products, Supermarket Equipments, Slaughterhouse
         Equipments & Commercial Kitchen Equipments in Bangladesh.
-      </Paragraph>
+      </Typography>
       <FlexBox className="flex" mx="-5px">
         {iconList.map((item) => (
           <a
@@ -66,7 +72,8 @@ const Footer: React.FC = () => {
               m="5px"
               size="small"
               p="10px"
-              bg="rgba(0,0,0,0.36)"
+              bg="rgba(0,0,0,0.56)"
+              border="1px solid #fff"
               borderRadius="50%"
             >
               <Icon size="12px" defaultcolor="auto">
@@ -76,7 +83,7 @@ const Footer: React.FC = () => {
           </a>
         ))}
       </FlexBox>
-      <Typography py="0.8rem" fontWeight="bold">
+      <Typography py="0.8rem" fontSize="18px" fontWeight="600">
         Copyright @Nobarun International (2017-2021)
       </Typography>
     </Grid>
@@ -91,21 +98,21 @@ const Footer: React.FC = () => {
         <Container p="1rem" color="white">
           <Box py="5rem" overflow="hidden">
             <Grid container spacing={6}>
-              <Grid item lg={3} md={6} sm={12}>
+              <Grid item lg={4} md={6} sm={12}>
                 <Typography
-                  fontSize="25px"
+                  fontSize="26px"
                   fontWeight="600"
                   mb="1.25rem"
                   lineHeight="1"
                 >
                   Corporate Office
                 </Typography>
-                <Typography py="0.3rem">Planet Ornate</Typography>
-                <Typography py="0.3rem">
+                <Typography fontSize="16px">Planet Ornate</Typography>
+                <Typography fontSize="16px">
                   H#199(1st Floor), R#01,Mohakhali New DOHS
                 </Typography>
-                <Typography py="0.3rem">Dhaka 1206, Bangladesh.</Typography>
-                <Typography py="0.3rem" mb="1rem">
+                <Typography fontSize="16px">Dhaka 1206, Bangladesh.</Typography>
+                <Typography fontSize="16px" mb="1rem">
                   Email: nobarunbd@gmail.com
                   <br />
                   Phone: +8801711 998626

@@ -11,6 +11,7 @@ import Grid from '../grid/Grid';
 import Icon from '../icon/Icon';
 import Rating from '../rating/Rating';
 import Typography, { H1, H4, Span } from '../Typography';
+import Carousel from '@component/carousel/Carousel';
 
 export interface ProductIntroProps {
   data?: any;
@@ -36,6 +37,62 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
     if (type === 'image') setIsVideo(false);
     if (type === 'video') setIsVideo(true);
   };
+
+  const images = data ? (
+    data?.images.map((url, ind) => (
+      <Grid item xs={6}>
+        <Box
+          size={80}
+          minWidth={80}
+          mb=".5rem"
+          bg="white"
+          borderRadius="10px"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          cursor="pointer"
+          border="1px solid"
+          key={ind}
+          borderColor={selectedImage === ind ? 'primary.main' : 'gray.400'}
+          onClick={handleImageClick(url, 'image')}
+        >
+          <Avatar src={url} borderRadius="10px" size={40} />
+        </Box>
+      </Grid>
+    ))
+  ) : (
+    <Grid item xs={6}>
+      &nbsp;
+    </Grid>
+  );
+
+  const videos = data ? (
+    data?.videos.map((url, ind) => (
+      <Grid item xs={6}>
+        <Box
+          key={ind}
+          size={80}
+          minWidth={80}
+          mb=".5rem"
+          bg="white"
+          borderRadius="10px"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          cursor="pointer"
+          border="1px solid"
+          borderColor={selectedImage === ind ? 'primary.main' : 'gray.400'}
+          onClick={handleImageClick(url, 'video')}
+        >
+          <Avatar src={url} borderRadius="10px" size={40} />
+        </Box>
+      </Grid>
+    ))
+  ) : (
+    <Grid item xs={6}>
+      &nbsp;
+    </Grid>
+  );
   return (
     <Card position="relative">
       <Box
@@ -55,11 +112,11 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
       >
         {data?.stockStatus}
       </Box>
-      <Box overflow="hidden" px="3em" py="2rem">
+      <Box overflow="hidden" px={width > 600 ? '3em' : '1em'} py="2rem">
         <FlexBox
           justifyContent="space-between"
-          flexDirection={width > 1140 ? 'row' : 'column'}
-          alignItems={width > 1140 ? 'center' : 'flex-start'}
+          flexDirection={width > 1150 ? 'row' : 'column'}
+          alignItems={width > 1150 ? 'center' : 'flex-start'}
           mb="2em"
         >
           <Box>
@@ -89,22 +146,26 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
               </a>
             </FlexBox>
           </Box>
-          <Button
+          <button className="product__hero-btn">বাংলা ব্লগ পড়ুন</button>
+          {/* <Button
             variant="contained"
             color="primary"
             mt={width > 140 ? '1em' : '0em'}
+            className="product__hero-btn"
           >
             বাংলায় পড়ুন
-          </Button>
+          </Button> */}
         </FlexBox>
-        <FlexBox>
-          <FlexBox justifyContent="center" mb="50px">
+        {/* <Grid container>
+          <Grid item xs={width > 1550 ? 10 : 9}> */}
+        <FlexBox flexDirection={width > 767 ? 'row' : 'column'}>
+          <FlexBox justifyContent="center" className="product__intro-main">
             {isLoading ? (
               <Spinner />
             ) : isVideo ? (
               <iframe
-                width="500"
-                height="500"
+                width="546"
+                height="546"
                 src={`https://www.youtube.com/embed/${getYoutubeId(
                   selectedImage,
                 )}`}
@@ -123,76 +184,35 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
               />
             )}
           </FlexBox>
+          {/* </Grid>
+          <Grid item xs={width > 1550 ? 2 : 3}> */}
           <Box className="product__hero-slider">
-            <Grid container>
-              {data ? (
-                data?.images.map((url, ind) => (
-                  <Grid item xs={6}>
-                    <Box
-                      size={80}
-                      minWidth={80}
-                      mb=".5rem"
-                      bg="white"
-                      borderRadius="10px"
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      cursor="pointer"
-                      border="1px solid"
-                      key={ind}
-                      ml="10px"
-                      borderColor={
-                        selectedImage === ind ? 'primary.main' : 'gray.400'
-                      }
-                      onClick={handleImageClick(url, 'image')}
-                    >
-                      <Avatar src={url} borderRadius="10px" size={40} />
-                    </Box>
-                  </Grid>
-                ))
-              ) : (
-                <Grid item xs={6}>
-                  &nbsp;
-                </Grid>
-              )}
-              {data ? (
-                data?.videos.map((url, ind) => (
-                  <Grid item xs={6}>
-                    <Box
-                      key={ind}
-                      ml="10px"
-                      size={80}
-                      minWidth={80}
-                      mb=".5rem"
-                      bg="white"
-                      borderRadius="10px"
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      cursor="pointer"
-                      border="1px solid"
-                      borderColor={
-                        selectedImage === ind ? 'primary.main' : 'gray.400'
-                      }
-                      onClick={handleImageClick(url, 'video')}
-                    >
-                      <Avatar src={url} borderRadius="10px" size={40} />
-                    </Box>
-                  </Grid>
-                ))
-              ) : (
-                <Grid item xs={6}>
-                  &nbsp;
-                </Grid>
-              )}
-            </Grid>
+            {width > 767 ? (
+              <Grid container>
+                {images}
+                {videos}
+              </Grid>
+            ) : (
+              <Box px="30px" mt="30px">
+                <Carousel
+                  totalSlides={data?.images?.length + data?.videos?.length}
+                  visibleSlides={width < 650 ? 4 : 6}
+                >
+                  {images}
+                  {videos}
+                </Carousel>
+              </Box>
+            )}
           </Box>
+          {/* </Grid>
+        </Grid> */}
         </FlexBox>
         <Button
           variant="contained"
           bg="#0082C9"
           //@ts-ignore
           color="#fff"
+          className="product__share-btn"
         >
           <Icon size="1em" mr="1em">
             share-solid

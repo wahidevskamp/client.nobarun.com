@@ -1,12 +1,11 @@
+import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import { Span } from '@component/Typography';
 import { debounce } from 'lodash';
 import Link from 'next/link';
 import React, { useCallback, useEffect, useState } from 'react';
 import Box from '../Box';
-import FlexBox from '../FlexBox';
 import Icon from '../icon/Icon';
-import Menu from '../Menu';
 import MenuItem from '../MenuItem';
 import TextField from '../text-field/TextField';
 import StyledSearchBox from './SearchBoxStyle';
@@ -16,12 +15,12 @@ export interface SearchBoxProps {
 }
 
 const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
-  const [category, setCategory] = useState('All Categories');
+  // const [category, setCategory] = useState('All Categories');
   const [resultList, setResultList] = useState([]);
-
-  const handleCategoryChange = (cat) => () => {
-    setCategory(cat);
-  };
+  // console.log(category);
+  // const handleCategoryChange = (cat) => () => {
+  //   setCategory(cat);
+  // };
 
   const search = debounce((e) => {
     const value = e.target?.value;
@@ -63,7 +62,10 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
           fullwidth
           onChange={hanldeSearch}
         />
-        <Menu
+        <Button variant="contained" className="search-btn">
+          Search
+        </Button>
+        {/* <Menu
           className="category-dropdown"
           direction="right"
           handler={
@@ -78,7 +80,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
               {item}
             </MenuItem>
           ))}
-        </Menu>
+        </Menu> */}
         {/* <Box className="menu-button" ml="14px" cursor="pointer">
           <Icon color="primary">menu</Icon>
         </Box> */}
@@ -105,17 +107,6 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
     </Box>
   );
 };
-
-const categories = [
-  'All Categories',
-  'Car',
-  'Clothes',
-  'Electronics',
-  'Laptop',
-  'Desktop',
-  'Camera',
-  'Toys',
-];
 
 const dummySearchResult = [
   'Macbook Air 13',

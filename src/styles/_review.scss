@@ -1,11 +1,5 @@
 .review {
   position: static !important;
-  &__headline {
-    @include respond(500px) {
-      text-align: center !important;
-      margin-bottom: 5rem !important;
-    }
-  }
   &__rating {
     margin: 1rem 0 !important;
     display: flex;
@@ -14,8 +8,8 @@
   &__arrow-btn {
     position: absolute;
     top: 10px !important;
-    @include respond(500px) {
-      top: 70px !important;
+    @include respond(600px) {
+      display: none;
     }
     @include respond(365px) {
       top: 90px !important;

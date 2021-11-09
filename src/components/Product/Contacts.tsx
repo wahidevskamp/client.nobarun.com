@@ -31,12 +31,23 @@ const Contacts = ({ id, contact }) => {
           </FlexBox>
         )}
         {contact?.whatsAppNumber && (
-          <FlexBox alignItems="center" mb=".8rem">
-            <div className="product__contact-icon">
-              <Icon size="1.5rem">call 1</Icon>
-            </div>
-            <Typography ml="1rem">{contact?.whatsAppNumber}</Typography>
-          </FlexBox>
+          <a
+            target="_blank"
+            href={`https://api.whatsapp.com/send?phone=${contact?.whatsAppNumber}&text=Hello!%20Can%20you%20please%20tell%20me%20more%20about%20your%20services?`}
+          >
+            <FlexBox alignItems="center" mb=".8rem">
+              <div className="product__contact-icon">
+                <Icon size="1.5rem">call 1</Icon>
+              </div>
+              <Typography ml="1rem">{contact?.whatsAppNumber}</Typography>
+              <Image
+                src="/whatsapp.png"
+                alt="Whatsapp"
+                height="80%"
+                ml="1.5rem"
+              />
+            </FlexBox>
+          </a>
         )}
         {contact?.email && (
           <FlexBox alignItems="center" mb=".8rem">
@@ -59,7 +70,7 @@ const Contacts = ({ id, contact }) => {
         <Button
           variant="contained"
           color="primary"
-          fullwidth
+          className="product_quote-btn"
           onClick={() => {
             setIsOpen(true);
           }}

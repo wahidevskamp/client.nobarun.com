@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@component/Box';
-// import Carousel from '@component/carousel/Carousel';
 import Container from '@component/Container';
 import HoverBox from '@component/HoverBox';
 import { H2, H4 } from '@component/Typography';
@@ -12,24 +11,27 @@ interface ClientProps {
   slides?: number;
   isProductDetails?: boolean;
 }
-const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
+const RelatedClients: React.FC<ClientProps> = ({
+  // slides,
+  isProductDetails,
+}) => {
   const [clients, setClients] = useState([]);
-  const [visibleSlides, setVisibleSlides] = useState(slides);
+  // const [visibleSlides, setVisibleSlides] = useState(slides);
   const width = useWindowSize();
 
-  console.log(visibleSlides);
+  // console.log(visibleSlides);
   useEffect(() => {
-    if (width < 500) setVisibleSlides(2);
-    else if (width < 650) setVisibleSlides(3);
-    else if (width < 1400) setVisibleSlides(6);
-    else setVisibleSlides(slides);
-    if (isProductDetails) {
-      if (width < 768) setVisibleSlides(2);
-      else if (width < 880) setVisibleSlides(4);
-      else if (width < 1025) setVisibleSlides(5);
-      else if (width < 1300) setVisibleSlides(4);
-      else if (width < 1425) setVisibleSlides(5);
-    }
+    // if (width < 500) setVisibleSlides(2);
+    // else if (width < 650) setVisibleSlides(3);
+    // else if (width < 1400) setVisibleSlides(6);
+    // else setVisibleSlides(slides);
+    // if (isProductDetails) {
+    //   if (width < 768) setVisibleSlides(2);
+    //   else if (width < 880) setVisibleSlides(4);
+    //   else if (width < 1025) setVisibleSlides(5);
+    //   else if (width < 1300) setVisibleSlides(4);
+    //   else if (width < 1425) setVisibleSlides(5);
+    // }
   }, [width]);
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
   return (
     <Box
       pt={isProductDetails ? '4rem' : '3rem'}
-      pb={isProductDetails ? '4rem' : '7rem'}
+      mb={isProductDetails ? '10rem' : '7rem'}
     >
       <FlexBox justifyContent="center" alignItems="center" mb="3rem">
         <FlexBox alignItems="center">
@@ -61,12 +63,11 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
           {/* <Carousel totalSlides={clients?.length} visibleSlides={visibleSlides}> */}
           <FlexBox>
             {clients
-              .concat(clients)
-              .concat(clients)
-              .concat(clients)
-              .concat(clients)
+              // .concat(clients)
+              // .concat(clients)
+              // .concat(clients)
               .map((item, ind) => (
-                <Box key={ind} className="client">
+                <Box key={ind} className="client client_related">
                   <HoverBox borderRadius={5} className="client__body">
                     <img src={item.imgUrl} style={{ width: '100%' }} />
                   </HoverBox>
@@ -87,4 +88,4 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
   );
 };
 
-export default Clients;
+export default RelatedClients;

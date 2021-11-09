@@ -38,7 +38,7 @@ export const GrocerySection6Wrapper = styled.div`
 `;
 
 export const GrocerySection10Wrapper = styled.div`
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto 6rem;
   @media only screen and (max-width: 1400px) {
     margin-left: 2rem;
