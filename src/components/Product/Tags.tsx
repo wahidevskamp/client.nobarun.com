@@ -21,14 +21,16 @@ const Tags = ({ chips }) => {
           </Chip>
         ))}
       </FlexBox>
-      <Button
-        style={{ margin: 'auto' }}
-        onClick={() => {
-          setShowAll(!showAll);
-        }}
-      >
-        {showAll ? 'Show Less' : 'Load More'}
-      </Button>
+      {chips.length > 15 && (
+        <Button
+          style={{ margin: 'auto' }}
+          onClick={() => {
+            setShowAll(!showAll);
+          }}
+        >
+          {showAll ? 'Show Less' : 'Load More'}
+        </Button>
+      )}
     </ProductCard12>
   );
 };
