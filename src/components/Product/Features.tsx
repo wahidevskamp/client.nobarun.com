@@ -44,8 +44,12 @@ const Features = ({ features }) => {
               <H2 mb="15px">{feature.title}</H2>
               <Typography>
                 <div
+                  className="product__keypoints-content"
                   dangerouslySetInnerHTML={{
-                    __html: feature?.content,
+                    __html: feature?.content.replace(
+                      'font-family:Titillium',
+                      '',
+                    ),
                   }}
                 ></div>
               </Typography>

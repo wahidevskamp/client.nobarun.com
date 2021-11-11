@@ -6,7 +6,7 @@ import ProductLayout from './ProductLayout';
 const NavbarLayout: React.FC = ({ children }) => {
   return (
     <ProductLayout navbar={<Navbar />}>
-      <Container my="2rem">{children}</Container>
+      <Container my="10px">{children}</Container>
     </ProductLayout>
   );
 };

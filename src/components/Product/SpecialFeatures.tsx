@@ -10,7 +10,7 @@ const SpecialFeatures: React.FC<FeaturesProps> = ({ features }) => {
       {
         <div
           className="product__features"
-          dangerouslySetInnerHTML={{ __html: features }}
+          dangerouslySetInnerHTML={{ __html: features.replace('&nbsp;', '') }}
         ></div>
       }
     </ProductCard12>

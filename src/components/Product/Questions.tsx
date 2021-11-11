@@ -1,5 +1,4 @@
 import Accordian from '@component/accordion/Accordian';
-import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import { H2 } from '@component/Typography';
@@ -31,15 +30,12 @@ const Questions = ({ questions }) => {
         >
           Frequently asked questions and Answers
         </H2>
-        <Button variant="contained" color="primary">
-          Ask A Question
-        </Button>
       </FlexBox>
 
       {questions &&
         questions?.map((question, idx) => (
           <Accordian
-            label={`${idx.toString().length === 1 && '0'}${idx + 1}.	${
+            label={`${(idx + 1).toString().length === 1 ? '0' : ''}${idx + 1}.	${
               question.title ? question.title : `Question - ${idx + 1}`
             }`}
           >

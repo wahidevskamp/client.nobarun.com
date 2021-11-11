@@ -1,7 +1,7 @@
-import React, { cloneElement } from "react";
-import { createPortal } from "react-dom";
-import FlexBox from "../FlexBox";
-import StyledModal from "./ModalStyle";
+import React, { cloneElement } from 'react';
+import { createPortal } from 'react-dom';
+import FlexBox from '../FlexBox';
+import StyledModal from './ModalStyle';
 
 export interface ModalProps {
   open?: boolean;
@@ -19,11 +19,11 @@ const Modal: React.FC<ModalProps> = ({ children, open, onClose }) => {
   };
 
   if (globalThis.document && open) {
-    let modal = document.querySelector("#modal-root");
+    let modal = document.querySelector('#modal-root');
 
     if (!modal) {
-      modal = document.createElement("div");
-      modal.setAttribute("id", "modal-root");
+      modal = document.createElement('div');
+      modal.setAttribute('id', 'modal-root');
       document.body.appendChild(modal);
     }
 
@@ -41,7 +41,7 @@ const Modal: React.FC<ModalProps> = ({ children, open, onClose }) => {
           </FlexBox>
         </div>
       </StyledModal>,
-      modal
+      modal,
     );
   } else return null;
 };

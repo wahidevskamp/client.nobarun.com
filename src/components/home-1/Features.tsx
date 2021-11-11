@@ -8,40 +8,42 @@ import { H4, SemiSpan } from '../Typography';
 
 const Features: React.FC = () => {
   return (
-    <Container mb="70px">
-      <Grid container spacing={6}>
-        {serviceList.map((item, ind) => (
-          <Grid item lg={3} md={6} xs={12} key={ind}>
-            <FlexBox
-              as={Card}
-              flexDirection="column"
-              alignItems="center"
-              p="3rem"
-              height="100%"
-              borderRadius={8}
-              boxShadow="border"
-              hoverEffect
-            >
+    <section id="details">
+      <Container mb="70px">
+        <Grid container spacing={6}>
+          {serviceList.map((item, ind) => (
+            <Grid item lg={3} md={6} xs={12} key={ind}>
               <FlexBox
-                justifyContent="center"
+                as={Card}
+                flexDirection="column"
                 alignItems="center"
-                borderRadius="300px"
-                bg="gray.200"
-                size="64px"
+                p="3rem"
+                height="100%"
+                borderRadius={8}
+                boxShadow="border"
+                hoverEffect
               >
-                <Icon color="secondary" size="1.75rem">
-                  {item.iconName}
-                </Icon>
+                <FlexBox
+                  justifyContent="center"
+                  alignItems="center"
+                  borderRadius="300px"
+                  bg="gray.200"
+                  size="64px"
+                >
+                  <Icon color="secondary" size="1.75rem">
+                    {item.iconName}
+                  </Icon>
+                </FlexBox>
+                <H4 mt="20px" mb="10px" textAlign="center">
+                  {item.title}
+                </H4>
+                <SemiSpan textAlign="center">{item.content}</SemiSpan>
               </FlexBox>
-              <H4 mt="20px" mb="10px" textAlign="center">
-                {item.title}
-              </H4>
-              <SemiSpan textAlign="center">{item.content}</SemiSpan>
-            </FlexBox>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </section>
   );
 };
 

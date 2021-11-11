@@ -34,7 +34,6 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
 
   useEffect(() => {
     useAllFeaturedClients().then((data) => {
-      console.log(data);
       setClients(data);
     });
   }, []);
@@ -62,9 +61,7 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
           <FlexBox>
             {clients
               .concat(clients)
-              .concat(clients)
-              .concat(clients)
-              .concat(clients)
+              .splice(0, 10)
               .map((item, ind) => (
                 <Box key={ind} className="client">
                   <HoverBox borderRadius={5} className="client__body">

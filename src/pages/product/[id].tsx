@@ -1,4 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
 import Grid from '@component/grid/Grid';
 import NavbarLayout from '@component/layout/NavbarLayout';
 import Ammenities from '@component/Product/Ammenities';
@@ -15,7 +17,6 @@ import AddReview from '@component/Product/AddReview';
 import Questions from '@component/Product/Questions';
 import useWindowSize from '@hook/useWindowSize';
 import useProductById from '@hook/Product/useProductById';
-import { useRouter } from 'next/router';
 import FlexBox from '@component/FlexBox';
 import Box from '@component/Box';
 import Rating from '@component/rating/Rating';
@@ -33,6 +34,7 @@ const ProductDetails = () => {
     price: 1135,
   };
 
+  console.log(product);
   const width = useWindowSize();
   useEffect(() => {
     useProductById(pid).then((data: any) => {
@@ -90,6 +92,11 @@ const ProductDetails = () => {
 
   return (
     <Fragment>
+      <Head>
+        <title>{product?.seo?.title || 'Nobarun - Product Details'}</title>
+        <meta name="description" content={product?.seo?.description} />
+        <meta name="keywords" content={product?.seo?.keywords.join(', ')} />
+      </Head>
       <Box
         className={`product__sticky ${active ? 'product__sticky--active' : ''}`}
       >
@@ -129,38 +136,67 @@ const ProductDetails = () => {
             </Box>
           </FlexBox>
           <Box>
-            <button className="product__sticky-btn">Details</button>
-            <button className="product__sticky-btn">
+            <a
+              href="#details"
+              className="product__sticky-btn"
+              style={{ background: '#dbeed3', color: '#489e26' }}
+            >
+              Details
+            </a>
+
+            <a href="#keypoints" className="product__sticky-btn">
               Key Points of Product
-            </button>
-            <button className="product__sticky-btn">Question & Answers</button>
-            <button className="product__sticky-btn">Reviews</button>
-            <button className="product__sticky-btn">Get a Quote</button>
+            </a>
+            <a href="#questions" className="product__sticky-btn">
+              Question & Answers
+            </a>
+            <a href="#reviews" className="product__sticky-btn">
+              Reviews
+            </a>
+            <a
+              href="#addQuote"
+              className="product__sticky-btn"
+              style={{ background: '#ec1c24', color: '#fff' }}
+            >
+              Get a Quote
+            </a>
           </Box>
         </FlexBox>
       </Box>
-      <Grid container spacing={6}>
+      <Grid container>
         <Grid item lg={width > 1240 ? 9 : 8} xs={12}>
-          <ProductIntro data={product?.intro} {...state} />
-          <RelatedClients slides={6} isProductDetails />
-          {product?.keyPoints &&
-          product?.keyPoints.length === 1 &&
-          product?.keyPoints[0].title === '' &&
-          product?.keyPoints[0].content === '' ? (
-            <span>&nbsp;</span>
-          ) : (
-            <Features features={product?.keyPoints} />
-          )}
-          {product?.questions &&
-          product?.questions.length === 1 &&
-          product?.questions[0].title === '' &&
-          product?.questions[0].question === '' ? (
-            <span>&nbsp;</span>
-          ) : (
-            <Questions questions={product?.questions} />
-          )}
-          <Review reviews={product?.reviews} />
-          <AddReview />
+          <Box mr="1rem">
+            <section id="details">
+              <ProductIntro data={product?.intro} {...state} />
+            </section>
+            <RelatedClients slides={6} isProductDetails />
+            {product?.keyPoints &&
+            product?.keyPoints.length === 1 &&
+            product?.keyPoints[0].title === '' &&
+            product?.keyPoints[0].content === '' ? (
+              <span>&nbsp;</span>
+            ) : (
+              <section id="keypoints">
+                <Features features={product?.keyPoints} />
+              </section>
+            )}
+            {product?.questions &&
+            product?.questions.length === 1 &&
+            product?.questions[0].title === '' &&
+            product?.questions[0].question === '' ? (
+              <span>&nbsp;</span>
+            ) : (
+              <section id="questions">
+                <Questions questions={product?.questions} />
+              </section>
+            )}
+            <section id="reviews">
+              <Review reviews={product?.reviews} />
+            </section>
+            <section id="addQuote">
+              <AddReview />
+            </section>
+          </Box>
         </Grid>
         <Grid item lg={width > 1240 ? 3 : 4} xs={12}>
           {product?.contact && <Contacts id={pid} contact={product?.contact} />}

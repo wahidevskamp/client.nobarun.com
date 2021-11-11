@@ -121,11 +121,16 @@
       & svg {
         height: 1.2rem !important;
         width: 1.2rem !important;
-        color: #1ca346;
+        color: transparent;
       }
       & > div > div {
         justify-content: center;
         align-items: center;
+      }
+    }
+    &-icon-location {
+      & svg {
+        color: #1ca346;
       }
     }
   }
@@ -157,6 +162,9 @@
         border: 2px solid #44ae31;
       }
     }
+    &-content {
+      font-family: 'Titillium Web', sans-serif !important;
+    }
   }
   &__features {
     & ol,
@@ -171,10 +179,9 @@
         content: '';
         background-image: url('../../public/assets/images/icons/Group 10498.svg');
         background-repeat: no-repeat;
-        height: 2rem;
-        width: 2rem;
+        height: 32px;
+        width: 32px;
         padding: 0 0.5rem;
-        padding-right: 2rem;
       }
     }
   }
@@ -184,15 +191,15 @@
       border-collapse: collapse;
       width: 100%;
     }
-
+    table tr {
+      &:not(:last-child) {
+        border-bottom: 1px solid #efefef;
+      }
+    }
     table td,
     table th {
       padding: 8px 2px;
     }
-    table tr:hover {
-      background-color: #ddd;
-    }
-
     table th {
       padding-top: 12px;
       padding-bottom: 12px;

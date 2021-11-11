@@ -59,7 +59,7 @@ const Contacts = ({ id, contact }) => {
         )}
         {contact?.address && (
           <FlexBox alignItems="center" mb=".8rem">
-            <div className="product__contact-icon">
+            <div className="product__contact-icon product__contact-icon-location">
               <Icon size="1.8rem">location 1</Icon>
             </div>
             <Paragraph ml="1.2rem" style={{ overflowWrap: 'anywhere' }}>

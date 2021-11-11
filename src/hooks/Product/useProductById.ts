@@ -13,6 +13,7 @@ const GET_PRODUCT_BY_ID = gql`
           featured
           images
           videos
+          banglaVersionLink
           stockStatus {
             title
           }
@@ -36,6 +37,9 @@ const GET_PRODUCT_BY_ID = gql`
             address
             maps
           }
+          seoTitle: SeoTitle
+          description: title
+          keywords
         }
         reviewCount
         ratingAverage
@@ -65,7 +69,6 @@ const useProductById = async (pid) => {
     const data = await Client.request(GET_PRODUCT_BY_ID, { id: pid });
     const productById = data.getPopulatedProductById.productData;
 
-    console.log(productById);
     const product = {
       intro: {
         productName: productById.product.productName,
@@ -76,10 +79,16 @@ const useProductById = async (pid) => {
         stockStatus: productById.product.stockStatus?.title,
         featuredImage: productById.product.featured,
         images: productById.product.images,
+        banglaVersionLink: productById.product.banglaVersionLink,
         videos: productById.product.videos.map((video) => {
           const id = getYoutubeId(video);
           return `https://img.youtube.com/vi/${id}/sddefault.jpg`;
         }),
+      },
+      seo: {
+        title: productById.product.seoTitle,
+        description: productById.product.description,
+        keywords: productById.product.keywords,
       },
       keyPoints: productById.product.keyPoints,
       features: productById.product.features,
@@ -89,37 +98,6 @@ const useProductById = async (pid) => {
       reviews: data.getPopulatedProductById.populatedReviews,
       relatedProducts: data.getPopulatedProductById.populatedRelatedProducts,
       contact: productById.product.contactPerson,
-
-      // mainContent: {
-      //   isPublished: productById.isPublished,
-      //   productName: productById.productName,
-      //   price: productById.price,
-      //   originalPrice: productById.originalPrice,
-      //   discount: productById.discount,
-      //   productCode: productById.productCode,
-      //   category: productById.category,
-      //   collectionName: productById.collectionName,
-      //   stockStatus: productById.stockStatus,
-      //   contactPerson: productById.contactPerson,
-      //   SeoTitle: productById.SeoTitle,
-      //   title: productById.title,
-      //   slug: productById.slug,
-      //   url: productById.url,
-      //   siteMap: productById.siteMap,
-      // },
-      // main: {
-      //   featured: productById.featured,
-      //   images: productById.images,
-      //   videos: productById.videos,
-      // },
-      // keyPoints: productById.keyPoints,
-      // tags: productById.tags,
-      // questions: productById.questions,
-      // specification: productById.specification,
-      // keywords: productById.keywords,
-      // features: productById.features,
-      // relatedProducts: productById.relatedProducts,
-      // createdAt: productById.createdAt,
     };
     return product;
   } else {

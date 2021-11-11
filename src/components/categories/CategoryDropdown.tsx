@@ -9,10 +9,11 @@ export interface CategoryDropdownProps {
   position?: 'absolute' | 'relative';
   menu?: any;
   ref?: any;
+  noOfCategory?: number;
 }
 
 const CategoryDropdown: React.FC<CategoryDropdownProps> = forwardRef(
-  ({ open, position, menu }, ref) => {
+  ({ open, position, menu, noOfCategory }, ref) => {
     const [categories, setCategories] = React.useState([]);
 
     React.useEffect(() => {
@@ -29,7 +30,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = forwardRef(
     } else {
       items =
         categories.length > 0 &&
-        categories.map((item) => (
+        categories.slice(0, noOfCategory).map((item) => (
           <CategoryMenuItem
             title={item.name}
             href={`/product/search/bikes`}

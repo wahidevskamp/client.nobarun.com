@@ -1,7 +1,9 @@
 import Box from '@component/Box';
 import Button from '@component/buttons/Button';
+import IconButton from '@component/buttons/IconButton';
 import Card from '@component/Card';
 import Grid from '@component/grid/Grid';
+import Icon from '@component/icon/Icon';
 import Modal from '@component/modal/Modal';
 import TextField from '@component/text-field/TextField';
 import TextArea from '@component/textarea/TextArea';
@@ -16,19 +18,23 @@ interface AddQueryProps {
 const AddQuery = (props: AddQueryProps) => {
   const { isOpen, setIsOpen, id } = props;
   console.log(id);
+  const onCloseHandler = () => {
+    setIsOpen(false);
+  };
   return (
-    <Modal
-      open={isOpen}
-      onClose={() => {
-        setIsOpen(false);
-      }}
-    >
-      <Card px="3em" py="3em">
+    <Modal open={isOpen} onClose={onCloseHandler}>
+      <Card px="3em" py="3em" position="relative">
         <Box width="700px" maxWidth="700px">
           <Box textAlign="center" mb="3em">
             <H1>Product Enquiry</H1>
             <SemiSpan>We will contact you within short time</SemiSpan>
           </Box>
+          <IconButton
+            style={{ position: 'absolute', right: '15px', top: '15px' }}
+            onClick={onCloseHandler}
+          >
+            <Icon>close</Icon>
+          </IconButton>
           <Grid container spacing={5}>
             <Grid item xs={6}>
               <TextField fullwidth label="Your Full Name" />

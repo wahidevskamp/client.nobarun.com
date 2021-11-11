@@ -21,6 +21,9 @@
     border-top-right-radius: 5px;
     padding: 5px 10px;
     background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   &__title {
     background-image: linear-gradient(to right, #1ca346, #6fba1a);

@@ -1,5 +1,8 @@
 import Button from '@component/buttons/Button';
 import Card from '@component/Card';
+import FlexBox from '@component/FlexBox';
+import Image from '@component/Image';
+import Rating from '@component/rating/Rating';
 import { Span } from '@component/Typography';
 import { debounce } from 'lodash';
 import Link from 'next/link';
@@ -94,11 +97,29 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
           width="100%"
           boxShadow="large"
           zIndex={99}
+          maxHeight="20rem"
+          overflow="auto"
         >
           {resultList.map((item) => (
             <Link href={`/product/search/${item}`} key={item}>
               <MenuItem key={item}>
-                <Span fontSize="14px">{item}</Span>
+                <FlexBox alignItems="center">
+                  <Image
+                    src="assets/images/demo.jpg"
+                    height="60"
+                    width="60"
+                    borderRadius="10px"
+                  />
+                  <Box ml="20px">
+                    <Span fontSize="14px">{item}</Span>
+                    <FlexBox alignItems="center">
+                      <Rating value={4} color="warn" size="small" />
+                      <Span fontSize="14px" ml="5px">
+                        (5)
+                      </Span>
+                    </FlexBox>
+                  </Box>
+                </FlexBox>
               </MenuItem>
             </Link>
           ))}
@@ -109,6 +130,14 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
 };
 
 const dummySearchResult = [
+  'Macbook Air 13',
+  'Ksus K555LA',
+  'Acer Aspire X453',
+  'iPad Mini 3',
+  'Macbook Air 13',
+  'Ksus K555LA',
+  'Acer Aspire X453',
+  'iPad Mini 3',
   'Macbook Air 13',
   'Ksus K555LA',
   'Acer Aspire X453',

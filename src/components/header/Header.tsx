@@ -10,7 +10,6 @@ import Container from '../Container';
 import FlexBox from '../FlexBox';
 import Icon from '../icon/Icon';
 import SearchBox from '../search-box/SearchBox';
-import { Span } from '../Typography';
 import StyledHeader from './HeaderStyle';
 import Sidemenu from '@component/layout/Sidemenu';
 
@@ -19,36 +18,36 @@ type HeaderProps = {
   className?: string;
 };
 
-const Whatsapp = ({ width }) => {
-  const notPhone = width > 550;
-  return (
-    <a
-      target="_blank"
-      href="https://api.whatsapp.com/send?phone=+8801711998626&text=Hello!%20Can%20you%20please%20tell%20me%20more%20about%20your%20services?"
-    >
-      <FlexBox
-        alignItems="center"
-        border={notPhone && '2px solid #1CA346'}
-        borderRadius={notPhone ? '1.2rem' : '50%'}
-      >
-        <Box
-          backgroundColor="#1CA346"
-          px={notPhone ? '1rem' : '.5rem'}
-          py={notPhone ? '.5rem' : '.5rem'}
-          borderTopLeftRadius={notPhone && '1rem'}
-          borderBottomLeftRadius={notPhone && '1rem'}
-          borderRadius={!notPhone && '50%'}
-          color="#fff"
-        >
-          <Icon className="close" color="inherit" variant="small">
-            whatsapp
-          </Icon>
-        </Box>
-        {notPhone && <Span px="1rem">01711 998626</Span>}
-      </FlexBox>
-    </a>
-  );
-};
+// const Whatsapp = ({ width }) => {
+//   const notPhone = width > 550;
+//   return (
+//     <a
+//       target="_blank"
+//       href="https://api.whatsapp.com/send?phone=+8801711998626&text=Hello!%20Can%20you%20please%20tell%20me%20more%20about%20your%20services?"
+//     >
+//       <FlexBox
+//         alignItems="center"
+//         border={notPhone && '2px solid #1CA346'}
+//         borderRadius={notPhone ? '1.2rem' : '50%'}
+//       >
+//         <Box
+//           backgroundColor="#1CA346"
+//           px={notPhone ? '1rem' : '.5rem'}
+//           py={notPhone ? '.5rem' : '.5rem'}
+//           borderTopLeftRadius={notPhone && '1rem'}
+//           borderBottomLeftRadius={notPhone && '1rem'}
+//           borderRadius={!notPhone && '50%'}
+//           color="#fff"
+//         >
+//           <Icon className="close" color="inherit" variant="small">
+//             whatsapp
+//           </Icon>
+//         </Box>
+//         {notPhone && <Span px="1rem">01711 998626</Span>}
+//       </FlexBox>
+//     </a>
+//   );
+// };
 
 const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
   const width = useWindowSize();
@@ -79,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
                 />
               </a>
             </Link>
-            <Whatsapp width={width} />
+            {/* <Whatsapp width={width} /> */}
           </FlexBox>
           <FlexBox justifyContent="center" flex="1 1 0" pt=".5em" px="1em">
             <SearchBox isFixed={isFixed} />
@@ -104,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
           <FlexBox justifyContent="center" flex="1 1 0">
             <SearchBox isFixed={isFixed} />
           </FlexBox>
-          {!isTablet && <Whatsapp width={width} />}
+          {/* {!isTablet && <Whatsapp width={width} />} */}
         </Container>
       )}
     </StyledHeader>

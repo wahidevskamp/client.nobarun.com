@@ -56,7 +56,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           borderColor={selectedImage === ind ? 'primary.main' : 'gray.400'}
           onClick={handleImageClick(url, 'image')}
         >
-          <Avatar src={url} borderRadius="10px" size={40} />
+          <Avatar src={url} borderRadius="10px" size={65} />
         </Box>
       </Grid>
     ))
@@ -146,7 +146,13 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
               </a>
             </FlexBox>
           </Box>
-          <button className="product__hero-btn">বাংলা ব্লগ পড়ুন</button>
+          <a
+            href={data?.banglaVersionLink}
+            className="product__hero-btn"
+            target="_blank"
+          >
+            বাংলা ব্লগ পড়ুন
+          </a>
           {/* <Button
             variant="contained"
             color="primary"
