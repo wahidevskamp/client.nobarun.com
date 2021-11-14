@@ -1,0 +1,7 @@
+.searchbox {
+  max-width: 640px;
+  margin: auto;
+  @include respond(900px) {
+    max-width: none;
+  }
+}

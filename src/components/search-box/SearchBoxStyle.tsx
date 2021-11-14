@@ -9,7 +9,10 @@ const StyledSearchBox = styled.div`
     max-width: 80%;
     margin: auto;
   }
-
+  @media only screen and (max-width: 1200px) {
+    max-width: 100%;
+    margin: 0;
+  }
   .search-icon {
     position: absolute;
     color: ${getTheme('colors.text.hint')};

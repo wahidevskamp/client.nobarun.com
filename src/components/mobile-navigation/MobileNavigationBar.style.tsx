@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { layoutConstant } from "utils/constants";
-import { getTheme } from "../../utils/utils";
+import styled from 'styled-components';
+import { layoutConstant } from 'utils/constants';
+import { getTheme } from '../../utils/utils';
 
 const StyledMobileNavigationBar = styled.div`
   display: none;
@@ -10,7 +10,8 @@ const StyledMobileNavigationBar = styled.div`
   right: 0;
   height: ${layoutConstant.mobileNavHeight};
   justify-content: space-around;
-  background: ${getTheme("colors.body.paper")};
+  align-items: center;
+  background: ${getTheme('colors.body.paper')};
   box-shadow: 0px 1px 4px 3px rgba(0, 0, 0, 0.1);
   z-index: 999;
 
@@ -27,6 +28,39 @@ const StyledMobileNavigationBar = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+  }
+  button {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    height: 80%;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    &.whatsapp {
+      background-color: #40c351;
+    }
+    &.call {
+      background-color: #0082c9;
+    }
+    &.quote {
+      background-color: #ec1c24;
+    }
+    .icon {
+      margin-right: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    button {
+      height: 70%;
+      padding: 5px;
+      .icon {
+        margin-right: 5px;
+      }
     }
   }
 

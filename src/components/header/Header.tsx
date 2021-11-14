@@ -56,32 +56,17 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
   return (
     <StyledHeader className={className}>
       {isTablet && (
-        <Box bg="#fff" pb="1em">
-          <FlexBox
-            width="100%"
-            justifyContent="space-between"
-            alignItems="center"
-            py=".5em"
-            px="1em"
-          >
+        <Box bg="#fff">
+          <FlexBox width="100%" alignItems="center" py=".5em" px="1em">
+            <FlexBox flex="1 1 0" pt=".5em" px="1em">
+              <SearchBox isFixed={isFixed} />
+            </FlexBox>
+
             {isTablet && (
               <Sidenav position="left" handle={<Icon mx="1rem">menu</Icon>}>
                 <Sidemenu />
               </Sidenav>
             )}
-            <Link href="/">
-              <a>
-                <Image
-                  src="/assets/images/logo.png"
-                  alt="logo"
-                  height={width < 550 && '40px'}
-                />
-              </a>
-            </Link>
-            {/* <Whatsapp width={width} /> */}
-          </FlexBox>
-          <FlexBox justifyContent="center" flex="1 1 0" pt=".5em" px="1em">
-            <SearchBox isFixed={isFixed} />
           </FlexBox>
         </Box>
       )}

@@ -63,13 +63,17 @@ const RelatedClients: React.FC<ClientProps> = ({
           {/* <Carousel totalSlides={clients?.length} visibleSlides={visibleSlides}> */}
           <FlexBox>
             {clients
+              .concat(clients)
               // .concat(clients)
               // .concat(clients)
-              // .concat(clients)
+              .splice(0, 4)
               .map((item, ind) => (
                 <Box key={ind} className="client client_related">
                   <HoverBox borderRadius={5} className="client__body">
-                    <img src={item.imgUrl} style={{ width: '100%' }} />
+                    <img
+                      src={item.imgUrl}
+                      style={{ width: '118px', height: '110px' }}
+                    />
                   </HoverBox>
                   <H4
                     fontSize="14px"

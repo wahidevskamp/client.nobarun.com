@@ -49,12 +49,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
   }, []);
 
   return (
-    <Box
-      position="relative"
-      flex="1 1 0"
-      maxWidth={isFixed ? '600px' : '670px'}
-      mx="auto"
-    >
+    <Box position="relative" flex="1 1 0" className="searchbox">
       <StyledSearchBox>
         <Icon className="search-icon" size="18px">
           search

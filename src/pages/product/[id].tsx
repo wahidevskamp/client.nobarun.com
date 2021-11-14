@@ -22,6 +22,7 @@ import Box from '@component/Box';
 import Rating from '@component/rating/Rating';
 import Typography, { H1, Span } from '@component/Typography';
 import RelatedClients from '@component/products/RelatedClients';
+import Container from '@component/Container';
 
 const ProductDetails = () => {
   const router = useRouter();
@@ -100,72 +101,69 @@ const ProductDetails = () => {
       <Box
         className={`product__sticky ${active ? 'product__sticky--active' : ''}`}
       >
-        <FlexBox
-          alignItems="center"
-          justifyContent="space-between"
-          maxWidth="1600px"
-          mx="auto"
-        >
-          <FlexBox>
-            <img
-              src={product?.intro?.images[0]}
-              className="product__sticky-image"
-            />
+        <Container>
+          <FlexBox alignItems="center" justifyContent="space-between">
+            <FlexBox>
+              <img
+                src={product?.intro?.images[0]}
+                className="product__sticky-image"
+              />
+              <Box>
+                <H1 fontSize="18px">{product?.intro?.productName}</H1>
+                <Typography>
+                  Product Code: {product?.intro?.productCode}
+                </Typography>
+                <FlexBox
+                  flexDirection={width > 660 ? 'row' : 'column'}
+                  alignItems={width > 660 ? 'center' : 'flex-start'}
+                  flexWrap="nowrap"
+                >
+                  <Rating
+                    outof={5}
+                    value={product?.intro?.rating}
+                    color="warn"
+                    size="medium"
+                  />
+                  <a href="#reviews">
+                    <Span ml={width > 660 ? '1em' : '0em'} color="#0082C9">
+                      {product?.intro?.review} Real Customer Reviews
+                    </Span>
+                  </a>
+                </FlexBox>
+              </Box>
+            </FlexBox>
             <Box>
-              <H1 fontSize="18px">{product?.intro?.productName}</H1>
-              <Typography>
-                Product Code: {product?.intro?.productCode}
-              </Typography>
-              <FlexBox
-                flexDirection={width > 660 ? 'row' : 'column'}
-                alignItems={width > 660 ? 'center' : 'flex-start'}
-                flexWrap="nowrap"
+              <a
+                href="#details"
+                className="product__sticky-btn"
+                style={{ background: '#dbeed3', color: '#489e26' }}
               >
-                <Rating
-                  outof={5}
-                  value={product?.intro?.rating}
-                  color="warn"
-                  size="medium"
-                />
-                <a href="#reviews">
-                  <Span ml={width > 660 ? '1em' : '0em'} color="#0082C9">
-                    {product?.intro?.review} Real Customer Reviews
-                  </Span>
-                </a>
-              </FlexBox>
+                Details
+              </a>
+
+              <a href="#keypoints" className="product__sticky-btn">
+                Key Points of Product
+              </a>
+              <a href="#questions" className="product__sticky-btn">
+                Question & Answers
+              </a>
+              <a href="#reviews" className="product__sticky-btn">
+                Reviews
+              </a>
+              <a
+                href="#addQuote"
+                className="product__sticky-btn"
+                style={{ background: '#ec1c24', color: '#fff' }}
+              >
+                Get a Quote
+              </a>
             </Box>
           </FlexBox>
-          <Box>
-            <a
-              href="#details"
-              className="product__sticky-btn"
-              style={{ background: '#dbeed3', color: '#489e26' }}
-            >
-              Details
-            </a>
-
-            <a href="#keypoints" className="product__sticky-btn">
-              Key Points of Product
-            </a>
-            <a href="#questions" className="product__sticky-btn">
-              Question & Answers
-            </a>
-            <a href="#reviews" className="product__sticky-btn">
-              Reviews
-            </a>
-            <a
-              href="#addQuote"
-              className="product__sticky-btn"
-              style={{ background: '#ec1c24', color: '#fff' }}
-            >
-              Get a Quote
-            </a>
-          </Box>
-        </FlexBox>
+        </Container>
       </Box>
       <Grid container>
-        <Grid item lg={width > 1240 ? 9 : 8} xs={12}>
-          <Box mr="1rem">
+        <Grid item lg={width > 1400 ? 9 : 8} xs={12}>
+          <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="details">
               <ProductIntro data={product?.intro} {...state} />
             </section>
@@ -198,7 +196,7 @@ const ProductDetails = () => {
             </section>
           </Box>
         </Grid>
-        <Grid item lg={width > 1240 ? 3 : 4} xs={12}>
+        <Grid item lg={width > 1400 ? 3 : 4} xs={12}>
           {product?.contact && <Contacts id={pid} contact={product?.contact} />}
           <Ammenities />
           {product?.features && (

@@ -10,6 +10,9 @@
     z-index: 10000;
     &--active {
       display: block;
+      @include respond(900px) {
+        display: none;
+      }
     }
     &-btn {
       background-color: #eef0ed;
@@ -27,6 +30,9 @@
       height: 80px;
       width: 80px;
       margin-right: 1rem;
+    }
+    @include respond(900px) {
+      display: none;
     }
   }
   &__intro {
@@ -90,10 +96,11 @@
   }
   &__share-btn {
     margin-top: 1rem;
+    font-size: 20px;
+    position: absolute;
+    bottom: 200px;
+    left: 0px;
     @include respond(767px) {
-      position: absolute;
-      bottom: 200px;
-      left: 0px;
       padding-left: 20px !important;
       padding-right: 20px !important;
       border-radius: 20px !important;

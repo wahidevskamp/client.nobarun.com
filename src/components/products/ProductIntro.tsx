@@ -112,7 +112,13 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
       >
         {data?.stockStatus}
       </Box>
-      <Box overflow="hidden" px={width > 600 ? '3em' : '1em'} py="2rem">
+      <Box
+        overflow="hidden"
+        //  px={width > 600 ? '3em' : '1em'}
+        //  py="2rem"
+        px="15px"
+        py="5px"
+      >
         <FlexBox
           justifyContent="space-between"
           flexDirection={width > 1150 ? 'row' : 'column'}
