@@ -16,9 +16,6 @@ export const GlobalStyles = createGlobalStyle`
     overflow-x: hidden;
   }
 
-  html {
-    font-size: 16px;
-  }
 
   * {
     box-sizing: border-box;

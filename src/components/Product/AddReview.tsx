@@ -15,8 +15,10 @@ const AddReview = () => {
   const width = useWindowSize();
   return (
     <Card px="3em" py="4em">
-      <H1>Submit your review</H1>
-      <SemiSpan my="0.8em">
+      <H1 fontSize="3.4rem" fontWeight="500">
+        Submit your review
+      </H1>
+      <SemiSpan my="0.8em" fontSize="1.8rem" color="#848484">
         Your email address will not be published. Required fields are marked
       </SemiSpan>
       <FlexBox alignItems="center" mt="1em" mb="3em">
@@ -28,7 +30,10 @@ const AddReview = () => {
           value={3}
           onChange={() => {}}
         />
-        <Span ml="1em"> Review Rating *</Span>
+        <Span ml="1em" fontSize="1.6rem" color="#848484">
+          Review Rating{' '}
+          <span style={{ color: 'red', fontSize: '2rem' }}>*</span>
+        </Span>
       </FlexBox>
       <Grid container spacing={width > 767 ? 10 : 2}>
         <Grid item md={6} xs={12}>
@@ -50,7 +55,8 @@ const AddReview = () => {
         <Grid item xs={12}>
           <TextArea
             fullwidth
-            label="Write your review* (Minimum 50 Words)"
+            my="1.5rem"
+            // label="Write your review* (Minimum 50 Words)"
             style={{ minHeight: '150px' }}
           />
         </Grid>
@@ -61,8 +67,13 @@ const AddReview = () => {
         </Grid>
       </Grid>
       <FlexBox mt="3em" justifyContent="center">
-        <Button color="primary" variant="contained" size="large">
-          <Icon size="1.5rem" mr="1em">
+        <Button
+          color="primary"
+          variant="contained"
+          size="large"
+          style={{ backgroundColor: '#EC1C24' }}
+        >
+          <Icon size="3rem" mr="1em">
             send-2 1
           </Icon>
           Submit Review

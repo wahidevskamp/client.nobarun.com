@@ -8,14 +8,14 @@
   flex-grow: 1;
   width: 100%;
   &_related {
-    max-width: 142px;
+    max-width: 14.2rem;
     height: auto;
     & > div {
       height: auto !important;
     }
-    &:not(:last-child) {
-      margin-right: 30px !important;
-    }
+    // &:not(:last-child) {
+    //   margin-right: 30px !important;
+    // }
   }
   &:not(:last-child) {
     margin-right: 5px;

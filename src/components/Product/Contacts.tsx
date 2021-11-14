@@ -47,7 +47,7 @@ const Contacts = ({ id, contact }) => {
               <Image
                 src="/whatsapp.png"
                 alt="Whatsapp"
-                height="46px"
+                height="3rem"
                 ml="1.5rem"
               />
             </FlexBox>
@@ -97,7 +97,7 @@ const Contacts = ({ id, contact }) => {
         >
           <iframe
             src={contact?.maps}
-            style={{ width: '100%', height: '22rem', border: 0 }}
+            style={{ width: '100%', height: '46.7rem', border: 0 }}
             allowFullScreen
             loading="lazy"
           ></iframe>

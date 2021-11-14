@@ -36,7 +36,7 @@ const CollectionWiseProduct: React.FC = () => {
                 title={collection.name}
                 seeMoreLink="#"
               >
-                <Box mt="-0.25rem" mb="-0.25rem">
+                <Box mt="-1rem" mb="-1rem">
                   <Grid
                     container
                     spacing={width < 1600 ? (width < 600 ? 2 : 5) : 15}

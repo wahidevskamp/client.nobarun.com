@@ -4,3 +4,19 @@
 @import './utils';
 @import './review';
 @import './product';
+
+html {
+  font-size: 62.5% !important;
+  @include respond(110em) {
+    // 1745
+    zoom: 0.85;
+  }
+  @include respond(107em) {
+    // 1534
+    zoom: 0.78;
+  }
+  @include respond(87.5em) {
+    // 1400
+    zoom: 1;
+  }
+}

@@ -25,7 +25,8 @@ const StyledSearchBox = styled.div`
     padding-left: 3rem;
     padding-right: 11.5rem;
     height: 44px;
-    /* border-radius: 300px; */
+    background-color: #fff !important;
+    border: 1px solid #ddd;
   }
 
   .search-btn {

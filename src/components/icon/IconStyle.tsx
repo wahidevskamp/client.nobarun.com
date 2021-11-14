@@ -1,15 +1,15 @@
-import { ReactSVG } from "react-svg";
-import styled from "styled-components";
-import { color, compose, space, variant } from "styled-system";
-import systemCss from "@styled-system/css";
-import { IconProps } from "./Icon";
+import { ReactSVG } from 'react-svg';
+import styled from 'styled-components';
+import { color, compose, space, variant } from 'styled-system';
+import systemCss from '@styled-system/css';
+import { IconProps } from './Icon';
 
 const StyledIcon = styled(ReactSVG)<IconProps>(
   ({ color, size, transform, defaultcolor }) =>
     systemCss({
       svg: {
-        width: "100%",
-        height: "100%",
+        width: '100%',
+        height: '100%',
         transform,
 
         path: {
@@ -24,36 +24,36 @@ const StyledIcon = styled(ReactSVG)<IconProps>(
       },
 
       div: {
-        display: "flex",
+        display: 'flex',
         width: size,
         height: size,
       },
     }),
   ({ size }) =>
     variant({
-      prop: "variant",
+      prop: 'variant',
       variants: {
         small: {
           div: {
-            width: size || "1.25rem",
-            height: size || "1.25rem",
+            width: size || '2rem',
+            height: size || '2rem',
           },
         },
         medium: {
           div: {
-            width: size || "1.5rem",
-            height: size || "1.5rem",
+            width: size || '2.4rem',
+            height: size || '2.4rem',
           },
         },
         large: {
           div: {
-            width: size || "2rem",
-            height: size || "2rem",
+            width: size || '3.2rem',
+            height: size || '3.2rem',
           },
         },
       },
     }),
-  compose(color, space)
+  compose(color, space),
 );
 
 export default StyledIcon;

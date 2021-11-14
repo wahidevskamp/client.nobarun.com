@@ -92,7 +92,7 @@ export const StyledProductCard1 = styled(Card)`
 
   .details {
     padding: 1rem;
-    height: 7.3rem;
+    height: 10.5rem;
 
     .title,
     .categories {

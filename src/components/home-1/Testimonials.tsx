@@ -3,16 +3,16 @@ import Card from '@component/Card';
 import Carousel from '@component/carousel-review/Carousel';
 import FlexBox from '@component/FlexBox';
 import Image from '@component/Image';
-import { GrocerySection10Wrapper } from '@component/home-2/GrocerySectionStyle';
 import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
 import React from 'react';
 import useWindowSize from '@hook/useWindowSize';
+import Container from '@component/Container';
 
 const Testimonials: React.FC = () => {
   const width = useWindowSize();
   return (
-    <GrocerySection10Wrapper>
+    <Container mb="10rem">
       <Box m="-0.25rem" mt="3em" position="relative">
         <H2
           fontWeight="bold"
@@ -32,13 +32,19 @@ const Testimonials: React.FC = () => {
           showArrowOnHover={true}
         >
           {cardList.map((_item, idx) => (
-            <Box p="0.25rem" key={_item.title + idx}>
-              <Card className="carousel-card">
-                <Box maxWidth="800px" margin="auto" textAlign="center">
-                  <H3 mt="0.5rem" fontWeight="700">
+            <Box key={_item.title + idx}>
+              <Card py="2rem" className="carousel-card">
+                <Box maxWidth="80rem" margin="auto" textAlign="center">
+                  <H3
+                    mt=".8rem"
+                    mb=".5rem"
+                    fontWeight="500"
+                    fontSize="2.2rem"
+                    color="#000"
+                  >
                     Shamim Ahmmed
                   </H3>
-                  <SemiSpan mt="10px">
+                  <SemiSpan mt="1.5rem" fontSize="2rem" color="#6A6A6A">
                     From <strong>The Wood House Grill</strong> on 9 sept 2021
                   </SemiSpan>
                   <Rating
@@ -49,23 +55,28 @@ const Testimonials: React.FC = () => {
                     color="warn"
                     className="review__rating"
                   />
-                  <Span color="gray.700">
+                  <Span color="#848484">
                     Yesterday I received my first box. I was very impressed by
                     the freshness of the produce. I had tried (another delivery
                     service) and had to cancel because of low quality.
                   </Span>
-                  <FlexBox my="2rem" flexWrap="wrap" justifyContent="center">
-                    {[122, 2222, 3322, 2124, 554645, 74645, 236].map(
-                      (image, idx) => (
-                        <Image
-                          key={image + idx}
-                          src="https://nobarun.s3.us-east-2.amazonaws.com/1584049.jpg"
-                          alt=""
-                          height="100px"
-                          borderRadius={8}
-                        />
-                      ),
-                    )}
+                  <FlexBox my="3rem" flexWrap="wrap" justifyContent="center">
+                    {[
+                      'https://nobarun.s3.us-east-2.amazonaws.com/3978459.jpg',
+                      'https://nobarun.s3.us-east-2.amazonaws.com/6181282.jpg',
+                      'https://nobarun.s3.us-east-2.amazonaws.com/7207919.jpg',
+                      'https://nobarun.s3.us-east-2.amazonaws.com/7831385.jpg',
+                      'https://nobarun.s3.us-east-2.amazonaws.com/5193139.jpg',
+                    ].map((image) => (
+                      <Image
+                        key={image}
+                        src={image}
+                        alt=""
+                        height="100px"
+                        borderRadius={8}
+                        mr="1.5rem"
+                      />
+                    ))}
                   </FlexBox>
                 </Box>
               </Card>
@@ -73,7 +84,7 @@ const Testimonials: React.FC = () => {
           ))}
         </Carousel>
       </Box>
-    </GrocerySection10Wrapper>
+    </Container>
     // </Container>
   );
 };

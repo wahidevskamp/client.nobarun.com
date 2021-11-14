@@ -116,7 +116,7 @@ const Navbar: React.FC<NavbarProps> = ({ navListOpen, noOfCategory }) => {
       >
         <Categories open={navListOpen} noOfCategory={noOfCategory}>
           <Button
-            width="302px"
+            width="30rem"
             height="40px"
             style={{
               width: '302px',
@@ -128,11 +128,11 @@ const Navbar: React.FC<NavbarProps> = ({ navListOpen, noOfCategory }) => {
           >
             <Icon>categories</Icon>
             <Typography
-              fontSize="18"
+              fontSize="1.8rem"
               fontWeight="600"
               textAlign="left"
               flex="1 1 0"
-              ml="10px"
+              ml="1rem"
               color="#000"
             >
               Browse Categories

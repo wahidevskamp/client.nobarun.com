@@ -65,8 +65,8 @@
       }
     }
     &-image {
-      width: 546px;
-      height: 546px;
+      width: 54.6rem;
+      height: 54.6rem;
       @include respond(1240px) {
         width: 90%;
         height: 90%;
@@ -77,12 +77,11 @@
       }
     }
     &-slider {
-      max-height: 546px;
+      max-height: 54.6rem;
       max-width: 17%;
       overflow-y: auto;
       overflow-x: hidden;
-      // width: 125%;
-      @include respond(1500px) {
+      @include respond(107em) {
         max-width: 20%;
       }
       @include respond(1370px) {
@@ -97,7 +96,7 @@
     }
   }
   &__share-btn {
-    font-size: 20px;
+    font-size: 2rem;
     position: absolute;
     bottom: 5%;
     left: 0px;
@@ -114,7 +113,7 @@
     width: 225px !important;
     font-size: 25px !important;
     font-weight: 600;
-    margin: auto;
+    margin: 20px auto 20px;
     background-color: #f20a0a !important;
   }
   &__contact {
@@ -124,16 +123,16 @@
       margin-bottom: 1.75rem;
     }
     &-icon {
-      height: 40px;
-      width: 40px;
+      height: 4rem;
+      width: 4rem;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: rgba(28, 163, 70, 13%);
       & svg {
-        height: 24px !important;
-        width: 24px !important;
+        height: 2.4rem !important;
+        width: 2.4rem !important;
         color: transparent;
       }
       & > div > div {
@@ -143,8 +142,8 @@
     }
     &-icon-location {
       & > div > div {
-        height: 40px;
-        width: 40px;
+        height: 4rem;
+        width: 4rem;
       }
       & svg {
         color: #1ca346;
@@ -154,6 +153,7 @@
   &__keypoints {
     &-image {
       position: relative;
+      margin-top: 2rem;
       & > img {
         position: relative;
         z-index: 1;

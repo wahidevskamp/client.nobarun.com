@@ -1,6 +1,6 @@
-import systemCss from "@styled-system/css";
-import { colorOptions } from "interfaces";
-import styled from "styled-components";
+import systemCss from '@styled-system/css';
+import { colorOptions } from 'interfaces';
+import styled from 'styled-components';
 import {
   BackgroundProps,
   border,
@@ -14,12 +14,12 @@ import {
   space,
   SpaceProps,
   variant,
-} from "styled-system";
+} from 'styled-system';
 
 interface ButtonProps {
-  size?: "small" | "medium" | "large" | "none";
+  size?: 'small' | 'medium' | 'large' | 'none';
   color?: colorOptions;
-  variant?: "text" | "outlined" | "contained";
+  variant?: 'text' | 'outlined' | 'contained';
   fullwidth?: boolean;
 }
 
@@ -33,124 +33,124 @@ const Button = styled.button<
 >(
   ({ color, fullwidth }) =>
     systemCss({
-      display: "flex",
-      width: fullwidth ? "100%" : "unset",
-      justifyContent: "center",
-      alignItems: "center",
-      outline: "none",
-      border: "none",
-      cursor: "pointer",
-      padding: "11px 1.5rem",
-      fontSize: "1rem",
+      display: 'flex',
+      width: fullwidth ? '100%' : 'unset',
+      justifyContent: 'center',
+      alignItems: 'center',
+      outline: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      padding: '11px 2.4rem',
+      fontSize: '1.6rem',
       fontWeight: 600,
-      color: color ? `${color}.main` : "body.text",
-      background: "transparent",
-      transition: "all 150ms ease-in-out",
+      color: color ? `${color}.main` : 'body.text',
+      background: 'transparent',
+      transition: 'all 150ms ease-in-out',
       lineHeight: 1,
-      "&:focus": {
+      '&:focus': {
         boxShadow: 3, //shadows[3]
       },
-      "&:disabled": {
-        bg: "text.disabled",
-        color: "text.hint",
-        borderColor: "text.disabled",
-        cursor: "unset",
-        "svg path": {
-          fill: "text.hint",
+      '&:disabled': {
+        bg: 'text.disabled',
+        color: 'text.hint',
+        borderColor: 'text.disabled',
+        cursor: 'unset',
+        'svg path': {
+          fill: 'text.hint',
         },
-        "svg polyline, svg polygon": {
-          color: "text.hint",
+        'svg polyline, svg polygon': {
+          color: 'text.hint',
         },
       },
     }),
   ({ theme, color }) =>
     variant({
-      prop: "variant",
+      prop: 'variant',
       variants: {
         text: {
-          border: "none",
+          border: 'none',
           color: `${color}.main`,
-          "&:hover": {
-            bg: color ? `${color}.light` : "gray.100",
+          '&:hover': {
+            bg: color ? `${color}.light` : 'gray.100',
           },
         },
         outlined: {
-          padding: "10px 16px",
+          padding: '10px 16px',
           color: `${color}.main`,
-          border: "1px solid",
-          borderColor: color ? `${color}.main` : "text.disabled",
+          border: '1px solid',
+          borderColor: color ? `${color}.main` : 'text.disabled',
 
-          "&:enabled svg path": {
+          '&:enabled svg path': {
             fill: color
               ? `${theme.colors[color]?.main} !important`
-              : "text.primary",
+              : 'text.primary',
           },
-          "&:enabled svg polyline, svg polygon": {
+          '&:enabled svg polyline, svg polygon': {
             color: color
               ? `${theme.colors[color]?.main} !important`
-              : "text.primary",
+              : 'text.primary',
           },
-          "&:focus": {
+          '&:focus': {
             boxShadow: `0px 1px 4px 0px ${theme.colors[color]?.light}`,
           },
-          "&:hover:enabled": {
+          '&:hover:enabled': {
             bg: color && `${color}.main`,
             borderColor: color && `${color}.main`,
             color: color && `${color}.text`,
-            "svg path": {
+            'svg path': {
               fill: color
                 ? `${theme.colors[color]?.text} !important`
-                : "text.primary",
+                : 'text.primary',
             },
-            "svg polyline, svg polygon": {
+            'svg polyline, svg polygon': {
               color: color
                 ? `${theme.colors[color]?.text} !important`
-                : "text.primary",
+                : 'text.primary',
             },
           },
         },
         contained: {
-          border: "none",
+          border: 'none',
           color: `${color}.text`,
           bg: `${color}.main`,
-          "&:focus": {
+          '&:focus': {
             boxShadow: `0px 1px 4px 0px ${theme.colors[color]?.light}`,
           },
-          "&:enabled svg path": {
+          '&:enabled svg path': {
             fill: color
               ? `${theme.colors[color]?.text} !important`
-              : "text.primary",
+              : 'text.primary',
           },
-          "&:enabled svg polyline, svg polygon": {
+          '&:enabled svg polyline, svg polygon': {
             color: color
               ? `${theme.colors[color]?.text} !important`
-              : "text.primary",
+              : 'text.primary',
           },
         },
       },
     }),
   variant({
-    prop: "size",
+    prop: 'size',
     variants: {
       large: {
-        height: "56px",
+        height: '56px',
         px: 30,
       },
       medium: {
-        height: "48px",
+        height: '48px',
         px: 30,
       },
       small: {
-        height: "40px",
+        height: '40px',
         fontSize: 14,
       },
     },
   }),
-  compose(color, layout, space, border, shadow)
+  compose(color, layout, space, border, shadow),
 );
 
 Button.defaultProps = {
-  size: "small",
+  size: 'small',
   borderRadius: 5,
 };
 

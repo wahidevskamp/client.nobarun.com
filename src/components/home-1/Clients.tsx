@@ -41,7 +41,7 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
   return (
     <Box
       pt={isProductDetails ? '4rem' : '3rem'}
-      pb={isProductDetails ? '4rem' : '7rem'}
+      pb={isProductDetails ? '4rem' : '3rem'}
     >
       <FlexBox justifyContent="center" alignItems="center" mb="3rem">
         <FlexBox alignItems="center">
@@ -58,17 +58,20 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
       <Container pb="1rem">
         <Box mb="-0.25rem">
           {/* <Carousel totalSlides={clients?.length} visibleSlides={visibleSlides}> */}
-          <FlexBox>
+          <FlexBox justifyContent="space-between">
             {clients
               .concat(clients)
               .splice(0, 10)
               .map((item, ind) => (
-                <Box key={ind} className="client">
+                <Box key={ind} className="client client_related">
                   <HoverBox borderRadius={5} className="client__body">
-                    <img src={item.imgUrl} style={{ width: '100%' }} />
+                    <img
+                      src={item.imgUrl}
+                      style={{ width: '118px', height: '110px' }}
+                    />
                   </HoverBox>
                   <H4
-                    fontSize="14px"
+                    fontSize="1.4rem"
                     fontWeight="600"
                     className="client__title"
                   >

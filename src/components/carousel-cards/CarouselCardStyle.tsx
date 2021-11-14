@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const StyledCarouselCard1 = styled.div`
   text-align: left;
-  margin-left: 320px;
+  margin-left: 30rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0 0rem 0rem;
+  /* padding: 1rem 0 0rem 0rem; */
 
   .title {
     font-size: 50px;

@@ -154,21 +154,29 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
               </>
             ))
           ) : (
-            <Box style={{ textAlign: 'center' }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <img
                 src="/assets/images/notfound.png"
                 alt="Featured Image"
                 height="350px"
-                style={{ margin: 'auto' }}
+                style={{ margin: 'auto', textAlign: 'center' }}
               />
-            </Box>
+            </div>
           )}
-          <FlexBox
-            mt="3em"
-            justifyContent={width < 600 ? 'center' : 'flex-end'}
-          >
-            <Pagination pageCount={5} />
-          </FlexBox>
+          {reviews?.length > 5 && (
+            <FlexBox
+              mt="3em"
+              justifyContent={width < 600 ? 'center' : 'flex-end'}
+            >
+              <Pagination pageCount={5} />
+            </FlexBox>
+          )}
         </Box>
       </Card>
     </div>

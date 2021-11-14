@@ -20,8 +20,10 @@ const CategorySectionCreator: React.FC<CategorySectionCreatorProps> = ({
   return (
     <Box
       height={
-        width > 1000
-          ? '38rem'
+        width > 1700
+          ? '65rem'
+          : width > 1000
+          ? '55rem'
           : width > 767
           ? '60rem'
           : width > 450

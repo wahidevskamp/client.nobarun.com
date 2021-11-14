@@ -6,6 +6,9 @@ import { H2, H4 } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import FlexBox from '@component/FlexBox';
 import useAllFeaturedClients from '@hook/Home/useFeaturedClients';
+import Carousel from '@component/carousel/Carousel';
+import CarouselCard1 from '@component/carousel-cards/CarouselCard1';
+import CarouselCard2 from '@component/carousel-cards/CarouselCard2';
 
 interface ClientProps {
   slides?: number;
@@ -18,25 +21,25 @@ const RelatedClients: React.FC<ClientProps> = ({
   const [clients, setClients] = useState([]);
   // const [visibleSlides, setVisibleSlides] = useState(slides);
   const width = useWindowSize();
+  const slices = width > 1700 ? 7 : 6;
 
   // console.log(visibleSlides);
-  useEffect(() => {
-    // if (width < 500) setVisibleSlides(2);
-    // else if (width < 650) setVisibleSlides(3);
-    // else if (width < 1400) setVisibleSlides(6);
-    // else setVisibleSlides(slides);
-    // if (isProductDetails) {
-    //   if (width < 768) setVisibleSlides(2);
-    //   else if (width < 880) setVisibleSlides(4);
-    //   else if (width < 1025) setVisibleSlides(5);
-    //   else if (width < 1300) setVisibleSlides(4);
-    //   else if (width < 1425) setVisibleSlides(5);
-    // }
-  }, [width]);
+  // useEffect(() => {
+  //   // if (width < 500) setVisibleSlides(2);
+  //   // else if (width < 650) setVisibleSlides(3);
+  //   // else if (width < 1400) setVisibleSlides(6);
+  //   // else setVisibleSlides(slides);
+  //   // if (isProductDetails) {
+  //   //   if (width < 768) setVisibleSlides(2);
+  //   //   else if (width < 880) setVisibleSlides(4);
+  //   //   else if (width < 1025) setVisibleSlides(5);
+  //   //   else if (width < 1300) setVisibleSlides(4);
+  //   //   else if (width < 1425) setVisibleSlides(5);
+  //   // }
+  // }, [width]);
 
   useEffect(() => {
     useAllFeaturedClients().then((data) => {
-      console.log(data);
       setClients(data);
     });
   }, []);
@@ -57,13 +60,17 @@ const RelatedClients: React.FC<ClientProps> = ({
       </FlexBox>
       <Container pb="1rem">
         <Box mb="-0.25rem">
-          {/* <Carousel totalSlides={clients?.length} visibleSlides={visibleSlides}> */}
-          <FlexBox justifyContent="space-between">
+          <Carousel
+            totalSlides={6}
+            visibleSlides={6}
+            autoPlay={true}
+            showArrow={false}
+            infinite={true}
+          >
+            {/* <FlexBox justifyContent="space-between"> */}
             {clients
               .concat(clients)
-              // .concat(clients)
-              // .concat(clients)
-              .splice(0, 7)
+              .splice(0, slices)
               .map((item, ind) => (
                 <Box key={ind} className="client client_related">
                   <HoverBox borderRadius={5} className="client__body">
@@ -73,16 +80,17 @@ const RelatedClients: React.FC<ClientProps> = ({
                     />
                   </HoverBox>
                   <H4
-                    fontSize="14px"
+                    fontSize="1.4rem"
                     fontWeight="600"
                     className="client__title"
                   >
                     {item.title}
                   </H4>
                 </Box>
+                // <CarouselCard2 />
               ))}
-          </FlexBox>
-          {/* </Carousel> */}
+            {/* </FlexBox> */}
+          </Carousel>
         </Box>
       </Container>
     </Box>

@@ -15,11 +15,13 @@ export const SyledTextField = styled.input<
       fontSize: 'inherit',
       color: 'body.text',
       borderRadius: 5,
-      border: '1px solid',
-      borderColor: 'text.disabled',
+      border: 'none',
+      // border: '1px solid',
+      // borderColor: 'text.disabled',
       width: props.fullwidth ? '100%' : 'inherit',
       outline: 'none',
       fontFamily: 'inherit',
+      backgroundColor: '#EFEFEF',
       '::placeholder': {
         color: '#7D879C',
       },
@@ -46,9 +48,9 @@ export const TextFieldWrapper = styled.div<TextFieldProps & SpaceProps>(
       label: {
         display: 'block',
         marginBottom: '6px',
-        fontSize: '1rem',
+        fontSize: '1.6rem',
         fontWeight: '600',
-        color: '#4B566B',
+        color: '#000',
       },
 
       small: {

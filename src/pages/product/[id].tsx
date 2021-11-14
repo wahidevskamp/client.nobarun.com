@@ -163,7 +163,7 @@ const ProductDetails = ({ product, isError }) => {
         </Container>
       </Box>
       <Grid container>
-        <Grid item lg={width > 1400 ? 9 : 8} xs={12}>
+        <Grid item lg={width > 1600 ? 9 : 8} xs={12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="details">
               <ProductIntro data={product?.intro} {...state} />
@@ -181,7 +181,7 @@ const ProductDetails = ({ product, isError }) => {
             )}
           </Box>
         </Grid>
-        <Grid item lg={width > 1400 ? 3 : 4} xs={12}>
+        <Grid item lg={width > 1600 ? 3 : 4} xs={12}>
           {product?.contact && <Contacts id={pid} contact={product?.contact} />}
           <Ammenities />
           {product?.features && (
@@ -194,7 +194,7 @@ const ProductDetails = ({ product, isError }) => {
             <RelatedProducts products={product?.relatedProducts} />
           )}
         </Grid>
-        <Grid item lg={width > 1400 ? 9 : 8} xs={12}>
+        <Grid item lg={width > 1600 ? 9 : 8} xs={12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             {product?.questions &&
             product?.questions.length === 1 &&
@@ -208,12 +208,12 @@ const ProductDetails = ({ product, isError }) => {
             )}
           </Box>
         </Grid>
-        <Grid item lg={width > 1400 ? 3 : 4} xs={12}>
+        <Grid item lg={width > 1600 ? 3 : 4} xs={12}>
           {product?.tags && product?.tags.length > 0 && (
             <Tags chips={product?.tags} />
           )}
         </Grid>
-        <Grid item lg={width > 1400 ? 9 : 8} xs={12}>
+        <Grid item lg={width > 1600 ? 9 : 8} xs={12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="reviews">
               <Review reviews={product?.reviews} />
@@ -223,7 +223,7 @@ const ProductDetails = ({ product, isError }) => {
             </section>
           </Box>
         </Grid>
-        <Grid item lg={width > 1400 ? 3 : 4} xs={12}>
+        <Grid item lg={width > 1600 ? 3 : 4} xs={12}>
           {product?.reviews && product?.reviews.length > 0 && (
             <CustomerMedia reviews={product?.reviews} />
           )}

@@ -6,16 +6,16 @@ export const StyledCategoryMenuItem = styled.div`
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 5px 1rem;
-    height: 45px;
-    min-width: 285px;
+    padding: 0.5rem 1rem;
+    height: 4.5rem;
+    min-width: 30rem;
     white-space: pre;
     transition: all 250ms ease-in-out;
 
     .title {
-      padding-left: 0.75rem;
+      padding-left: 1.5rem;
       flex-grow: 1;
-      font-size: 1rem;
+      font-size: 1.6rem;
     }
   }
 

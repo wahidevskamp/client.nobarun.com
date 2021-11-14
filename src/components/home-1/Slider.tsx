@@ -23,7 +23,7 @@ const Section1: React.FC = () => {
       <Box bg="gray.white" mt={isTablet ? '2.5rem' : ''} ref={sliderRef}>
         <Container>
           <Carousel
-            totalSlides={5}
+            totalSlides={3}
             visibleSlides={1}
             infinite={true}
             autoPlay={true}
@@ -31,11 +31,13 @@ const Section1: React.FC = () => {
             showArrow={false}
             spacing="0px"
           >
-            <CarouselCard1 />
-            <CarouselCard1 />
-            <CarouselCard1 />
-            <CarouselCard1 />
-            <CarouselCard1 />
+            {[
+              '/assets/images/banners/Uddota-sommanona-Banner 3.png',
+              '/assets/images/banners/Metal-Detector-System 1.png',
+              '/assets/images/banners/Supermarket-Rack-System-Banner.png',
+            ].map((link) => (
+              <CarouselCard1 link={link} />
+            ))}
           </Carousel>
         </Container>
       </Box>

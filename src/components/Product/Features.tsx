@@ -10,12 +10,17 @@ const Features = ({ features }) => {
   return (
     <>
       {features?.map((feature, idx) => (
-        <Card px="5em" py="3em" mb="2em" key={idx}>
+        <Card
+          py="1rem"
+          pl={idx % 2 !== 0 ? '3rem' : '0'}
+          pr={idx % 2 !== 0 ? '1rem' : '1.5rem'}
+          mb="2rem"
+          key={idx}
+        >
           <Grid
             container
             justifyContent="center"
-            // alignItems="center"
-            spacing={10}
+            // spacing={10}
             flexDirection={idx % 2 !== 0 ? 'row-reverse' : 'row'}
           >
             <Grid item sm={3}>

@@ -5,7 +5,7 @@ import { getTheme } from '../../utils/utils';
 const StyledHeader = styled.header`
   position: relative;
   z-index: 1;
-  height: 73px;
+  height: 7.3rem;
   background: ${getTheme('colors.body.paper')};
 
   .logo {
@@ -15,13 +15,13 @@ const StyledHeader = styled.header`
   }
   .icon-holder {
     span {
-      font-size: 12px;
+      font-size: 1.2rem;
       line-height: 1;
       margin-bottom: 4px;
     }
     h4 {
       margin: 0px;
-      font-size: 14px;
+      font-size: 1.4rem;
       line-height: 1;
       font-weight: 600;
     }

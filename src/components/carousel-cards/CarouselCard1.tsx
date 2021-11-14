@@ -3,32 +3,15 @@ import React from 'react';
 // import Typography from '../Typography';
 import { StyledCarouselCard1 } from './CarouselCardStyle';
 
-export interface CarouselCard1Props {}
+export interface CarouselCard1Props {
+  link: string;
+}
 
-const CarouselCard1: React.FC<CarouselCard1Props> = () => {
+const CarouselCard1: React.FC<CarouselCard1Props> = ({ link }) => {
   return (
     <StyledCarouselCard1>
-      {/* <div>
-        <h1 className="title">50% Off For Your First Shopping</h1>
-        <Typography color="secondary.main" mb="1.35rem">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis
-          consequat eu, quam etiam at quis ut convallis.
-        </Typography>
-        <Button
-          className="button-link"
-          variant="contained"
-          color="primary"
-          p="1rem 1.5rem"
-        >
-          Visit Collections
-        </Button>
-      </div> */}
-
       <div className="image-holder">
-        <img
-          src="/assets/images/banners/Uddota-sommanona-Banner 3.png"
-          alt="apple-watch-1"
-        />
+        <img src={link} alt="Hero Image of Nobarun" />
       </div>
     </StyledCarouselCard1>
   );
