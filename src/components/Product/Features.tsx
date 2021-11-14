@@ -41,7 +41,9 @@ const Features = ({ features }) => {
             </Grid>
 
             <Grid item sm={9}>
-              <H2 mb="15px">{feature.title}</H2>
+              <H2 fontSize="32px" mb="15px">
+                {feature.title}
+              </H2>
               <Typography>
                 <div
                   className="product__keypoints-content"

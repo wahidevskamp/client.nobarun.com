@@ -12,6 +12,7 @@ import Link from 'next/link';
 import Button from '@component/buttons/Button';
 import Modal from '@component/modal/Modal';
 import getYoutubeId from 'helpers/getYoutubeId';
+import { textAlign } from 'styled-system';
 
 interface ReviewProps {
   reviews: any[];
@@ -41,16 +42,15 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
               fontWeight="bold"
               textAlign="center"
               lineHeight="1"
-              color="#e94560"
+              color="#EC1C24"
+              fontSize="32px"
               mb={width < 600 ? '.3em' : '0'}
             >
               Product Reviews
             </H2>
             {reviews && reviews.length > 0 && (
               <Link href="#">
-                <a>
-                  <SemiSpan>Read all reviews</SemiSpan>
-                </a>
+                <a className="product__review_btn">Read all reviews</a>
               </Link>
             )}
           </FlexBox>
@@ -84,7 +84,7 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
             </Card>
           </Modal>
           {reviews && reviews.length > 0 ? (
-            reviews.map((review) => (
+            reviews?.splice(0, 5).map((review) => (
               <>
                 <Box p="0.25rem">
                   <FlexBox alignItems="center">
@@ -151,16 +151,10 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
                     })}
                   </FlexBox>
                 </Box>
-                <FlexBox
-                  mt="3em"
-                  justifyContent={width < 600 ? 'center' : 'flex-end'}
-                >
-                  <Pagination pageCount={5} />
-                </FlexBox>
               </>
             ))
           ) : (
-            <Box textAlign="center">
+            <Box style={{ textAlign: 'center' }}>
               <img
                 src="/assets/images/notfound.png"
                 alt="Featured Image"
@@ -169,6 +163,12 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
               />
             </Box>
           )}
+          <FlexBox
+            mt="3em"
+            justifyContent={width < 600 ? 'center' : 'flex-end'}
+          >
+            <Pagination pageCount={5} />
+          </FlexBox>
         </Box>
       </Card>
     </div>

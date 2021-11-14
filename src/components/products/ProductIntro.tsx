@@ -100,14 +100,15 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
         bg="#EC1C24"
         color="#fff"
         px="10px"
-        py="10px"
+        pt="2px"
+        pb="4px"
         pr="25px"
         position="absolute"
         top="50%"
         style={{
           clipPath: 'polygon(0% 0%, 100% 0, 93% 41%, 83% 100%, 0% 100%)',
           transform: 'translateY(-50%)',
-          zIndex: 1000,
+          zIndex: 1,
         }}
       >
         {data?.stockStatus}
@@ -123,20 +124,26 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           justifyContent="space-between"
           flexDirection={width > 1150 ? 'row' : 'column'}
           alignItems={width > 1150 ? 'center' : 'flex-start'}
-          mb="2em"
+          mb="1.1em"
         >
           <Box>
-            <H1 fontSize={width > 660 ? '30px' : '24px'}>
+            <H1 fontSize={width > 660 ? '32px' : '24px'}>
               {data?.productName}
             </H1>
-            <Typography>Product Code: {data?.productCode}</Typography>
+            <Typography fontSize="18px" lineHeight="1">
+              Product Code: {data?.productCode}
+            </Typography>
             <FlexBox
               flexDirection={width > 660 ? 'row' : 'column'}
               alignItems={width > 660 ? 'center' : 'flex-start'}
-              mt=".4em"
               flexWrap="nowrap"
             >
-              <H4 mr={data?.price ? '1.5em' : '0'} color="#E94560">
+              <H4
+                mr={data?.price ? '1em' : '0'}
+                color="#EC1C24"
+                fontSize="20px"
+                fontWeight="600"
+              >
                 {data?.price && `Price: ${data?.price} Taka`}
               </H4>
               <Rating
@@ -146,7 +153,12 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                 size="medium"
               />
               <a href="#reviews">
-                <Span ml={width > 660 ? '1em' : '0em'} color="#0082C9">
+                <Span
+                  ml={width > 660 ? '1em' : '0em'}
+                  color="#0082C9"
+                  fontSize="16px"
+                  fontWeight="600"
+                >
                   {data?.review} Real Customer Reviews
                 </Span>
               </a>
@@ -159,17 +171,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           >
             বাংলা ব্লগ পড়ুন
           </a>
-          {/* <Button
-            variant="contained"
-            color="primary"
-            mt={width > 140 ? '1em' : '0em'}
-            className="product__hero-btn"
-          >
-            বাংলায় পড়ুন
-          </Button> */}
         </FlexBox>
-        {/* <Grid container>
-          <Grid item xs={width > 1550 ? 10 : 9}> */}
         <FlexBox flexDirection={width > 767 ? 'row' : 'column'}>
           <FlexBox justifyContent="center" className="product__intro-main">
             {isLoading ? (
@@ -226,10 +228,12 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           color="#fff"
           className="product__share-btn"
         >
-          <Icon size="1em" mr="1em">
+          <Icon size="18px" mr="1em">
             share-solid
           </Icon>
-          Share
+          <Typography fontSize="20px" fontWeight="400">
+            Share
+          </Typography>
         </Button>
       </Box>
     </Card>

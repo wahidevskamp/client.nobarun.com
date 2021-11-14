@@ -27,7 +27,9 @@ const Contacts = ({ id, contact }) => {
             <div className="product__contact-icon">
               <Icon size="1.5rem">profile</Icon>
             </div>
-            <H5 ml="1rem">{contact?.name}</H5>
+            <H5 ml="1rem" fontSize="22px">
+              {contact?.name}
+            </H5>
           </FlexBox>
         )}
         {contact?.whatsAppNumber && (
@@ -39,11 +41,13 @@ const Contacts = ({ id, contact }) => {
               <div className="product__contact-icon">
                 <Icon size="1.5rem">call 1</Icon>
               </div>
-              <Typography ml="1rem">{contact?.whatsAppNumber}</Typography>
+              <Typography ml="1rem" fontSize="22px">
+                {contact?.whatsAppNumber}
+              </Typography>
               <Image
                 src="/whatsapp.png"
                 alt="Whatsapp"
-                height="80%"
+                height="46px"
                 ml="1.5rem"
               />
             </FlexBox>
@@ -54,7 +58,9 @@ const Contacts = ({ id, contact }) => {
             <div className="product__contact-icon">
               <Icon size="1.5rem">sms 1</Icon>
             </div>
-            <Typography ml="1rem">{contact?.email}</Typography>
+            <Typography ml="1rem" fontSize="22px">
+              {contact?.email}
+            </Typography>
           </FlexBox>
         )}
         {contact?.address && (
@@ -62,7 +68,11 @@ const Contacts = ({ id, contact }) => {
             <div className="product__contact-icon product__contact-icon-location">
               <Icon size="1.8rem">location 1</Icon>
             </div>
-            <Paragraph ml="1.2rem" style={{ overflowWrap: 'anywhere' }}>
+            <Paragraph
+              ml="1.2rem"
+              fontSize="22px"
+              style={{ overflowWrap: 'anywhere' }}
+            >
               {contact?.address}
             </Paragraph>
           </FlexBox>
@@ -75,7 +85,9 @@ const Contacts = ({ id, contact }) => {
             setIsOpen(true);
           }}
         >
-          <Icon mr="0.5rem">plus-circle</Icon>
+          <Icon mr="0.5rem" size="22px">
+            plus-circles
+          </Icon>
           Get A Quote
         </Button>
       </Card>

@@ -3,17 +3,17 @@ import { getTheme } from '../../utils/utils';
 
 const StyledNavbar = styled.div`
   position: relative;
-  background: ${getTheme('colors.default.gradient')};
+  background: linear-gradient(to right, #1ca346, #6fba1a);
   box-shadow: ${getTheme('shadows.regular')};
-
+  max-height: 42px;
   .nav-link {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     margin-right: 32px;
     cursor: pointer;
     color: #fff;
     :hover {
-      color: ${getTheme('colors.tertiary.light')} !important;
+      color: #87e35e !important;
     }
   }
   .nav-link:last-child {

@@ -67,7 +67,7 @@ const defaultColor = {
   main: textColor.primary,
   dark: textColor.primary,
   text: textColor.primary,
-  gradient: 'linear-gradient(#1CA346, #6FBA1A)',
+  gradient: 'linear-gradient(to right, #1CA346, #6FBA1A)',
 };
 export const colors = {
   default: defaultColor,

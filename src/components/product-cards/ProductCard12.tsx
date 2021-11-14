@@ -12,7 +12,12 @@ const ProductCard12: React.FC<ProductCardProps> = (props) => {
   return (
     <StyledProductCard12>
       <H5>{title}</H5>
-      <Card px="1rem" py="1rem" pt="1.3rem">
+      <Card
+        px="1rem"
+        py="1rem"
+        pt="1.3rem"
+        style={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
+      >
         {children}
       </Card>
     </StyledProductCard12>

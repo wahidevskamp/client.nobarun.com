@@ -120,20 +120,22 @@ const Navbar: React.FC<NavbarProps> = ({ navListOpen, noOfCategory }) => {
             height="40px"
             style={{
               width: '302px',
-              padding: '1.8rem 1.5rem',
               backgroundColor: '#fff',
+              borderRadius: 0,
+              margin: '1px 0',
             }}
             variant="text"
           >
             <Icon>categories</Icon>
             <Typography
+              fontSize="18"
               fontWeight="600"
               textAlign="left"
               flex="1 1 0"
               ml="10px"
-              color="text.muted"
+              color="#000"
             >
-              Categories
+              Browse Categories
             </Typography>
             <Icon className="dropdown-icon" variant="small">
               chevron-right

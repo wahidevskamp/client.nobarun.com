@@ -23,11 +23,12 @@ import Rating from '@component/rating/Rating';
 import Typography, { H1, Span } from '@component/Typography';
 import RelatedClients from '@component/products/RelatedClients';
 import Container from '@component/Container';
+import { GetServerSideProps } from 'next';
 
-const ProductDetails = () => {
+const ProductDetails = ({ product, isError }) => {
   const router = useRouter();
   const pid = router.query.id;
-  const [product, setProduct] = useState<any>();
+  // const [product, setProduct] = useState<any>();
   const [active, setActive] = useState(false);
 
   const state = {
@@ -37,47 +38,47 @@ const ProductDetails = () => {
 
   console.log(product);
   const width = useWindowSize();
-  useEffect(() => {
-    useProductById(pid).then((data: any) => {
-      console.log(data);
-      if (data) {
-        setProduct(data);
-      }
+  // useEffect(() => {
+  //   useProductById(pid).then((data: any) => {
+  //     console.log(data);
+  //     if (data) {
+  //       setProduct(data);
+  //     }
 
-      // Recently Viewed Data Store in LocalStorage
-      // if (Object.keys(data).length > 0) {
-      //   let recentlyViewed: any[] = JSON.parse(
-      //     localStorage.getItem('recentlyViewed'),
-      //   );
-      //   if (!recentlyViewed) {
-      //     recentlyViewed = [
-      //       {
-      //         id: pid,
-      //         title: product?.intro?.intro?.productName,
-      //         image: data?.intro?.featuredImage,
-      //       },
-      //     ];
-      //     localStorage.setItem(
-      //       'recentlyViewed',
-      //       JSON.stringify(recentlyViewed),
-      //     );
-      //   } else {
-      //     const isExist = recentlyViewed.some((product) => product.id === pid);
-      //     if (!isExist) {
-      //       recentlyViewed.push({
-      //         id: pid,
-      //         title: data?.intro?.productName,
-      //         image: data?.intro?.featuredImage,
-      //       });
-      //       localStorage.setItem(
-      //         'recentlyViewed',
-      //         JSON.stringify(recentlyViewed),
-      //       );
-      //     }
-      //   }
-      // }
-    });
-  }, [pid]);
+  //     // Recently Viewed Data Store in LocalStorage
+  //     // if (Object.keys(data).length > 0) {
+  //     //   let recentlyViewed: any[] = JSON.parse(
+  //     //     localStorage.getItem('recentlyViewed'),
+  //     //   );
+  //     //   if (!recentlyViewed) {
+  //     //     recentlyViewed = [
+  //     //       {
+  //     //         id: pid,
+  //     //         title: product?.intro?.intro?.productName,
+  //     //         image: data?.intro?.featuredImage,
+  //     //       },
+  //     //     ];
+  //     //     localStorage.setItem(
+  //     //       'recentlyViewed',
+  //     //       JSON.stringify(recentlyViewed),
+  //     //     );
+  //     //   } else {
+  //     //     const isExist = recentlyViewed.some((product) => product.id === pid);
+  //     //     if (!isExist) {
+  //     //       recentlyViewed.push({
+  //     //         id: pid,
+  //     //         title: data?.intro?.productName,
+  //     //         image: data?.intro?.featuredImage,
+  //     //       });
+  //     //       localStorage.setItem(
+  //     //         'recentlyViewed',
+  //     //         JSON.stringify(recentlyViewed),
+  //     //       );
+  //     //     }
+  //     //   }
+  //     // }
+  //   });
+  // }, [pid]);
 
   useEffect(() => {
     const handleStickyBar = () => {
@@ -178,22 +179,6 @@ const ProductDetails = () => {
                 <Features features={product?.keyPoints} />
               </section>
             )}
-            {product?.questions &&
-            product?.questions.length === 1 &&
-            product?.questions[0].title === '' &&
-            product?.questions[0].question === '' ? (
-              <span>&nbsp;</span>
-            ) : (
-              <section id="questions">
-                <Questions questions={product?.questions} />
-              </section>
-            )}
-            <section id="reviews">
-              <Review reviews={product?.reviews} />
-            </section>
-            <section id="addQuote">
-              <AddReview />
-            </section>
           </Box>
         </Grid>
         <Grid item lg={width > 1400 ? 3 : 4} xs={12}>
@@ -208,10 +193,40 @@ const ProductDetails = () => {
           {product?.relatedProducts && product?.relatedProducts.length > 0 && (
             <RelatedProducts products={product?.relatedProducts} />
           )}
+        </Grid>
+        <Grid item lg={width > 1400 ? 9 : 8} xs={12}>
+          <Box mr={width > 900 ? '1rem' : '0'}>
+            {product?.questions &&
+            product?.questions.length === 1 &&
+            product?.questions[0].title === '' &&
+            product?.questions[0].question === '' ? (
+              <span>&nbsp;</span>
+            ) : (
+              <section id="questions">
+                <Questions questions={product?.questions} />
+              </section>
+            )}
+          </Box>
+        </Grid>
+        <Grid item lg={width > 1400 ? 3 : 4} xs={12}>
           {product?.tags && product?.tags.length > 0 && (
             <Tags chips={product?.tags} />
           )}
-          {product?.reviews && product?.reviews.length > 0 && <CustomerMedia />}
+        </Grid>
+        <Grid item lg={width > 1400 ? 9 : 8} xs={12}>
+          <Box mr={width > 900 ? '1rem' : '0'}>
+            <section id="reviews">
+              <Review reviews={product?.reviews} />
+            </section>
+            <section id="addQuote">
+              <AddReview />
+            </section>
+          </Box>
+        </Grid>
+        <Grid item lg={width > 1400 ? 3 : 4} xs={12}>
+          {product?.reviews && product?.reviews.length > 0 && (
+            <CustomerMedia reviews={product?.reviews} />
+          )}
         </Grid>
       </Grid>
     </Fragment>
@@ -219,5 +234,25 @@ const ProductDetails = () => {
 };
 
 ProductDetails.layout = NavbarLayout;
+
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+  const pid = context.params.id;
+  try {
+    const data = await useProductById(pid);
+    return {
+      props: {
+        product: data,
+        isError: false,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        product: err,
+        isError: false,
+      },
+    };
+  }
+};
 
 export default ProductDetails;

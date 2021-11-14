@@ -15,7 +15,7 @@ const Collapsible = styled.div`
     padding: 1rem 2rem;
     border-radius: 7px 7px 0 0;
     background: #ffffff;
-    font-size: 1rem;
+    font-size: 22px;
     color: #1c1d3e;
     text-transform: capitalize;
     display: inline-block;

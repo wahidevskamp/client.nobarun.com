@@ -364,11 +364,14 @@ export const StyledProductCard12 = styled.div`
   margin-bottom: 2rem;
   & > h5 {
     background-image: ${getTheme('colors.default.gradient')};
-    text-align: center;
-    padding: 0.8rem;
     box-shadow: 0px 1px 3px rgb(3 0 71 / 9%);
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     color: #fff;
+    height: 54px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;

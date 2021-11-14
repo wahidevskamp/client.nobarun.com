@@ -25,7 +25,8 @@ const Questions = ({ questions }) => {
           fontWeight="bold"
           textAlign="center"
           lineHeight="1"
-          color="#e94560"
+          color="#EC1C24"
+          fontSize="32px"
           mb={width < 600 ? '1em' : '0'}
         >
           Frequently asked questions and Answers

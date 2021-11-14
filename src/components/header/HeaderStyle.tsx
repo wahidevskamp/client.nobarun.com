@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import { layoutConstant } from "utils/constants";
-import { getTheme } from "../../utils/utils";
+import styled from 'styled-components';
+import { layoutConstant } from 'utils/constants';
+import { getTheme } from '../../utils/utils';
 
 const StyledHeader = styled.header`
   position: relative;
   z-index: 1;
-  height: ${layoutConstant.headerHeight};
-  background: ${getTheme("colors.body.paper")};
+  height: 73px;
+  background: ${getTheme('colors.body.paper')};
 
   .logo {
     img {

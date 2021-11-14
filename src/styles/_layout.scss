@@ -1,7 +1,13 @@
 .searchbox {
-  max-width: 640px;
+  max-width: 670px;
+  max-height: 51px;
   margin: auto;
   @include respond(900px) {
     max-width: none;
+  }
+  &__btn {
+    @include respond(600px) {
+      font-size: 14px;
+    }
   }
 }

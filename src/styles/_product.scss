@@ -52,11 +52,13 @@
       background-image: linear-gradient(to right, #1ca346, #6fba1a);
       color: #fff;
       font-size: 20px;
+      font-weight: 600;
       border: 0;
-      border-radius: 10px;
-      padding: 10px 20px;
+      border-radius: 8px;
+      padding: 5px 10px;
       outline: 1px solid #1ca346;
-      outline-offset: 5px;
+      outline-offset: 4px;
+      font-family: 'SolaimanLipi', sans-serif;
       @include respond(1150px) {
         margin-top: 1rem;
         padding: 5px 10px;
@@ -95,11 +97,13 @@
     }
   }
   &__share-btn {
-    margin-top: 1rem;
     font-size: 20px;
     position: absolute;
-    bottom: 200px;
+    bottom: 5%;
     left: 0px;
+    max-height: 38px;
+    width: 161px !important;
+    z-index: 1;
     @include respond(767px) {
       padding-left: 20px !important;
       padding-right: 20px !important;
@@ -108,6 +112,8 @@
   }
   &_quote-btn {
     width: 225px !important;
+    font-size: 25px !important;
+    font-weight: 600;
     margin: auto;
     background-color: #f20a0a !important;
   }
@@ -118,16 +124,16 @@
       margin-bottom: 1.75rem;
     }
     &-icon {
-      height: 2rem;
-      width: 2rem;
+      height: 40px;
+      width: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: rgba(28, 163, 70, 13%);
       & svg {
-        height: 1.2rem !important;
-        width: 1.2rem !important;
+        height: 24px !important;
+        width: 24px !important;
         color: transparent;
       }
       & > div > div {
@@ -136,6 +142,10 @@
       }
     }
     &-icon-location {
+      & > div > div {
+        height: 40px;
+        width: 40px;
+      }
       & svg {
         color: #1ca346;
       }
@@ -171,6 +181,8 @@
     }
     &-content {
       font-family: 'Titillium Web', sans-serif !important;
+      font-size: 22px;
+      color: #848484;
     }
   }
   &__features {
@@ -182,6 +194,8 @@
       display: flex;
       align-items: center;
       margin-bottom: 8px;
+      font-size: 22px;
+      font-weight: 400;
       &:before {
         content: '';
         background-image: url('../../public/assets/images/icons/Group 10498.svg');
@@ -213,6 +227,19 @@
       text-align: left;
       background-color: #04aa6d;
       color: white;
+    }
+  }
+  &__review {
+    &_btn {
+      background-image: linear-gradient(to right, #1ca346, #6fba1a);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 600;
+      width: 187px;
+      height: 43px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

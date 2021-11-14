@@ -5,7 +5,7 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-size: 14px;
-    background: ${({ theme }: any) => theme.colors.body.default};
+    background: #f5f5f5;
     color: ${({ theme }: any) => theme.colors.body.text};
     transition: all 0.50s linear;
     font-family: 'Titillium Web', sans-serif;

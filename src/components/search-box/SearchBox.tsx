@@ -56,11 +56,11 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
         </Icon>
         <TextField
           className="search-field"
-          placeholder="Search and hit enter..."
+          placeholder={`Find Our All 155 Products`}
           fullwidth
           onChange={hanldeSearch}
         />
-        <Button variant="contained" className="search-btn">
+        <Button variant="contained" className="search-btn searchbox__btn">
           Search
         </Button>
         {/* <Menu

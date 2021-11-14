@@ -43,6 +43,10 @@ export default class extends Document {
             rel="stylesheet"
           />
           <link
+            href="https://fonts.maateen.me/solaiman-lipi/font.css"
+            rel="stylesheet"
+          />
+          <link
             rel="apple-touch-icon"
             sizes="180x180"
             href="/apple-touch-icon.png"

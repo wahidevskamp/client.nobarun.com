@@ -42,11 +42,8 @@ const RelatedClients: React.FC<ClientProps> = ({
   }, []);
 
   return (
-    <Box
-      pt={isProductDetails ? '4rem' : '3rem'}
-      mb={isProductDetails ? '10rem' : '7rem'}
-    >
-      <FlexBox justifyContent="center" alignItems="center" mb="3rem">
+    <Box pt="1em" mb="2rem">
+      <FlexBox justifyContent="center" alignItems="center" mb="1em">
         <FlexBox alignItems="center">
           <H2
             fontWeight="600"
@@ -61,12 +58,12 @@ const RelatedClients: React.FC<ClientProps> = ({
       <Container pb="1rem">
         <Box mb="-0.25rem">
           {/* <Carousel totalSlides={clients?.length} visibleSlides={visibleSlides}> */}
-          <FlexBox>
+          <FlexBox justifyContent="space-between">
             {clients
               .concat(clients)
               // .concat(clients)
               // .concat(clients)
-              .splice(0, 4)
+              .splice(0, 7)
               .map((item, ind) => (
                 <Box key={ind} className="client client_related">
                   <HoverBox borderRadius={5} className="client__body">
