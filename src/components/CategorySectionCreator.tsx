@@ -25,10 +25,10 @@ const CategorySectionCreator: React.FC<CategorySectionCreatorProps> = ({
           : width > 1000
           ? '55rem'
           : width > 767
-          ? '60rem'
+          ? '105rem'
           : width > 450
-          ? '55rem'
-          : '47rem'
+          ? '85rem'
+          : '75rem'
       }
       mt="6rem"
       mb="8rem"

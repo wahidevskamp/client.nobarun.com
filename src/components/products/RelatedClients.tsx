@@ -7,17 +7,12 @@ import useWindowSize from '@hook/useWindowSize';
 import FlexBox from '@component/FlexBox';
 import useAllFeaturedClients from '@hook/Home/useFeaturedClients';
 import Carousel from '@component/carousel/Carousel';
-import CarouselCard1 from '@component/carousel-cards/CarouselCard1';
-import CarouselCard2 from '@component/carousel-cards/CarouselCard2';
 
 interface ClientProps {
   slides?: number;
   isProductDetails?: boolean;
 }
-const RelatedClients: React.FC<ClientProps> = ({
-  // slides,
-  isProductDetails,
-}) => {
+const RelatedClients: React.FC<ClientProps> = ({}) => {
   const [clients, setClients] = useState([]);
   const width = useWindowSize();
   const slices = width > 1700 ? 7 : width > 800 ? 6 : width > 650 ? 5 : 4;

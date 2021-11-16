@@ -14,23 +14,24 @@ interface ClientProps {
 }
 const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
   const [clients, setClients] = useState([]);
-  const [visibleSlides, setVisibleSlides] = useState(slides);
+  // const [visibleSlides, setVisibleSlides] = useState(slides);
   const width = useWindowSize();
+  const slices = width > 1700 ? 7 : width > 800 ? 6 : width > 650 ? 5 : 4;
 
-  console.log(visibleSlides);
-  useEffect(() => {
-    if (width < 500) setVisibleSlides(2);
-    else if (width < 650) setVisibleSlides(3);
-    else if (width < 1400) setVisibleSlides(6);
-    else setVisibleSlides(slides);
-    if (isProductDetails) {
-      if (width < 768) setVisibleSlides(2);
-      else if (width < 880) setVisibleSlides(4);
-      else if (width < 1025) setVisibleSlides(5);
-      else if (width < 1300) setVisibleSlides(4);
-      else if (width < 1425) setVisibleSlides(5);
-    }
-  }, [width]);
+  // console.log(visibleSlides);
+  // useEffect(() => {
+  //   if (width < 500) setVisibleSlides(2);
+  //   else if (width < 650) setVisibleSlides(3);
+  //   else if (width < 1400) setVisibleSlides(6);
+  //   else setVisibleSlides(slides);
+  //   if (isProductDetails) {
+  //     if (width < 768) setVisibleSlides(2);
+  //     else if (width < 880) setVisibleSlides(4);
+  //     else if (width < 1025) setVisibleSlides(5);
+  //     else if (width < 1300) setVisibleSlides(4);
+  //     else if (width < 1425) setVisibleSlides(5);
+  //   }
+  // }, [width]);
 
   useEffect(() => {
     useAllFeaturedClients().then((data) => {
@@ -40,7 +41,8 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
 
   const ClientList = clients
     .concat(clients)
-    .splice(0, 10)
+    .concat(clients)
+    // .splice(0, 10)
     .map((item, ind) => (
       <Box key={ind} className="client client_related">
         <HoverBox borderRadius={5} className="client__body">
@@ -71,10 +73,16 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
       </FlexBox>
       <Container pb="1rem">
         <Box mb="-0.25rem">
-          <FlexBox justifyContent="space-between">{ClientList}</FlexBox>
-          {/* <Carousel totalSlides={clients?.length} visibleSlides={visibleSlides}>
+          {/* <FlexBox justifyContent="space-between">{ClientList}</FlexBox> */}
+          <Carousel
+            totalSlides={clients?.length + clients?.length + clients?.length}
+            visibleSlides={slices}
+            autoPlay={(clients.length + 1) * 3 > slices}
+            infinite={(clients.length + 1) * 3 > slices}
+            showArrow={false}
+          >
             {ClientList}
-          </Carousel> */}
+          </Carousel>
         </Box>
       </Container>
     </Box>
