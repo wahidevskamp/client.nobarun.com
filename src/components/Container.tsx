@@ -42,7 +42,10 @@ const Container = styled.div<
     margin-left: 2rem;
     margin-right: 2rem;
   }
-
+  @media only screen and (max-width: 37.5em) {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
   ${color}
   ${position}
   ${flexbox}

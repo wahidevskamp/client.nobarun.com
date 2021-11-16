@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@component/Box';
-// import Carousel from '@component/carousel/Carousel';
+import Carousel from '@component/carousel/Carousel';
 import Container from '@component/Container';
 import HoverBox from '@component/HoverBox';
 import { H2, H4 } from '@component/Typography';
@@ -38,6 +38,20 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
     });
   }, []);
 
+  const ClientList = clients
+    .concat(clients)
+    .splice(0, 10)
+    .map((item, ind) => (
+      <Box key={ind} className="client client_related">
+        <HoverBox borderRadius={5} className="client__body">
+          <img src={item.imgUrl} style={{ width: '118px', height: '110px' }} />
+        </HoverBox>
+        <H4 fontSize="1.4rem" fontWeight="600" className="client__title">
+          {item.title}
+        </H4>
+      </Box>
+    ));
+
   return (
     <Box
       pt={isProductDetails ? '4rem' : '3rem'}
@@ -57,30 +71,10 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
       </FlexBox>
       <Container pb="1rem">
         <Box mb="-0.25rem">
-          {/* <Carousel totalSlides={clients?.length} visibleSlides={visibleSlides}> */}
-          <FlexBox justifyContent="space-between">
-            {clients
-              .concat(clients)
-              .splice(0, 10)
-              .map((item, ind) => (
-                <Box key={ind} className="client client_related">
-                  <HoverBox borderRadius={5} className="client__body">
-                    <img
-                      src={item.imgUrl}
-                      style={{ width: '118px', height: '110px' }}
-                    />
-                  </HoverBox>
-                  <H4
-                    fontSize="1.4rem"
-                    fontWeight="600"
-                    className="client__title"
-                  >
-                    {item.title}
-                  </H4>
-                </Box>
-              ))}
-          </FlexBox>
-          {/* </Carousel> */}
+          <FlexBox justifyContent="space-between">{ClientList}</FlexBox>
+          {/* <Carousel totalSlides={clients?.length} visibleSlides={visibleSlides}>
+            {ClientList}
+          </Carousel> */}
         </Box>
       </Container>
     </Box>

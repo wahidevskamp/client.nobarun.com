@@ -31,13 +31,15 @@ const ProductDetails = ({ product, isError }) => {
   // const [product, setProduct] = useState<any>();
   const [active, setActive] = useState(false);
 
+  const width = useWindowSize();
+  const isTabPhone = width < 900;
+
   const state = {
     title: 'Mi Note 11 Pro',
     price: 1135,
   };
 
   console.log(product);
-  const width = useWindowSize();
   // useEffect(() => {
   //   useProductById(pid).then((data: any) => {
   //     console.log(data);
@@ -163,12 +165,18 @@ const ProductDetails = ({ product, isError }) => {
         </Container>
       </Box>
       <Grid container>
-        <Grid item lg={width > 1600 ? 9 : 8} xs={12}>
+        <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="details">
               <ProductIntro data={product?.intro} {...state} />
             </section>
             <RelatedClients slides={6} isProductDetails />
+            {isTabPhone && product?.contact && (
+              <>
+                <Contacts id={pid} contact={product?.contact} />
+                <Ammenities />
+              </>
+            )}
             {product?.keyPoints &&
             product?.keyPoints.length === 1 &&
             product?.keyPoints[0].title === '' &&
@@ -181,9 +189,11 @@ const ProductDetails = ({ product, isError }) => {
             )}
           </Box>
         </Grid>
-        <Grid item lg={width > 1600 ? 3 : 4} xs={12}>
-          {product?.contact && <Contacts id={pid} contact={product?.contact} />}
-          <Ammenities />
+        <Grid item lg={width > 1600 ? 3 : 4} xs={width > 900 ? 4 : 12}>
+          {!isTabPhone && product?.contact && (
+            <Contacts id={pid} contact={product?.contact} />
+          )}
+          {!isTabPhone && <Ammenities />}
           {product?.features && (
             <SpecialFeatures features={product?.features} />
           )}
@@ -194,7 +204,7 @@ const ProductDetails = ({ product, isError }) => {
             <RelatedProducts products={product?.relatedProducts} />
           )}
         </Grid>
-        <Grid item lg={width > 1600 ? 9 : 8} xs={12}>
+        <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             {product?.questions &&
             product?.questions.length === 1 &&
@@ -208,12 +218,12 @@ const ProductDetails = ({ product, isError }) => {
             )}
           </Box>
         </Grid>
-        <Grid item lg={width > 1600 ? 3 : 4} xs={12}>
+        <Grid item lg={width > 1600 ? 3 : 4} xs={width > 900 ? 4 : 12}>
           {product?.tags && product?.tags.length > 0 && (
             <Tags chips={product?.tags} />
           )}
         </Grid>
-        <Grid item lg={width > 1600 ? 9 : 8} xs={12}>
+        <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="reviews">
               <Review reviews={product?.reviews} />
@@ -223,7 +233,7 @@ const ProductDetails = ({ product, isError }) => {
             </section>
           </Box>
         </Grid>
-        <Grid item lg={width > 1600 ? 3 : 4} xs={12}>
+        <Grid item lg={width > 1600 ? 3 : 4} xs={width > 900 ? 4 : 12}>
           {product?.reviews && product?.reviews.length > 0 && (
             <CustomerMedia reviews={product?.reviews} />
           )}

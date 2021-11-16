@@ -146,22 +146,24 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
               >
                 {data?.price && `Price: ${data?.price} Taka`}
               </H4>
-              <Rating
-                outof={5}
-                value={data?.rating}
-                color="warn"
-                size="medium"
-              />
-              <a href="#reviews">
-                <Span
-                  ml={width > 660 ? '1em' : '0em'}
-                  color="#0082C9"
-                  fontSize="16px"
-                  fontWeight="600"
-                >
-                  {data?.review} Real Customer Reviews
-                </Span>
-              </a>
+              <FlexBox>
+                <Rating
+                  outof={5}
+                  value={data?.rating}
+                  color="warn"
+                  size="medium"
+                />
+                <a href="#reviews">
+                  <Span
+                    ml="1rem"
+                    color="#0082C9"
+                    fontSize="16px"
+                    fontWeight="600"
+                  >
+                    {data?.review} Real Customer Reviews
+                  </Span>
+                </a>
+              </FlexBox>
             </FlexBox>
           </Box>
           <a
@@ -172,7 +174,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
             বাংলা ব্লগ পড়ুন
           </a>
         </FlexBox>
-        <FlexBox flexDirection={width > 767 ? 'row' : 'column'}>
+        <FlexBox flexDirection={width > 900 ? 'row' : 'column'}>
           <FlexBox justifyContent="center" className="product__intro-main">
             {isLoading ? (
               <Spinner />
@@ -201,40 +203,36 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           {/* </Grid>
           <Grid item xs={width > 1550 ? 2 : 3}> */}
           <Box className="product__hero-slider">
-            {width > 767 ? (
+            {width > 900 ? (
               <Grid container>
                 {images}
                 {videos}
               </Grid>
             ) : (
-              <Box px="30px" mt="30px">
+              <div style={{ width: '100%' }}>
                 <Carousel
+                  autoPlay
+                  infinite
                   totalSlides={data?.images?.length + data?.videos?.length}
                   visibleSlides={width < 650 ? 4 : 6}
                 >
                   {images}
                   {videos}
                 </Carousel>
-              </Box>
+              </div>
             )}
           </Box>
           {/* </Grid>
         </Grid> */}
         </FlexBox>
-        <Button
-          variant="contained"
-          bg="#0082C9"
-          //@ts-ignore
-          color="#fff"
-          className="product__share-btn"
-        >
+        <button className="product__share-btn">
           <Icon size="18px" mr="1em">
             share-solid
           </Icon>
           <Typography fontSize="20px" fontWeight="400">
             Share
           </Typography>
-        </Button>
+        </button>
       </Box>
     </Card>
   );

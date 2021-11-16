@@ -2,7 +2,7 @@
   width: calc(100% - 0.5rem) !important;
 }
 .client {
-  height: 5rem;
+  // height: 5rem;
   // width: 10rem;
 
   flex-grow: 1;
@@ -13,12 +13,24 @@
     & > div {
       height: auto !important;
     }
+    @include respond(600px) {
+      max-width: 12rem;
+    }
+
     // &:not(:last-child) {
     //   margin-right: 30px !important;
     // }
   }
   &:not(:last-child) {
     margin-right: 5px;
+  }
+  &__image {
+    width: 11.8rem;
+    height: 11rem;
+    @include respond(600px) {
+      width: 6.4rem;
+      height: 6rem;
+    }
   }
   &__body {
     width: 100%;
@@ -40,6 +52,9 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     text-align: center;
+    @include respond(400px) {
+      font-size: 1.2rem !important;
+    }
   }
 }
 

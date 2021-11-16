@@ -22,9 +22,12 @@
       font-weight: 600;
       outline: none;
       border: none;
-      font-size: 16px;
-      padding: 7px 20px;
-      margin-left: 10px;
+      font-size: 1.6rem;
+      padding: 7px 2rem;
+      margin-left: 1rem;
+      @include respond(950px) {
+        padding: 7px 1.5rem;
+      }
     }
     &-image {
       height: 80px;
@@ -33,6 +36,37 @@
     }
     @include respond(900px) {
       display: none;
+    }
+    &-tab {
+      display: none !important;
+      background-color: #fff;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgb(175, 175, 175);
+      text-align: center;
+      & > a {
+        @include respond(555px) {
+          font-size: 1.4rem;
+          padding: 5px 1rem;
+          border-radius: 7px;
+          border: 1px solid #90908f;
+        }
+        @include respond(480px) {
+          padding: 5px 3px;
+        }
+      }
+      & > a:last-child {
+        @include respond(700px) {
+          display: none;
+        }
+      }
+      @include respond(900px) {
+        display: block !important;
+      }
+      @include respond(700px) {
+        margin: auto;
+      }
     }
   }
   &__intro {
@@ -90,23 +124,44 @@
       @include respond(1240px) {
         max-width: 30%;
       }
-      @include respond(767px) {
+      @include respond(900px) {
         max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 3rem;
+      }
+      @include respond(600px) {
+        padding: 0 3rem;
       }
     }
   }
   &__share-btn {
+    border: none;
     font-size: 2rem;
+    display: flex;
     position: absolute;
     bottom: 5%;
     left: 0px;
-    max-height: 38px;
-    width: 161px !important;
+    max-height: 3.8rem;
+    width: 16.1rem !important;
     z-index: 1;
-    @include respond(767px) {
+    background-color: #0082c9;
+    color: #fff;
+    @include respond(900px) {
       padding-left: 20px !important;
       padding-right: 20px !important;
-      border-radius: 20px !important;
+      bottom: 15%;
+    }
+    @include respond(600px) {
+      bottom: 20%;
+      width: 10rem !important;
+      font-size: 1.5rem;
+      padding: 8px 5px 5px !important;
+      & svg {
+        height: 11px;
+        width: 11px;
+      }
     }
   }
   &_quote-btn {
@@ -151,12 +206,31 @@
     }
   }
   &__keypoints {
+    &--left {
+      float: left;
+      padding-right: 3rem;
+    }
+    &--right {
+      float: right;
+      padding-left: 2.5rem;
+    }
     &-image {
       position: relative;
       margin-top: 2rem;
       & > img {
         position: relative;
         z-index: 1;
+        height: 250px !important;
+        width: 250px !important;
+        border-radius: 8px;
+        @include respond(1400px) {
+          height: 200px !important;
+          width: 200px !important;
+        }
+        @include respond(800px) {
+          height: 170px !important;
+          width: 170px !important;
+        }
       }
       &::before {
         content: '';

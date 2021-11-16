@@ -10,58 +10,36 @@ const Features = ({ features }) => {
   return (
     <>
       {features?.map((feature, idx) => (
-        <Card
-          py="1rem"
-          pl={idx % 2 !== 0 ? '3rem' : '0'}
-          pr={idx % 2 !== 0 ? '1rem' : '1.5rem'}
-          mb="2rem"
-          key={idx}
-        >
-          <Grid
-            container
+        <Card px="2rem" py="3rem" mb="2rem" key={idx}>
+          <FlexBox
             justifyContent="center"
-            // spacing={10}
-            flexDirection={idx % 2 !== 0 ? 'row-reverse' : 'row'}
+            className={
+              idx % 2 !== 0
+                ? 'product__keypoints--left'
+                : 'product__keypoints--right'
+            }
           >
-            <Grid item sm={3}>
-              <FlexBox justifyContent="center">
-                <span className="product__keypoints-image">
-                  {feature?.images.length > 0 ? (
-                    <Image
-                      src={feature?.images[0]}
-                      alt="Featured Image"
-                      height="300px"
-                      borderRadius={8}
-                    />
-                  ) : (
-                    <Image
-                      src="/assets/images/features.png"
-                      alt="Featured Image"
-                      height="300px"
-                      borderRadius={8}
-                    />
-                  )}
-                </span>
-              </FlexBox>
-            </Grid>
-
-            <Grid item sm={9}>
-              <H2 fontSize="32px" mb="15px">
-                {feature.title}
-              </H2>
-              <Typography>
-                <div
-                  className="product__keypoints-content"
-                  dangerouslySetInnerHTML={{
-                    __html: feature?.content.replace(
-                      'font-family:Titillium',
-                      '',
-                    ),
-                  }}
-                ></div>
-              </Typography>
-            </Grid>
-          </Grid>
+            <span className="product__keypoints-image">
+              {feature?.images.length > 0 ? (
+                <img src={feature?.images[0]} alt="Featured Image" />
+              ) : (
+                <img src="/assets/images/features.png" alt="Featured Image" />
+              )}
+            </span>
+          </FlexBox>
+          <div>
+            <H2 fontSize="32px" mb="15px">
+              {feature.title}
+            </H2>
+            <Typography>
+              <div
+                className="product__keypoints-content"
+                dangerouslySetInnerHTML={{
+                  __html: feature?.content.replace('font-family:Titillium', ''),
+                }}
+              ></div>
+            </Typography>
+          </div>
         </Card>
       ))}
     </>

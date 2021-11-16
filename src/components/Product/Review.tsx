@@ -165,7 +165,12 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
                 src="/assets/images/notfound.png"
                 alt="Featured Image"
                 height="350px"
-                style={{ margin: 'auto', textAlign: 'center' }}
+                width="100%"
+                style={{
+                  margin: 'auto',
+                  textAlign: 'center',
+                  maxWidth: '500px',
+                }}
               />
             </div>
           )}

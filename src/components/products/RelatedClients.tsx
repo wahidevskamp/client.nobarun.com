@@ -19,25 +19,8 @@ const RelatedClients: React.FC<ClientProps> = ({
   isProductDetails,
 }) => {
   const [clients, setClients] = useState([]);
-  // const [visibleSlides, setVisibleSlides] = useState(slides);
   const width = useWindowSize();
-  const slices = width > 1700 ? 7 : 6;
-
-  // console.log(visibleSlides);
-  // useEffect(() => {
-  //   // if (width < 500) setVisibleSlides(2);
-  //   // else if (width < 650) setVisibleSlides(3);
-  //   // else if (width < 1400) setVisibleSlides(6);
-  //   // else setVisibleSlides(slides);
-  //   // if (isProductDetails) {
-  //   //   if (width < 768) setVisibleSlides(2);
-  //   //   else if (width < 880) setVisibleSlides(4);
-  //   //   else if (width < 1025) setVisibleSlides(5);
-  //   //   else if (width < 1300) setVisibleSlides(4);
-  //   //   else if (width < 1425) setVisibleSlides(5);
-  //   // }
-  // }, [width]);
-
+  const slices = width > 1700 ? 7 : width > 800 ? 6 : width > 650 ? 5 : 4;
   useEffect(() => {
     useAllFeaturedClients().then((data) => {
       setClients(data);
@@ -61,35 +44,26 @@ const RelatedClients: React.FC<ClientProps> = ({
       <Container pb="1rem">
         <Box mb="-0.25rem">
           <Carousel
-            totalSlides={6}
-            visibleSlides={6}
-            autoPlay={true}
+            totalSlides={clients.length}
+            visibleSlides={slices}
+            autoPlay={clients.length + 1 > slices}
+            infinite={clients.length + 1 > slices}
             showArrow={false}
-            infinite={true}
           >
-            {/* <FlexBox justifyContent="space-between"> */}
-            {clients
-              .concat(clients)
-              .splice(0, slices)
-              .map((item, ind) => (
-                <Box key={ind} className="client client_related">
-                  <HoverBox borderRadius={5} className="client__body">
-                    <img
-                      src={item.imgUrl}
-                      style={{ width: '118px', height: '110px' }}
-                    />
-                  </HoverBox>
-                  <H4
-                    fontSize="1.4rem"
-                    fontWeight="600"
-                    className="client__title"
-                  >
-                    {item.title}
-                  </H4>
-                </Box>
-                // <CarouselCard2 />
-              ))}
-            {/* </FlexBox> */}
+            {clients.map((item, ind) => (
+              <Box key={ind} className="client client_related">
+                <HoverBox borderRadius={5} className="client__body">
+                  <img src={item.imgUrl} className="client__image" />
+                </HoverBox>
+                <H4
+                  fontSize="1.4rem"
+                  fontWeight="600"
+                  className="client__title"
+                >
+                  {item.title}
+                </H4>
+              </Box>
+            ))}
           </Carousel>
         </Box>
       </Container>

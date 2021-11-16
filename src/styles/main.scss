@@ -19,4 +19,20 @@ html {
     // 1400
     zoom: 1;
   }
+  @include respond(72em) {
+    // 1152
+    zoom: 0.9;
+  }
+  @include respond(65em) {
+    // 1040
+    zoom: 0.8;
+  }
+  @include respond(56.25em) {
+    // 900
+    zoom: 1;
+  }
+  @include respond(25em) {
+    // 400
+    zoom: 0.8;
+  }
 }

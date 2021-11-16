@@ -17,7 +17,7 @@ const MobileNavigationBar: React.FC = () => {
         </button>
         <button className="call">
           <Icon size="23px" className="icon">
-            phone
+            call-small
           </Icon>
           Phone Call
         </button>
