@@ -84,7 +84,6 @@ const ProductDetails = ({ product, isError }) => {
 
   useEffect(() => {
     const handleStickyBar = () => {
-      console.log(window.scrollY);
       if (window.scrollY >= 150) {
         setActive(true);
       } else {
@@ -100,6 +99,14 @@ const ProductDetails = ({ product, isError }) => {
         <title>{product?.seo?.title || 'Nobarun - Product Details'}</title>
         <meta name="description" content={product?.seo?.description} />
         <meta name="keywords" content={product?.seo?.keywords.join(', ')} />
+        <meta
+          property="og:description"
+          content="MyFavNews is the best source for your favorite news."
+        />
+        <meta
+          property="og:image"
+          content="https://nobarun.s3.us-east-2.amazonaws.com/6524728.jpg"
+        />
       </Head>
       <Box
         className={`product__sticky ${active ? 'product__sticky--active' : ''}`}
@@ -249,6 +256,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const pid = context.params.id;
   try {
     const data = await useProductById(pid);
+    console.log(data);
     return {
       props: {
         product: data,

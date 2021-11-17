@@ -85,10 +85,10 @@ const Contacts = ({ id, contact }) => {
             setIsOpen(true);
           }}
         >
-          <Icon mr="0.5rem" size="22px">
+          <Icon mr="1.5rem" size="22px">
             plus-circles
           </Icon>
-          Get A Quote
+          Get a Quote
         </Button>
       </Card>
       {contact?.maps && (

@@ -3,14 +3,27 @@ import FlexBox from '@component/FlexBox';
 import Grid from '@component/grid/Grid';
 import Image from '@component/Image';
 import Typography, { H2 } from '@component/Typography';
+import useWindowSize from '@hook/useWindowSize';
 import React from 'react';
 
 const Features = ({ features }) => {
-  console.log(features);
+  const width = useWindowSize();
+  const isTablet = width < 900;
   return (
     <>
       {features?.map((feature, idx) => (
-        <Card px="2rem" py="3rem" mb="2rem" key={idx}>
+        <Card
+          px="2rem"
+          py="3rem"
+          mb="2rem"
+          key={idx}
+          className="product__keypoints"
+        >
+          {isTablet && (
+            <H2 fontSize="32px" mb="15px">
+              {feature.title}
+            </H2>
+          )}
           <FlexBox
             justifyContent="center"
             className={
@@ -28,9 +41,11 @@ const Features = ({ features }) => {
             </span>
           </FlexBox>
           <div>
-            <H2 fontSize="32px" mb="15px">
-              {feature.title}
-            </H2>
+            {!isTablet && (
+              <H2 fontSize="32px" mb="15px">
+                {feature.title}
+              </H2>
+            )}
             <Typography>
               <div
                 className="product__keypoints-content"

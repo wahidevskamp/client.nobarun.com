@@ -32,6 +32,9 @@ export const GlobalStyles = createGlobalStyle`
   .cursor-pointer {
     cursor: pointer;
   }
+  button{
+    font-family: 'Titillium Web', sans-serif;
+  }
 
 #nprogress {
   pointer-events: none;

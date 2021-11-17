@@ -68,6 +68,10 @@ const useProductById = async (pid) => {
   if (pid) {
     const data = await Client.request(GET_PRODUCT_BY_ID, { id: pid });
     const productById = data.getPopulatedProductById.productData;
+    // console.log(
+    //   'productById****************************************************************',
+    //   productById,
+    // );
 
     const product = {
       intro: {

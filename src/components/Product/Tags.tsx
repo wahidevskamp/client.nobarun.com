@@ -8,7 +8,7 @@ const Tags = ({ chips }) => {
   const [showAll, setShowAll] = useState(false);
   return (
     <ProductCard12 title="Product Tags">
-      <FlexBox flexWrap="wrap" justifyContent="center">
+      <FlexBox flexWrap="wrap">
         {chips?.slice(0, showAll ? chips.length : 15).map((chip) => (
           <Chip
             bg="#eee"

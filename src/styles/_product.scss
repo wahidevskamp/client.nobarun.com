@@ -54,6 +54,7 @@
         }
         @include respond(480px) {
           padding: 5px 3px;
+          font-size: 1.15rem;
         }
       }
       & > a:last-child {
@@ -85,7 +86,7 @@
     &-btn {
       background-image: linear-gradient(to right, #1ca346, #6fba1a);
       color: #fff;
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 600;
       border: 0;
       border-radius: 8px;
@@ -95,7 +96,11 @@
       font-family: 'SolaimanLipi', sans-serif;
       @include respond(1150px) {
         margin-top: 1rem;
-        padding: 5px 10px;
+        font-size: 1.6rem;
+      }
+      @include respond(1150px) {
+        padding: 4px 8px;
+        font-size: 1.4rem;
       }
     }
     &-image {
@@ -131,8 +136,8 @@
         align-items: center;
         padding: 0 3rem;
       }
-      @include respond(600px) {
-        padding: 0 3rem;
+      @include respond(350px) {
+        padding: 0 0.5rem;
       }
     }
   }
@@ -206,9 +211,10 @@
     }
   }
   &__keypoints {
+    min-height: 30rem;
     &--left {
-      float: left;
       padding-right: 3rem;
+      float: left;
     }
     &--right {
       float: right;
@@ -220,16 +226,20 @@
       & > img {
         position: relative;
         z-index: 1;
-        height: 250px !important;
-        width: 250px !important;
+        height: 200px !important;
+        width: 200px !important;
         border-radius: 8px;
         @include respond(1400px) {
-          height: 200px !important;
-          width: 200px !important;
-        }
-        @include respond(800px) {
           height: 170px !important;
           width: 170px !important;
+        }
+        @include respond(800px) {
+          height: 130px !important;
+          width: 130px !important;
+        }
+        @include respond(400px) {
+          height: 100px !important;
+          width: 100px !important;
         }
       }
       &::before {
@@ -257,6 +267,7 @@
       font-family: 'Titillium Web', sans-serif !important;
       font-size: 22px;
       color: #848484;
+      text-align: justify;
     }
   }
   &__features {

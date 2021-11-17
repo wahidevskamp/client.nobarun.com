@@ -17,7 +17,6 @@ interface AddQueryProps {
 }
 const AddQuery = (props: AddQueryProps) => {
   const { isOpen, setIsOpen, id } = props;
-  console.log(id);
   const onCloseHandler = () => {
     setIsOpen(false);
   };

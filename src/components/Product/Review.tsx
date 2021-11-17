@@ -23,6 +23,7 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
   const [videoLink, setVideoLink] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
+  console.log('Reviews', reviews);
   return (
     <div id="#reviews">
       <Card

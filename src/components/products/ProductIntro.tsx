@@ -213,6 +213,8 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                 <Carousel
                   autoPlay
                   infinite
+                  showArrow={false}
+                  // showArrowOnHover={true}
                   totalSlides={data?.images?.length + data?.videos?.length}
                   visibleSlides={width < 650 ? 4 : 6}
                 >

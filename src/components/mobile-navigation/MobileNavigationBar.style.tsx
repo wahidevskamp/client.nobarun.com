@@ -8,7 +8,7 @@ const StyledMobileNavigationBar = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  height: ${layoutConstant.mobileNavHeight};
+  height: 50px;
   justify-content: space-around;
   align-items: center;
   background: ${getTheme('colors.body.paper')};
@@ -35,8 +35,8 @@ const StyledMobileNavigationBar = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    height: 60%;
+    padding: 0.5rem;
+    /* height: 60%; */
     flex-grow: 1;
     font-size: 14px;
     font-weight: 600;
