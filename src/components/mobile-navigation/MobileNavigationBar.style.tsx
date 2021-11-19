@@ -8,9 +8,9 @@ const StyledMobileNavigationBar = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 50px;
+  height: 40px;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   background: ${getTheme('colors.body.paper')};
   box-shadow: 0px 1px 4px 3px rgba(0, 0, 0, 0.1);
   z-index: 999;
@@ -31,7 +31,7 @@ const StyledMobileNavigationBar = styled.div`
       align-items: center;
     }
   }
-  button {
+  a {
     display: flex;
     justify-content: center;
     align-items: center;

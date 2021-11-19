@@ -23,7 +23,7 @@ const AddQuery = (props: AddQueryProps) => {
   return (
     <Modal open={isOpen} onClose={onCloseHandler}>
       <Card px="3em" py="3em" position="relative">
-        <Box width="700px" maxWidth="700px">
+        <Box maxWidth="700px">
           <Box textAlign="center" mb="3em">
             <H1>Product Enquiry</H1>
             <SemiSpan>We will contact you within short time</SemiSpan>
@@ -35,25 +35,25 @@ const AddQuery = (props: AddQueryProps) => {
             <Icon>close</Icon>
           </IconButton>
           <Grid container spacing={5}>
-            <Grid item xs={6}>
+            <Grid item md={6} sm={12} xs={12}>
               <TextField fullwidth label="Your Full Name" />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} sm={12} xs={12}>
               <TextField fullwidth label="Your Full Name" />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} sm={12} xs={12}>
               <TextField fullwidth label="Your Email Address" />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} sm={12} xs={12}>
               <TextField fullwidth label="Company Name" />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} sm={12} xs={12}>
               <TextField fullwidth label="Full Address" />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} sm={12} xs={12}>
               <TextField fullwidth label="Attachment" type="file" />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item md={12} sm={12} xs={12}>
               <TextArea
                 label="Write your Details Message"
                 labelColor="warn"

@@ -16,7 +16,7 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
   const [clients, setClients] = useState([]);
   // const [visibleSlides, setVisibleSlides] = useState(slides);
   const width = useWindowSize();
-  const slices = width > 1700 ? 7 : width > 800 ? 6 : width > 650 ? 5 : 4;
+  const slices = width > 1700 ? 10 : width > 800 ? 6 : width > 650 ? 5 : 4;
 
   // console.log(visibleSlides);
   // useEffect(() => {

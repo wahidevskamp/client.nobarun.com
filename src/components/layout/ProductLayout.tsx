@@ -2,9 +2,13 @@ import FlexBox from '@component/FlexBox';
 import Footer from '@component/footer/Footer';
 import Header from '@component/header/Header';
 import Sticky from '@component/sticky/Sticky';
+import Image from '@component/Image';
+
 import Head from 'next/head';
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import StyledProductLayout from './AppLayoutStyle';
+import useWindowSize from '@hook/useWindowSize';
 
 type Props = {
   title?: string;
@@ -17,6 +21,10 @@ const ProductLayout: React.FC<Props> = ({
   title = 'Nobarun International | Get all the equipment with a hassle-free experience',
 }) => {
   const [active, setActive] = useState(false);
+  const [section, setSection] = useState('#details');
+
+  const width = useWindowSize();
+  const isTablet = width < 900;
 
   useEffect(() => {
     const handleStickyBar = () => {
@@ -36,6 +44,20 @@ const ProductLayout: React.FC<Props> = ({
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      {isTablet && (
+        <FlexBox
+          justifyContent="center"
+          alignItems="center"
+          mr="1rem"
+          bg="#fff"
+        >
+          <Link href="/">
+            <a>
+              <Image src="/assets/images/logo.png" alt="logo" />
+            </a>
+          </Link>
+        </FlexBox>
+      )}
       <Sticky fixedOn={0}>
         <div>
           <Header />
@@ -43,19 +65,39 @@ const ProductLayout: React.FC<Props> = ({
             <FlexBox className="product__sticky-tab">
               <a
                 href="#details"
-                className="product__sticky-btn"
-                style={{ background: '#dbeed3', color: '#489e26' }}
+                onClick={(e) => setSection('#details')}
+                className={`product__sticky-btn ${
+                  section === '#details' ? 'product__sticky-btn--active' : ''
+                }`}
               >
                 Details
               </a>
 
-              <a href="#keypoints" className="product__sticky-btn">
+              <a
+                href="#keypoints"
+                onClick={(e) => setSection('#keypoints')}
+                className={`product__sticky-btn ${
+                  section === '#keypoints' ? 'product__sticky-btn--active' : ''
+                }`}
+              >
                 Key Points of Product
               </a>
-              <a href="#questions" className="product__sticky-btn">
+              <a
+                href="#questions"
+                onClick={(e) => setSection('#questions')}
+                className={`product__sticky-btn ${
+                  section === '#questions' ? 'product__sticky-btn--active' : ''
+                }`}
+              >
                 Question & Answers
               </a>
-              <a href="#reviews" className="product__sticky-btn">
+              <a
+                href="#reviews"
+                onClick={(e) => setSection('#reviews')}
+                className={`product__sticky-btn ${
+                  section === '#reviews' ? 'product__sticky-btn--active' : ''
+                }`}
+              >
                 Reviews
               </a>
               <a

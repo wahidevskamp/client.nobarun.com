@@ -24,12 +24,16 @@ import Typography, { H1, Span } from '@component/Typography';
 import RelatedClients from '@component/products/RelatedClients';
 import Container from '@component/Container';
 import { GetServerSideProps } from 'next';
+import AddQuery from '@component/Shared/AddQuery';
+import MobileNavigationBar from '@component/mobile-navigation/MobileNavigationBar';
+import GoToTop from '@component/goToTop/GoToTop';
 
-const ProductDetails = ({ product, isError }) => {
+const ProductDetails = ({ product, reviews, isError }) => {
   const router = useRouter();
   const pid = router.query.id;
   // const [product, setProduct] = useState<any>();
   const [active, setActive] = useState(false);
+  const [section, setSection] = useState('#details');
 
   const width = useWindowSize();
   const isTabPhone = width < 900;
@@ -39,7 +43,7 @@ const ProductDetails = ({ product, isError }) => {
     price: 1135,
   };
 
-  console.log(product);
+  // console.log(product);
   // useEffect(() => {
   //   useProductById(pid).then((data: any) => {
   //     console.log(data);
@@ -81,7 +85,8 @@ const ProductDetails = ({ product, isError }) => {
   //     // }
   //   });
   // }, [pid]);
-
+  const [isOpen, setIsOpen] = useState(false);
+  console.log(reviews);
   useEffect(() => {
     const handleStickyBar = () => {
       if (window.scrollY >= 150) {
@@ -108,12 +113,18 @@ const ProductDetails = ({ product, isError }) => {
           content="https://nobarun.s3.us-east-2.amazonaws.com/6524728.jpg"
         />
       </Head>
+      <AddQuery id={pid as string} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <GoToTop showBelow={250} />
+      <MobileNavigationBar
+        phone={product?.contact?.whatsAppNumber}
+        setIsOpen={setIsOpen}
+      />
       <Box
         className={`product__sticky ${active ? 'product__sticky--active' : ''}`}
       >
         <Container>
           <FlexBox alignItems="center" justifyContent="space-between">
-            <FlexBox>
+            <FlexBox width="50%">
               <img
                 src={product?.intro?.images[0]}
                 className="product__sticky-image"
@@ -145,25 +156,51 @@ const ProductDetails = ({ product, isError }) => {
             <Box>
               <a
                 href="#details"
-                className="product__sticky-btn"
-                style={{ background: '#dbeed3', color: '#489e26' }}
+                onClick={(e) => setSection('#details')}
+                className={`product__sticky-btn ${
+                  section === '#details' ? 'product__sticky-btn--active' : ''
+                }`}
               >
                 Details
               </a>
-
-              <a href="#keypoints" className="product__sticky-btn">
+              <a
+                href="#keypoints"
+                onClick={(e) => setSection('#keypoints')}
+                className={`product__sticky-btn ${
+                  section === '#keypoints' ? 'product__sticky-btn--active' : ''
+                }`}
+              >
                 Key Points of Product
               </a>
-              <a href="#questions" className="product__sticky-btn">
+              <a
+                href="#questions"
+                onClick={(e) => setSection('#questions')}
+                className={`product__sticky-btn ${
+                  section === '#questions' ? 'product__sticky-btn--active' : ''
+                }`}
+              >
                 Question & Answers
               </a>
-              <a href="#reviews" className="product__sticky-btn">
+              <a
+                href="#reviews"
+                onClick={(e) => setSection('#reviews')}
+                className={`product__sticky-btn ${
+                  section === '#reviews' ? 'product__sticky-btn--active' : ''
+                }`}
+              >
                 Reviews
               </a>
               <a
-                href="#addQuote"
                 className="product__sticky-btn"
-                style={{ background: '#ec1c24', color: '#fff' }}
+                style={{
+                  background: '#ec1c24',
+                  color: '#fff',
+                  cursor: 'pointer',
+                }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsOpen(true);
+                }}
               >
                 Get a Quote
               </a>
@@ -177,10 +214,18 @@ const ProductDetails = ({ product, isError }) => {
             <section id="details">
               <ProductIntro data={product?.intro} {...state} />
             </section>
-            <RelatedClients slides={6} isProductDetails />
+            <RelatedClients
+              clients={product?.clients}
+              slides={6}
+              isProductDetails
+            />
             {isTabPhone && product?.contact && (
               <>
-                <Contacts id={pid} contact={product?.contact} />
+                <Contacts
+                  id={pid}
+                  contact={product?.contact}
+                  setIsOpen={setIsOpen}
+                />
                 <Ammenities />
               </>
             )}
@@ -198,7 +243,11 @@ const ProductDetails = ({ product, isError }) => {
         </Grid>
         <Grid item lg={width > 1600 ? 3 : 4} xs={width > 900 ? 4 : 12}>
           {!isTabPhone && product?.contact && (
-            <Contacts id={pid} contact={product?.contact} />
+            <Contacts
+              id={pid}
+              contact={product?.contact}
+              setIsOpen={setIsOpen}
+            />
           )}
           {!isTabPhone && <Ammenities />}
           {product?.features && (
@@ -233,7 +282,9 @@ const ProductDetails = ({ product, isError }) => {
         <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="reviews">
-              <Review reviews={product?.reviews} />
+              <Review
+                reviews={reviews.length > 0 ? reviews : product?.reviews}
+              />
             </section>
             <section id="addQuote">
               <AddReview />
@@ -254,23 +305,25 @@ ProductDetails.layout = NavbarLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const pid = context.params.id;
-  try {
-    const data = await useProductById(pid);
-    console.log(data);
-    return {
-      props: {
-        product: data,
-        isError: false,
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        product: err,
-        isError: false,
-      },
-    };
-  }
+  // try {
+  const data = await useProductById(pid);
+  // console.log(data.reviews);
+  return {
+    props: {
+      product: data,
+      reviews: [...data.reviews],
+      isError: false,
+    },
+  };
+  // }
+  //  catch (err) {
+  //   return {
+  //     props: {
+  //       product: err,
+  //       isError: true,
+  //     },
+  //   };
+  // }
 };
 
 export default ProductDetails;

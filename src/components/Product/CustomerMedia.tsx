@@ -12,7 +12,7 @@ const CustomerMedia = ({ reviews }) => {
   const [videoLink, setVideoLink] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
-
+  console.log(reviews);
   return (
     <ProductCard12 title="Customer Submitted  Photos & Videos">
       {reviews &&

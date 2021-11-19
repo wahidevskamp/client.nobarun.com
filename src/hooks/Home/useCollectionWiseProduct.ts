@@ -7,7 +7,7 @@ const GET_COLLECTION_WISE_PRODUCT = gql`
       name
       products {
         product {
-          id
+          id: slug
           productName
           discount
           featured

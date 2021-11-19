@@ -23,10 +23,18 @@
       outline: none;
       border: none;
       font-size: 1.6rem;
-      padding: 7px 2rem;
-      margin-left: 1rem;
+      padding: 7px 1rem;
+      margin-left: 0.5rem;
+      @include respond(1300px) {
+        padding: 7px 0.5rem;
+      }
+
       @include respond(950px) {
-        padding: 7px 1.5rem;
+        font-size: 1.4rem;
+      }
+      &--active {
+        background: #dbeed3;
+        color: #489e26;
       }
     }
     &-image {
@@ -45,6 +53,12 @@
       padding: 1.5rem 0;
       border-bottom: 1px solid rgb(175, 175, 175);
       text-align: center;
+      @include respond(555px) {
+        padding-top: 2rem;
+      }
+      @include respond(455px) {
+        padding-top: 1.5rem;
+      }
       & > a {
         @include respond(555px) {
           font-size: 1.4rem;
@@ -81,13 +95,21 @@
     &-main {
       flex-grow: 1;
     }
+    &-video-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      color: #fff;
+    }
   }
   &__hero {
     &-btn {
       background-image: linear-gradient(to right, #1ca346, #6fba1a);
       color: #fff;
       font-size: 2rem;
-      font-weight: 600;
+      font-weight: 400;
       border: 0;
       border-radius: 8px;
       padding: 5px 10px;
@@ -145,6 +167,7 @@
     border: none;
     font-size: 2rem;
     display: flex;
+    align-items: center;
     position: absolute;
     bottom: 5%;
     left: 0px;
@@ -190,6 +213,9 @@
       align-items: center;
       justify-content: center;
       background-color: rgba(28, 163, 70, 13%);
+      &--whatsapp {
+        margin-left: 1.5rem;
+      }
       & svg {
         height: 2.4rem !important;
         width: 2.4rem !important;
@@ -212,6 +238,9 @@
   }
   &__keypoints {
     min-height: 30rem;
+    @include respond(1200px) {
+      min-height: auto;
+    }
     &--left {
       padding-right: 3rem;
       float: left;
@@ -326,5 +355,28 @@
       justify-content: center;
       align-items: center;
     }
+  }
+  &__related-products {
+    &__list {
+      transition: all 0.3s;
+      &:hover {
+        color: red;
+        transform: scale(1.01);
+      }
+    }
+  }
+}
+
+.goto {
+  z-index: 100;
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+  // border: 1px solid #333 !important;
+  background-color: #dcdcdc !important;
+  @include respond(900px) {
+    // bottom: 8rem;
+    // right: 2rem;
+    display: none;
   }
 }

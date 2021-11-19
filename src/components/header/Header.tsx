@@ -18,46 +18,15 @@ type HeaderProps = {
   className?: string;
 };
 
-// const Whatsapp = ({ width }) => {
-//   const notPhone = width > 550;
-//   return (
-//     <a
-//       target="_blank"
-//       href="https://api.whatsapp.com/send?phone=+8801711998626&text=Hello!%20Can%20you%20please%20tell%20me%20more%20about%20your%20services?"
-//     >
-//       <FlexBox
-//         alignItems="center"
-//         border={notPhone && '2px solid #1CA346'}
-//         borderRadius={notPhone ? '1.2rem' : '50%'}
-//       >
-//         <Box
-//           backgroundColor="#1CA346"
-//           px={notPhone ? '1rem' : '.5rem'}
-//           py={notPhone ? '.5rem' : '.5rem'}
-//           borderTopLeftRadius={notPhone && '1rem'}
-//           borderBottomLeftRadius={notPhone && '1rem'}
-//           borderRadius={!notPhone && '50%'}
-//           color="#fff"
-//         >
-//           <Icon className="close" color="inherit" variant="small">
-//             whatsapp
-//           </Icon>
-//         </Box>
-//         {notPhone && <Span px="1rem">01711 998626</Span>}
-//       </FlexBox>
-//     </a>
-//   );
-// };
-
 const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
   const width = useWindowSize();
-  const isTablet = width < 1025;
+  const isTablet = width < 900;
 
   return (
     <StyledHeader className={className}>
       {isTablet && (
         <Box bg="#fff">
-          <FlexBox width="100%" alignItems="center" py=".5em" px="1em">
+          <FlexBox width="100%" alignItems="center" py="1em" px="1em">
             <FlexBox flex="1 1 0" pt=".5em" px="1em">
               <SearchBox isFixed={isFixed} />
             </FlexBox>

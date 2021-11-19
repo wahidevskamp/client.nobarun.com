@@ -23,9 +23,9 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
   const [videoLink, setVideoLink] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
-  console.log('Reviews', reviews);
+  // console.log('Reviews', reviews);
   return (
-    <div id="#reviews">
+    <div>
       <Card
         px={width < 600 ? '1.5em' : '3em'}
         py={width < 600 ? '1.5em' : '4em'}
@@ -84,7 +84,8 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
               )}
             </Card>
           </Modal>
-          {reviews && reviews.length > 0 ? (
+          {/* {reviews && reviews.length > 0 ? ( */}
+          {
             reviews?.splice(0, 5).map((review) => (
               <>
                 <Box p="0.25rem">
@@ -154,27 +155,29 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
                 </Box>
               </>
             ))
-          ) : (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <img
-                src="/assets/images/notfound.png"
-                alt="Featured Image"
-                height="350px"
-                width="100%"
-                style={{
-                  margin: 'auto',
-                  textAlign: 'center',
-                  maxWidth: '500px',
-                }}
-              />
-            </div>
-          )}
+            // )
+            // : (
+            //   // <div
+            //   //   style={{
+            //   //     display: 'flex',
+            //   //     justifyContent: 'center',
+            //   //     alignItems: 'center',
+            //   //   }}
+            //   // >
+            //   //   <img
+            //   //     src="/assets/images/notfound.png"
+            //   //     alt="Featured Image"
+            //   //     height="350px"
+            //   //     width="100%"
+            //   //     style={{
+            //   //       margin: 'auto',
+            //   //       textAlign: 'center',
+            //   //       maxWidth: '500px',
+            //   //     }}
+            //   //   />
+            //   // </div>
+            // )
+          }
           {reviews?.length > 5 && (
             <FlexBox
               mt="3em"

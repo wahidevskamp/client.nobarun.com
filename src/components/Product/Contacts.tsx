@@ -10,12 +10,10 @@ import ProductCard from '@component/product-cards/ProductCard12';
 import Button from '@component/buttons/Button';
 import AddQuery from '@component/Shared/AddQuery';
 
-const Contacts = ({ id, contact }) => {
+const Contacts = ({ id, contact, setIsOpen }) => {
   const day = getDay(new Date());
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <Fragment>
-      <AddQuery id={id} isOpen={isOpen} setIsOpen={setIsOpen} />
       <Card px="1rem" py="1rem" mb="2rem">
         {contact?.companyLogo && (
           <div className="product__contact-logo">
@@ -25,7 +23,7 @@ const Contacts = ({ id, contact }) => {
         {contact?.name && (
           <FlexBox alignItems="center" mb=".8rem">
             <div className="product__contact-icon">
-              <Icon size="1.5rem">profile</Icon>
+              <Icon size="2.4rem">profile</Icon>
             </div>
             <H5 ml="1rem" fontSize="22px">
               {contact?.name}
@@ -39,7 +37,7 @@ const Contacts = ({ id, contact }) => {
           >
             <FlexBox alignItems="center" mb=".8rem">
               <div className="product__contact-icon">
-                <Icon size="1.5rem">call 1</Icon>
+                <Icon size="2.4rem">call 1</Icon>
               </div>
               <Typography ml="1rem" fontSize="22px">
                 {contact?.whatsAppNumber}
@@ -47,8 +45,7 @@ const Contacts = ({ id, contact }) => {
               <Image
                 src="/whatsapp.png"
                 alt="Whatsapp"
-                height="3rem"
-                ml="1.5rem"
+                className="product__contact-icon--whatsapp"
               />
             </FlexBox>
           </a>
@@ -56,7 +53,7 @@ const Contacts = ({ id, contact }) => {
         {contact?.email && (
           <FlexBox alignItems="center" mb=".8rem">
             <div className="product__contact-icon">
-              <Icon size="1.5rem">sms 1</Icon>
+              <Icon size="2.4rem">sms 1</Icon>
             </div>
             <Typography ml="1rem" fontSize="22px">
               {contact?.email}
@@ -66,7 +63,7 @@ const Contacts = ({ id, contact }) => {
         {contact?.address && (
           <FlexBox alignItems="center" mb=".8rem">
             <div className="product__contact-icon product__contact-icon-location">
-              <Icon size="1.8rem">location 1</Icon>
+              <Icon size="2.4rem">location 1</Icon>
             </div>
             <Paragraph
               ml="1.2rem"
@@ -85,7 +82,7 @@ const Contacts = ({ id, contact }) => {
             setIsOpen(true);
           }}
         >
-          <Icon mr="1.5rem" size="22px">
+          <Icon mr="1.5rem" size="1.8rem">
             plus-circles
           </Icon>
           Get a Quote

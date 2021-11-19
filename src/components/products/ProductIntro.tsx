@@ -82,9 +82,13 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           cursor="pointer"
           border="1px solid"
           borderColor={selectedImage === ind ? 'primary.main' : 'gray.400'}
+          position="relative"
           onClick={handleImageClick(url, 'video')}
         >
-          <Avatar src={url} borderRadius="10px" size={40} />
+          <Icon size="3rem" className="product__intro-video-icon">
+            play-solid
+          </Icon>
+          <Avatar src={url} borderRadius="10px" size={65} />
         </Box>
       </Grid>
     ))
@@ -120,6 +124,8 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
         px="15px"
         py="5px"
       >
+        <H1 fontSize={width > 660 ? '32px' : '24px'}>{data?.productName}</H1>
+
         <FlexBox
           justifyContent="space-between"
           flexDirection={width > 1150 ? 'row' : 'column'}
@@ -127,9 +133,6 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           mb="1.1em"
         >
           <Box>
-            <H1 fontSize={width > 660 ? '32px' : '24px'}>
-              {data?.productName}
-            </H1>
             <Typography fontSize="18px" lineHeight="1">
               Product Code: {data?.productCode}
             </Typography>

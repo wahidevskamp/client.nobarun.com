@@ -57,7 +57,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
             {off}% off
           </Chip>
         )}
-        <Link href={`/product/${id}`}>
+        <Link href={`/${id}`}>
           <a>
             <img src={imgUrl} alt={title} />
           </a>
@@ -66,7 +66,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
       <div className="details">
         <FlexBox>
           <Box flex="1 1 0" minWidth="0px" mr="0.5rem">
-            <Link href={`/product/${id}`}>
+            <Link href={`/${id}`}>
               <a>
                 <FlexBox alignItems="center">
                   <Image
@@ -75,7 +75,6 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
                     width="30px"
                     mr=".3rem"
                     display="block"
-                    borderRadius="50%"
                   />
                   <SemiSpan
                     className="title"
@@ -87,7 +86,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
                 </FlexBox>
               </a>
             </Link>
-            <Link href={`/product/${id}`}>
+            <Link href={`/${id}`}>
               <a>
                 <H3
                   className="title"
@@ -127,7 +126,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
               Get a Quote
             </Button>
             <FlexBox justifyContent="space-around" alignItems="center">
-              <Link href={`/product/${id}`}>
+              <Link href={`/${id}`}>
                 <a>
                   <H3
                     className="title"
@@ -151,7 +150,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
                   backgroundColor: '#eee',
                 }}
               />
-              <Link href={`/product/${id}`}>
+              <Link href={`/${id}`}>
                 <a>
                   <H3
                     className="title"
@@ -179,7 +178,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
 ProductCard1.defaultProps = {
   id: '324321',
   title: 'KSUS ROG Strix G15',
-  imgUrl: '/assets/images/products/macbook.png',
+  imgUrl: '/assets/images//macbook.png',
   off: 50,
   price: 450,
   rating: 0,

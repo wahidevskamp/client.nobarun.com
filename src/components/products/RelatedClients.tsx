@@ -11,16 +11,12 @@ import Carousel from '@component/carousel/Carousel';
 interface ClientProps {
   slides?: number;
   isProductDetails?: boolean;
+  clients: any;
 }
-const RelatedClients: React.FC<ClientProps> = ({}) => {
-  const [clients, setClients] = useState([]);
+const RelatedClients: React.FC<ClientProps> = (props) => {
+  const { clients } = props;
   const width = useWindowSize();
   const slices = width > 1700 ? 7 : width > 800 ? 6 : width > 650 ? 5 : 4;
-  useEffect(() => {
-    useAllFeaturedClients().then((data) => {
-      setClients(data);
-    });
-  }, []);
 
   return (
     <Box pt="1em" mb="2rem">
@@ -39,13 +35,13 @@ const RelatedClients: React.FC<ClientProps> = ({}) => {
       <Container pb="1rem">
         <Box mb="-0.25rem">
           <Carousel
-            totalSlides={clients.length}
+            totalSlides={clients?.length}
             visibleSlides={slices}
-            autoPlay={clients.length + 1 > slices}
-            infinite={clients.length + 1 > slices}
+            autoPlay={clients?.length + 1 > slices}
+            infinite={clients?.length + 1 > slices}
             showArrow={false}
           >
-            {clients.map((item, ind) => (
+            {clients?.map((item, ind) => (
               <Box key={ind} className="client client_related">
                 <HoverBox borderRadius={5} className="client__body">
                   <img src={item.imgUrl} className="client__image" />

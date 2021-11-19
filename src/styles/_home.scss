@@ -47,12 +47,11 @@
   &__title {
     background-image: linear-gradient(to right, #1ca346, #6fba1a);
     padding: 5px 0;
-    // width: 97.5%;
     color: #fff;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     text-align: center;
-    @include respond(400px) {
+    @include respond(500px) {
       font-size: 1.15rem !important;
     }
     @include respond(270px) {
