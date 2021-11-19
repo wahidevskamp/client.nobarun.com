@@ -4,8 +4,8 @@ import Icon from '../icon/Icon';
 import StyledMobileNavigationBar from './MobileNavigationBar.style';
 
 interface MobileNavigationBarProps {
-  phone: string;
-  setIsOpen: any;
+  phone?: string;
+  setIsOpen?: any;
 }
 const MobileNavigationBar: React.FC<MobileNavigationBarProps> = (props) => {
   const { phone, setIsOpen } = props;
