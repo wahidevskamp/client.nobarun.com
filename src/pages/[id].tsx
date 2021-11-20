@@ -66,12 +66,12 @@ const ProductDetails = ({ product, reviews, isError }) => {
         phone={product?.contact?.whatsAppNumber}
         setIsOpen={setIsOpen}
       />
-      {/* <DesktopStickyBar
+      <DesktopStickyBar
         product={product}
         active={active}
         setIsOpen={setIsOpen}
         reviewLength={reviews.length}
-      /> */}
+      />
       <MobileStickyBar
         product={product}
         active={active}
