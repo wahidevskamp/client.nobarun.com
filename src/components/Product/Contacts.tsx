@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import getDay from 'date-fns/getDay';
+import { getDay, getHours } from 'date-fns';
 
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
@@ -11,7 +11,10 @@ import Button from '@component/buttons/Button';
 import AddQuery from '@component/Shared/AddQuery';
 
 const Contacts = ({ id, contact, setIsOpen }) => {
-  const day = getDay(new Date());
+  const currentDate = new Date();
+  const day = getDay(currentDate);
+  const hours = getHours(currentDate);
+  console.log(hours);
   return (
     <Fragment>
       <Card px="1rem" py="1rem" mb="2rem">
@@ -90,7 +93,13 @@ const Contacts = ({ id, contact, setIsOpen }) => {
       </Card>
       {contact?.maps && (
         <ProductCard
-          title={day === 1 ? 'Today Closed' : 'Today Open 09:00 am - 07:00 pm'}
+          title={
+            day === 1
+              ? 'Today Closed'
+              : hours <= 9 || hours > 19
+              ? 'Today Closed'
+              : 'Today Open 09:00 am - 07:00 pm'
+          }
         >
           <iframe
             src={contact?.maps}

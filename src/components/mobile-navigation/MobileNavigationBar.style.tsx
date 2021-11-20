@@ -8,13 +8,13 @@ const StyledMobileNavigationBar = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 40px;
+  height: 45px;
   justify-content: space-around;
   align-items: flex-start;
   background: ${getTheme('colors.body.paper')};
   box-shadow: 0px 1px 4px 3px rgba(0, 0, 0, 0.1);
   z-index: 999;
-  padding: 0 2rem;
+  padding: 7px 2rem 0;
 
   .link {
     flex: 1 1 0;
@@ -38,11 +38,11 @@ const StyledMobileNavigationBar = styled.div`
     padding: 0.5rem;
     /* height: 60%; */
     flex-grow: 1;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 600;
     border: none;
     color: #fff;
-    border-radius: 10px;
+    border-radius: 1rem;
     &.whatsapp {
       background-color: #40c351;
     }
@@ -61,7 +61,7 @@ const StyledMobileNavigationBar = styled.div`
   }
 
   @media only screen and (max-width: 600px) {
-    button {
+    a {
       padding: 5px;
       &:not(:last-of-type) {
         margin-right: 0.5rem;
@@ -73,7 +73,7 @@ const StyledMobileNavigationBar = styled.div`
     }
   }
   @media only screen and (max-width: 420px) {
-    button {
+    a {
       font-size: 1.2rem;
     }
   }

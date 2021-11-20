@@ -15,7 +15,7 @@ const Collapsible = styled.div`
     padding: 1rem 2rem;
     border-radius: 7px 7px 0 0;
     background: #ffffff;
-    font-size: 22px;
+    font-size: 2.2rem;
     color: #1c1d3e;
     text-transform: capitalize;
     display: inline-block;
@@ -73,10 +73,25 @@ const Collapsible = styled.div`
     transition: height ease 0.3s;
   }
   .content {
-    padding: 20px 40px 20px 20px;
-    font-size: 14px;
+    /* padding: 20px 40px 20px 20px; */
+    padding: 1rem 4rem 1rem 2rem;
+    font-size: 2.2rem !important;
     background-color: #fff;
     border-radius: 0 0 7px 7px;
+    & p {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .toggle {
+      font-size: 1.4rem !important;
+      padding-right: 4rem;
+    }
+    .content {
+      padding: 0.5rem 2rem 0.5rem 1rem;
+      font-size: 1.4rem !important;
+    }
   }
 `;
 

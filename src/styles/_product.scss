@@ -62,7 +62,7 @@
       @include respond(455px) {
         padding-top: 1.5rem;
       }
-      & > a {
+      & a {
         @include respond(555px) {
           font-size: 1.4rem;
           padding: 5px 1rem;
@@ -74,7 +74,7 @@
           font-size: 1.15rem;
         }
       }
-      & > a:last-child {
+      & a:last-child {
         @include respond(700px) {
           display: none;
         }
@@ -109,6 +109,7 @@
   }
   &__hero {
     &-btn {
+      align-self: baseline;
       background-image: linear-gradient(to right, #1ca346, #6fba1a);
       color: #fff;
       font-size: 2rem;

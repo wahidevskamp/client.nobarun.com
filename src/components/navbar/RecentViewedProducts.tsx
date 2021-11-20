@@ -6,6 +6,7 @@ import HoverBox from '@component/HoverBox';
 import { H4 } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
+import FlexBox from '@component/FlexBox';
 
 const RecentViewedProducts: React.FC = () => {
   const [visibleSlides, setVisibleSlides] = useState(6);
@@ -24,31 +25,40 @@ const RecentViewedProducts: React.FC = () => {
   }, [width]);
 
   return (
-    <Box py=".5rem" px="1.5rem">
-      <Carousel totalSlides={9} visibleSlides={visibleSlides}>
-        {products?.map((product) => (
-          <Box py="0.25rem" key={product.id}>
-            <Card p="1rem">
-              <Link href={`/product/${product.id}`}>
-                <a>
-                  <HoverBox borderRadius={8} mb="0.5rem">
-                    <img
-                      src={product.image}
-                      width="100%"
-                      height="auto"
-                      alt={product.title}
-                    />
-                  </HoverBox>
-                  <H4 fontWeight="600" fontSize="14px" mb="0.25rem">
-                    {product.title}
-                  </H4>
-                </a>
-              </Link>
-            </Card>
-          </Box>
-        ))}
-      </Carousel>
-    </Box>
+    <FlexBox
+      py=".5rem"
+      px="1.5rem"
+      minHeight="20rem"
+      // justifyContent="space-between"
+    >
+      {products ? (
+        <Carousel totalSlides={9} visibleSlides={visibleSlides}>
+          {products?.map((product) => (
+            <Box py="0.25rem" key={product.id}>
+              <Card p="1rem">
+                <Link href={`/product/${product.id}`}>
+                  <a>
+                    <HoverBox borderRadius={8} mb="0.5rem">
+                      <img
+                        src={product.image}
+                        width="100%"
+                        height="auto"
+                        alt={product.title}
+                      />
+                    </HoverBox>
+                    <H4 fontWeight="600" fontSize="14px" mb="0.25rem">
+                      {product.title}
+                    </H4>
+                  </a>
+                </Link>
+              </Card>
+            </Box>
+          ))}
+        </Carousel>
+      ) : (
+        'No Products Recently Viewed'
+      )}
+    </FlexBox>
     // </CategorySectionCreator>
   );
 };

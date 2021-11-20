@@ -1,5 +1,6 @@
 import FlexBox from '@component/FlexBox';
 import Sticky from '@component/sticky/Sticky';
+import useWindowSize from '@hook/useWindowSize';
 import React from 'react';
 import Scrollspy from 'react-scrollspy';
 
@@ -11,10 +12,12 @@ interface MobileStickyBarProps {
 }
 const MobileStickyBar = (props: MobileStickyBarProps) => {
   const { active, product, setIsOpen, reviewLength } = props;
+  const width = useWindowSize();
+  const isTablet = width < 900;
   return (
     <Sticky fixedOn={0}>
       <div>
-        {active && (
+        {active && isTablet && (
           <FlexBox className="product__sticky-tab">
             <Scrollspy
               items={['details', 'keypoints', 'questions', 'reviews']}

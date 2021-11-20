@@ -27,6 +27,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
   const [isVideo, setIsVideo] = useState(false);
 
   const width = useWindowSize();
+  const isPhone = width < 660;
   useEffect(() => {
     setSelectedImage(data?.images[0]);
     setIsLoading(false);
@@ -97,6 +98,16 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
       &nbsp;
     </Grid>
   );
+
+  const banglaVersionHTML = (
+    <a
+      href={data?.banglaVersionLink}
+      className="product__hero-btn"
+      target="_blank"
+    >
+      বাংলা ব্লগ পড়ুন
+    </a>
+  );
   return (
     <Card position="relative">
       <Box
@@ -128,21 +139,51 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
 
         <FlexBox
           justifyContent="space-between"
-          flexDirection={width > 1150 ? 'row' : 'column'}
-          alignItems={width > 1150 ? 'center' : 'flex-start'}
-          flexWrap="nowrap"
+          // flexDirection="row"
+          // flexDirection={width > 1150 ? 'row' : 'column'}
+          // alignItems={width > 1150 ? 'center' : 'flex-start'}
+          // flexWrap="nowrap"
           mb="1.1em"
         >
-          <Box>
-            <Typography fontSize="18px" lineHeight="1" mb="0.7rem">
-              Product Code: {data?.productCode}
-            </Typography>
+          <Box width={isPhone ? '100%' : ''}>
+            {!isPhone && (
+              <Typography fontSize="18px" lineHeight="1" mb="0.7rem">
+                Product Code: {data?.productCode}
+              </Typography>
+            )}
             <FlexBox
               flexDirection={width > 660 ? 'row' : 'column'}
               alignItems={width > 660 ? 'center' : 'flex-start'}
               flexWrap="nowrap"
             >
-              {data?.price ? (
+              {isPhone && (
+                <FlexBox
+                  alignItems="center"
+                  justifyContent="space-between"
+                  width="100%"
+                >
+                  <Box>
+                    <Typography fontSize="18px" lineHeight="1">
+                      Product Code: {data?.productCode}
+                    </Typography>
+                    {data?.price ? (
+                      <H4
+                        mr={data?.price ? '1em' : '0'}
+                        color="#EC1C24"
+                        fontSize="20px"
+                        fontWeight="600"
+                      >
+                        Price: {data?.price} Taka
+                      </H4>
+                    ) : (
+                      ''
+                    )}
+                  </Box>
+                  {isPhone && banglaVersionHTML}
+                </FlexBox>
+              )}
+
+              {!isPhone && data?.price ? (
                 <H4
                   mr={data?.price ? '1em' : '0'}
                   color="#EC1C24"
@@ -174,13 +215,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
               </FlexBox>
             </FlexBox>
           </Box>
-          <a
-            href={data?.banglaVersionLink}
-            className="product__hero-btn"
-            target="_blank"
-          >
-            বাংলা ব্লগ পড়ুন
-          </a>
+          {!isPhone && banglaVersionHTML}
         </FlexBox>
         <FlexBox flexDirection={width > 900 ? 'row' : 'column'}>
           <FlexBox justifyContent="center" className="product__intro-main">
