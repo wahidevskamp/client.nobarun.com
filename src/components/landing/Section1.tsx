@@ -42,11 +42,6 @@ const Section1: React.FC = () => {
             eCommerce template.
           </Paragraph>
           <FlexBox justifyContent="center" m="-0.5rem">
-            {/* <a
-              href="https://themeforest.net/item/bonik-react-ecommerce-template/31837448?ref=bonik"
-              target="_blank"
-              rel="noreferrer noopener"
-            > */}
             <a href="https://1.envato.market/oeNbNe">
               <Button variant="contained" color="primary" m="0.5rem">
                 Purchase Now

@@ -86,7 +86,7 @@ const Header: React.FC = () => {
       if (window?.pageYOffset >= headerHeight) setFixed(true);
       else setFixed(false);
     }, 50),
-    []
+    [],
   );
 
   useEffect(() => {
@@ -175,11 +175,6 @@ const Header: React.FC = () => {
                 Pricing
               </Typography>
             </Scroll>
-            {/* <a
-              href="https://themeforest.net/item/bonik-react-ecommerce-template/31837448?ref=bonik"
-              target="_blank"
-              rel="noreferrer noopener"
-            > */}
             <a href="https://1.envato.market/oeNbNe">
               <Button variant="outlined" color="primary">
                 Purchase Now
@@ -258,12 +253,6 @@ const Header: React.FC = () => {
                   Pricing
                 </Typography>
               </Scroll>
-
-              {/* <a
-                href="https://themeforest.net/item/bonik-react-ecommerce-template/31837448?ref=bonik"
-                target="_blank"
-                rel="noreferrer noopener"
-              > */}
               <Button variant="outlined" color="primary">
                 Purchase Now
               </Button>

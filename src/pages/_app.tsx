@@ -24,21 +24,10 @@ const App = ({ Component, pageProps }: any) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta
-          property="og:url"
-          content="https://bonik-react.vercel.app/landing"
-        />
+        <meta property="og:url" content="/cover.jpeg" />
         {/* thumbnail And title for social media */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Nobarun International" />
-        {/* <meta
-          property="og:description"
-          content="Minimal, clean and Fast Next js ecommerce template. Build Super store, Grocery delivery app, Multivendor store and niche market"
-        /> */}
-        {/* <meta
-          property="og:image"
-          content="/assets/images/landing/preview.png"
-        /> */}
 
         {/* Google analytics */}
         <script
