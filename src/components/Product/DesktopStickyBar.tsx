@@ -20,7 +20,7 @@ const DesktopStickyBar = (props: DesktopStickyBarProps) => {
   const isTablet = width < 900;
   return (
     <>
-      {isTablet && (
+      {!isTablet && (
         <Box
           className={`product__sticky ${
             active ? 'product__sticky--active' : ''
