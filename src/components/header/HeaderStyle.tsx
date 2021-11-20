@@ -5,7 +5,8 @@ import { getTheme } from '../../utils/utils';
 const StyledHeader = styled.header`
   position: relative;
   z-index: 1;
-  height: 7.3rem;
+  /* padding: 1rem 0; */
+  height: 7rem;
   background: ${getTheme('colors.body.paper')};
 
   .logo {

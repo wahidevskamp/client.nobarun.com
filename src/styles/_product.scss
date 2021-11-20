@@ -8,6 +8,9 @@
     width: 100%;
     padding: 0.5rem 0;
     z-index: 10000;
+    box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 40%) !important;
+    -webkit-box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 40%) !important;
+    -moz-box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 40%) !important;
     &--active {
       display: block;
       @include respond(900px) {
@@ -23,7 +26,7 @@
       outline: none;
       border: none;
       font-size: 1.6rem;
-      padding: 7px 1rem;
+      padding: 4px 1rem;
       margin-left: 0.5rem;
       @include respond(1300px) {
         padding: 7px 0.5rem;
@@ -38,8 +41,8 @@
       }
     }
     &-image {
-      height: 80px;
-      width: 80px;
+      height: 50px;
+      width: 50px;
       margin-right: 1rem;
     }
     @include respond(900px) {
@@ -168,6 +171,7 @@
     font-size: 2rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     position: absolute;
     bottom: 5%;
     left: 0px;
@@ -359,6 +363,7 @@
   &__related-products {
     &__list {
       transition: all 0.3s;
+      font-size: 2.2rem;
       &:hover {
         color: red;
         transform: scale(1.01);

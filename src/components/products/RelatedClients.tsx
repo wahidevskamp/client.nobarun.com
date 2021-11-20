@@ -16,7 +16,7 @@ interface ClientProps {
 const RelatedClients: React.FC<ClientProps> = (props) => {
   const { clients } = props;
   const width = useWindowSize();
-  const slices = width > 1700 ? 7 : width > 800 ? 6 : width > 650 ? 5 : 4;
+  const slices = width > 1500 ? 7 : width > 800 ? 6 : width > 650 ? 5 : 4;
 
   return (
     <Box pt="1em" mb="2rem">

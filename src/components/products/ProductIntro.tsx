@@ -130,10 +130,11 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           justifyContent="space-between"
           flexDirection={width > 1150 ? 'row' : 'column'}
           alignItems={width > 1150 ? 'center' : 'flex-start'}
+          flexWrap="nowrap"
           mb="1.1em"
         >
           <Box>
-            <Typography fontSize="18px" lineHeight="1">
+            <Typography fontSize="18px" lineHeight="1" mb="0.7rem">
               Product Code: {data?.productCode}
             </Typography>
             <FlexBox
@@ -141,14 +142,18 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
               alignItems={width > 660 ? 'center' : 'flex-start'}
               flexWrap="nowrap"
             >
-              <H4
-                mr={data?.price ? '1em' : '0'}
-                color="#EC1C24"
-                fontSize="20px"
-                fontWeight="600"
-              >
-                {data?.price && `Price: ${data?.price} Taka`}
-              </H4>
+              {data?.price ? (
+                <H4
+                  mr={data?.price ? '1em' : '0'}
+                  color="#EC1C24"
+                  fontSize="20px"
+                  fontWeight="600"
+                >
+                  Price: {data?.price} Taka
+                </H4>
+              ) : (
+                ''
+              )}
               <FlexBox>
                 <Rating
                   outof={5}
@@ -231,7 +236,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
         </Grid> */}
         </FlexBox>
         <button className="product__share-btn">
-          <Icon size="18px" mr="1em">
+          <Icon size="1.78rem" mr="1rem">
             share-solid
           </Icon>
           <Typography fontSize="20px" fontWeight="400">

@@ -27,6 +27,7 @@
     "react-dropzone": "^11.2.4",
     "react-paginate": "^7.0.0",
     "react-scroll": "^1.8.2",
+    "react-scrollspy": "^3.4.3",
     "react-select": "^3.1.1",
     "react-svg": "^11.2.1",
     "styled-components": "^5.2.1",

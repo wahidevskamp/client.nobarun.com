@@ -58,59 +58,7 @@ const ProductLayout: React.FC<Props> = ({
           </Link>
         </FlexBox>
       )}
-      <Sticky fixedOn={0}>
-        <div>
-          <Header />
-          {active && (
-            <FlexBox className="product__sticky-tab">
-              <a
-                href="#details"
-                onClick={(e) => setSection('#details')}
-                className={`product__sticky-btn ${
-                  section === '#details' ? 'product__sticky-btn--active' : ''
-                }`}
-              >
-                Details
-              </a>
-
-              <a
-                href="#keypoints"
-                onClick={(e) => setSection('#keypoints')}
-                className={`product__sticky-btn ${
-                  section === '#keypoints' ? 'product__sticky-btn--active' : ''
-                }`}
-              >
-                Key Points of Product
-              </a>
-              <a
-                href="#questions"
-                onClick={(e) => setSection('#questions')}
-                className={`product__sticky-btn ${
-                  section === '#questions' ? 'product__sticky-btn--active' : ''
-                }`}
-              >
-                Question & Answers
-              </a>
-              <a
-                href="#reviews"
-                onClick={(e) => setSection('#reviews')}
-                className={`product__sticky-btn ${
-                  section === '#reviews' ? 'product__sticky-btn--active' : ''
-                }`}
-              >
-                Reviews
-              </a>
-              <a
-                href="#addQuote"
-                className="product__sticky-btn"
-                style={{ background: '#ec1c24', color: '#fff' }}
-              >
-                Get a Quote
-              </a>
-            </FlexBox>
-          )}
-        </div>
-      </Sticky>
+      <Header />
       {navbar && <div className="section-after-sticky">{navbar}</div>}
       {!navbar ? (
         <div className="section-after-sticky">{children}</div>
