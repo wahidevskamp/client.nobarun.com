@@ -17,12 +17,8 @@ import AddReview from '@component/Product/AddReview';
 import Questions from '@component/Product/Questions';
 import useWindowSize from '@hook/useWindowSize';
 import useProductById from '@hook/Product/useProductById';
-import FlexBox from '@component/FlexBox';
 import Box from '@component/Box';
-import Rating from '@component/rating/Rating';
-import Typography, { H1, Span } from '@component/Typography';
 import RelatedClients from '@component/products/RelatedClients';
-import Container from '@component/Container';
 import { GetServerSideProps } from 'next';
 import AddQuery from '@component/Shared/AddQuery';
 import MobileNavigationBar from '@component/mobile-navigation/MobileNavigationBar';
@@ -30,6 +26,7 @@ import GoToTop from '@component/goToTop/GoToTop';
 import DesktopStickyBar from '@component/Product/DesktopStickyBar';
 import ProductHead from '@component/Product/ProductHead';
 import MobileStickyBar from '@component/Product/MobileStickyBar';
+import RelatedReview from '@component/Product/RelatedReview';
 
 const ProductDetails = ({ product, reviews, isError }) => {
   const router = useRouter();
@@ -152,9 +149,10 @@ const ProductDetails = ({ product, reviews, isError }) => {
         <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="reviews">
-              <Review
+              {/* <Review
                 reviews={reviews.length > 0 ? reviews : product?.reviews}
-              />
+              /> */}
+              <RelatedReview reviews={reviews} />
             </section>
             <section id="addQuote">
               <AddReview />
@@ -162,9 +160,7 @@ const ProductDetails = ({ product, reviews, isError }) => {
           </Box>
         </Grid>
         <Grid item lg={width > 1600 ? 3 : 4} xs={width > 900 ? 4 : 12}>
-          {product?.reviews && product?.reviews.length > 0 && (
-            <CustomerMedia reviews={product?.reviews} />
-          )}
+          {reviews && reviews.length > 0 && <CustomerMedia reviews={reviews} />}
         </Grid>
       </Grid>
     </Fragment>
@@ -175,25 +171,26 @@ ProductDetails.layout = NavbarLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const pid = context.params.id;
-  // try {
-  const data = await useProductById(pid);
-  // console.log(data.reviews);
-  return {
-    props: {
-      product: data,
-      reviews: [...data.reviews],
-      isError: false,
-    },
-  };
-  // }
-  //  catch (err) {
-  //   return {
-  //     props: {
-  //       product: err,
-  //       isError: true,
-  //     },
-  //   };
-  // }
+  try {
+    //! We have to debug furthermore
+    const data = await useProductById(pid);
+    // console.log(data.reviews);
+    // sessionStorage.setItem('reviews', data.reviews);
+    return {
+      props: {
+        product: data,
+        reviews: data.reviews,
+        isError: false,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        product: err,
+        isError: true,
+      },
+    };
+  }
 };
 
 export default ProductDetails;

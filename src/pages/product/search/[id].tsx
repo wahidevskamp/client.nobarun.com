@@ -1,22 +1,22 @@
-import Box from "@component/Box";
-import IconButton from "@component/buttons/IconButton";
-import Card from "@component/Card";
-import FlexBox from "@component/FlexBox";
-import Grid from "@component/grid/Grid";
-import Hidden from "@component/hidden/Hidden";
-import Icon from "@component/icon/Icon";
-import NavbarLayout from "@component/layout/NavbarLayout";
-import ProductCard1List from "@component/products/ProductCard1List";
-import ProductCard9List from "@component/products/ProductCard9List";
-import ProductFilterCard from "@component/products/ProductFilterCard";
-import Select from "@component/Select";
-import Sidenav from "@component/sidenav/Sidenav";
-import { H5, Paragraph } from "@component/Typography";
-import React, { useCallback, useState } from "react";
-import useWindowSize from "../../../hooks/useWindowSize";
+import Box from '@component/Box';
+import IconButton from '@component/buttons/IconButton';
+import Card from '@component/Card';
+import FlexBox from '@component/FlexBox';
+import Grid from '@component/grid/Grid';
+import Hidden from '@component/hidden/Hidden';
+import Icon from '@component/icon/Icon';
+import NavbarLayout from '@component/layout/NavbarLayout';
+import ProductCard1List from '@component/products/ProductCard1List';
+import ProductCard9List from '@component/products/ProductCard9List';
+import ProductFilterCard from '@component/products/ProductFilterCard';
+import Select from '@component/Select';
+import Sidenav from '@component/sidenav/Sidenav';
+import { H5, Paragraph } from '@component/Typography';
+import React, { useCallback, useState } from 'react';
+import useWindowSize from '../../../hooks/useWindowSize';
 
 const ProductSearchResult = () => {
-  const [view, setView] = useState("grid");
+  const [view, setView] = useState('grid');
   const width = useWindowSize();
   const isTablet = width < 1025;
 
@@ -24,7 +24,7 @@ const ProductSearchResult = () => {
     (v) => () => {
       setView(v);
     },
-    []
+    [],
   );
 
   return (
@@ -57,20 +57,20 @@ const ProductSearchResult = () => {
           <Paragraph color="text.muted" mr="0.5rem">
             View:
           </Paragraph>
-          <IconButton size="small" onClick={toggleView("grid")}>
+          <IconButton size="small" onClick={toggleView('grid')}>
             <Icon
               variant="small"
               defaultcolor="auto"
-              color={view === "grid" ? "primary" : "inherit"}
+              color={view === 'grid' ? 'primary' : 'inherit'}
             >
               grid
             </Icon>
           </IconButton>
-          <IconButton size="small" onClick={toggleView("list")}>
+          <IconButton size="small" onClick={toggleView('list')}>
             <Icon
               variant="small"
               defaultcolor="auto"
-              color={view === "list" ? "primary" : "inherit"}
+              color={view === 'list' ? 'primary' : 'inherit'}
             >
               menu
             </Icon>
@@ -98,7 +98,8 @@ const ProductSearchResult = () => {
         </Hidden>
 
         <Grid item lg={9} xs={12}>
-          {view === "grid" ? <ProductCard1List /> : <ProductCard9List />}
+          {/* {view === "grid" ?
+           <ProductCard1List /> : <ProductCard9List />} */}
         </Grid>
       </Grid>
     </Box>
@@ -106,10 +107,10 @@ const ProductSearchResult = () => {
 };
 
 const sortOptions = [
-  { label: "Relevance", value: "Relevance" },
-  { label: "Date", value: "Date" },
-  { label: "Price Low to High", value: "Price Low to High" },
-  { label: "Price High to Low", value: "Price High to Low" },
+  { label: 'Relevance', value: 'Relevance' },
+  { label: 'Date', value: 'Date' },
+  { label: 'Price Low to High', value: 'Price Low to High' },
+  { label: 'Price High to Low', value: 'Price High to Low' },
 ];
 
 ProductSearchResult.layout = NavbarLayout;

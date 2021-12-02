@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { getTheme } from "utils/utils";
+import styled from 'styled-components';
+import { getTheme } from 'utils/utils';
 
 interface StyledStickyProps {
   fixedOn: number;
@@ -9,20 +9,19 @@ interface StyledStickyProps {
 }
 
 const StyledSticky = styled.div<StyledStickyProps>`
-  position: ${(props) => (props.fixed ? "fixed" : "relative")};
+  position: ${(props) => (props.fixed ? 'fixed' : 'relative')};
   top: ${(props) => props.fixedOn}px;
   right: 0;
   left: 0;
 
-  // box-shadow: ${(props) =>
-    props.fixed ? getTheme("shadows.small") : "unset"};
+  box-shadow: ${(props) => (props.fixed ? getTheme('shadows.small') : 'unset')};
 
   transition: all 250ms ease-in-out;
-  z-index: 99;
+  z-index: 111;
 
   & + .section-after-sticky {
     padding-top: ${(props) =>
-      props.fixed ? `${props.componentHeight}px` : "inherit"};
+      props.fixed ? `${props.componentHeight}px` : 'inherit'};
   }
 `;
 

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import Accordion from '../accordion/Accordion';
 import AccordionHeader from '../accordion/AccordionHeader';
@@ -6,14 +7,21 @@ import CheckBox from '../CheckBox';
 import Divider from '../Divider';
 import { H6, Paragraph, SemiSpan } from '../Typography';
 
-const CategoryFilterCard = () => {
+const CategoryFilterCard = ({
+  slug,
+  categoryName,
+  stockStatus,
+  categories,
+  filters,
+  setFilters,
+}) => {
   return (
     <Card p="18px 27px" elevation={5}>
       <H6 mb="10px">Categories</H6>
 
-      {categroyList.map((item) =>
-        item.subCategories ? (
-          <Accordion key={item.title} expanded>
+      {categories?.map((item) =>
+        item?.children.length > 0 ? (
+          <Accordion key={item?.name} expanded>
             <AccordionHeader
               px="0px"
               py="6px"
@@ -21,10 +29,10 @@ const CategoryFilterCard = () => {
               // justifyContent="flex-start"
             >
               <SemiSpan className="cursor-pointer" mr="9px">
-                {item.title}
+                {item?.name}
               </SemiSpan>
             </AccordionHeader>
-            {item.subCategories.map((name) => (
+            {item?.children?.map((name) => (
               <Paragraph
                 className="cursor-pointer"
                 fontSize="14px"
@@ -38,34 +46,54 @@ const CategoryFilterCard = () => {
             ))}
           </Accordion>
         ) : (
-          <Paragraph
-            className="cursor-pointer"
-            fontSize="14px"
-            color="text.muted"
-            py="6px"
-            key={item.title}
-          >
-            {item.title}
-          </Paragraph>
+          <Link href={`/product/category/${item.slug}`}>
+            <a>
+              <Paragraph
+                className="cursor-pointer"
+                fontSize="14px"
+                color={slug === item?.slug ? 'red' : 'text.muted'}
+                py="6px"
+                key={item?.name}
+              >
+                {item?.name}
+              </Paragraph>
+            </a>
+          </Link>
         ),
       )}
 
       <Divider my="24px" />
 
       <H6 mb="16px">Stock Status</H6>
-      {otherOptions.map((item) => (
-        <CheckBox
-          key={item}
-          name={item}
-          value={item}
-          color="secondary"
-          label={<SemiSpan color="inherit">{item}</SemiSpan>}
-          my="10px"
-          onChange={(e) => {
-            console.log(e.target.value, e.target.checked);
-          }}
-        />
-      ))}
+      {stockStatus?.map(
+        (item) =>
+          item.isPublished && (
+            <CheckBox
+              key={item.title}
+              name={item.title}
+              value={item.title}
+              color="secondary"
+              label={<SemiSpan color="inherit">{item.title}</SemiSpan>}
+              my="10px"
+              onChange={(e) => {
+                // console.log(e.target.value, e.target.checked);
+                if (e.target.checked) {
+                  const newFilters = [...filters, item.title];
+                  setFilters(newFilters);
+                } else {
+                  const index = filters.findIndex(
+                    (filter) => filter === item.title,
+                  );
+                  const newFilters = [...filters];
+                  if (index !== -1) {
+                    newFilters.splice(index, 1);
+                    setFilters(newFilters);
+                  }
+                }
+              }}
+            />
+          ),
+      )}
     </Card>
   );
 };
@@ -73,7 +101,7 @@ const CategoryFilterCard = () => {
 const categroyList = [
   {
     title: 'Bath Preparations',
-    subCategories: ['Bubble Bath', 'Bath Capsules', 'Others'],
+    children: ['Bubble Bath', 'Bath Capsules', 'Others'],
   },
   {
     title: 'Eye Makeup Preparations',

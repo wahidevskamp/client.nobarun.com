@@ -10,13 +10,19 @@ const ProductSearchResult = () => {
 
   return (
     <Box p="20px" mb="70px">
-      <H1 textAlign="center" mt={isTablet ? '35px' : ''} mb={30}>
+      <H1
+        textAlign="center"
+        mt={isTablet ? '35px' : ''}
+        mb={30}
+        fontSize="4rem"
+      >
         About us
       </H1>
       <Paragraph
-        mb={20}
-        fontSize="15px"
-        lineHeight="1.4rem"
+        mb="4rem"
+        fontSize="2.5rem"
+        lineHeight="3.5rem"
+        textAlign="justify"
         fontWeight="500"
         color="#7D879C"
       >
@@ -31,9 +37,10 @@ const ProductSearchResult = () => {
         minds of entrepreneurs.
       </Paragraph>
       <Paragraph
-        mb={20}
-        fontSize="15px"
-        lineHeight="1.4rem"
+        mb="4rem"
+        fontSize="2.5rem"
+        lineHeight="3.5rem"
+        textAlign="justify"
         fontWeight="500"
         color="#7D879C"
       >
@@ -45,9 +52,10 @@ const ProductSearchResult = () => {
         the equipment with a hassle-free experience.
       </Paragraph>
       <Paragraph
-        mb={20}
-        fontSize="15px"
-        lineHeight="1.4rem"
+        mb="4rem"
+        fontSize="2.5rem"
+        lineHeight="3.5rem"
+        textAlign="justify"
         fontWeight="500"
         color="#7D879C"
       >
@@ -61,9 +69,10 @@ const ProductSearchResult = () => {
         accidents and improve safety on the roads.
       </Paragraph>
       <Paragraph
-        mb={20}
-        fontSize="15px"
-        lineHeight="1.4rem"
+        mb="4rem"
+        fontSize="2.5rem"
+        lineHeight="3.5rem"
+        textAlign="justify"
         fontWeight="500"
         color="#7D879C"
       >
@@ -74,9 +83,10 @@ const ProductSearchResult = () => {
         system at the counter as well from us with warranty.
       </Paragraph>
       <Paragraph
-        mb={20}
-        fontSize="15px"
-        lineHeight="1.4rem"
+        mb="4rem"
+        fontSize="2.5rem"
+        lineHeight="3.5rem"
+        textAlign="justify"
         fontWeight="500"
         color="#7D879C"
       >
@@ -109,9 +119,10 @@ const ProductSearchResult = () => {
         court.
       </Paragraph>
       <Paragraph
-        mb={20}
-        fontSize="15px"
-        lineHeight="1.4rem"
+        mb="4rem"
+        fontSize="2.5rem"
+        lineHeight="3.5rem"
+        textAlign="justify"
         fontWeight="500"
         color="#7D879C"
       >
@@ -127,9 +138,10 @@ const ProductSearchResult = () => {
         budget and space.
       </Paragraph>
       <Paragraph
-        mb={20}
-        fontSize="15px"
-        lineHeight="1.4rem"
+        mb="4rem"
+        fontSize="2.5rem"
+        lineHeight="3.5rem"
+        textAlign="justify"
         fontWeight="500"
         color="#7D879C"
       >
@@ -141,9 +153,10 @@ const ProductSearchResult = () => {
         service.
       </Paragraph>
       <Paragraph
-        mb={20}
-        fontSize="15px"
-        lineHeight="1.4rem"
+        mb="4rem"
+        fontSize="2.5rem"
+        lineHeight="3.5rem"
+        textAlign="justify"
         fontWeight="500"
         color="#7D879C"
       >
@@ -154,9 +167,10 @@ const ProductSearchResult = () => {
         own business.
       </Paragraph>
       <Paragraph
-        mb={20}
-        fontSize="15px"
-        lineHeight="1.4rem"
+        mb="4rem"
+        fontSize="2.5rem"
+        lineHeight="3.5rem"
+        textAlign="justify"
         fontWeight="500"
         color="#7D879C"
       >

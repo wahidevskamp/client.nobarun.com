@@ -9,6 +9,7 @@ import ProductCard1 from '../product-cards/ProductCard1';
 
 const CollectionWiseProduct: React.FC = () => {
   const [collections, setCollections] = useState([]);
+
   // const [visibleSlides, setVisibleSlides] = useState(4);
   const width = useWindowSize();
 
@@ -34,7 +35,7 @@ const CollectionWiseProduct: React.FC = () => {
                 key={collection.name + idx}
                 iconName="light"
                 title={collection.name}
-                seeMoreLink="#"
+                seeMoreLink={`/product/collections/${collection.slug}`}
               >
                 <Box mt="-1rem" mb="-1rem">
                   <Grid

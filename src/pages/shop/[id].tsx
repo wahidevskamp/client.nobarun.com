@@ -1,14 +1,14 @@
-import FlexBox from "@component/FlexBox";
-import Grid from "@component/grid/Grid";
-import Hidden from "@component/hidden/Hidden";
-import Icon from "@component/icon/Icon";
-import NavbarLayout from "@component/layout/NavbarLayout";
-import ProductCardList from "@component/products/ProductCard1List";
-import ProductFilterCard from "@component/products/ProductFilterCard";
-import ShopIntroCard from "@component/shop/ShopIntroCard";
-import Sidenav from "@component/sidenav/Sidenav";
-import React from "react";
-import useWindowSize from "../../hooks/useWindowSize";
+import FlexBox from '@component/FlexBox';
+import Grid from '@component/grid/Grid';
+import Hidden from '@component/hidden/Hidden';
+import Icon from '@component/icon/Icon';
+import NavbarLayout from '@component/layout/NavbarLayout';
+import ProductCardList from '@component/products/ProductCard1List';
+import ProductFilterCard from '@component/products/ProductFilterCard';
+import ShopIntroCard from '@component/shop/ShopIntroCard';
+import Sidenav from '@component/sidenav/Sidenav';
+import React from 'react';
+import useWindowSize from '../../hooks/useWindowSize';
 
 const Shop = () => {
   const width = useWindowSize();
@@ -36,7 +36,7 @@ const Shop = () => {
               <ProductFilterCard />
             </Sidenav>
           )}
-          <ProductCardList />
+          {/* <ProductCardList /> */}
         </Grid>
       </Grid>
     </div>

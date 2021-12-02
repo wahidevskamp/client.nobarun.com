@@ -8,8 +8,8 @@ const navbarNavigations = [
     url: '/about',
   },
   {
-    title: 'Sitemap',
-    url: '/sitemap',
+    title: 'Client List',
+    url: '/clients',
   },
   {
     title: 'Blogs',

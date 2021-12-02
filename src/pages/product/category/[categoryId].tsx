@@ -12,11 +12,16 @@ import ProductCard9List from '@component/products/ProductCard9List';
 import Select from '@component/Select';
 import Sidenav from '@component/sidenav/Sidenav';
 import { H5, Paragraph } from '@component/Typography';
+import useProductsByCategory from '@hook/Product/useProductsByCategory';
 import useWindowSize from '@hook/useWindowSize';
+import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 
-const ProductSearchResult = () => {
+const ProductSearchResult = ({ slug, stockStatus, products, categories }) => {
+  const router = useRouter();
   const [view, setView] = useState('grid');
+  const [filters, setFilters] = useState([]);
   const width = useWindowSize();
   const isTablet = width < 1025;
 
@@ -27,8 +32,10 @@ const ProductSearchResult = () => {
     [],
   );
 
+  const categoryName =
+    products[0]?.productData?.product?.populatedCategory?.name;
   return (
-    <Box pt="20px">
+    <Box pt="20px" mb="15rem">
       <FlexBox
         p="1.25rem"
         flexWrap="wrap"
@@ -39,8 +46,10 @@ const ProductSearchResult = () => {
         as={Card}
       >
         <div>
-          <H5>Cold Storage Solution</H5>
-          <Paragraph color="text.muted">48 results found</Paragraph>
+          <H5>{categoryName}</H5>
+          <Paragraph color="text.muted">
+            {products.length} results found
+          </Paragraph>
         </div>
         <FlexBox alignItems="center" flexWrap="wrap">
           <Paragraph color="text.muted" mr="1rem">
@@ -72,11 +81,22 @@ const ProductSearchResult = () => {
       <Grid container spacing={6}>
         <Hidden as={Grid} item lg={3} xs={12} down={1024}>
           {/* <ProductFilterCard /> */}
-          <CategoryFilterCard />
+          <CategoryFilterCard
+            slug={slug}
+            categoryName={categoryName}
+            filters={filters}
+            setFilters={setFilters}
+            categories={categories}
+            stockStatus={stockStatus}
+          />
         </Hidden>
 
         <Grid item lg={9} xs={12}>
-          {view === 'grid' ? <ProductCard1List /> : <ProductCard9List />}
+          {view === 'grid' ? (
+            <ProductCard1List products={products} filters={filters} />
+          ) : (
+            <ProductCard9List />
+          )}
         </Grid>
       </Grid>
     </Box>
@@ -91,5 +111,38 @@ const sortOptions = [
 ];
 
 ProductSearchResult.layout = NavbarLayout;
+
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+  const categoryId = context.params.categoryId;
+  try {
+    const data = await useProductsByCategory(categoryId);
+    // console.log(data.reviews);
+    if (data)
+      return {
+        props: {
+          slug: categoryId,
+          products: data?.products,
+          categories: data?.categories,
+          stockStatus: data?.stockStatus,
+          isError: false,
+        },
+      };
+    else {
+      return {
+        props: {
+          products: {},
+          isError: false,
+        },
+      };
+    }
+  } catch (err) {
+    return {
+      props: {
+        product: err,
+        isError: true,
+      },
+    };
+  }
+};
 
 export default ProductSearchResult;

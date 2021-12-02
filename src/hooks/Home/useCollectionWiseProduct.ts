@@ -5,6 +5,7 @@ const GET_COLLECTION_WISE_PRODUCT = gql`
   query getCollectionWiseProduct {
     getAllPopulatedCollection {
       name
+      slug
       products {
         product {
           id: slug

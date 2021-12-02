@@ -14,24 +14,21 @@ interface ClientProps {
 }
 const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
   const [clients, setClients] = useState([]);
-  // const [visibleSlides, setVisibleSlides] = useState(slides);
   const width = useWindowSize();
-  const slices = width > 1700 ? 10 : width > 800 ? 6 : width > 650 ? 5 : 4;
-
-  // console.log(visibleSlides);
-  // useEffect(() => {
-  //   if (width < 500) setVisibleSlides(2);
-  //   else if (width < 650) setVisibleSlides(3);
-  //   else if (width < 1400) setVisibleSlides(6);
-  //   else setVisibleSlides(slides);
-  //   if (isProductDetails) {
-  //     if (width < 768) setVisibleSlides(2);
-  //     else if (width < 880) setVisibleSlides(4);
-  //     else if (width < 1025) setVisibleSlides(5);
-  //     else if (width < 1300) setVisibleSlides(4);
-  //     else if (width < 1425) setVisibleSlides(5);
-  //   }
-  // }, [width]);
+  const slices =
+    width > 1700
+      ? 10
+      : width > 1500
+      ? 9
+      : width > 1200
+      ? 8
+      : width > 1000
+      ? 7
+      : width > 800
+      ? 6
+      : width > 650
+      ? 5
+      : 4;
 
   useEffect(() => {
     useAllFeaturedClients().then((data) => {
@@ -39,20 +36,16 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
     });
   }, []);
 
-  const ClientList = clients
-    .concat(clients)
-    .concat(clients)
-    // .splice(0, 10)
-    .map((item, ind) => (
-      <Box key={ind} className="client client_related">
-        <HoverBox borderRadius={5} className="client__body">
-          <img src={item.imgUrl} style={{ width: '118px', height: '110px' }} />
-        </HoverBox>
-        <H4 fontSize="1.4rem" fontWeight="600" className="client__title">
-          {item.title}
-        </H4>
-      </Box>
-    ));
+  const ClientList = clients.map((item, ind) => (
+    <Box key={ind} className="client client_related">
+      <HoverBox borderRadius={5} className="client__body">
+        <img src={item.imgUrl} style={{ width: '118px', height: '110px' }} />
+      </HoverBox>
+      <H4 fontSize="1.4rem" fontWeight="600" className="client__title">
+        {item.title}
+      </H4>
+    </Box>
+  ));
 
   return (
     <Box
@@ -75,10 +68,10 @@ const Clients: React.FC<ClientProps> = ({ slides, isProductDetails }) => {
         <Box mb="-0.25rem">
           {/* <FlexBox justifyContent="space-between">{ClientList}</FlexBox> */}
           <Carousel
-            totalSlides={clients?.length + clients?.length + clients?.length}
+            totalSlides={clients?.length}
             visibleSlides={slices}
-            autoPlay={(clients.length + 1) * 3 > slices}
-            infinite={(clients.length + 1) * 3 > slices}
+            autoPlay={10 < clients?.length}
+            infinite={10 < clients?.length}
             showArrow={false}
           >
             {ClientList}
