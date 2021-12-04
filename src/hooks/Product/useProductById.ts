@@ -14,6 +14,7 @@ const GET_PRODUCT_BY_ID = gql`
           images
           videos
           banglaVersionLink
+          document
           stockStatus {
             title
           }
@@ -83,6 +84,7 @@ const useProductById = async (pid) => {
       featuredImage: productById.product.featured,
       images: productById.product.images,
       banglaVersionLink: productById.product.banglaVersionLink,
+      document: productById.product.document,
       videos: productById.product.videos.map((video) => {
         const id = getYoutubeId(video);
         return `https://img.youtube.com/vi/${id}/sddefault.jpg`;

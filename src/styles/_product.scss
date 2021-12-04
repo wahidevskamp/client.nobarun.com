@@ -326,19 +326,24 @@
     }
   }
   &__specification {
+    overflow-x: auto !important;
+
     table {
-      font-family: Arial, Helvetica, sans-serif;
-      border-collapse: collapse;
+      font-family: 'Titillium Web', sans-serif !important;
       width: 100%;
+      font-size: 1.8rem;
     }
     table tr {
+      &:nth-child(2n) {
+        background-color: #f7f7f7;
+      }
       &:not(:last-child) {
         border-bottom: 1px solid #efefef;
       }
     }
     table td,
     table th {
-      padding: 8px 2px;
+      padding: 4px 2px;
     }
     table th {
       padding-top: 12px;
@@ -349,6 +354,23 @@
     }
   }
   &__review {
+    &_image {
+      position: relative;
+      padding: 3rem;
+      &-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+    }
+    &_media {
+      & > div {
+        margin-bottom: 1.5rem;
+      }
+      & > div:not(:last-child) {
+        margin-right: 1.5rem;
+      }
+    }
     &_btn {
       background-image: linear-gradient(to right, #1ca346, #6fba1a);
       color: #fff;

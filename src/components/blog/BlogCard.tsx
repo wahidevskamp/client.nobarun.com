@@ -6,7 +6,11 @@ import FlexBox from '@component/FlexBox';
 import Button from '@component/buttons/Button';
 import { H1, Paragraph } from '@component/Typography';
 
-const BlogCard = () => {
+interface BlogCardProps {
+  postTitle: string;
+  category: string;
+}
+const BlogCard = (props: BlogCardProps) => {
   return (
     <Card px="20px" py="10px">
       <Box width="100%" textAlign="center" margin="0 auto">

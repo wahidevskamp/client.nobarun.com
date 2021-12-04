@@ -12,6 +12,7 @@ import Icon from '../icon/Icon';
 import Rating from '../rating/Rating';
 import Typography, { H1, H4, Span } from '../Typography';
 import Carousel from '@component/carousel/Carousel';
+import Link from 'next/link';
 
 export interface ProductIntroProps {
   data?: any;
@@ -22,6 +23,7 @@ export interface ProductIntroProps {
 }
 
 const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
+  console.log(data);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState('');
   const [isVideo, setIsVideo] = useState(false);
@@ -99,12 +101,20 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
     </Grid>
   );
 
-  const banglaVersionHTML = (
-    <a
-      href={data?.banglaVersionLink}
-      className="product__hero-btn"
-      target="_blank"
-    >
+  const banglaVersionHTML =
+    data?.banglaVersionLink !== '' ? (
+      <a
+        href={data?.banglaVersionLink}
+        className="product__hero-btn"
+        target="_blank"
+      >
+        বাংলা ব্লগ পড়ুন
+      </a>
+    ) : (
+      ''
+    );
+  const documentDownload = data?.document && (
+    <a href={data?.document} className="product__hero-btn" target="_blank">
       বাংলা ব্লগ পড়ুন
     </a>
   );
@@ -128,23 +138,10 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
       >
         {data?.stockStatus}
       </Box>
-      <Box
-        overflow="hidden"
-        //  px={width > 600 ? '3em' : '1em'}
-        //  py="2rem"
-        px="15px"
-        py="5px"
-      >
+      <Box overflow="hidden" px="15px" py="5px">
         <H1 fontSize={width > 660 ? '32px' : '24px'}>{data?.productName}</H1>
 
-        <FlexBox
-          justifyContent="space-between"
-          // flexDirection="row"
-          // flexDirection={width > 1150 ? 'row' : 'column'}
-          // alignItems={width > 1150 ? 'center' : 'flex-start'}
-          // flexWrap="nowrap"
-          mb="1.1em"
-        >
+        <FlexBox justifyContent="space-between" mb="1.1em">
           <Box width={isPhone ? '100%' : ''}>
             {!isPhone && (
               <Typography fontSize="18px" lineHeight="1" mb="0.7rem">
@@ -250,6 +247,9 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
               <Grid container>
                 {images}
                 {videos}
+                <Grid item xs={12}>
+                  {documentDownload}
+                </Grid>
               </Grid>
             ) : (
               <div style={{ width: '100%' }}>

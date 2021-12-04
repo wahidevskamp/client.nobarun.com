@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
 import Grid from '@component/grid/Grid';
 import NavbarLayout from '@component/layout/NavbarLayout';
 import Ammenities from '@component/Product/Ammenities';
@@ -12,7 +11,6 @@ import RelatedProducts from '@component/Product/RelatedProducts';
 import Tags from '@component/Product/Tags';
 import CustomerMedia from '@component/Product/CustomerMedia';
 import Features from '@component/Product/Features';
-import Review from '@component/Product/Review';
 import AddReview from '@component/Product/AddReview';
 import Questions from '@component/Product/Questions';
 import useWindowSize from '@hook/useWindowSize';
@@ -32,6 +30,7 @@ const ProductDetails = ({ product, reviews, isError }) => {
   const router = useRouter();
   const pid = router.query.id;
   const [active, setActive] = useState(false);
+  const [newReview, setNewReview] = useState<any[]>([]);
 
   const width = useWindowSize();
   const isTabPhone = width < 900;
@@ -42,7 +41,6 @@ const ProductDetails = ({ product, reviews, isError }) => {
   };
 
   const [isOpen, setIsOpen] = useState(false);
-  console.log(reviews);
   useEffect(() => {
     const handleStickyBar = () => {
       if (window.scrollY >= 150) {
@@ -67,13 +65,13 @@ const ProductDetails = ({ product, reviews, isError }) => {
         product={product}
         active={active}
         setIsOpen={setIsOpen}
-        reviewLength={reviews.length}
+        reviewLength={reviews.length + newReview.length}
       />
       <MobileStickyBar
         product={product}
         active={active}
         setIsOpen={setIsOpen}
-        reviewLength={reviews.length}
+        reviewLength={reviews.length + newReview.length}
       />
       <Grid container>
         <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>
@@ -149,13 +147,16 @@ const ProductDetails = ({ product, reviews, isError }) => {
         <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="reviews">
-              {/* <Review
-                reviews={reviews.length > 0 ? reviews : product?.reviews}
-              /> */}
-              <RelatedReview reviews={reviews} />
+              {((reviews && reviews.length > 0) || newReview.length > 0) && (
+                <RelatedReview reviews={reviews} newReview={newReview} />
+              )}
             </section>
             <section id="addQuote">
-              <AddReview />
+              <AddReview
+                productCode={product.intro.productCode}
+                newReview={newReview}
+                setNewReview={setNewReview}
+              />
             </section>
           </Box>
         </Grid>
@@ -170,10 +171,10 @@ const ProductDetails = ({ product, reviews, isError }) => {
 ProductDetails.layout = NavbarLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
-  const pid = context.params.id;
+  const productId = context.params.productId;
   try {
     //! We have to debug furthermore
-    const data = await useProductById(pid);
+    const data = await useProductById(productId);
     // console.log(data.reviews);
     // sessionStorage.setItem('reviews', data.reviews);
     return {

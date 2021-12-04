@@ -28,7 +28,7 @@ const DesktopStickyBar = (props: DesktopStickyBarProps) => {
         >
           <Container>
             <FlexBox alignItems="center" justifyContent="space-between">
-              <FlexBox width="50%">
+              <FlexBox width={width > 1400 ? '50%' : '42%'}>
                 <img
                   src={product?.intro?.images[0]}
                   className="product__sticky-image"
@@ -48,7 +48,7 @@ const DesktopStickyBar = (props: DesktopStickyBarProps) => {
                     />
                     <a href="#reviews">
                       <Span ml={width > 660 ? '1em' : '0em'} color="#0082C9">
-                        {product?.intro?.review} Real Customer Reviews
+                        {reviewLength} Real Customer Reviews
                       </Span>
                     </a>
                   </FlexBox>

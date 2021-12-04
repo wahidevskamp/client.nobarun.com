@@ -14,26 +14,24 @@ import Icon from '../icon/Icon';
 import MenuItem from '../MenuItem';
 import TextField from '../text-field/TextField';
 import StyledSearchBox from './SearchBoxStyle';
+import Router from 'next/router';
 
 export interface SearchBoxProps {
   isFixed: boolean;
 }
 
 const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
-  // const [category, setCategory] = useState('All Categories');
   const [resultList, setResultList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState('');
-  // console.log(category);
-  // const handleCategoryChange = (cat) => () => {
-  //   setCategory(cat);
-  // };
+  const [keyword, setKeyword] = useState('');
 
   const search = debounce(async (e) => {
     const value = e.target?.value;
+    console.log(value);
+    setValue(e.target?.value);
     if (!value) setResultList([]);
     else {
-      setValue(e.target?.value);
       setLoading(true);
       const results = await useProductSearch(value);
       setResultList(results);
@@ -41,20 +39,10 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
     }
   }, 200);
 
-  const hanldeSearch = useCallback((event) => {
+  const handleSearch = useCallback((event) => {
+    setKeyword(event.target.value);
     event.persist();
     search(event);
-  }, []);
-
-  const handleDocumentClick = () => {
-    setResultList([]);
-  };
-
-  useEffect(() => {
-    window.addEventListener('click', handleDocumentClick);
-    return () => {
-      window.removeEventListener('click', handleDocumentClick);
-    };
   }, []);
 
   return (
@@ -67,33 +55,13 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
           className="search-field"
           placeholder={`Find Our All 155 Products`}
           fullwidth
-          onChange={hanldeSearch}
+          value={keyword}
+          onChange={handleSearch}
         />
         <Button variant="contained" className="search-btn searchbox__btn">
           Search
         </Button>
-        {/* <Menu
-          className="category-dropdown"
-          direction="right"
-          handler={
-            <FlexBox className="dropdown-handler" alignItems="center">
-              <span>{category}</span>
-              <Icon variant="small">chevron-down</Icon>
-            </FlexBox>
-          }
-        >
-          {categories.map((item) => (
-            <MenuItem key={item} onClick={handleCategoryChange(item)}>
-              {item}
-            </MenuItem>
-          ))}
-        </Menu> */}
-        {/* <Box className="menu-button" ml="14px" cursor="pointer">
-          <Icon color="primary">menu</Icon>
-        </Box> */}
       </StyledSearchBox>
-
-      {/* {resultList.length > 0 ? ( */}
       <Card
         position="absolute"
         top="100%"
@@ -114,34 +82,36 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
           </FlexBox>
         ) : resultList.length > 0 ? (
           resultList?.map((item) => (
-            <Link href={`/${item.slug}`} key={item}>
-              <MenuItem key={item.title}>
-                <FlexBox alignItems="center">
-                  <Image
-                    src={item.featuredImage}
-                    height="60"
-                    width="60"
-                    borderRadius="10px"
-                  />
-                  <Box ml="20px">
-                    <Span fontSize="14px">{item.title}</Span>
-                    <FlexBox alignItems="center">
-                      <Rating
-                        value={item.ratingAvg}
-                        color="warn"
-                        size="small"
-                      />
-                      <Span fontSize="14px" ml="5px">
-                        ({item.reviewCount})
-                      </Span>
-                    </FlexBox>
-                  </Box>
-                </FlexBox>
-              </MenuItem>
-            </Link>
+            <MenuItem
+              key={item.title}
+              onClick={() => {
+                setValue('');
+                setKeyword('');
+                setResultList([]);
+                Router.push(`/${item.slug}`);
+              }}
+            >
+              <FlexBox alignItems="center">
+                <Image
+                  src={item.featuredImage}
+                  height="60"
+                  width="60"
+                  borderRadius="10px"
+                />
+                <Box ml="20px">
+                  <Span fontSize="14px">{item.title}</Span>
+                  <FlexBox alignItems="center">
+                    <Rating value={item.ratingAvg} color="warn" size="small" />
+                    <Span fontSize="14px" ml="5px">
+                      ({item.reviewCount})
+                    </Span>
+                  </FlexBox>
+                </Box>
+              </FlexBox>
+            </MenuItem>
           ))
         ) : (
-          value && (
+          keyword !== '' && (
             <FlexBox
               justifyContent="center"
               alignItems="center"
@@ -152,7 +122,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
           )
         )}
       </Card>
-      {/* ): } */}
+      {/* )} */}
     </Box>
   );
 };

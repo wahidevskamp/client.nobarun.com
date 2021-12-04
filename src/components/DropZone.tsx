@@ -1,16 +1,30 @@
-import React, { useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Box from './Box';
 import Button from './buttons/Button';
 import Divider from './Divider';
+import FlexBox from './FlexBox';
 import Typography, { H5, Small } from './Typography';
 
 export interface DropZoneProps {
   label?: string;
+  images?: string[];
   onChange?: (files: []) => void;
 }
 
-const DropZone: React.FC<DropZoneProps> = ({ label, onChange }) => {
+const DropZone: React.FC<DropZoneProps> = ({ label, images, onChange }) => {
+  // const [images, setImages] = useState<string[]>([]);
+
+  // useEffect(() => {
+  //   const images = JSON.parse(sessionStorage.getItem('reviewImage'));
+  //   setImages(images);
+  // }, []);
+
+  // useEffect(() => {
+  //   const images = JSON.parse(sessionStorage.getItem('reviewImage'));
+  //   setImages(images);
+  // }, [state]);
+
   const onDrop = useCallback((acceptedFiles) => {
     if (onChange) onChange(acceptedFiles);
   }, []);
@@ -34,26 +48,38 @@ const DropZone: React.FC<DropZoneProps> = ({ label, onChange }) => {
       borderRadius="10px"
       bg={isDragActive && 'gray.200'}
       transition="all 250ms ease-in-out"
+      py="2rem"
       style={{ outline: 'none' }}
       {...getRootProps()}
     >
       <input {...getInputProps()} />
-      <H5 mb="18px" color="text.muted">
-        {label || 'Drag & drop product image here'}
-      </H5>
+      {images?.length === 0 ? (
+        <>
+          <H5 mb="18px" color="text.muted">
+            {label || 'Drag & drop image here'}
+          </H5>
 
-      <Divider width="200px" mx="auto" />
-      <Typography
-        color="text.muted"
-        bg={isDragActive ? 'gray.200' : 'body.paper'}
-        lineHeight="1"
-        px="1rem"
-        mt="-10px"
-        mb="18px"
-      >
-        on
-      </Typography>
-
+          <Divider width="200px" mx="auto" />
+          <Typography
+            color="text.muted"
+            bg={isDragActive ? 'gray.200' : 'body.paper'}
+            lineHeight="1"
+            px="1rem"
+            mt="-10px"
+            mb="18px"
+          >
+            on
+          </Typography>
+        </>
+      ) : (
+        <FlexBox>
+          {images?.map((image) => (
+            <Box mr="1rem" mb="1rem">
+              <img src={image} height="100px" width="100px" />
+            </Box>
+          ))}
+        </FlexBox>
+      )}
       <Button
         color="primary"
         bg="primary.light"
