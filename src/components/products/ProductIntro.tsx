@@ -10,28 +10,27 @@ import FlexBox from '../FlexBox';
 import Grid from '../grid/Grid';
 import Icon from '../icon/Icon';
 import Rating from '../rating/Rating';
-import Typography, { H1, H4, Span } from '../Typography';
+import Typography, { H1, H4, SemiSpan, Span } from '../Typography';
 import Carousel from '@component/carousel/Carousel';
-import Link from 'next/link';
 
 export interface ProductIntroProps {
   data?: any;
   imgUrl?: string[];
-  title: string;
-  price: number;
+  title?: string;
+  price?: number;
   id?: string | number;
 }
 
 const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
-  console.log(data);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState('');
   const [isVideo, setIsVideo] = useState(false);
 
   const width = useWindowSize();
   const isPhone = width < 660;
+  const isSmall = (width > 380 && width < 450) || (width > 230 && width < 330);
   useEffect(() => {
-    setSelectedImage(data?.images[0]);
+    setSelectedImage(data?.featuredImage);
     setIsLoading(false);
   }, [data?.images[0]]);
 
@@ -43,10 +42,10 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
 
   const images = data ? (
     data?.images.map((url, ind) => (
-      <Grid item xs={6}>
+      <Grid item xs={6} key={url + ind}>
         <Box
-          size={80}
-          minWidth={80}
+          size={isSmall ? 60 : 80}
+          minWidth={isSmall ? 60 : 80}
           mb=".5rem"
           bg="white"
           borderRadius="10px"
@@ -59,7 +58,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           borderColor={selectedImage === ind ? 'primary.main' : 'gray.400'}
           onClick={handleImageClick(url, 'image')}
         >
-          <Avatar src={url} borderRadius="10px" size={65} />
+          <Avatar src={url} borderRadius="10px" size={isSmall ? 50 : 65} />
         </Box>
       </Grid>
     ))
@@ -114,30 +113,20 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
       ''
     );
   const documentDownload = data?.document && (
-    <a href={data?.document} className="product__hero-btn" target="_blank">
-      বাংলা ব্লগ পড়ুন
-    </a>
+    <Box mt="5px" pr="2rem" textAlign="center">
+      <SemiSpan color="#000">Datasheet</SemiSpan>
+      <a
+        href={data?.document}
+        className="product__intro-attachment"
+        target="_blank"
+      >
+        Download
+      </a>
+    </Box>
   );
   return (
     <Card position="relative">
-      <Box
-        display="inline-block"
-        bg="#EC1C24"
-        color="#fff"
-        px="10px"
-        pt="2px"
-        pb="4px"
-        pr="25px"
-        position="absolute"
-        top="50%"
-        style={{
-          clipPath: 'polygon(0% 0%, 100% 0, 93% 41%, 83% 100%, 0% 100%)',
-          transform: 'translateY(-50%)',
-          zIndex: 1,
-        }}
-      >
-        {data?.stockStatus}
-      </Box>
+      <Box className="product__stock-status">{data?.stockStatus}</Box>
       <Box overflow="hidden" px="15px" py="5px">
         <H1 fontSize={width > 660 ? '32px' : '24px'}>{data?.productName}</H1>
 
@@ -245,8 +234,8 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           <Box className="product__hero-slider">
             {width > 900 ? (
               <Grid container>
-                {images}
                 {videos}
+                {images}
                 <Grid item xs={12}>
                   {documentDownload}
                 </Grid>
@@ -254,15 +243,15 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
             ) : (
               <div style={{ width: '100%' }}>
                 <Carousel
-                  autoPlay
+                  autoPlay={false}
                   infinite
                   showArrow={false}
                   // showArrowOnHover={true}
                   totalSlides={data?.images?.length + data?.videos?.length}
-                  visibleSlides={width < 650 ? 4 : 6}
+                  visibleSlides={width < 650 ? 5 : 6}
                 >
-                  {images}
                   {videos}
+                  {images}
                 </Carousel>
               </div>
             )}

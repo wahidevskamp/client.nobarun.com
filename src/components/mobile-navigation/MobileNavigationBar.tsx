@@ -6,25 +6,30 @@ import StyledMobileNavigationBar from './MobileNavigationBar.style';
 interface MobileNavigationBarProps {
   phone?: string;
   setIsOpen?: any;
+  product?: any;
 }
 const MobileNavigationBar: React.FC<MobileNavigationBarProps> = (props) => {
-  const { phone, setIsOpen } = props;
+  const { phone, setIsOpen, product } = props;
   const width = useWindowSize();
-
+  const message = `Hello ${product?.contact?.name},
+I want to know more about ${product?.intro?.productName} 
+Product Link: https://nobarunbd.vercel.app/${product.slug}`;
   return (
     width <= 1025 && (
       <StyledMobileNavigationBar>
         <a
           className="whatsapp"
           target="_blank"
-          href={`https://api.whatsapp.com/send?phone=${phone}&text=Hello!%20Can%20you%20please%20tell%20me%20more%20about%20your%20services?`}
+          href={`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURI(
+            message,
+          )}`}
         >
           <Icon size="23px" className="icon">
             whatsapp
           </Icon>
           Whatsapp Chat
         </a>
-        <a href={`callto://${phone}`} className="call">
+        <a href={`tel:${phone}`} className="call">
           <Icon size="23px" className="icon">
             call-small
           </Icon>

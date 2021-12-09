@@ -15,6 +15,8 @@ import MenuItem from '../MenuItem';
 import TextField from '../text-field/TextField';
 import StyledSearchBox from './SearchBoxStyle';
 import Router from 'next/router';
+import useProductCount from '@hook/useNoOfProduct';
+import useHideOnClickOutside from '@hook/useHandleClickOutside';
 
 export interface SearchBoxProps {
   isFixed: boolean;
@@ -23,12 +25,12 @@ export interface SearchBoxProps {
 const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
   const [resultList, setResultList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(0);
   const [value, setValue] = useState('');
   const [keyword, setKeyword] = useState('');
 
   const search = debounce(async (e) => {
     const value = e.target?.value;
-    console.log(value);
     setValue(e.target?.value);
     if (!value) setResultList([]);
     else {
@@ -45,15 +47,30 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
     search(event);
   }, []);
 
+  useEffect(() => {
+    useProductCount().then((data) => setCount(data));
+  }, []);
+
+  const searchBoxRef = useHideOnClickOutside(() => {
+    setResultList([]);
+    setKeyword('');
+    setLoading(false);
+  });
+
   return (
-    <Box position="relative" flex="1 1 0" className="searchbox">
+    <Box
+      position="relative"
+      flex="1 1 0"
+      className="searchbox"
+      ref={searchBoxRef}
+    >
       <StyledSearchBox>
         <Icon className="search-icon" size="18px">
           search
         </Icon>
         <TextField
           className="search-field"
-          placeholder={`Find Our All 155 Products`}
+          placeholder={`Find Our All ${count === 0 ? '' : count} Products`}
           fullwidth
           value={keyword}
           onChange={handleSearch}

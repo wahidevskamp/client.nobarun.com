@@ -45,8 +45,13 @@ const CollectionWiseProduct: React.FC = () => {
                     {collection?.products
                       ?.slice(0, 4)
                       .map(({ product, reviewCount, ratingAverage }) => (
-                        <Grid item md={width > 1000 ? 3 : 6} xs={6}>
-                          <Box py="0.25rem" key={product.id}>
+                        <Grid
+                          key={product.id}
+                          item
+                          md={width > 1000 ? 3 : 6}
+                          xs={6}
+                        >
+                          <Box py="0.25rem">
                             <ProductCard1
                               id={product?.id}
                               imgUrl={product?.featured}

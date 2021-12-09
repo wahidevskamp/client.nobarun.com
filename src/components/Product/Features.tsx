@@ -1,5 +1,6 @@
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
+import Box from '@component/Box';
 import Grid from '@component/grid/Grid';
 import Image from '@component/Image';
 import Typography, { H2 } from '@component/Typography';
@@ -10,7 +11,7 @@ const Features = ({ features }) => {
   const width = useWindowSize();
   const isTablet = width < 900;
   return (
-    <>
+    <Box py={isTablet ? '4rem' : '5rem'}>
       {features?.map((feature, idx) => (
         <Card
           px="2rem"
@@ -57,7 +58,7 @@ const Features = ({ features }) => {
           </div>
         </Card>
       ))}
-    </>
+    </Box>
   );
 };
 

@@ -11,8 +11,9 @@ const Questions = ({ questions }) => {
   return (
     <Card
       mb="2em"
-      px={width < 600 ? '1.5em' : '2em'}
-      py={width < 600 ? '1.5em' : '3em'}
+      px={width < 600 ? '.5em' : '2em'}
+      py={width < 600 ? '1.5rem' : '10rem'}
+      mt="0.1rem"
     >
       <FlexBox
         alignItems="center"

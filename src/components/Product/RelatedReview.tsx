@@ -13,7 +13,7 @@ import Modal from '@component/modal/Modal';
 import IconButton from '@component/buttons/IconButton';
 import Icon from '@component/icon/Icon';
 
-const RelatedReview = ({ reviews, newReview }) => {
+const RelatedReview = ({ reviews }) => {
   const width = useWindowSize();
   const [image, setImage] = useState('');
   const [videoLink, setVideoLink] = useState('');
@@ -61,8 +61,8 @@ const RelatedReview = ({ reviews, newReview }) => {
         </Card>
       </Modal>
       <Card
-        px={width < 600 ? '1.5em' : '3em'}
-        py={width < 600 ? '1.5em' : '4em'}
+        px={width < 600 ? '1.5rem' : '3rem'}
+        py={width < 600 ? '1.5rem' : '8rem'}
         mb="2em"
       >
         <Box m="-0.25rem" position="relative">
@@ -90,7 +90,7 @@ const RelatedReview = ({ reviews, newReview }) => {
             )}
           </FlexBox>
 
-          {reviews.concat(newReview).map((review) => (
+          {reviews.map((review) => (
             <Box marginBottom="8rem">
               <FlexBox alignItems="center">
                 <Avatar

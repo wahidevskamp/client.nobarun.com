@@ -15,7 +15,7 @@ const ProductCard12: React.FC<ProductCardProps> = (props) => {
       <Card
         px="1rem"
         py="1rem"
-        pt="1.3rem"
+        // pt="1.3rem"
         style={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
       >
         {children}

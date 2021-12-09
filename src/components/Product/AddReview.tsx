@@ -29,7 +29,7 @@ const CREATE_REVIEW = gql`
   }
 `;
 
-const AddReview = ({ productCode, newReview, setNewReview }) => {
+const AddReview = ({ productCode }) => {
   const width = useWindowSize();
   const [rating, setRating] = useState(0);
   const [formData, setFormData] = useState(defaultState);
@@ -37,7 +37,6 @@ const AddReview = ({ productCode, newReview, setNewReview }) => {
   const [videos, setVideos] = useState<string[]>([]);
 
   const postReviewHandler = async () => {
-    console.log({ ...formData, rating, images, videos });
     const review = {
       data: {
         title: formData.name,
@@ -50,11 +49,15 @@ const AddReview = ({ productCode, newReview, setNewReview }) => {
           images,
           videos,
         },
-        isPublished: true,
+        isPublished: false,
       },
     };
-    setNewReview([...newReview, review.data]);
-    await Client.request(CREATE_REVIEW, review);
+    try {
+      const data = await Client.request(CREATE_REVIEW, review);
+      if (data) window.alert('Review is Pending');
+    } catch (error) {
+      console.error(JSON.stringify(error, undefined, 2));
+    }
   };
 
   const addImageHandler = (e) => {
@@ -94,7 +97,7 @@ const AddReview = ({ productCode, newReview, setNewReview }) => {
   };
 
   return (
-    <Card px="3em" py="4em">
+    <Card px="3rem" py="4rem">
       <H1 fontSize="3.4rem" fontWeight="500">
         Submit your review
       </H1>

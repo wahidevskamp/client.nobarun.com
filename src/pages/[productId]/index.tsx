@@ -25,20 +25,22 @@ import DesktopStickyBar from '@component/Product/DesktopStickyBar';
 import ProductHead from '@component/Product/ProductHead';
 import MobileStickyBar from '@component/Product/MobileStickyBar';
 import RelatedReview from '@component/Product/RelatedReview';
+import { gql } from 'graphql-request';
+import Client from 'config/GraphQLRequest';
+
+const INCREASE_VIEW = gql`
+  mutation increaseView($slug: String!) {
+    increaseViewCountById(slug: $slug)
+  }
+`;
 
 const ProductDetails = ({ product, reviews, isError }) => {
   const router = useRouter();
-  const pid = router.query.id;
+  const pid = router.query.productId;
   const [active, setActive] = useState(false);
-  const [newReview, setNewReview] = useState<any[]>([]);
 
   const width = useWindowSize();
   const isTabPhone = width < 900;
-
-  const state = {
-    title: 'Mi Note 11 Pro',
-    price: 1135,
-  };
 
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
@@ -52,12 +54,18 @@ const ProductDetails = ({ product, reviews, isError }) => {
     window.addEventListener('scroll', handleStickyBar);
   }, []);
 
+  useEffect(() => {
+    Client.request(INCREASE_VIEW, { slug: pid });
+  }, []);
+
+  console.log({ product, reviews });
   return (
     <Fragment>
       <ProductHead product={product} />
       <AddQuery id={pid as string} isOpen={isOpen} setIsOpen={setIsOpen} />
       <GoToTop showBelow={250} />
       <MobileNavigationBar
+        product={{ ...product, slug: pid }}
         phone={product?.contact?.whatsAppNumber}
         setIsOpen={setIsOpen}
       />
@@ -65,19 +73,19 @@ const ProductDetails = ({ product, reviews, isError }) => {
         product={product}
         active={active}
         setIsOpen={setIsOpen}
-        reviewLength={reviews.length + newReview.length}
+        reviewLength={reviews.length}
       />
       <MobileStickyBar
         product={product}
         active={active}
         setIsOpen={setIsOpen}
-        reviewLength={reviews.length + newReview.length}
+        reviewLength={reviews.length}
       />
       <Grid container>
         <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="details">
-              <ProductIntro data={product?.intro} {...state} />
+              <ProductIntro data={product?.intro} />
             </section>
             <RelatedClients
               clients={product?.clients}
@@ -147,16 +155,12 @@ const ProductDetails = ({ product, reviews, isError }) => {
         <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="reviews">
-              {((reviews && reviews.length > 0) || newReview.length > 0) && (
-                <RelatedReview reviews={reviews} newReview={newReview} />
+              {reviews && reviews.length > 0 && (
+                <RelatedReview reviews={reviews} />
               )}
             </section>
             <section id="addQuote">
-              <AddReview
-                productCode={product.intro.productCode}
-                newReview={newReview}
-                setNewReview={setNewReview}
-              />
+              <AddReview productCode={product.intro.productCode} />
             </section>
           </Box>
         </Grid>

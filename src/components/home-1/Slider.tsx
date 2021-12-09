@@ -16,7 +16,6 @@ const Section1: React.FC = () => {
     const slice = Math.floor(sliderRef.current.clientHeight / 45) - 1;
     setNoOfCategory(slice);
   }, []);
-  console.log(noOfCategory);
   return (
     <Fragment>
       <Navbar navListOpen={true} noOfCategory={noOfCategory} />

@@ -27,7 +27,7 @@ const Collapsible = styled.div`
       content: '';
       display: block;
       position: absolute;
-      top: 20px;
+      top: 15px;
       width: 0;
       border-right: 2px solid #888;
       height: 20px;
@@ -39,7 +39,7 @@ const Collapsible = styled.div`
     }
     ::after {
       transform: rotate(90deg);
-      top: 20px;
+      top: 15px;
     }
 
     &.active,
