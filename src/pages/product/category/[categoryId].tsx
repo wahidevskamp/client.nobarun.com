@@ -18,7 +18,13 @@ import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 
-const ProductSearchResult = ({ slug, stockStatus, products, categories }) => {
+const ProductSearchResult = ({
+  slug,
+  categoryName,
+  stockStatus,
+  products,
+  categories,
+}) => {
   const router = useRouter();
   const [view, setView] = useState('grid');
   const [filters, setFilters] = useState([]);
@@ -31,9 +37,6 @@ const ProductSearchResult = ({ slug, stockStatus, products, categories }) => {
     },
     [],
   );
-
-  const categoryName =
-    products[0]?.productData?.product?.populatedCategory?.name;
   return (
     <Box pt="20px" mb="15rem">
       <FlexBox
@@ -52,16 +55,6 @@ const ProductSearchResult = ({ slug, stockStatus, products, categories }) => {
           </Paragraph>
         </div>
         <FlexBox alignItems="center" flexWrap="wrap">
-          <Paragraph color="text.muted" mr="1rem">
-            Short by:
-          </Paragraph>
-          <Box flex="1 1 0" mr="1.75rem" minWidth="150px">
-            <Select
-              placeholder="Short by"
-              defaultValue={sortOptions[0]}
-              options={sortOptions}
-            />
-          </Box>
           {isTablet && (
             <Sidenav
               position="left"
@@ -121,6 +114,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
       return {
         props: {
           slug: categoryId,
+          categoryName: data?.categoryName,
           products: data?.products,
           categories: data?.categories,
           stockStatus: data?.stockStatus,

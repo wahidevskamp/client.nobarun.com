@@ -1,0 +1,61 @@
+.query {
+  padding: 3rem;
+  @include respond(767px) {
+    padding: 2rem 1rem;
+  }
+
+  &__hero {
+    position: absolute;
+    z-index: 100;
+    left: -95px;
+    top: 4rem;
+    width: 41.5rem;
+    height: 62.6rem;
+    @include respond(900px) {
+      left: -115px;
+    }
+    @include respond(767px) {
+      top: 120px;
+      width: 40rem;
+    }
+    @include respond(600px) {
+      height: 60rem;
+    }
+    @include respond(550px) {
+      height: 55rem;
+    }
+    @include respond(450px) {
+      height: 46rem;
+      width: 29.1;
+    }
+  }
+  &__form {
+    width: 80%;
+    margin-left: auto;
+    @include respond(767px) {
+      width: 70%;
+    }
+    @include respond(550px) {
+      width: 65%;
+    }
+    @include respond(450px) {
+      width: 60%;
+    }
+    @include respond(400px) {
+      width: 70%;
+    }
+    @include respond(350px) {
+      width: 65%;
+    }
+    @include respond(300px) {
+      width: 60%;
+    }
+  }
+  &__textarea {
+    @include respond(767px) {
+      height: 80px;
+    }
+  }
+  &__button {
+  }
+}

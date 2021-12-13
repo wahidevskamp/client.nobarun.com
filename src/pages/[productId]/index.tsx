@@ -35,6 +35,10 @@ const INCREASE_VIEW = gql`
 `;
 
 const ProductDetails = ({ product, reviews, isError }) => {
+  if (isError) {
+    console.log(product);
+    return;
+  }
   const router = useRouter();
   const pid = router.query.productId;
   const [active, setActive] = useState(false);
@@ -156,7 +160,7 @@ const ProductDetails = ({ product, reviews, isError }) => {
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="reviews">
               {reviews && reviews.length > 0 && (
-                <RelatedReview reviews={reviews} />
+                <RelatedReview slug={pid} reviews={reviews} />
               )}
             </section>
             <section id="addQuote">
@@ -178,21 +182,23 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const productId = context.params.productId;
   try {
     //! We have to debug furthermore
+    console.log(productId);
     const data = await useProductById(productId);
+
     // console.log(data.reviews);
     // sessionStorage.setItem('reviews', data.reviews);
     return {
       props: {
         product: data,
-        reviews: data.reviews,
+        reviews: data?.reviews,
         isError: false,
       },
     };
   } catch (err) {
     return {
       props: {
-        product: err,
         isError: true,
+        err,
       },
     };
   }

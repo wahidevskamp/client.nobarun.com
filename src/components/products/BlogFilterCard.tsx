@@ -1,39 +1,56 @@
+import Box from '@component/Box';
+import Tags from '@component/Product/Tags';
+import { useRouter } from 'next/router';
 import React from 'react';
 import Accordion from '../accordion/Accordion';
 import AccordionHeader from '../accordion/AccordionHeader';
-import Tags from '@component/Product/Tags';
 import Card from '../Card';
 import { H6, Paragraph, SemiSpan } from '../Typography';
 
-const BlogFilterCard = () => {
+const BlogFilterCard = ({
+  slug,
+  categories,
+  setSelectedCategory,
+  showTags,
+}) => {
+  const router = useRouter();
+  const selectCategory = (name) => {
+    if (!showTags) return router.push(`/blogs?category=${name}`);
+    setSelectedCategory(name);
+  };
   return (
     <>
-      <Card p="18px 27px" elevation={5} mb="2rem">
+      <Card p="18px 27px" elevation={5}>
         <H6 mb="10px">Categories</H6>
-
-        {categroyList.map((item) =>
-          item.subCategories ? (
-            <Accordion key={item.title} expanded>
+        {categories?.map((item) =>
+          item?.children.length > 0 ? (
+            <Accordion key={item?.name} expanded>
               <AccordionHeader
                 px="0px"
                 py="6px"
                 color="text.muted"
                 // justifyContent="flex-start"
               >
-                <SemiSpan className="cursor-pointer" mr="9px">
-                  {item.title}
+                <SemiSpan
+                  className="cursor-pointer"
+                  mr="9px"
+                  color={slug === item?.name ? 'red' : 'text.muted'}
+                  onClick={() => selectCategory(item?.name)}
+                >
+                  {item?.name}
                 </SemiSpan>
               </AccordionHeader>
-              {item.subCategories.map((name) => (
+              {item?.children?.map((subChild) => (
                 <Paragraph
                   className="cursor-pointer"
                   fontSize="14px"
-                  color="text.muted"
+                  color={slug === subChild?.name ? 'red' : 'text.muted'}
                   pl="22px"
                   py="6px"
-                  key={name}
+                  key={subChild.name}
+                  onClick={() => selectCategory(subChild?.name)}
                 >
-                  {name}
+                  {subChild.name}
                 </Paragraph>
               ))}
             </Accordion>
@@ -41,34 +58,23 @@ const BlogFilterCard = () => {
             <Paragraph
               className="cursor-pointer"
               fontSize="14px"
-              color="text.muted"
+              color={slug === item?.name ? 'red' : 'text.muted'}
               py="6px"
-              key={item.title}
+              key={item?.name}
+              onClick={() => selectCategory(item?.name)}
             >
-              {item.title}
+              {item?.name}
             </Paragraph>
           ),
         )}
       </Card>
-      <Tags chips={['Abs', 'Love']} />
+      {showTags && (
+        <Box mt="4rem">
+          <Tags chips={['Abs', 'Love']} />
+        </Box>
+      )}
     </>
   );
 };
-
-const categroyList = [
-  {
-    title: 'Bath Preparations',
-    subCategories: ['Bubble Bath', 'Bath Capsules', 'Others'],
-  },
-  {
-    title: 'Eye Makeup Preparations',
-  },
-  {
-    title: 'Fragrance',
-  },
-  {
-    title: 'Hair Preparations',
-  },
-];
 
 export default BlogFilterCard;

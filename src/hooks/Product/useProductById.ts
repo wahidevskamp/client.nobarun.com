@@ -72,38 +72,39 @@ const GET_PRODUCT_BY_ID = gql`
 
 const useProductById = async (pid) => {
   const data = await Client.request(GET_PRODUCT_BY_ID, { id: pid });
-  const productById = data.getPopulatedProductBySlug.productData;
+  const productById = data?.getPopulatedProductBySlug?.productData;
+  console.log(productById);
   const product = {
     intro: {
-      productName: productById.product.productName,
-      price: productById.product.price,
-      review: productById.reviewCount,
-      rating: productById.ratingAverage,
-      productCode: productById.product.productCode,
-      stockStatus: productById.product.stockStatus?.title,
-      featuredImage: productById.product.featured,
-      images: productById.product.images,
-      banglaVersionLink: productById.product.banglaVersionLink,
-      document: productById.product.document,
-      videos: productById.product.videos.map((video) => {
+      productName: productById?.product?.productName,
+      price: productById?.product?.price,
+      review: productById?.reviewCount,
+      rating: productById?.ratingAverage,
+      productCode: productById?.product?.productCode,
+      stockStatus: productById?.product?.stockStatus?.title,
+      featuredImage: productById?.product?.featured,
+      images: productById?.product?.images,
+      banglaVersionLink: productById?.product?.banglaVersionLink,
+      document: productById?.product?.document,
+      videos: productById?.product?.videos?.map((video) => {
         const id = getYoutubeId(video);
         return `https://img.youtube.com/vi/${id}/sddefault.jpg`;
       }),
     },
     seo: {
-      title: productById.product.seoTitle,
-      description: productById.product.description,
-      keywords: productById.product.keywords,
+      title: productById?.product?.seoTitle,
+      description: productById?.product?.description,
+      keywords: productById?.product?.keywords,
     },
-    clients: productById.product.relatedClients,
-    keyPoints: productById.product.keyPoints,
-    features: productById.product.features,
-    specifications: productById.product.specification,
-    questions: productById.product.questions,
-    tags: productById.product.tags,
-    reviews: data.getPopulatedProductBySlug.populatedReviews,
-    relatedProducts: data.getPopulatedProductBySlug.populatedRelatedProducts,
-    contact: productById.product.contactPerson,
+    clients: productById?.product?.relatedClients,
+    keyPoints: productById?.product?.keyPoints,
+    features: productById?.product?.features,
+    specifications: productById?.product?.specification,
+    questions: productById?.product?.questions,
+    tags: productById?.product?.tags,
+    reviews: data?.getPopulatedProductBySlug?.populatedReviews,
+    relatedProducts: data?.getPopulatedProductBySlug?.populatedRelatedProducts,
+    contact: productById?.product?.contactPerson,
   };
   return product;
 };

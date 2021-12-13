@@ -5,18 +5,13 @@ const GET_ALL_BLOGS = gql`
   query getAllBlogs {
     getAllTheBlog {
       id
+      slug
+      featured
       postTitle: blogTitle
-      contact: contactPerson {
-        name
+      description: title
+      populatedCategory {
+        category: name
       }
-      category: populatedCategory {
-        name
-      }
-      isPublished
-      author {
-        displayName
-      }
-      createdAt
     }
   }
 `;
@@ -25,13 +20,11 @@ const useAllBlogs = async () => {
   const data = await Client.request(GET_ALL_BLOGS);
   return data.getAllTheBlog.map((blog) => ({
     id: blog.id,
+    slug: blog.slug,
     postTitle: blog.postTitle,
-    contact: blog.contact ? blog.contact.name : '',
-    category: blog.category ? blog.category.name : '',
-    isPublished: blog.isPublished,
-    publishedOn: blog.createdAt,
-    author: blog.author ? blog.author.displayName : '',
-    createdAt: blog.createdAt,
+    description: blog.description,
+    image: blog.featured,
+    category: blog.populatedCategory ? blog.populatedCategory.category : '',
   }));
 };
 

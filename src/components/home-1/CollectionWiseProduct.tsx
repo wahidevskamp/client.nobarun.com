@@ -35,7 +35,7 @@ const CollectionWiseProduct: React.FC = () => {
                 key={collection.name + idx}
                 iconName="light"
                 title={collection.name}
-                seeMoreLink={`/product/collections/${collection.slug}`}
+                seeMoreLink={`/product/collection/${collection.slug}`}
               >
                 <Box mt="-1rem" mb="-1rem">
                   <Grid

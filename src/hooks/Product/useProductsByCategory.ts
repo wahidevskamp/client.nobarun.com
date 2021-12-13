@@ -3,30 +3,33 @@ import Client from '../../config/GraphQLRequest';
 
 const GET_CATEGORY_WISE_PRODUCT = gql`
   query getPopulatedProductByCategorySlug($slug: String!) {
+    getPopulatedProductByCategorySlug(CategorySulg: $slug) {
+      name
+      productData {
+        productData {
+          product {
+            id
+            slug
+            productName
+            discount
+            featured
+            stockStatus {
+              title
+            }
+            populatedCategory {
+              name
+              icon
+            }
+          }
+          reviewCount
+          ratingAverage
+        }
+      }
+    }
     getCategories
     getAllTheStockStatus {
       title
       isPublished
-    }
-    getPopulatedProductByCategorySlug(CategorySulg: $slug) {
-      productData {
-        product {
-          id
-          slug
-          productName
-          discount
-          featured
-          stockStatus {
-            title
-          }
-          populatedCategory {
-            name
-            icon
-          }
-        }
-        reviewCount
-        ratingAverage
-      }
     }
   }
 `;
@@ -36,7 +39,8 @@ const useProductsByCategory = async (slug) => {
   // const products = data.getPopulatedProductByCategorySlug;
   return {
     categories: JSON.parse(data?.getCategories),
-    products: data?.getPopulatedProductByCategorySlug,
+    categoryName: data?.getPopulatedProductByCategorySlug?.name,
+    products: data?.getPopulatedProductByCategorySlug?.productData,
     stockStatus: data?.getAllTheStockStatus,
   };
 };

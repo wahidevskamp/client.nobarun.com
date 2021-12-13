@@ -13,7 +13,7 @@ import Modal from '@component/modal/Modal';
 import IconButton from '@component/buttons/IconButton';
 import Icon from '@component/icon/Icon';
 
-const RelatedReview = ({ reviews }) => {
+const RelatedReview = ({ reviews, slug }) => {
   const width = useWindowSize();
   const [image, setImage] = useState('');
   const [videoLink, setVideoLink] = useState('');
@@ -84,7 +84,7 @@ const RelatedReview = ({ reviews }) => {
               Product Reviews
             </H2>
             {reviews && reviews.length > 0 && (
-              <Link href="#">
+              <Link href={`/${slug}/reviews`}>
                 <a className="product__review_btn">Read all reviews</a>
               </Link>
             )}
