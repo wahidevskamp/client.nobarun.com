@@ -81,7 +81,7 @@
     display: inline-block;
   }
   &__wrapper {
-    max-width: 40rem;
+    max-width: 45rem;
     margin: auto;
     @include respond(1400px) {
       max-width: 50rem;

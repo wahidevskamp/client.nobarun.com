@@ -19,7 +19,7 @@ const ReviewsPage = (props) => {
   const { productTitle, featuredImage, contact, reviews, productCode, slug } =
     props;
   const width = useWindowSize();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const isLaptop = width < 1400 && width > 900;
   const isTablet = width < 900;
   console.log(isTablet);
