@@ -9,6 +9,7 @@ import useAllBlogs from '@hook/Blogs/useAllBlogs';
 import useBlogCategoriesTree from '@hook/Blogs/useAllBlogCategory';
 import { H1, Paragraph } from '@component/Typography';
 import { useRouter } from 'next/router';
+import useWindowSize from '@hook/useWindowSize';
 
 const BlogsList = () => {
   const router = useRouter();
@@ -27,7 +28,8 @@ const BlogsList = () => {
     useBlogCategoriesTree().then((categories) => setCategories(categories));
   }, []);
 
-  console.log(categories);
+  const width = useWindowSize();
+
   return (
     <Box p="20px" mb="70px">
       <Box textAlign="center" mt="2rem" mb="8rem">
@@ -39,8 +41,12 @@ const BlogsList = () => {
           Products articles, etc.
         </Paragraph>
       </Box>
-      <Grid container spacing={15}>
-        <Grid item xs={8}>
+      <Grid
+        container
+        spacing={15}
+        flexDirection={width < 1025 ? 'column-reverse' : 'row'}
+      >
+        <Grid item lg={8}>
           <Box>
             {blogs.length > 0 && (
               <Grid container spacing={10}>
@@ -51,7 +57,7 @@ const BlogsList = () => {
                       : blog.category === selectedCategory;
                   })
                   .map((blog) => (
-                    <Grid item xs={6}>
+                    <Grid item md={6} xs={12}>
                       <BlogCard {...blog} />
                     </Grid>
                   ))}
@@ -59,7 +65,7 @@ const BlogsList = () => {
             )}
           </Box>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item lg={4} xs={12}>
           <BlogFilterCard
             slug={selectedCategory}
             categories={categories}

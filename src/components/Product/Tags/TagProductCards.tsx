@@ -13,7 +13,7 @@ export interface ProductCard1ListProps {
   filters: string[];
 }
 
-const CollectionProductCard: React.FC<ProductCard1ListProps> = ({
+const TagsProductCard: React.FC<ProductCard1ListProps> = ({
   selectedCategory,
   products,
   filters,
@@ -25,27 +25,24 @@ const CollectionProductCard: React.FC<ProductCard1ListProps> = ({
           ?.filter((product) => {
             return selectedCategory === ''
               ? product
-              : product?.data?.populatedCategory?.name === selectedCategory;
+              : product?.category.name === selectedCategory;
           })
-          ?.filter((product) =>
-            filters.length > 0
-              ? filters.includes(product?.data?.stockStatus)
-              : product,
-          )
-          .map(({ data: product, reviewCount, ratingAvg }, ind) => (
+          // ?.filter((product) =>
+          //   filters.length > 0
+          //     ? filters.includes(product?.data?.stockStatus)
+          //     : product,
+          // )
+          .map((product, ind) => (
             <Grid item lg={4} sm={6} xs={12} key={ind}>
               <Box py="0.25rem" key={product?.id}>
                 <ProductCard1
                   id={product?.slug}
-                  imgUrl={product?.featured}
-                  title={product?.productName}
-                  rating={ratingAvg}
-                  noOfRating={reviewCount}
-                  categoryName={product?.populatedCategory?.name}
-                  categoryIcon={product?.populatedCategory?.icon}
-                  price={250}
-                  // off={product.discount}
-                  // key={product.id}
+                  imgUrl={product?.featuredImage}
+                  title={product?.name}
+                  rating={product?.avgReview}
+                  noOfRating={product?.noOfRating}
+                  categoryName={product?.category?.name}
+                  categoryIcon={product?.category?.icon}
                 />
               </Box>
             </Grid>
@@ -66,4 +63,4 @@ const CollectionProductCard: React.FC<ProductCard1ListProps> = ({
   );
 };
 
-export default CollectionProductCard;
+export default TagsProductCard;

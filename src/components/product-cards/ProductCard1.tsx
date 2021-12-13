@@ -43,7 +43,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
   return (
     <StyledProductCard1 {...props}>
       <div className="image-holder">
-        {!!off && (
+        {/* {!!off && (
           <Chip
             position="absolute"
             bg="primary.main"
@@ -56,7 +56,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
           >
             {off}% off
           </Chip>
-        )}
+        )} */}
         <Link href={`/${id}`}>
           <a>
             <img src={imgUrl} alt={title} />
