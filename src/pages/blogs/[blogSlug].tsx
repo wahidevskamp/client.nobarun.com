@@ -15,20 +15,16 @@ const BlogDetails = ({ blog, categories }) => {
   return (
     <Fragment>
       {/* <ProductHead product={product} /> */}
-      <Box textAlign="center" mt="2rem" mb="8rem">
-        <H2 fontSize="5rem" fontWeight="bold">
-          Our Blog
-        </H2>
-        <Paragraph fontWeight="bold" fontSize="2rem" maxWidth="60rem" mx="auto">
+      <div className="hero">
+        <h2 className="hero__title">Our Blog</h2>
+        <p className="hero__content">
           Welcome to our journal. Here you can find the latest company news and
           Products articles, etc.
-        </Paragraph>
-      </Box>
+        </p>
+      </div>
       <Grid container spacing={10}>
-        <Grid item md={8}>
-          <H1 fontSize="6rem" mb="2rem">
-            {blog?.blogTitle}
-          </H1>
+        <Grid item md={8} sm={12} xs={12} className="blog">
+          <H1 className="blog__title">{blog?.blogTitle}</H1>
           <img
             src={blog?.featured}
             alt={blog?.SeoTitle}
@@ -45,7 +41,7 @@ const BlogDetails = ({ blog, categories }) => {
             </Box>
           ))}
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={4} sm={12} xs={12}>
           <BlogFilterCard
             slug={''}
             categories={categories}
@@ -64,11 +60,11 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const blogSlug = context.params.blogSlug;
   try {
     const data = await useBlogBySlug(blogSlug);
-    // const categories = useBlogCategoriesTree();
+    const categories = await useBlogCategoriesTree();
     return {
       props: {
         blog: { ...data },
-        // categories,
+        categories,
       },
     };
   } catch (err) {

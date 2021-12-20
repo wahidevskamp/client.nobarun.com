@@ -62,13 +62,23 @@ const ReviewsPage = (props) => {
               <></>
             )}
             <Grid item xs={isLaptop ? 6 : isTablet ? 12 : 4}>
-              <ContactPerson contact={contact} setIsOpen={setIsOpen} />
+              <ContactPerson
+                slug={slug}
+                productName={productTitle}
+                productCode={productCode}
+                contact={contact}
+                setIsOpen={setIsOpen}
+              />
             </Grid>
           </Grid>
         </Box>
         <Grid container spacing={isTablet ? 0 : 10}>
           <Grid item xs={isTablet ? 12 : 8}>
-            <RelatedReview reviews={reviews} slug={slug} />
+            <RelatedReview
+              title="Load All Reviews"
+              reviews={reviews}
+              slug={slug}
+            />
             {isTablet && <CustomerMedia reviews={reviews} />}
             <AddReview productCode={productCode} />
           </Grid>

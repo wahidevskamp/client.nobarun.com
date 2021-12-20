@@ -12,6 +12,7 @@ import Icon from '../icon/Icon';
 import Rating from '../rating/Rating';
 import Typography, { H1, H4, SemiSpan, Span } from '../Typography';
 import Carousel from '@component/carousel/Carousel';
+import Modal from '@component/modal/Modal';
 
 export interface ProductIntroProps {
   data?: any;
@@ -25,6 +26,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState('');
   const [isVideo, setIsVideo] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const width = useWindowSize();
   const isPhone = width < 660;
@@ -37,7 +39,10 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
   const handleImageClick = (ind, type) => () => {
     setSelectedImage(ind);
     if (type === 'image') setIsVideo(false);
-    if (type === 'video') setIsVideo(true);
+    if (type === 'video') {
+      setIsVideo(true);
+      setModalOpen(true);
+    }
   };
 
   const images = data ? (
@@ -126,6 +131,28 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
   );
   return (
     <Card position="relative">
+      <Modal
+        open={modalOpen}
+        onClose={() => {
+          setModalOpen(false);
+          setIsVideo(false);
+          setSelectedImage(data?.featuredImage);
+        }}
+      >
+        <Card px="2rem" py="2rem">
+          <iframe
+            width="1366"
+            height="768"
+            src={`https://www.youtube.com/embed/${getYoutubeId(
+              selectedImage,
+            )}?autoplay=1`}
+            title="YouTube video player"
+            frameBorder={0}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </Card>
+      </Modal>
       <Box className="product__stock-status">{data?.stockStatus}</Box>
       <Box overflow="hidden" px="15px" py="5px">
         <H1 fontSize={width > 660 ? '32px' : '24px'}>{data?.productName}</H1>
@@ -207,30 +234,18 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           <FlexBox justifyContent="center" className="product__intro-main">
             {isLoading ? (
               <Spinner />
-            ) : isVideo ? (
-              <iframe
-                width="546"
-                height="546"
-                src={`https://www.youtube.com/embed/${getYoutubeId(
-                  selectedImage,
-                )}`}
-                title="YouTube video player"
-                frameBorder={0}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
             ) : (
-              <img
-                src={selectedImage}
-                alt={data?.productName}
-                loading="eager"
-                className="product__hero-image"
-                // objectFit="contain"
-              />
+              !isVideo && (
+                <img
+                  src={selectedImage}
+                  alt={data?.productName}
+                  loading="eager"
+                  className="product__hero-image"
+                  // objectFit="contain"
+                />
+              )
             )}
           </FlexBox>
-          {/* </Grid>
-          <Grid item xs={width > 1550 ? 2 : 3}> */}
           <Box className="product__hero-slider">
             {width > 900 ? (
               <Grid container>
@@ -246,7 +261,6 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                   autoPlay={false}
                   infinite
                   showArrow={false}
-                  // showArrowOnHover={true}
                   totalSlides={data?.images?.length + data?.videos?.length}
                   visibleSlides={width < 650 ? 5 : 6}
                 >
@@ -256,8 +270,6 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
               </div>
             )}
           </Box>
-          {/* </Grid>
-        </Grid> */}
         </FlexBox>
         <button className="product__share-btn">
           <Icon size="1.78rem" mr="1rem">

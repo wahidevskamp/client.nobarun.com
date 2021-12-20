@@ -16,6 +16,7 @@ import RecentViewedProducts from './RecentViewedProducts';
 export interface NavbarProps {
   navListOpen?: boolean;
   noOfCategory?: number;
+  height?: number;
 }
 
 interface Nav {
@@ -25,7 +26,7 @@ interface Nav {
   extLink?: boolean;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ navListOpen, noOfCategory }) => {
+const Navbar: React.FC<NavbarProps> = ({ navListOpen, height }) => {
   const renderNestedNav = (list: any[], isRoot = false) => {
     return list?.map((nav: Nav) => {
       if (isRoot) {
@@ -114,7 +115,7 @@ const Navbar: React.FC<NavbarProps> = ({ navListOpen, noOfCategory }) => {
         alignItems="center"
         height="100%"
       >
-        <Categories open={navListOpen} noOfCategory={noOfCategory}>
+        <Categories open={navListOpen} height={height}>
           <Button
             width="30rem"
             height="40px"

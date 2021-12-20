@@ -23,50 +23,82 @@ const ContactPage = () => {
         <Grid container spacing={width < 1250 ? 5 : 20} alignItems="center">
           <Grid item lg={4} md={12}>
             <FlexBox mb="23px">
-              <Icon size="3.5rem" mr="1rem" style={{ color: '#fff' }}>
+              <Icon size="4.8rem" mr="1rem" style={{ color: '#fff' }}>
                 maps
               </Icon>
               <Box>
-                <H3 mb=".5rem" fontSize={width < 600 ? '16px' : '20px'}>
+                <H3 mb=".5rem" fontSize={width < 600 ? '2rem' : '3.2rem'}>
                   Corporate Office Address
                 </H3>
-                <Paragraph fontWeight="100" mb="2px" color="#333">
+                <Paragraph
+                  fontSize="2rem"
+                  fontWeight="400"
+                  mb="2px"
+                  color="#333"
+                >
                   Building Name: Planet Ornate House#199(1st Floor),Road#01 New
                   DOHS Mohakhali , Dhaka 1206, Bangladesh
                 </Paragraph>
               </Box>
             </FlexBox>
             <FlexBox mb="30px">
-              <Icon size="3.5rem" mr="1rem">
+              <Icon size="4.8rem" mr="1rem">
                 carbon_phone-voice-filled
               </Icon>
               <Box>
-                <H3 mb=".5rem">Phone</H3>
-                <Paragraph fontWeight="100" mb="2px" color="#333">
+                <H3 mb=".5rem" fontSize={width < 600 ? '2rem' : '3.2rem'}>
+                  Phone
+                </H3>
+                <Paragraph
+                  fontSize="2rem"
+                  fontWeight="400"
+                  mb="2px"
+                  color="#333"
+                >
                   Mobile : +88 01711 99 86 26 (Whatsapp)
                 </Paragraph>
-                <Paragraph fontWeight="100" mb="2px" color="#333">
+                <Paragraph
+                  fontSize="2rem"
+                  fontWeight="400"
+                  mb="2px"
+                  color="#333"
+                >
                   IP Phone : +88 09610 321 421
                 </Paragraph>
               </Box>
             </FlexBox>
             <FlexBox mb="20px">
-              <Icon size="3.5rem" mr="1rem">
+              <Icon size="4.8rem" mr="1rem">
                 ic_sharp-mark-email-read
               </Icon>
               <Box>
-                <H3 mb=".5rem">Email</H3>
-                <Paragraph fontWeight="100" mb="2px" color="#333">
+                <H3 mb=".5rem" fontSize={width < 600 ? '2rem' : '3.2rem'}>
+                  Email
+                </H3>
+                <Paragraph
+                  fontSize="2rem"
+                  fontWeight="400"
+                  mb="2px"
+                  color="#333"
+                >
                   nobarunbd@gmail.com
                 </Paragraph>
               </Box>
             </FlexBox>
           </Grid>
-          <Grid item lg={8} md={12}>
-            <H2 textAlign="center" mb="10px">
+          <Grid item lg={8} xs={12}>
+            <H2
+              fontSize={width < 600 ? '2.5rem' : '5rem'}
+              textAlign="center"
+              mb="10px"
+            >
               Get in Touch
             </H2>
-            <H6 textAlign="center" mb="40px">
+            <H6
+              fontSize={width < 600 ? '1.8rem' : '2rem'}
+              textAlign="center"
+              mb="40px"
+            >
               Have any questions? Reach out to us from our contact form and we
               will get back to you shortly.
             </H6>
@@ -113,7 +145,7 @@ const ContactPage = () => {
             <Grid container spacing={width < 767 ? 0 : 5}>
               <Grid item md={6} xs={12}>
                 <TextField
-                  label="Your Company Name"
+                  label="Company Name"
                   placeholder="Type Your Company Name"
                   fullwidth
                   required

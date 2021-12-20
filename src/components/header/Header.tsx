@@ -4,7 +4,7 @@ import Sidenav from '@component/sidenav/Sidenav';
 // import navbarNavigations from '@data/navbarNavigations';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // import Categories from '../categories/Categories';
 import Container from '../Container';
 import FlexBox from '../FlexBox';
@@ -12,6 +12,7 @@ import Icon from '../icon/Icon';
 import SearchBox from '../search-box/SearchBox';
 import StyledHeader from './HeaderStyle';
 import Sidemenu from '@component/layout/Sidemenu';
+import useAllProductCategories from '@hook/Home/useAllProductCategories';
 
 type HeaderProps = {
   isFixed?: boolean;
@@ -21,6 +22,16 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
   const width = useWindowSize();
   const isTablet = width < 900;
+  const [categoriesList, setCategoriesList] = useState<any[]>([]);
+  useEffect(() => {
+    useAllProductCategories().then((res) => {
+      setCategoriesList(res);
+      // const newNavigations = [...navigations];
+      // newNavigations[0].children = res;
+      // console.log(newNavigations);
+      // setNavigations(newNavigations);
+    });
+  }, []);
 
   return (
     <StyledHeader className={className}>
@@ -33,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
 
             {isTablet && (
               <Sidenav position="left" handle={<Icon mx="1rem">menu</Icon>}>
-                <Sidemenu />
+                <Sidemenu categoriesList={categoriesList} />
               </Sidenav>
             )}
           </FlexBox>

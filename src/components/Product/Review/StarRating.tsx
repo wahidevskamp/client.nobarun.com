@@ -16,7 +16,9 @@ const StarRating = ({ details, isLaptop }) => {
             strokeColor="#FFCC48"
             strokeLinecap="butt"
           />
-          <SemiSpan className="star__percentage">{detail?.percent}%</SemiSpan>
+          <SemiSpan className="star__percentage">
+            {Math.round(detail?.percent)}%
+          </SemiSpan>
         </Box>
       ))}
     </Box>

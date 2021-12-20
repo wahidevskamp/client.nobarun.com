@@ -56,7 +56,7 @@ export const TextAreaWrapper = styled.div<Props>(
       '& label': {
         display: 'block',
         marginBottom: '0.5rem',
-        fontSize: '1rem',
+        fontSize: '2rem',
         fontWeight: '600',
         color: '#4B566B',
       },

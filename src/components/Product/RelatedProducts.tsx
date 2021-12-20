@@ -1,9 +1,12 @@
 import React from 'react';
 import ProductCard12 from '@component/product-cards/ProductCard12';
 import Grid from '@component/grid/Grid';
-import Typography from '@component/Typography';
+import Typography, { Span } from '@component/Typography';
 import Image from '@component/Image';
 import Link from 'next/link';
+import Box from '@component/Box';
+import FlexBox from '@component/FlexBox';
+import Rating from '@component/rating/Rating';
 
 interface RelatedProductProps {
   products: any[];
@@ -14,24 +17,30 @@ const RelatedProducts: React.FC<RelatedProductProps> = ({ products }) => {
     <ProductCard12 title="Related Products">
       <ul>
         {products?.map((product, idx) => (
-          <li key={product.image + idx}>
-            <Link href={product.slug}>
+          <li key={product?.image + idx} style={{ marginBottom: '1.5rem' }}>
+            <Link href={product?.slug}>
               <a>
-                <Grid
-                  container
-                  justifyContent="space-between"
-                  alignItems="center"
-                  spacing={6}
-                >
-                  <Grid item xs={3}>
-                    <Image src={product.image} height="80px" width="80px" />
-                  </Grid>
-                  <Grid item xs={9}>
-                    <Typography className="mb-10 product__related-products__list">
-                      {product.name}
-                    </Typography>
-                  </Grid>
-                </Grid>
+                <FlexBox alignItems="center">
+                  <Image
+                    src={product?.image}
+                    height="80"
+                    width="80"
+                    borderRadius="10px"
+                  />
+                  <Box ml="20px">
+                    <Span fontSize="18px">{product?.name}</Span>
+                    <FlexBox alignItems="center">
+                      <Rating
+                        value={product?.ratingAverage}
+                        color="warn"
+                        size="small"
+                      />
+                      <Span fontSize="14px" ml="5px">
+                        ({product?.totalReviewCount || 0})
+                      </Span>
+                    </FlexBox>
+                  </Box>
+                </FlexBox>
               </a>
             </Link>
           </li>

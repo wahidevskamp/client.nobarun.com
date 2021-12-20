@@ -17,26 +17,29 @@ const RecentViewedProducts: React.FC = () => {
     const products = JSON.parse(localStorage.getItem('recentlyViewed'));
     setProducts(products);
   }, []);
-  useEffect(() => {
-    if (width < 370) setVisibleSlides(1);
-    else if (width < 650) setVisibleSlides(2);
-    else if (width < 950) setVisibleSlides(4);
-    else setVisibleSlides(6);
-  }, [width]);
+
+  // useEffect(() => {
+  //   if (width < 370) setVisibleSlides(1);
+  //   else if (width < 650) setVisibleSlides(2);
+  //   else if (width < 950) setVisibleSlides(4);
+  //   else setVisibleSlides(6);
+  // }, [width]);
 
   return (
     <FlexBox
-      py=".5rem"
+      py="1.5rem"
       px="1.5rem"
       minHeight="20rem"
       // justifyContent="space-between"
     >
       {products ? (
-        <Carousel totalSlides={9} visibleSlides={visibleSlides}>
-          {products?.map((product) => (
-            <Box py="0.25rem" key={product.id}>
-              <Card p="1rem">
-                <Link href={`/product/${product.id}`}>
+        <Carousel totalSlides={products.length} visibleSlides={6}>
+          {products
+            // .concat(products)
+            // .concat(products)
+            ?.map((product) => (
+              <Card px="2rem" py="1rem" minWidth="20rem">
+                <Link href={`/${product.id}`}>
                   <a>
                     <HoverBox borderRadius={8} mb="0.5rem">
                       <img
@@ -52,8 +55,7 @@ const RecentViewedProducts: React.FC = () => {
                   </a>
                 </Link>
               </Card>
-            </Box>
-          ))}
+            ))}
         </Carousel>
       ) : (
         'No Products Recently Viewed'

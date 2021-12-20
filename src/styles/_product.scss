@@ -399,19 +399,37 @@
     &_image {
       position: relative;
       padding: 3rem;
+      max-height: 600px;
+      max-width: 800px;
       &-close {
         position: absolute;
         top: 1rem;
         right: 1rem;
       }
     }
+    &_modal-image {
+      height: 500px;
+      max-width: 800px;
+      display: block;
+      margin: auto;
+      &--video {
+        width: 700px;
+      }
+    }
     &_media {
-      & > div {
-        margin-bottom: 1.5rem;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(4, minmax(80px, 1fr));
+      @include respond(1400px) {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
       }
-      & > div:not(:last-child) {
-        margin-right: 1.5rem;
-      }
+      // }
+      // & > div {
+      //   margin-bottom: 1.5rem;
+      // }
+      // & > div:not(:last-child) {
+      //   margin-right: 1.5rem;
+      // }
     }
     &_btn {
       background-image: linear-gradient(to right, #1ca346, #6fba1a);
@@ -423,6 +441,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
     }
   }
   &__related-products {

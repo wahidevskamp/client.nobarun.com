@@ -11,3 +11,26 @@
     }
   }
 }
+
+.sidebar-menu {
+  padding: 2rem 2rem;
+  & > div {
+    margin-bottom: 1rem;
+  }
+  // &__accordion {
+  //   margin-bottom: 2rem;
+  // }
+  &__category {
+    background-image: linear-gradient(to right, #1ca346, #6fba1a);
+    color: #fff !important;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    // height: 150px !important;
+  }
+  &__link {
+    padding: 0 10px;
+    &:not(:last-child) {
+      border-bottom: 1px solid #efefef;
+    }
+  }
+}

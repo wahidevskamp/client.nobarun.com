@@ -10,11 +10,15 @@ import ProductCard from '@component/product-cards/ProductCard12';
 import Button from '@component/buttons/Button';
 import AddQuery from '@component/Shared/AddQuery';
 
-const Contacts = ({ id, contact, setIsOpen }) => {
+const Contacts = ({ slug, productName, productCode, contact, setIsOpen }) => {
   const currentDate = new Date();
   const day = getDay(currentDate);
   const hours = getHours(currentDate);
-  console.log(hours);
+  const message = `Hello ${contact?.name},
+I want to know more about ${productName} 
+Product Link: https://nobarunbd.vercel.app/${slug}
+Product Code: ${productCode}`;
+
   return (
     <Fragment>
       <Card px="1rem" py="1rem" mb="2rem">
@@ -36,7 +40,9 @@ const Contacts = ({ id, contact, setIsOpen }) => {
         {contact?.whatsAppNumber && (
           <a
             target="_blank"
-            href={`https://api.whatsapp.com/send?phone=${contact?.whatsAppNumber}&text=Hello!%20Can%20you%20please%20tell%20me%20more%20about%20your%20services?`}
+            href={`https://api.whatsapp.com/send?phone=${
+              contact?.whatsAppNumber
+            }&text=${encodeURI(message)}`}
           >
             <FlexBox alignItems="center" mb=".8rem">
               <div className="product__contact-icon">

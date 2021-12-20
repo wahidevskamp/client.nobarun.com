@@ -48,9 +48,9 @@ export const TextFieldWrapper = styled.div<TextFieldProps & SpaceProps>(
       label: {
         display: 'block',
         marginBottom: '6px',
-        fontSize: '1.6rem',
+        fontSize: '2rem',
         fontWeight: '600',
-        color: '#000',
+        color: '#4B566B',
       },
 
       small: {

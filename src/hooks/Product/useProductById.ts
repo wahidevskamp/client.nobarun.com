@@ -53,6 +53,8 @@ const GET_PRODUCT_BY_ID = gql`
         name: productName
         image: featured
         slug
+        ratingAverage
+        totalReviewCount
       }
       populatedReviews {
         id

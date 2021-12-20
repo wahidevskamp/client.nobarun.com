@@ -72,7 +72,14 @@ const CollectionsPage = ({
                 </IconButton>
               }
             >
-              {/* <CategoryFilterCard /> */}
+              <CollectionFilterCard
+                filters={filters}
+                setFilters={setFilters}
+                slug={selectedCategory}
+                categories={categories}
+                setSelectedCategory={setSelectedCategory}
+                stockStatus={stockStatus}
+              />
             </Sidenav>
           )}
         </FlexBox>

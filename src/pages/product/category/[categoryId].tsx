@@ -65,7 +65,14 @@ const ProductSearchResult = ({
                 </IconButton>
               }
             >
-              {/* <CategoryFilterCard /> */}
+              <CategoryFilterCard
+                slug={slug}
+                categoryName={categoryName}
+                filters={filters}
+                setFilters={setFilters}
+                categories={categories}
+                stockStatus={stockStatus}
+              />
             </Sidenav>
           )}
         </FlexBox>

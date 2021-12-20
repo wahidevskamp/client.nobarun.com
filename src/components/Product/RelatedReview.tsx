@@ -4,7 +4,7 @@ import FlexBox from '@component/FlexBox';
 import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
 import getYoutubeId from 'helpers/getYoutubeId';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@component/Card';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
@@ -12,13 +12,22 @@ import Pagination from '@component/pagination/Pagination';
 import Modal from '@component/modal/Modal';
 import IconButton from '@component/buttons/IconButton';
 import Icon from '@component/icon/Icon';
+import Carousel from '@component/carousel/Carousel';
 
-const RelatedReview = ({ reviews, slug }) => {
+const RelatedReview = ({ title, reviews, slug }) => {
   const width = useWindowSize();
+  const [slice, setSlice] = useState(5);
   const [image, setImage] = useState('');
+  const [video, setVideo] = useState('');
   const [videoLink, setVideoLink] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
+  const [reviewDetail, setReviewDetail] = useState<any>({});
+
+  useEffect(() => {
+    title === 'Read all reviews' ? setSlice(5) : setSlice(10);
+  }, []);
+
   return (
     <div>
       <Modal
@@ -40,24 +49,61 @@ const RelatedReview = ({ reviews, slug }) => {
           >
             <Icon>close</Icon>
           </IconButton>
-          {isVideo ? (
-            <iframe
-              width="500"
-              height="500"
-              src={`https://www.youtube.com/embed/${videoLink}`}
-              title="YouTube video player"
-              frameBorder={0}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          ) : (
-            <img
-              key={image}
-              src={image}
-              alt=""
-              style={{ minHeight: '500px' }}
-            />
-          )}
+          <Carousel
+            totalSlides={
+              +reviewDetail?.reviewMedia?.images.length +
+              +reviewDetail?.reviewMedia?.videos.length
+            }
+            visibleSlides={1}
+            infinite={true}
+            autoPlay={false}
+            showDots={false}
+            showArrow={true}
+            spacing="0px"
+          >
+            {isVideo ? (
+              <iframe
+                className="product__review_modal-image product__review_modal-image--video"
+                src={`https://www.youtube.com/embed/${videoLink}`}
+                title="YouTube video player"
+                frameBorder={0}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <img
+                key={image}
+                src={image}
+                alt=""
+                className="product__review_modal-image"
+              />
+            )}
+            {reviewDetail?.reviewMedia?.images
+              .filter((img) => img !== image)
+              .map((image) => (
+                <img
+                  key={image}
+                  src={image}
+                  alt=""
+                  className="product__review_modal-image"
+                />
+              ))}
+            {reviewDetail?.reviewMedia?.videos
+              .filter((vid) => vid !== video)
+              .map((video) => {
+                const id = video && getYoutubeId(video);
+                return (
+                  <iframe
+                    className="product__review_modal-image product__review_modal-image--video"
+                    src={`https://www.youtube.com/embed/${id}`}
+                    title="YouTube video player"
+                    frameBorder={0}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                );
+              })}
+          </Carousel>
         </Card>
       </Modal>
       <Card
@@ -83,14 +129,29 @@ const RelatedReview = ({ reviews, slug }) => {
             >
               Product Reviews
             </H2>
-            {reviews && reviews.length > 0 && (
+            {title === 'Load All Reviews' && reviews && reviews.length > 10 && (
+              <a
+                className="product__review_btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (reviews.length === slice) {
+                    setSlice(10);
+                  } else {
+                    setSlice(reviews.length);
+                  }
+                }}
+              >
+                {reviews.length !== slice ? title : 'Show Less Review'}
+              </a>
+            )}
+            {title === 'Read all reviews' && reviews && reviews.length > 0 && (
               <Link href={`/${slug}/reviews`}>
-                <a className="product__review_btn">Read all reviews</a>
+                <a className="product__review_btn">{title}</a>
               </Link>
             )}
           </FlexBox>
 
-          {reviews.map((review) => (
+          {reviews.slice(0, slice).map((review) => (
             <Box marginBottom="8rem">
               <FlexBox alignItems="center">
                 <Avatar
@@ -99,10 +160,10 @@ const RelatedReview = ({ reviews, slug }) => {
                 />
                 <Box ml="2em">
                   <H3 mt="0.5rem" fontWeight="700">
-                    {review.title}
+                    {review.name}
                   </H3>
                   <SemiSpan mt="10px">
-                    From <strong>{review.name}</strong> on 9 sept 2021
+                    From <strong>{review.title}</strong> on 9 sept 2021
                   </SemiSpan>
                   <Rating
                     outof={5}
@@ -127,6 +188,7 @@ const RelatedReview = ({ reviews, slug }) => {
                     onClick={() => {
                       setIsOpen(true);
                       setImage(image);
+                      setReviewDetail(review);
                     }}
                   >
                     <img src={image} alt="" />
@@ -143,13 +205,10 @@ const RelatedReview = ({ reviews, slug }) => {
                         setImage(link);
                         setIsVideo(true);
                         setVideoLink(id);
+                        setVideo(video);
+                        setReviewDetail(review);
                       }}
                     >
-                      <button type="button" className="remove-image">
-                        <IconButton>
-                          <Icon size="small ">close</Icon>
-                        </IconButton>
-                      </button>
                       <img src={link} alt="" />
                     </figure>
                   );

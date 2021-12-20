@@ -84,8 +84,7 @@ const CustomerMedia = ({ reviews }) => {
                   </IconButton>
                   {isVideo ? (
                     <iframe
-                      width="500"
-                      height="500"
+                      className="product__review_modal-image product__review_modal-image--video"
                       src={`https://www.youtube.com/embed/${videoLink}`}
                       title="YouTube video player"
                       frameBorder={0}
@@ -97,15 +96,15 @@ const CustomerMedia = ({ reviews }) => {
                       key={image}
                       src={image}
                       alt=""
-                      style={{ minHeight: '500px' }}
+                      className="product__review_modal-image"
                     />
                   )}
                 </Card>
               </Modal>
-              <FlexBox flexWrap="wrap" className="product__review_media">
+              <Box flexWrap="wrap" className="product__review_media">
                 {images}
                 {videos}
-              </FlexBox>
+              </Box>
             </>
           );
         })}

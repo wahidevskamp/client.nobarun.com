@@ -6,7 +6,18 @@ import Typography, { H5, Paragraph } from '@component/Typography';
 import Image from '@component/Image';
 import React from 'react';
 
-const ContactPerson = ({ contact, setIsOpen }) => {
+const ContactPerson = ({
+  slug,
+  productName,
+  productCode,
+  contact,
+  setIsOpen,
+}) => {
+  const message = `Hello ${contact?.name},
+I want to know more about ${productName} 
+Product Link: https://nobarunbd.vercel.app/${slug}
+Product Code: ${productCode}`;
+
   return (
     <Box px="1rem" py="1rem" mb="2rem">
       {contact?.companyLogo && (
@@ -27,7 +38,9 @@ const ContactPerson = ({ contact, setIsOpen }) => {
       {contact?.whatsAppNumber && (
         <a
           target="_blank"
-          href={`https://api.whatsapp.com/send?phone=${contact?.whatsAppNumber}&text=Hello!%20Can%20you%20please%20tell%20me%20more%20about%20your%20services?`}
+          href={`https://api.whatsapp.com/send?phone=${
+            contact?.whatsAppNumber
+          }&text=${encodeURI(message)}`}
         >
           <FlexBox alignItems="center" mb=".8rem">
             <div className="product__contact-icon">

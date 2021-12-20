@@ -43,7 +43,9 @@ const ReviewSummary = ({
           width="30rem"
         >
           <Rating value={summary?.avgRating} color="warn" size="large" />
-          <Span ml="1rem">{summary?.avgRating} out of 5</Span>
+          <Span ml="1rem">
+            {Math.round(summary?.avgRating * 10) / 10} out of 5
+          </Span>
         </FlexBox>
         <SemiSpan mt="1rem" fontSize="16px" color="#595B71">
           {summary?.noOfReviews} customer ratings

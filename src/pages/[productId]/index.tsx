@@ -27,6 +27,7 @@ import MobileStickyBar from '@component/Product/MobileStickyBar';
 import RelatedReview from '@component/Product/RelatedReview';
 import { gql } from 'graphql-request';
 import Client from 'config/GraphQLRequest';
+import setRecentlyViewedProduct from 'helpers/setRecentlyViewedProduct';
 
 const INCREASE_VIEW = gql`
   mutation increaseView($slug: String!) {
@@ -60,6 +61,7 @@ const ProductDetails = ({ product, reviews, isError }) => {
 
   useEffect(() => {
     Client.request(INCREASE_VIEW, { slug: pid });
+    setRecentlyViewedProduct(pid, product);
   }, []);
 
   console.log({ product, reviews });
@@ -91,15 +93,19 @@ const ProductDetails = ({ product, reviews, isError }) => {
             <section id="details">
               <ProductIntro data={product?.intro} />
             </section>
-            <RelatedClients
-              clients={product?.clients}
-              slides={6}
-              isProductDetails
-            />
+            {product?.clients?.length > 0 && (
+              <RelatedClients
+                clients={product?.clients}
+                slides={6}
+                isProductDetails
+              />
+            )}
             {isTabPhone && product?.contact && (
               <>
                 <Contacts
-                  id={pid}
+                  slug={product.slug}
+                  productName={product?.intro?.productName}
+                  productCode={product?.intro?.productCode}
                   contact={product?.contact}
                   setIsOpen={setIsOpen}
                 />
@@ -121,7 +127,9 @@ const ProductDetails = ({ product, reviews, isError }) => {
         <Grid item lg={width > 1600 ? 3 : 4} xs={width > 900 ? 4 : 12}>
           {!isTabPhone && product?.contact && (
             <Contacts
-              id={pid}
+              slug={product?.slug}
+              productName={product?.intro?.productName}
+              productCode={product?.intro?.productCode}
               contact={product?.contact}
               setIsOpen={setIsOpen}
             />
@@ -160,7 +168,11 @@ const ProductDetails = ({ product, reviews, isError }) => {
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="reviews">
               {reviews && reviews.length > 0 && (
-                <RelatedReview slug={pid} reviews={reviews} />
+                <RelatedReview
+                  title="Read all reviews"
+                  slug={pid}
+                  reviews={reviews}
+                />
               )}
             </section>
             <section id="addQuote">

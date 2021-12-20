@@ -35,15 +35,13 @@ const ClientsPage = () => {
   if (width < 710) noOfClients = 6;
   return (
     <Box py="4rem">
-      <Box textAlign="center">
-        <H1 fontSize="5rem" fontWeight="bold">
-          Our Valuable Clients
-        </H1>
-        <Paragraph fontWeight="bold" fontSize="2rem" maxWidth="40rem" mx="auto">
+      <div className="hero">
+        <h1 className="hero__title">Our Valuable Clients</h1>
+        <p className="hero__content">
           There are many variations of passages of Lorem Ipsum available, but
           the majority have suffered alteration.
-        </Paragraph>
-      </Box>
+        </p>
+      </div>
       {clients.map((category) => {
         const length =
           allLoadedCategory === category.categoryName

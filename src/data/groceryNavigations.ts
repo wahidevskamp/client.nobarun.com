@@ -1,10 +1,10 @@
 const groceryNavigations = [
-  {
-    icon: 'categories',
-    name: 'Browse All Categories',
-    slug: '#',
-    children: [],
-  },
+  // {
+  //   icon: 'categories',
+  //   name: 'Browse All Categories',
+  //   slug: '#',
+  //   children: [],
+  // },
   {
     icon: 'home',
     name: 'Home',
@@ -13,22 +13,22 @@ const groceryNavigations = [
   {
     icon: 'info-circle-solid',
     name: 'About Us',
-    slug: 'about-us',
+    slug: 'about',
   },
   {
     icon: 'sitemap-solid',
-    name: 'Sitemap',
-    slug: 'sitemap',
+    name: 'Clients',
+    slug: 'clients',
   },
   {
     icon: 'blog-solid',
-    name: 'Blog',
-    slug: 'blog',
+    name: 'Blogs',
+    slug: 'blogs',
   },
   {
     icon: 'users-solid',
-    name: 'Client List',
-    slug: 'clients',
+    name: 'Contact Us',
+    slug: 'contact',
   },
 ];
 
