@@ -7,7 +7,7 @@ const GET_ALL_FEATURED_CATEGORY = gql`
       id: _id
       title: name
       slug
-      imgUrl: image
+      imgUrl: featuredImage
     }
   }
 `;
