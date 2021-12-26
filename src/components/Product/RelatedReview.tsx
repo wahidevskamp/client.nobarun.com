@@ -1,4 +1,3 @@
-import Avatar from '@component/avatar/Avatar';
 import Box from '@component/Box';
 import FlexBox from '@component/FlexBox';
 import Rating from '@component/rating/Rating';
@@ -17,11 +16,8 @@ import Carousel from '@component/carousel/Carousel';
 const RelatedReview = ({ title, reviews, slug }) => {
   const width = useWindowSize();
   const [slice, setSlice] = useState(5);
-  const [image, setImage] = useState('');
-  const [video, setVideo] = useState('');
-  const [videoLink, setVideoLink] = useState('');
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const [isVideo, setIsVideo] = useState(false);
   const [reviewDetail, setReviewDetail] = useState<any>({});
 
   useEffect(() => {
@@ -34,8 +30,6 @@ const RelatedReview = ({ title, reviews, slug }) => {
         open={isOpen}
         onClose={() => {
           setIsOpen(false);
-          setIsVideo(false);
-          setVideoLink('');
         }}
       >
         <Card className="product__review_image">
@@ -43,8 +37,6 @@ const RelatedReview = ({ title, reviews, slug }) => {
             className="product__review_image-close"
             onClick={() => {
               setIsOpen(false);
-              setIsVideo(false);
-              setVideoLink('');
             }}
           >
             <Icon>close</Icon>
@@ -55,54 +47,32 @@ const RelatedReview = ({ title, reviews, slug }) => {
               +reviewDetail?.reviewMedia?.videos.length
             }
             visibleSlides={1}
+            currentSlide={currentSlide}
             infinite={true}
             autoPlay={false}
             showDots={false}
             showArrow={true}
             spacing="0px"
           >
-            {isVideo ? (
-              <iframe
-                className="product__review_modal-image product__review_modal-image--video"
-                src={`https://www.youtube.com/embed/${videoLink}`}
-                title="YouTube video player"
-                frameBorder={0}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              <img
-                key={image}
-                src={image}
-                alt=""
-                className="product__review_modal-image"
-              />
-            )}
-            {reviewDetail?.reviewMedia?.images
-              .filter((img) => img !== image)
-              .map((image) => (
-                <img
-                  key={image}
-                  src={image}
-                  alt=""
-                  className="product__review_modal-image"
-                />
-              ))}
-            {reviewDetail?.reviewMedia?.videos
-              .filter((vid) => vid !== video)
-              .map((video) => {
-                const id = video && getYoutubeId(video);
-                return (
+            {reviewDetail?.reviewMedia?.images.map((image) => (
+              <div className="product__review_modal-image">
+                <img key={image} src={image} alt="" />
+              </div>
+            ))}
+            {reviewDetail?.reviewMedia?.videos.map((video) => {
+              const id = video && getYoutubeId(video);
+              return (
+                <div className="product__review_modal-image">
                   <iframe
-                    className="product__review_modal-image product__review_modal-image--video"
                     src={`https://www.youtube.com/embed/${id}`}
                     title="YouTube video player"
                     frameBorder={0}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
-                );
-              })}
+                </div>
+              );
+            })}
           </Carousel>
         </Card>
       </Modal>
@@ -154,9 +124,9 @@ const RelatedReview = ({ title, reviews, slug }) => {
           {reviews.slice(0, slice).map((review) => (
             <Box marginBottom="8rem">
               <FlexBox alignItems="center">
-                <Avatar
-                  src="	https://www.artisan-outfitters.com/image/logo.png"
-                  size={80}
+                <img
+                  src="https://www.artisan-outfitters.com/image/logo.png"
+                  style={{ height: '8rem', width: '8rem' }}
                 />
                 <Box ml="2em">
                   <H3 mt="0.5rem" fontWeight="700">
@@ -183,18 +153,18 @@ const RelatedReview = ({ title, reviews, slug }) => {
                 />
               </Span>
               <Box className="product-images" mt="2rem">
-                {review?.reviewMedia?.images.map((image) => (
+                {review?.reviewMedia?.images.map((image, idx) => (
                   <figure
                     onClick={() => {
                       setIsOpen(true);
-                      setImage(image);
                       setReviewDetail(review);
+                      setCurrentSlide(idx);
                     }}
                   >
                     <img src={image} alt="" />
                   </figure>
                 ))}
-                {review?.reviewMedia?.videos.map((video) => {
+                {review?.reviewMedia?.videos.map((video, idx) => {
                   console.log(video);
                   const id = video && getYoutubeId(video);
                   const link = `https://img.youtube.com/vi/${id}/sddefault.jpg`;
@@ -202,11 +172,11 @@ const RelatedReview = ({ title, reviews, slug }) => {
                     <figure
                       onClick={() => {
                         setIsOpen(true);
-                        setImage(link);
-                        setIsVideo(true);
-                        setVideoLink(id);
-                        setVideo(video);
                         setReviewDetail(review);
+
+                        setCurrentSlide(
+                          review?.reviewMedia?.images.length + idx,
+                        );
                       }}
                     >
                       <img src={link} alt="" />

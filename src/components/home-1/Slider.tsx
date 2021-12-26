@@ -21,18 +21,22 @@ const Section1: React.FC = () => {
       <Box bg="gray.white" ref={heroContainer} mt={isTablet ? '2.5rem' : ''}>
         <Container>
           <Carousel
-            totalSlides={3}
+            totalSlides={6}
             visibleSlides={1}
             infinite={true}
             autoPlay={true}
             showDots={true}
+            dotClass="hero-slider"
             showArrow={false}
             spacing="0px"
           >
             {[
-              '/assets/images/banners/Uddota-sommanona-Banner 3.png',
-              '/assets/images/banners/Metal-Detector-System 1.png',
-              '/assets/images/banners/Supermarket-Rack-System-Banner.png',
+              '/assets/images/banners/1 Bakery-Equipment-nobarun.png',
+              '/assets/images/banners/2 Slaughterhouse-Equipment-4.png',
+              '/assets/images/banners/3 Supermarket-Equipment-with-logo.png',
+              '/assets/images/banners/4 Slaughterhouse-Equipment.png',
+              '/assets/images/banners/5 Metal-Detector-&-Scanning-System.png',
+              '/assets/images/banners/6-Slaughterhouse-Equipment-nobarun.png',
             ].map((link) => (
               <CarouselCard1 link={link} />
             ))}

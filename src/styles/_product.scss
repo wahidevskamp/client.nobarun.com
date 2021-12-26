@@ -106,6 +106,38 @@
       z-index: 10;
       color: #fff;
     }
+    &-video-modal {
+      // width: 100%;
+
+      & > iframe {
+        height: 768px;
+        width: 1368px;
+        @include respond(1400px) {
+          width: 1080px;
+          height: 560px;
+        }
+        @include respond(1300px) {
+          width: 854px;
+          height: 480px;
+        }
+        @include respond(900px) {
+          width: 640px;
+          height: 360px;
+        }
+        @include respond(700px) {
+          width: 480px;
+          height: 320px;
+        }
+        @include respond(550px) {
+          width: 90vw;
+          height: 40rem;
+        }
+        @include respond(400px) {
+          width: 120vw;
+          height: 40rem;
+        }
+      }
+    }
     &-attachment {
       display: block;
       width: fit-content;
@@ -398,38 +430,100 @@
   &__review {
     &_image {
       position: relative;
-      padding: 3rem;
-      max-height: 600px;
-      max-width: 800px;
+      // padding: 3rem;
+      max-height: 720px;
+      max-width: 1280px;
+      @include respond(1400px) {
+        max-width: 1080px;
+        max-height: 560px;
+      }
+      @include respond(900px) {
+        max-width: 90vw;
+      }
+      @include respond(400px) {
+        max-width: 125vw;
+      }
+      // @include respond(1300px) {
+      //   max-width: 854px;
+      //   max-height: 480px;
+      // }
+      // @include respond(900px) {
+      //   max-width: 640px;
+      //   max-height: 360px;
+      // }
+      // @include respond(700px) {
+      //   max-width: 480px;
+      //   max-height: 320px;
+      // }
+      // @include respond(550px) {
+      //   max-width: 90vw;
+      //   max-height: 40rem;
+      // }
+      // @include respond(400px) {
+      //   max-width: 120vw;
+      //   max-height: 40rem;
+      // }
+
       &-close {
         position: absolute;
         top: 1rem;
         right: 1rem;
+        z-index: 1000;
+        background: #f1f3f6;
+        border-radius: 20px;
+        box-shadow: inset 0 0 15px rgba(55, 84, 170, 0),
+          inset 0 0 20px rgba(255, 255, 255, 0),
+          7px 7px 15px rgba(55, 84, 170, 0.15),
+          -7px -7px 20px rgba(255, 255, 255, 1),
+          inset 0px 0px 4px rgba(255, 255, 255, 0.2);
+        .icon {
+          color: #9dabc0;
+          height: 30px;
+          width: 30px;
+        }
+        &:hover {
+          box-shadow: inset 7px 7px 15px rgba(55, 84, 170, 0.15),
+            inset -7px -7px 20px rgba(255, 255, 255, 1),
+            0px 0px 4px rgba(255, 255, 255, 0.2);
+        }
+        transition: box-shadow 399ms ease-in-out;
       }
     }
     &_modal-image {
-      height: 500px;
-      max-width: 800px;
-      display: block;
-      margin: auto;
-      &--video {
-        width: 700px;
+      height: 720px;
+      @include respond(1400px) {
+        max-height: 560px;
       }
+      @include respond(600px) {
+        height: 100%;
+      }
+      & > img {
+        height: 98%;
+        max-width: 100%;
+        @include respond(400px) {
+          height: auto;
+          max-height: 100%;
+        }
+      }
+      & > iframe {
+        height: 96%;
+        width: 98%;
+        border: none !important;
+      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     &_media {
       display: grid;
-      gap: 2rem;
+      gap: 0.5rem;
       grid-template-columns: repeat(4, minmax(80px, 1fr));
       @include respond(1400px) {
         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
       }
-      // }
-      // & > div {
-      //   margin-bottom: 1.5rem;
-      // }
-      // & > div:not(:last-child) {
-      //   margin-right: 1.5rem;
-      // }
+      & img {
+        width: 100%;
+      }
     }
     &_btn {
       background-image: linear-gradient(to right, #1ca346, #6fba1a);

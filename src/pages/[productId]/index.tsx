@@ -46,6 +46,7 @@ const ProductDetails = ({ product, reviews, isError }) => {
 
   const width = useWindowSize();
   const isTabPhone = width < 900;
+  const hasReviews = reviews && reviews.length > 0;
 
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
@@ -109,7 +110,7 @@ const ProductDetails = ({ product, reviews, isError }) => {
                   contact={product?.contact}
                   setIsOpen={setIsOpen}
                 />
-                <Ammenities />
+                <Ammenities contact={product?.contact} />
               </>
             )}
             {product?.keyPoints &&
@@ -134,7 +135,7 @@ const ProductDetails = ({ product, reviews, isError }) => {
               setIsOpen={setIsOpen}
             />
           )}
-          {!isTabPhone && <Ammenities />}
+          {!isTabPhone && <Ammenities contact={product?.contact} />}
           {product?.features && (
             <SpecialFeatures features={product?.features} />
           )}
@@ -167,7 +168,7 @@ const ProductDetails = ({ product, reviews, isError }) => {
         <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>
           <Box mr={width > 900 ? '1rem' : '0'}>
             <section id="reviews">
-              {reviews && reviews.length > 0 && (
+              {hasReviews && (
                 <RelatedReview
                   title="Read all reviews"
                   slug={pid}
@@ -181,7 +182,7 @@ const ProductDetails = ({ product, reviews, isError }) => {
           </Box>
         </Grid>
         <Grid item lg={width > 1600 ? 3 : 4} xs={width > 900 ? 4 : 12}>
-          {reviews && reviews.length > 0 && <CustomerMedia reviews={reviews} />}
+          {hasReviews && <CustomerMedia reviews={reviews} />}
         </Grid>
       </Grid>
     </Fragment>

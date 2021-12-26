@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import FlexBox from "../FlexBox";
+import styled from 'styled-components';
+import FlexBox from '../FlexBox';
 
 const StyledModal = styled(FlexBox)`
   position: fixed;
@@ -9,7 +9,7 @@ const StyledModal = styled(FlexBox)`
   bottom: 0;
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
-  z-index: 999;
+  z-index: 11111111111;
 
   .container {
     position: relative;

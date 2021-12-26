@@ -34,24 +34,28 @@ const DesktopStickyBar = (props: DesktopStickyBarProps) => {
                   className="product__sticky-image"
                 />
                 <Box>
-                  <H1 fontSize="18px">{product?.intro?.productName}</H1>
-                  <FlexBox
-                    flexDirection={width > 660 ? 'row' : 'column'}
-                    alignItems={width > 660 ? 'center' : 'flex-start'}
-                    flexWrap="nowrap"
-                  >
-                    <Rating
-                      outof={5}
-                      value={product?.intro?.rating}
-                      color="warn"
-                      size="medium"
-                    />
-                    <a href="#reviews">
-                      <Span ml={width > 660 ? '1em' : '0em'} color="#0082C9">
-                        {reviewLength} Real Customer Reviews
-                      </Span>
-                    </a>
-                  </FlexBox>
+                  <H1 fontSize="18px" mt={reviewLength === 0 ? '1rem' : '0rem'}>
+                    {product?.intro?.productName}
+                  </H1>
+                  {reviewLength > 0 && (
+                    <FlexBox
+                      flexDirection={width > 660 ? 'row' : 'column'}
+                      alignItems={width > 660 ? 'center' : 'flex-start'}
+                      flexWrap="nowrap"
+                    >
+                      <Rating
+                        outof={5}
+                        value={product?.intro?.rating}
+                        color="warn"
+                        size="medium"
+                      />
+                      <a href="#reviews">
+                        <Span ml={width > 660 ? '1em' : '0em'} color="#0082C9">
+                          {reviewLength} Real Customer Reviews
+                        </Span>
+                      </a>
+                    </FlexBox>
+                  )}
                 </Box>
               </FlexBox>
               <Box>
@@ -69,7 +73,7 @@ const DesktopStickyBar = (props: DesktopStickyBarProps) => {
                     Question & Answers
                   </a>
                   <a href="#reviews" className={`product__sticky-btn`}>
-                    Reviews ({reviewLength})
+                    Reviews{reviewLength ? ` ( ${reviewLength} )` : ''}
                   </a>
                   <a
                     className="product__sticky-btn"

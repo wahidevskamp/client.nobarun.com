@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import Spinner from '@component/Spinner';
 import useWindowSize from '@hook/useWindowSize';
@@ -13,6 +12,7 @@ import Rating from '../rating/Rating';
 import Typography, { H1, H4, SemiSpan, Span } from '../Typography';
 import Carousel from '@component/carousel/Carousel';
 import Modal from '@component/modal/Modal';
+import IconButton from '@component/buttons/IconButton';
 
 export interface ProductIntroProps {
   data?: any;
@@ -78,8 +78,8 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
       <Grid item xs={6}>
         <Box
           key={ind}
-          size={80}
-          minWidth={80}
+          size={isSmall ? 60 : 80}
+          minWidth={isSmall ? 60 : 80}
           mb=".5rem"
           bg="white"
           borderRadius="10px"
@@ -95,7 +95,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           <Icon size="3rem" className="product__intro-video-icon">
             play-solid
           </Icon>
-          <Avatar src={url} borderRadius="10px" size={65} />
+          <Avatar src={url} borderRadius="10px" size={isSmall ? 50 : 65} />
         </Box>
       </Grid>
     ))
@@ -139,10 +139,23 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           setSelectedImage(data?.featuredImage);
         }}
       >
-        <Card px="2rem" py="2rem">
+        <Card
+          px="2rem"
+          py="2rem"
+          position="relative"
+          className="product__intro-video-modal"
+        >
+          <IconButton
+            className="product__review_image-close"
+            onClick={() => {
+              setModalOpen(false);
+              setIsVideo(false);
+              setSelectedImage(data?.featuredImage);
+            }}
+          >
+            <Icon>close</Icon>
+          </IconButton>
           <iframe
-            width="1366"
-            height="768"
             src={`https://www.youtube.com/embed/${getYoutubeId(
               selectedImage,
             )}?autoplay=1`}
@@ -208,24 +221,26 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
               ) : (
                 ''
               )}
-              <FlexBox>
-                <Rating
-                  outof={5}
-                  value={data?.rating}
-                  color="warn"
-                  size="medium"
-                />
-                <a href="#reviews">
-                  <Span
-                    ml="1rem"
-                    color="#0082C9"
-                    fontSize="16px"
-                    fontWeight="600"
-                  >
-                    {data?.review} Real Customer Reviews
-                  </Span>
-                </a>
-              </FlexBox>
+              {data?.review?.length > 0 && (
+                <FlexBox>
+                  <Rating
+                    outof={5}
+                    value={data?.rating}
+                    color="warn"
+                    size="medium"
+                  />
+                  <a href="#reviews">
+                    <Span
+                      ml="1rem"
+                      color="#0082C9"
+                      fontSize="16px"
+                      fontWeight="600"
+                    >
+                      {data?.review} Real Customer Reviews
+                    </Span>
+                  </a>
+                </FlexBox>
+              )}
             </FlexBox>
           </Box>
           {!isPhone && banglaVersionHTML}
@@ -266,6 +281,27 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                 >
                   {videos}
                   {images}
+                  <Box
+                    size={isSmall ? 60 : 80}
+                    minWidth={isSmall ? 60 : 80}
+                    mb=".5rem"
+                    bg="white"
+                    borderRadius="10px"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    cursor="pointer"
+                    border="1px solid"
+                    borderColor="gray.400"
+                  >
+                    <a href={data?.document} target="_blank">
+                      <Avatar
+                        src="/pdf.png"
+                        borderRadius="10px"
+                        size={isSmall ? 50 : 65}
+                      />
+                    </a>
+                  </Box>
                 </Carousel>
               </div>
             )}

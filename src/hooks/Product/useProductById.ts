@@ -37,6 +37,10 @@ const GET_PRODUCT_BY_ID = gql`
             email
             address
             maps
+            amenities {
+              title
+              image
+            }
           }
           seoTitle: SeoTitle
           description: title
@@ -75,7 +79,6 @@ const GET_PRODUCT_BY_ID = gql`
 const useProductById = async (pid) => {
   const data = await Client.request(GET_PRODUCT_BY_ID, { id: pid });
   const productById = data?.getPopulatedProductBySlug?.productData;
-  console.log(productById);
   const product = {
     intro: {
       productName: productById?.product?.productName,

@@ -18,6 +18,7 @@ const TagsProductCard: React.FC<ProductCard1ListProps> = ({
   products,
   filters,
 }) => {
+  console.log(products);
   return (
     <Box>
       <Grid container spacing={6}>
@@ -25,13 +26,13 @@ const TagsProductCard: React.FC<ProductCard1ListProps> = ({
           ?.filter((product) => {
             return selectedCategory === ''
               ? product
-              : product?.category.name === selectedCategory;
+              : product?.category?.name === selectedCategory;
           })
-          // ?.filter((product) =>
-          //   filters.length > 0
-          //     ? filters.includes(product?.data?.stockStatus)
-          //     : product,
-          // )
+          ?.filter((product) =>
+            filters.length > 0
+              ? filters.includes(product?.stockStatus)
+              : product,
+          )
           .map((product, ind) => (
             <Grid item lg={4} sm={6} xs={12} key={ind}>
               <Box py="0.25rem" key={product?.id}>

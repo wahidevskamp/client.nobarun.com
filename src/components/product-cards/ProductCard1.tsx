@@ -43,20 +43,6 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
   return (
     <StyledProductCard1 {...props}>
       <div className="image-holder">
-        {/* {!!off && (
-          <Chip
-            position="absolute"
-            bg="primary.main"
-            color="primary.text"
-            fontSize="10px"
-            fontWeight="600"
-            p="5px 10px"
-            top="10px"
-            left="10px"
-          >
-            {off}% off
-          </Chip>
-        )} */}
         <Link href={`/${id}`}>
           <a>
             <img src={imgUrl} alt={title} />
@@ -108,64 +94,6 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
               <H6 ml=".5rem" color="#ddd">
                 ({noOfRating || 0})
               </H6>
-            </FlexBox>
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ width: '100%', fontSize: width > 400 ? '16px' : '12px' }}
-              mt="15px"
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              {width > 400 && (
-                <Icon className="favorite-icon" variant="small" mr="1rem">
-                  plus-circle
-                </Icon>
-              )}
-              Get a Quote
-            </Button>
-            <FlexBox justifyContent="space-around" alignItems="center">
-              <Link href={`/${id}`}>
-                <a>
-                  <H3
-                    className="title"
-                    fontSize={width > 400 ? '16px' : '12px'}
-                    textAlign="left"
-                    fontWeight="600"
-                    color="text.secondary"
-                    mt="10px"
-                    mb="5px"
-                    title={title}
-                  >
-                    See Details
-                  </H3>
-                </a>
-              </Link>
-              <div
-                style={{
-                  transform: 'translateY(3px)',
-                  height: '1.8rem',
-                  width: '2px',
-                  backgroundColor: '#eee',
-                }}
-              />
-              <Link href={`/${id}`}>
-                <a>
-                  <H3
-                    className="title"
-                    fontSize={width > 400 ? '16px' : '12px'}
-                    textAlign="left"
-                    fontWeight="600"
-                    color="text.secondary"
-                    mt="10px"
-                    mb="5px"
-                    title={title}
-                  >
-                    Reviews
-                  </H3>
-                </a>
-              </Link>
             </FlexBox>
           </Box>
         </FlexBox>

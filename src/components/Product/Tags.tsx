@@ -11,7 +11,7 @@ const Tags = ({ chips }) => {
     <ProductCard12 title="Product Tags">
       <FlexBox flexWrap="wrap">
         {chips?.slice(0, showAll ? chips.length : 15).map((chip) => (
-          <Link href={`/product/tags/${chip}`}>
+          <Link href={`/product/tags/${chip.replace(' ', '-')}`}>
             <a>
               <Chip
                 bg="#eee"

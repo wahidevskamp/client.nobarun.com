@@ -34,7 +34,7 @@ const MobileStickyBar = (props: MobileStickyBarProps) => {
                 Question & Answers
               </a>
               <a href="#reviews" className={`product__sticky-btn`}>
-                Reviews ({reviewLength})
+                Reviews{reviewLength ? ` ( ${reviewLength} )` : ''}
               </a>
               <a
                 href="#addQuote"

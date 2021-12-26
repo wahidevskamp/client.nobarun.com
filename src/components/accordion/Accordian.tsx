@@ -85,12 +85,12 @@ const Collapsible = styled.div`
   }
   @media only screen and (max-width: 600px) {
     .toggle {
-      font-size: 1.4rem !important;
+      font-size: 2.2rem !important;
       padding-right: 4rem;
     }
     .content {
       padding: 0.5rem 2rem 0.5rem 1rem;
-      font-size: 1.4rem !important;
+      font-size: 2rem !important;
     }
   }
 `;

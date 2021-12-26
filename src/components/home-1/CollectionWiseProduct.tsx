@@ -10,22 +10,14 @@ import ProductCard1 from '../product-cards/ProductCard1';
 const CollectionWiseProduct: React.FC = () => {
   const [collections, setCollections] = useState([]);
 
-  // const [visibleSlides, setVisibleSlides] = useState(4);
   const width = useWindowSize();
-
-  // useEffect(() => {
-  //   if (width < 500) setVisibleSlides(1);
-  //   else if (width < 650) setVisibleSlides(2);
-  //   else if (width < 950) setVisibleSlides(3);
-  //   else setVisibleSlides(4);
-  // }, [width]);
 
   useEffect(() => {
     useCollectionWiseProduct().then((data) => setCollections(data));
   }, []);
 
   return (
-    <Box>
+    <Box mx="8rem" mb="8rem">
       {collections &&
         collections?.map((collection, idx) => {
           const hasProduct = collection?.products?.length > 0;
@@ -37,7 +29,7 @@ const CollectionWiseProduct: React.FC = () => {
                 title={collection.name}
                 seeMoreLink={`/product/collection/${collection.slug}`}
               >
-                <Box mt="-1rem" mb="-1rem">
+                <Box>
                   <Grid
                     container
                     spacing={width < 1600 ? (width < 600 ? 2 : 5) : 15}
