@@ -1,6 +1,14 @@
 import Head from 'next/head';
 import React from 'react';
 
+const getLocalBusiness = () => ({
+  '@context': 'https://schema.org/',
+  '@type': 'LocalBusiness',
+  name: 'Nobarun Bangladesh',
+  address: 'Mohakhali',
+  image: 'https://nobarunbd.vercel.app/assets/images/logo.png',
+});
+
 const ProductHead = ({ product }: { product: any }) => {
   return (
     <Head>
@@ -14,6 +22,10 @@ const ProductHead = ({ product }: { product: any }) => {
       <meta property="og:image:width" content="200" />
       <meta property="og:image:height" content="200" />
       <meta property="og:description" content={product?.seo?.description} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(getLocalBusiness()) }}
+      />
     </Head>
   );
 };
