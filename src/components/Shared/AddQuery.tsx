@@ -16,12 +16,20 @@ interface AddQueryProps {
   setIsOpen: any;
   id: string;
 }
+const validateEmail = (email) => {
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  );
+};
 const defaultValues = {};
 const AddQuery = (props: AddQueryProps) => {
   const { isOpen, setIsOpen, id } = props;
   const methods: any = useForm({
     defaultValues: useMemo(() => defaultValues, []),
   });
+
+  const [showEmailError, setShowEmailError] = useState(false);
+  // const [showPhoneError, setShowPhoneError] = useState(false);
 
   const [state, setState] = useState({
     fullName: '',
@@ -32,20 +40,57 @@ const AddQuery = (props: AddQueryProps) => {
     attachment: '',
     message: '',
   });
+
   const onCloseHandler = () => {
     setIsOpen(false);
   };
 
   const handleChange = (evt) => {
     const value = evt.target.value;
+    const name = evt.target.name;
+    if (name === 'email') {
+      if (validateEmail(value)) setShowEmailError(false);
+      else setShowEmailError(true);
+    }
     setState({
       ...state,
-      [evt.target.name]: value,
+      [name]: value,
     });
   };
 
   const onSubmit = () => {
-    console.log(state);
+    if (showEmailError) return;
+    if (state.email || state.mobileNo) return;
+    fetch('https://formsubmit.co/ajax/wahidhoquee@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        'Full Name': state.fullName,
+        'Mobile Number': state.mobileNo,
+        'Email Address': state.email,
+        'Company Name': state.company,
+        Address: state.address,
+        Attachment: '',
+        Message: state.message,
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        setState({
+          fullName: '',
+          mobileNo: '',
+          email: '',
+          company: '',
+          address: '',
+          attachment: '',
+          message: '',
+        });
+        setIsOpen(false);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -93,6 +138,7 @@ const AddQuery = (props: AddQueryProps) => {
                       name="email"
                       label="Your Email Address"
                       value={state.email}
+                      errorText={showEmailError && 'Email is wrong'}
                       onChange={handleChange}
                     />
                   </Grid>
@@ -120,7 +166,7 @@ const AddQuery = (props: AddQueryProps) => {
                       name="attachment"
                       label="Attachment"
                       type="file"
-                      value={state.address}
+                      // value={state.address}
                       onChange={handleChange}
                     />
                   </Grid>

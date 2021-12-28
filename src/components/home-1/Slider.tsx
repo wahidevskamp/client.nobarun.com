@@ -14,7 +14,7 @@ const Section1: React.FC = () => {
   useEffect(() => {
     const height = heroContainer?.current?.offsetHeight;
     setHeight(height);
-  }, []);
+  }, [heroContainer?.current?.offsetHeight]);
   return (
     <Fragment>
       <Navbar navListOpen={true} height={height} />
