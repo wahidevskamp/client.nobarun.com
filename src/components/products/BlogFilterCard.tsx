@@ -12,11 +12,11 @@ const BlogFilterCard = ({
   categories,
   setSelectedCategory,
   showTags,
+  tags,
 }) => {
   const router = useRouter();
   const selectCategory = (name) => {
-    if (!showTags) return router.push(`/blogs?category=${name}`);
-    setSelectedCategory(name);
+    router.push(`/blogs?category=${name}`);
   };
   return (
     <>
@@ -70,7 +70,7 @@ const BlogFilterCard = ({
       </Card>
       {showTags && (
         <Box mt="4rem">
-          <Tags chips={['Abs', 'Love']} />
+          <Tags chips={tags} />
         </Box>
       )}
     </>

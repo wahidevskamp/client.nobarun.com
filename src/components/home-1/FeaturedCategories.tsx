@@ -1,4 +1,5 @@
 import Card from '@component/Card';
+import FlexBox from '@component/FlexBox';
 import HoverBox from '@component/HoverBox';
 import { H4 } from '@component/Typography';
 import useFeaturedCategories from '@hook/Home/useFeaturedCategories';
@@ -39,7 +40,11 @@ const Categories: React.FC = () => {
                 >
                   <Link href={item.productUrl}>
                     <a>
-                      <Box>
+                      <FlexBox
+                        alignItems="center"
+                        flexDirection="column"
+                        justifyContent="center"
+                      >
                         <HoverBox
                           borderRadius={5}
                           mb="0.5rem"
@@ -48,13 +53,13 @@ const Categories: React.FC = () => {
                           <img src={item.imgUrl} />
                         </HoverBox>
                         <H4
-                          fontSize="14px"
+                          fontSize="18px"
                           fontWeight="600"
                           className="featuredCategories__title"
                         >
                           {item.title}
                         </H4>
-                      </Box>
+                      </FlexBox>
                     </a>
                   </Link>
                 </Grid>

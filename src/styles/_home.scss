@@ -63,28 +63,45 @@
   display: flex;
   justify-content: center;
   &__image {
-    height: 300px;
-    width: 300px;
+    height: 290px;
+    width: 290px;
     border-radius: 50% !important;
     border: 3px solid #ec1c24;
     @include respond(1300px) {
       height: 250px;
       width: 250px;
     }
-    @include respond(1200px) {
+    // @include respond(1200px) {
+    //   height: 200px;
+    //   width: 200px;
+    // }
+    // @include respond(1024px) {
+    //   height: 250px;
+    //   width: 250px;
+    // }
+    @include respond(870px) {
       height: 200px;
       width: 200px;
     }
-    @include respond(1024px) {
+    @include respond(768px) {
       height: 250px;
       width: 250px;
     }
-    @include respond(860px) {
+    @include respond(600px) {
       height: 200px;
       width: 200px;
     }
-    @include respond(600px) {
-      width: 100%;
+    @include respond(420px) {
+      height: 170px;
+      width: 170px;
+    }
+    @include respond(400px) {
+      height: 200px;
+      width: 200px;
+    }
+    @include respond(320px) {
+      height: 170px;
+      width: 170px;
     }
     &::after {
       z-index: 0 !important;
@@ -94,12 +111,13 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      margin: auto;
     }
   }
   &__title {
     background-image: linear-gradient(#1ca346, #6fba1a);
     padding: 1rem 0.5rem;
-    width: 200px;
+    width: 270px;
     margin: auto;
     color: #fff;
     font-size: 16px;
@@ -109,9 +127,24 @@
     transform: translateY(-2rem);
     z-index: 1;
     text-align: center;
-    @include respond(520px) {
-      // transform: translate(-0.7rem, -2rem);
-      width: 160px;
+    @include respond(870px) {
+      width: 240px;
+      font-size: 18px !important;
+    }
+    @include respond(600px) {
+      width: 200px;
+      font-size: 14px !important;
+    }
+    @include respond(420px) {
+      width: 180px;
+      font-size: 12px !important;
+    }
+    @include respond(400px) {
+      width: 220px;
+      font-size: 14px !important;
+    }
+    @include respond(320px) {
+      width: 170px;
       font-size: 12px !important;
     }
   }

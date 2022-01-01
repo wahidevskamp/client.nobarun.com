@@ -26,6 +26,7 @@ const Section1: React.FC = () => {
             infinite={true}
             autoPlay={true}
             showDots={true}
+            interval={4000}
             dotClass="hero-slider"
             showArrow={false}
             spacing="0px"

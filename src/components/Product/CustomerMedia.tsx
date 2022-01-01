@@ -15,7 +15,7 @@ import Carousel from '@component/carousel/Carousel';
 const CustomerMedia = ({ reviews }) => {
   const [image, setImage] = useState('');
   const [videoLink, setVideoLink] = useState('');
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [isVideo, setIsVideo] = useState(false);

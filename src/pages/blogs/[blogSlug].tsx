@@ -17,10 +17,6 @@ const BlogDetails = ({ blog, categories }) => {
       {/* <ProductHead product={product} /> */}
       <div className="hero">
         <h2 className="hero__title">Our Blog</h2>
-        <p className="hero__content">
-          Welcome to our journal. Here you can find the latest company news and
-          Products articles, etc.
-        </p>
       </div>
       <Grid container spacing={10}>
         <Grid item md={8} sm={12} xs={12} className="blog">
@@ -43,10 +39,11 @@ const BlogDetails = ({ blog, categories }) => {
         </Grid>
         <Grid item md={4} sm={12} xs={12}>
           <BlogFilterCard
-            slug={''}
+            slug={blog?.populatedCategory?.name}
             categories={categories}
             setSelectedCategory={''}
-            showTags={false}
+            showTags
+            tags={blog.tags}
           />
         </Grid>
       </Grid>

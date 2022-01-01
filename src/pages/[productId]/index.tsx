@@ -6,7 +6,7 @@ import Ammenities from '@component/Product/Ammenities';
 import Contacts from '@component/Product/Contacts';
 import SpecialFeatures from '@component/Product/SpecialFeatures';
 import Specifications from '@component/Product/Specifications';
-import ProductIntro from '@component/products/ProductIntro';
+import ProductIntro from '@component/Product/ProductIntro';
 import RelatedProducts from '@component/Product/RelatedProducts';
 import Tags from '@component/Product/Tags';
 import CustomerMedia from '@component/Product/CustomerMedia';

@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@component/Box';
 import NavbarLayout from '@component/layout/NavbarLayout';
-// import useWindowSize from '@hook/useWindowSize';
 import Grid from '@component/grid/Grid';
 import BlogCard from '@component/blog/BlogCard';
-import BlogFilterCard from '@component/products/BlogFilterCard';
 import useAllBlogs from '@hook/Blogs/useAllBlogs';
-import useBlogCategoriesTree from '@hook/Blogs/useAllBlogCategory';
-import { H1, Paragraph } from '@component/Typography';
+import { H1 } from '@component/Typography';
 import { useRouter } from 'next/router';
-import useWindowSize from '@hook/useWindowSize';
 
 const BlogsList = () => {
   const router = useRouter();
   const [blogs, setBlogs] = useState<any[]>([]);
-  const [categories, setCategories] = useState<any[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
@@ -25,55 +20,30 @@ const BlogsList = () => {
 
   useEffect(() => {
     useAllBlogs().then((blogs) => setBlogs(blogs));
-    useBlogCategoriesTree().then((categories) => setCategories(categories));
   }, []);
-
-  const width = useWindowSize();
 
   return (
     <Box p="20px" mb="70px">
-      <Box textAlign="center" mt="2rem" mb="8rem">
+      <Box textAlign="center" mb="2rem">
         <H1 fontSize="5rem" fontWeight="bold">
           Our Blog
         </H1>
-        <Paragraph fontWeight="bold" fontSize="2rem" maxWidth="60rem" mx="auto">
-          Welcome to our journal. Here you can find the latest company news and
-          Products articles, etc.
-        </Paragraph>
       </Box>
-      <Grid
-        container
-        spacing={15}
-        flexDirection={width < 1025 ? 'column-reverse' : 'row'}
-      >
-        <Grid item lg={8}>
-          <Box>
-            {blogs.length > 0 && (
-              <Grid container spacing={10}>
-                {blogs
-                  .filter((blog) => {
-                    return selectedCategory === ''
-                      ? blog
-                      : blog.category === selectedCategory;
-                  })
-                  .map((blog) => (
-                    <Grid item md={6} xs={12}>
-                      <BlogCard {...blog} />
-                    </Grid>
-                  ))}
+      {blogs.length > 0 && (
+        <Grid container spacing={10}>
+          {blogs
+            .filter((blog) => {
+              return selectedCategory === ''
+                ? blog
+                : blog.category === selectedCategory;
+            })
+            .map((blog) => (
+              <Grid item lg={4} md={6} xs={12}>
+                <BlogCard {...blog} />
               </Grid>
-            )}
-          </Box>
+            ))}
         </Grid>
-        <Grid item lg={4} xs={12}>
-          <BlogFilterCard
-            slug={selectedCategory}
-            categories={categories}
-            setSelectedCategory={setSelectedCategory}
-            showTags
-          />
-        </Grid>
-      </Grid>
+      )}
     </Box>
   );
 };

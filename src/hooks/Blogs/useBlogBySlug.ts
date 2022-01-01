@@ -6,12 +6,16 @@ const GET_BLOG_BY_SLUG = gql`
     getBlogBySlug(slug: $slug) {
       blogTitle
       featured
+      populatedCategory {
+        name
+      }
       sections {
         id
         title
         content
         images
       }
+      tags
     }
   }
 `;

@@ -1,21 +1,21 @@
-import { Chip } from "@component/Chip";
-import Image from "@component/Image";
-import Link from "next/link";
-import React, { Fragment, useCallback, useState } from "react";
-import { CSSProperties } from "styled-components";
-import Box from "../Box";
-import Button from "../buttons/Button";
-import Card from "../Card";
-import FlexBox from "../FlexBox";
-import Grid from "../grid/Grid";
-import Hidden from "../hidden/Hidden";
-import Icon from "../icon/Icon";
-import Modal from "../modal/Modal";
-import NavLink from "../nav-link/NavLink";
-import ProductIntro from "../products/ProductIntro";
-import Rating from "../rating/Rating";
-import { H5, SemiSpan } from "../Typography";
-import { StyledProductCard9 } from "./ProductCardStyle";
+import { Chip } from '@component/Chip';
+import Image from '@component/Image';
+import Link from 'next/link';
+import React, { Fragment, useCallback, useState } from 'react';
+import { CSSProperties } from 'styled-components';
+import Box from '../Box';
+import Button from '../buttons/Button';
+import Card from '../Card';
+import FlexBox from '../FlexBox';
+import Grid from '../grid/Grid';
+import Hidden from '../hidden/Hidden';
+import Icon from '../icon/Icon';
+import Modal from '../modal/Modal';
+import NavLink from '../nav-link/NavLink';
+import ProductIntro from '../Product/ProductIntro';
+import Rating from '../rating/Rating';
+import { H5, SemiSpan } from '../Typography';
+import { StyledProductCard9 } from './ProductCardStyle';
 
 export interface ProductCard9Props {
   className?: string;
@@ -65,7 +65,7 @@ const ProductCard9: React.FC<ProductCard9Props> = ({
 
       if (amount >= 0) setCartAmount(amount);
     },
-    []
+    [],
   );
 
   return (
@@ -132,7 +132,7 @@ const ProductCard9: React.FC<ProductCard9Props> = ({
               outof={5}
               color="warn"
               onChange={(value) => {
-                console.log(value, "from rating");
+                console.log(value, 'from rating');
               }}
             />
 
@@ -213,7 +213,7 @@ const ProductCard9: React.FC<ProductCard9Props> = ({
             <FlexBox
               className="add-cart"
               alignItems="center"
-              flexDirection={!!!cartAmount ? "column" : "column-reverse"}
+              flexDirection={!!!cartAmount ? 'column' : 'column-reverse'}
             >
               <Button
                 variant="outlined"
@@ -273,23 +273,23 @@ const ProductCard9: React.FC<ProductCard9Props> = ({
 
 ProductCard9.defaultProps = {
   title:
-    "Apple iPhone 5 Unlocked 16GB 8MP Used Cell-Phone-16gbIOS Used Refurbished 100%Factory Used",
-  imgUrl: "/assets/images/products/macbook.png",
+    'Apple iPhone 5 Unlocked 16GB 8MP Used Cell-Phone-16gbIOS Used Refurbished 100%Factory Used',
+  imgUrl: '/assets/images/products/macbook.png',
   off: 50,
   price: 450,
   rating: 0,
   subcategories: [
     {
-      title: "Bike",
-      url: "/#",
+      title: 'Bike',
+      url: '/#',
     },
     {
-      title: "Ducati",
-      url: "/#",
+      title: 'Ducati',
+      url: '/#',
     },
     {
-      title: "Motors",
-      url: "/#",
+      title: 'Motors',
+      url: '/#',
     },
   ],
 };

@@ -17,7 +17,7 @@ const CollectionWiseProduct: React.FC = () => {
   }, []);
 
   return (
-    <Box mx="8rem" mb="8rem">
+    <Box mb="8rem">
       {collections &&
         collections?.map((collection, idx) => {
           const hasProduct = collection?.products?.length > 0;

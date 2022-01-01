@@ -193,10 +193,10 @@ const ContactPage = () => {
           Google Map Location
         </H2>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14603.812891899375!2d90.3985879!3d23.78468!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7ebd233d85ca7af8!2sNobarun%20International!5e0!3m2!1sen!2sbd!4v1636354942365!5m2!1sen!2sbd"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.9532234081103!2d90.396399215529!3d23.78467998457248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7404bd1656f%3A0x7ebd233d85ca7af8!2sNobarun%20International!5e0!3m2!1sen!2sbd!4v1640810467424!5m2!1sen!2sbd&zoom=12"
           // width="600"
           height="450"
-          style={{ border: 0, width: '100%' }}
+          style={{ border: 0, width: '100%', zoom: 1 }}
           allowFullScreen
           loading="lazy"
         ></iframe>
@@ -204,7 +204,15 @@ const ContactPage = () => {
     </Box>
   );
 };
-
 ContactPage.layout = NavbarLayout;
 
 export default ContactPage;
+
+// <iframe
+//   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.9532234081103!2d90.396399215529!3d23.78467998457248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7404bd1656f%3A0x7ebd233d85ca7af8!2sNobarun%20International!5e0!3m2!1sen!2sbd!4v1640810467424!5m2!1sen!2sbd"
+//   width="800"
+//   height="600"
+//   style="border:0;"
+//   allowfullscreen=""
+//   loading="lazy"
+// ></iframe>;
