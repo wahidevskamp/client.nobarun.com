@@ -84,7 +84,6 @@ const CollectionFilterCard = ({
                 label={<SemiSpan color="inherit">{item.title}</SemiSpan>}
                 my="10px"
                 onChange={(e) => {
-                  // console.log(e.target.value, e.target.checked);
                   if (e.target.checked) {
                     const newFilters = [...filters, item.title];
                     setFilters(newFilters);

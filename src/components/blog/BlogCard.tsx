@@ -16,7 +16,6 @@ interface BlogCardProps {
   image: string;
 }
 const BlogCard = (props: BlogCardProps) => {
-  console.log(props);
   const { postTitle, slug, description, category, image } = props;
   return (
     <Link href={`/blogs/${encodeURI(slug)}`}>

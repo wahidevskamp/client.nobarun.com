@@ -4,7 +4,6 @@ import ProductCard12 from '@component/product-cards/ProductCard12';
 import Typography from '@component/Typography';
 
 const Ammenities = ({ contact }) => {
-  console.log(contact.amenities);
   return (
     <ProductCard12 title="Office Amenities">
       <ul>

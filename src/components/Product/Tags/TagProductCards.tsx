@@ -18,7 +18,6 @@ const TagsProductCard: React.FC<ProductCard1ListProps> = ({
   products,
   filters,
 }) => {
-  console.log(products);
   return (
     <Box>
       <Grid container spacing={6}>

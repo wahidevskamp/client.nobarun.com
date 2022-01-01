@@ -23,7 +23,6 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
   const [videoLink, setVideoLink] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
-  // console.log('Reviews', reviews);
   return (
     <div>
       <Card
@@ -133,7 +132,6 @@ const Review: React.FC<ReviewProps> = ({ reviews }) => {
                       </Button>
                     ))}
                     {review?.reviewMedia?.videos.map((video) => {
-                      console.log(video);
                       const id = video && getYoutubeId(video);
                       const link = `https://img.youtube.com/vi/${id}/sddefault.jpg`;
                       return (

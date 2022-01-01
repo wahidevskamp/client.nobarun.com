@@ -26,10 +26,6 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
   useEffect(() => {
     useAllProductCategories().then((res) => {
       setCategoriesList(res);
-      // const newNavigations = [...navigations];
-      // newNavigations[0].children = res;
-      // console.log(newNavigations);
-      // setNavigations(newNavigations);
     });
   }, []);
 

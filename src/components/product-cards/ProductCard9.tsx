@@ -61,8 +61,6 @@ const ProductCard9: React.FC<ProductCard9Props> = ({
 
   const handleCartAmountChange = useCallback(
     (amount) => () => {
-      console.log(amount);
-
       if (amount >= 0) setCartAmount(amount);
     },
     [],
@@ -131,9 +129,7 @@ const ProductCard9: React.FC<ProductCard9Props> = ({
               value={rating || 0}
               outof={5}
               color="warn"
-              onChange={(value) => {
-                console.log(value, 'from rating');
-              }}
+              onChange={(value) => {}}
             />
 
             <FlexBox mt="0.5rem" mb="1rem" alignItems="center">

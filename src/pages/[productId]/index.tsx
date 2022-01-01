@@ -36,10 +36,6 @@ const INCREASE_VIEW = gql`
 `;
 
 const ProductDetails = ({ product, reviews, isError }) => {
-  if (isError) {
-    console.log(product);
-    return;
-  }
   const router = useRouter();
   const pid = router.query.productId;
   const [active, setActive] = useState(false);
@@ -65,7 +61,7 @@ const ProductDetails = ({ product, reviews, isError }) => {
     setRecentlyViewedProduct(pid, product);
   }, []);
 
-  console.log({ product, reviews });
+  // console.log({ product, reviews });
   return (
     <Fragment>
       <ProductHead product={product} />
@@ -195,11 +191,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const productId = context.params.productId;
   try {
     //! We have to debug furthermore
-    console.log(productId);
     const data = await useProductById(productId);
-
-    // console.log(data.reviews);
-    // sessionStorage.setItem('reviews', data.reviews);
     return {
       props: {
         product: data,

@@ -165,7 +165,6 @@ const RelatedReview = ({ title, reviews, slug }) => {
                   </figure>
                 ))}
                 {review?.reviewMedia?.videos.map((video, idx) => {
-                  console.log(video);
                   const id = video && getYoutubeId(video);
                   const link = `https://img.youtube.com/vi/${id}/sddefault.jpg`;
                   return (

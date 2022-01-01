@@ -23,10 +23,8 @@ const CollectionsPage = ({
   stockStatus,
   categories,
 }) => {
-  const router = useRouter();
   const [view, setView] = useState('grid');
   const [filters, setFilters] = useState([]);
-  const [slug, setSlug] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const width = useWindowSize();
   const isTablet = width < 1025;
@@ -37,8 +35,6 @@ const CollectionsPage = ({
     },
     [],
   );
-
-  console.log(selectedCategory);
 
   return (
     <Box pt="20px" mb="15rem">

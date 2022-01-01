@@ -47,7 +47,6 @@ const ClientsPage = () => {
           allLoadedCategory === category.categoryName
             ? category.clients.length
             : noOfClients;
-        // console.log({ category, length });
         return (
           <Box mt="4rem">
             <H2 mb="2rem">{category.categoryName}</H2>

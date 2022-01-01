@@ -22,7 +22,6 @@ const ReviewsPage = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const isLaptop = width < 1400 && width > 900;
   const isTablet = width < 900;
-  console.log(isTablet);
   return (
     <>
       <AddQuery id={'pid as string'} isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -102,8 +101,6 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   try {
     //! We have to debug furthermore
     const data = await useReviewsBySlug(slug);
-    // console.log(data.reviews);
-    // sessionStorage.setItem('reviews', data.reviews);
     return {
       props: {
         ...data,
