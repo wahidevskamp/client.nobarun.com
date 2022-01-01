@@ -3,7 +3,6 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import React, { Fragment } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { AppProvider } from '../contexts/app/AppContext';
 import { GlobalStyles } from '../utils/globalStyles';
 import { theme } from '../utils/theme';
 
@@ -46,11 +45,9 @@ const App = ({ Component, pageProps }: any) => {
         ></script>
       </Head>
       <GlobalStyles />
-      <AppProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </AppProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ThemeProvider>
   );
 };

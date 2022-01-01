@@ -1,11 +1,8 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { useRouter } from 'next/router';
+import React, { Fragment } from 'react';
 import Grid from '@component/grid/Grid';
 import NavbarLayout from '@component/layout/NavbarLayout';
 import Box from '@component/Box';
-import ProductHead from '@component/Product/ProductHead';
-import { gql } from 'graphql-request';
-import { H1, H2, H3, Paragraph } from '@component/Typography';
+import { H1, H3 } from '@component/Typography';
 import BlogFilterCard from '@component/products/BlogFilterCard';
 import useBlogCategoriesTree from '@hook/Blogs/useAllBlogCategory';
 import useBlogBySlug from '@hook/Blogs/useBlogBySlug';

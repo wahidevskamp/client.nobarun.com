@@ -18,9 +18,10 @@ import TagsProductCard from '@component/Product/Tags/TagProductCards';
 const TagsPage = ({ tags, products, stocks: stockStatus, categories }) => {
   const [filters, setFilters] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
+
   const width = useWindowSize();
   const isTablet = width < 1025;
-  console.log(filters, selectedCategory);
+
   return (
     <Box pt="20px" mb="15rem">
       <FlexBox

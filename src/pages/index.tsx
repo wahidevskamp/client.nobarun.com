@@ -1,8 +1,8 @@
-import Clients from '@component/home-1/Clients';
-import FeaturedCategories from '@component/home-1/FeaturedCategories';
-import CollectionWiseProduct from '@component/home-1/CollectionWiseProduct';
-import Testimonials from '@component/home-1/Testimonials';
-import Slider from '../components/home-1/Slider';
+import Clients from '@component/Home/Clients';
+import FeaturedCategories from '@component/Home/FeaturedCategories';
+import CollectionWiseProduct from '@component/Home/CollectionWiseProduct';
+import Testimonials from '@component/Home/Testimonials';
+import Slider from '../components/Home/Slider';
 import AppLayout from '../components/layout/AppLayout';
 
 const IndexPage = () => {
