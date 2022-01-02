@@ -35,30 +35,29 @@ const RelatedClients: React.FC<ClientProps> = (props) => {
       <Container pb="1rem">
         <Box mb="-0.25rem">
           <Carousel
-            // totalSlides={clients?.length}
-            totalSlides={10}
+            totalSlides={clients?.length}
+            // totalSlides={10}
             visibleSlides={7}
-            autoPlay={true}
-            infinite={false}
+            // autoPlay={true}
+            // infinite={false}
             interval={1000}
-            // autoPlay={clients?.length > slices}
-            // infinite={clients?.length > slices}
+            autoPlay={clients?.length > slices}
+            infinite={clients?.length > slices}
             showArrow={false}
           >
             {clients?.map((item, ind) => (
-              // <Box key={ind} className="client client_related">
-              //   <HoverBox borderRadius={5} className="client__body">
-              //     <img src={item.imgUrl} className="client__image" />
-              //   </HoverBox>
-              //   <H4
-              //     fontSize="1.4rem"
-              //     fontWeight="600"
-              //     className="client__title"
-              //   >
-              //     {item.title}
-              //   </H4>
-              // </Box>
-              <h1>{ind}</h1>
+              <Box key={ind} className="client client_related">
+                <HoverBox borderRadius={5} className="client__body">
+                  <img src={item.imgUrl} className="client__image" />
+                </HoverBox>
+                <H4
+                  fontSize="1.4rem"
+                  fontWeight="600"
+                  className="client__title"
+                >
+                  {item.title}
+                </H4>
+              </Box>
             ))}
           </Carousel>
         </Box>

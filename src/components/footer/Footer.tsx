@@ -142,7 +142,7 @@ const iconList = [
   },
   {
     iconName: 'youtube',
-    url: 'https://www.youtube.com/c/NobarunInternational',
+    url: 'https://www.youtube.com/c/NobarunInternational/videos',
     color: '#c4302b',
   },
   {
