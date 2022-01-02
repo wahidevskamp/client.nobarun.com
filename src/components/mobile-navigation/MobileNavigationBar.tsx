@@ -12,9 +12,10 @@ const MobileNavigationBar: React.FC<MobileNavigationBarProps> = (props) => {
   const { phone, setIsOpen, product } = props;
   const width = useWindowSize();
   const message = `Hello ${product?.contact?.name},
-I want to know more about ${product?.intro?.productName} 
+I want to know more about ${product?.intro?.productName} Which Product Code is ${product?.intro?.productCode}
 Product Link: https://nobarunbd.vercel.app/${product.slug}
-Product Code: ${product?.intro?.productCode}`;
+Please send me more details.
+}`;
   return (
     width <= 1025 && (
       <StyledMobileNavigationBar>

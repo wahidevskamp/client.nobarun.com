@@ -14,9 +14,10 @@ const ContactPerson = ({
   setIsOpen,
 }) => {
   const message = `Hello ${contact?.name},
-I want to know more about ${productName} 
+I want to know more about ${productName} Which Product Code is ${productCode}
 Product Link: https://nobarunbd.vercel.app/${slug}
-Product Code: ${productCode}`;
+Please send me more details.
+`;
 
   return (
     <Box px="1rem" py="1rem" mb="2rem">
