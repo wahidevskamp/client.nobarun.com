@@ -9,7 +9,7 @@ export interface IconProps {
   transform?: string;
   variant?: 'small' | 'medium' | 'large';
   color?: colorOptions;
-  defaultcolor?: 'currentColor' | 'auto';
+  defaultcolor?: string;
 }
 
 const Icon: React.FC<IconProps & SpaceProps & ButtonHTMLAttributes<IconProps>> =

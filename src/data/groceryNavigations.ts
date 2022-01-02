@@ -1,10 +1,4 @@
 const groceryNavigations = [
-  // {
-  //   icon: 'categories',
-  //   name: 'Browse All Categories',
-  //   slug: '#',
-  //   children: [],
-  // },
   {
     icon: 'home',
     name: 'Home',

@@ -72,12 +72,12 @@ const Footer: React.FC = () => {
             <Box
               m="5px"
               size="small"
-              p="10px"
+              p="8px"
               bg="rgba(0,0,0,0.56)"
               border="1px solid #fff"
               borderRadius="50%"
             >
-              <Icon size="12px" defaultcolor="auto">
+              <Icon size="2.2rem" defaultcolor={item.color}>
                 {item.iconName}
               </Icon>
             </Box>
@@ -132,15 +132,29 @@ const Footer: React.FC = () => {
 const iconList = [
   {
     iconName: 'facebook',
-    url: 'hhttps://www.facebook.com/nobaruninternational',
+    url: 'https://www.facebook.com/nobaruninternational',
+    color: '#5982db',
   },
-  { iconName: 'twitter', url: 'https://twitter.com/nobarunbd' },
+  {
+    iconName: 'twitter',
+    url: 'https://twitter.com/nobarunbd',
+    color: '#00acee',
+  },
   {
     iconName: 'youtube',
-    url: '/',
+    url: 'https://www.youtube.com/c/NobarunInternational',
+    color: '#c4302b',
   },
-  { iconName: 'google', url: '/' },
-  { iconName: 'instagram', url: '/' },
+  {
+    iconName: 'google',
+    url: 'https://www.google.com/maps/place/Nobarun+International/@23.7850459,90.3987561,16.97z/data=!4m5!3m4!1s0x3755c7404bd1656f:0x7ebd233d85ca7af8!8m2!3d23.78468!4d90.3985879',
+    color: '#4285F4',
+  },
+  {
+    iconName: 'pinterest',
+    url: 'https://www.pinterest.com/nobaruninternational/',
+    color: '#E60023',
+  },
 ];
 
 export default Footer;

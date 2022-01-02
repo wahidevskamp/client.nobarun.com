@@ -16,6 +16,7 @@ export interface SidemenuProps {
 }
 
 const Sidemenu: React.FC<SidemenuProps> = ({ categoriesList, isFixed }) => {
+  console.log(categoriesList);
   return (
     <Card
       position="relative"
@@ -44,8 +45,9 @@ const Sidemenu: React.FC<SidemenuProps> = ({ categoriesList, isFixed }) => {
         </AccordionHeader>
         {categoriesList.map((item) => (
           <NavLink href={'/category/' + item.slug} color="gray.700">
-            <FlexBox key={item.name}>
-              <SemiSpan ml="3rem" py="6px" color="inherit" flex="1 1 0">
+            <FlexBox key={item.name} mt=".5rem" ml=".5rem">
+              {item?.image && <img src={item.image} height="30" width="30" />}
+              <SemiSpan ml="1rem" py="6px" color="inherit" flex="1 1 0">
                 {item.name}
               </SemiSpan>
             </FlexBox>
