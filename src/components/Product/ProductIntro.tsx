@@ -221,15 +221,16 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
               ) : (
                 ''
               )}
-              {data?.review?.length > 0 && (
+              {data?.review > 0 && (
                 <FlexBox>
                   <Rating
                     outof={5}
                     value={data?.rating}
                     color="warn"
                     size="medium"
+                    style={{ margin: '5px 0' }}
                   />
-                  <a href="#reviews">
+                  <a href="#reviews" style={{ marginTop: '0.25rem' }}>
                     <Span
                       ml="1rem"
                       color="#0082C9"

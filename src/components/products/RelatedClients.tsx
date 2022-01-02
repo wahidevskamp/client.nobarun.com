@@ -39,7 +39,7 @@ const RelatedClients: React.FC<ClientProps> = (props) => {
             totalSlides={10}
             visibleSlides={7}
             autoPlay={true}
-            infinite={true}
+            infinite={false}
             interval={1000}
             // autoPlay={clients?.length > slices}
             // infinite={clients?.length > slices}

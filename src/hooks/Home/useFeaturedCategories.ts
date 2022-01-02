@@ -17,7 +17,7 @@ const useFeaturedCategories = async () => {
 
   const categories = data?.getAllFeaturedCategories.map((category) => ({
     ...category,
-    productUrl: `/product/category/${category.slug}`,
+    productUrl: `/category/${category.slug}`,
   }));
 
   return categories;

@@ -74,7 +74,7 @@ export const StyledProductCard1 = styled(Card)`
     img {
       /* height: 370px; */
       width: 100%;
-      padding: 20px 10px;
+      /* padding: 20px 10px; */
     }
     .extra-icons {
       display: none;
@@ -99,7 +99,15 @@ export const StyledProductCard1 = styled(Card)`
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
+    h3.title {
+      font-size: 18px;
+      overflow: hidden !important;
+      white-space: break-spaces !important;
+      text-overflow: unset !important;
+      @media only screen and (max-width: 600px) {
+        font-size: 16px;
+      }
+    }
     .icon-holder {
       display: flex;
       flex-direction: column;

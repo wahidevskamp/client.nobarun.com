@@ -9,7 +9,6 @@ import { H6, Paragraph, SemiSpan } from '../Typography';
 
 const CategoryFilterCard = ({
   slug,
-  categoryName,
   stockStatus,
   categories,
   filters,
@@ -17,7 +16,9 @@ const CategoryFilterCard = ({
 }) => {
   return (
     <Card p="18px 27px" elevation={5}>
-      <H6 mb="10px">Categories</H6>
+      <H6 mb="10px" fontSize="2.5rem">
+        Categories
+      </H6>
 
       {categories?.map((item) =>
         item?.children.length > 0 ? (
@@ -35,7 +36,7 @@ const CategoryFilterCard = ({
             {item?.children?.map((name) => (
               <Paragraph
                 className="cursor-pointer"
-                fontSize="14px"
+                fontSize="18px"
                 color="text.muted"
                 pl="22px"
                 py="6px"
@@ -46,11 +47,25 @@ const CategoryFilterCard = ({
             ))}
           </Accordion>
         ) : (
-          <Link href={`/product/category/${item.slug}`}>
-            <a>
+          <Link href={`/category/${item.slug}`}>
+            <a
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                marginBottom: '3px',
+              }}
+            >
+              {item.icon && (
+                <img
+                  src={item.icon}
+                  height="30"
+                  width="30"
+                  style={{ marginRight: '1.5rem' }}
+                />
+              )}
               <Paragraph
                 className="cursor-pointer"
-                fontSize="14px"
+                fontSize="18px"
                 color={slug === item?.slug ? 'red' : 'text.muted'}
                 py="6px"
                 key={item?.name}
@@ -64,7 +79,9 @@ const CategoryFilterCard = ({
 
       <Divider my="24px" />
 
-      <H6 mb="16px">Stock Status</H6>
+      <H6 mb="16px" fontSize="2.5rem">
+        Stock Status
+      </H6>
       {stockStatus?.map(
         (item) =>
           item.isPublished && (
@@ -73,7 +90,11 @@ const CategoryFilterCard = ({
               name={item.title}
               value={item.title}
               color="secondary"
-              label={<SemiSpan color="inherit">{item.title}</SemiSpan>}
+              label={
+                <SemiSpan color="inherit" fontSize="1.8rem">
+                  {item.title}
+                </SemiSpan>
+              }
               my="10px"
               onChange={(e) => {
                 if (e.target.checked) {
@@ -96,23 +117,5 @@ const CategoryFilterCard = ({
     </Card>
   );
 };
-
-const categroyList = [
-  {
-    title: 'Bath Preparations',
-    children: ['Bubble Bath', 'Bath Capsules', 'Others'],
-  },
-  {
-    title: 'Eye Makeup Preparations',
-  },
-  {
-    title: 'Fragrance',
-  },
-  {
-    title: 'Hair Preparations',
-  },
-];
-
-const otherOptions = ['On Sale', 'In Stock', 'Featured'];
 
 export default CategoryFilterCard;

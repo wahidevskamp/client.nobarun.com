@@ -61,11 +61,18 @@ const ProductDetails = ({ product, reviews, isError }) => {
     setRecentlyViewedProduct(pid, product);
   }, []);
 
-  // console.log({ product, reviews });
+  console.log({ product, reviews });
   return (
     <Fragment>
       <ProductHead product={product} />
-      <AddQuery id={pid as string} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AddQuery
+        id={pid as string}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        productName={product?.intro?.productName}
+        productCode={product?.intro?.productCode}
+        contact={product?.contact}
+      />
       <GoToTop showBelow={250} />
       <MobileNavigationBar
         product={{ ...product, slug: pid }}

@@ -24,7 +24,14 @@ const ReviewsPage = (props) => {
   const isTablet = width < 900;
   return (
     <>
-      <AddQuery id={'pid as string'} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AddQuery
+        id={'pid as string'}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        productName={productTitle}
+        productCode={productCode}
+        contact={contact}
+      />
       <Box my="5rem">
         <Box bg="#fff" mb="3rem">
           <Grid

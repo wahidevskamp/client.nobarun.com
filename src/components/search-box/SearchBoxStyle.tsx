@@ -27,6 +27,7 @@ const StyledSearchBox = styled.div`
     height: 44px;
     background-color: #fff !important;
     border: 1px solid #ddd;
+    font-size: 1.8rem;
   }
 
   .search-btn {
@@ -35,17 +36,17 @@ const StyledSearchBox = styled.div`
     position: absolute;
     right: 0;
   }
+
   .search-button {
     position: absolute;
-
     height: 100%;
     right: 0px;
-    /* border-radius: 0 300px 300px 0; */
     padding-left: 55px;
     padding-right: 55px;
     border-top-left-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
   }
+
   .category-dropdown {
     position: absolute;
     right: 0px;

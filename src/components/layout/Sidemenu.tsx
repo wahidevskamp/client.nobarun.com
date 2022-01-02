@@ -43,7 +43,7 @@ const Sidemenu: React.FC<SidemenuProps> = ({ categoriesList, isFixed }) => {
           </Box>
         </AccordionHeader>
         {categoriesList.map((item) => (
-          <NavLink href={'/product/category/' + item.slug} color="gray.700">
+          <NavLink href={'/category/' + item.slug} color="gray.700">
             <FlexBox key={item.name}>
               <SemiSpan ml="3rem" py="6px" color="inherit" flex="1 1 0">
                 {item.name}

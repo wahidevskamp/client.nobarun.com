@@ -27,7 +27,7 @@ const ProductCard1List: React.FC<ProductCard1ListProps> = ({
           )
           .map(
             ({ productData: { product, reviewCount, ratingAverage } }, ind) => (
-              <Grid item lg={4} sm={6} xs={12} key={ind}>
+              <Grid item lg={4} md={4} sm={6} xs={6} key={ind}>
                 <Box py="0.25rem" key={product?.id}>
                   <ProductCard1
                     id={product?.slug}

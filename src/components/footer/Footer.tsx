@@ -38,12 +38,13 @@ const Footer: React.FC = () => {
       <div>
         {blogs &&
           blogs.map((blog, idx) => (
-            <Link href="/" key={blog.blogTitle + idx}>
+            <Link href={`/blogs/${blog.blogTitle}`} key={blog.blogTitle + idx}>
               <StyledLink
                 style={{
                   color: '#fff',
                   fontSize: '16px',
                   textDecoration: 'underline',
+                  fontFamily: "'SolaimanLipi', sans-serif",
                 }}
               >
                 {blog.blogTitle}

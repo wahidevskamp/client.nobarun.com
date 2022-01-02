@@ -51,7 +51,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = forwardRef(
         .map((item) => (
           <CategoryMenuItem
             title={item.name}
-            href={`/product/category/${item.slug}`}
+            href={`/category/${item.slug}`}
             icon={item.image}
             caret={item.children}
             key={item.id}

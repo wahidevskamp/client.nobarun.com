@@ -6,6 +6,7 @@ import BlogCard from '@component/blog/BlogCard';
 import useAllBlogs from '@hook/Blogs/useAllBlogs';
 import { H1 } from '@component/Typography';
 import { useRouter } from 'next/router';
+import OtherLayout from '@component/layout/OtherLayout';
 
 const BlogsList = () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const BlogsList = () => {
 
   return (
     <Box p="20px" mb="70px">
-      <Box textAlign="center" mb="2rem">
+      <Box textAlign="center" mt="1rem" mb="4.5rem">
         <H1 fontSize="5rem" fontWeight="bold">
           Our Blog
         </H1>
@@ -48,6 +49,6 @@ const BlogsList = () => {
   );
 };
 
-BlogsList.layout = NavbarLayout;
+BlogsList.layout = OtherLayout;
 
 export default BlogsList;

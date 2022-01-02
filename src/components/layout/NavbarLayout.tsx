@@ -8,7 +8,6 @@ const NavbarLayout: React.FC = ({ children }) => {
   return (
     <ProductLayout navbar={<Navbar />}>
       <Container my="10px">{children}</Container>
-      {/* <MobileCategoryNav /> */}
     </ProductLayout>
   );
 };

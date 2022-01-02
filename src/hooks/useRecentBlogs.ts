@@ -5,6 +5,7 @@ const GET_RECENT_BLOGS = gql`
   query getRecentBlogs {
     getSomeBlogs(limit: 4) {
       blogTitle
+      slug
     }
   }
 `;

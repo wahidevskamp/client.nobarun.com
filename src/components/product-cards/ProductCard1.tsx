@@ -76,13 +76,11 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
               <a>
                 <H3
                   className="title"
-                  fontSize="14px"
                   textAlign="left"
                   fontWeight="600"
                   color="text.secondary"
                   mt="10px"
                   mb="5px"
-                  // style={{ whiteSpace: 'normal' }}
                   title={title}
                 >
                   {title}
@@ -98,7 +96,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
           </Box>
         </FlexBox>
       </div>
-      <AddQuery id={id as string} isOpen={open} setIsOpen={setOpen} />
+      {/* <AddQuery id={id as string} isOpen={open} setIsOpen={setOpen} /> */}
     </StyledProductCard1>
   );
 };

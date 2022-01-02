@@ -25,7 +25,6 @@ const ProductSearchResult = ({
   products,
   categories,
 }) => {
-  const router = useRouter();
   const [view, setView] = useState('grid');
   const [filters, setFilters] = useState([]);
   const width = useWindowSize();
@@ -38,7 +37,7 @@ const ProductSearchResult = ({
     [],
   );
   return (
-    <Box pt="20px" mb="15rem">
+    <Box pt="20px" mb="5rem">
       <FlexBox
         p="1.25rem"
         flexWrap="wrap"
@@ -67,7 +66,7 @@ const ProductSearchResult = ({
             >
               <CategoryFilterCard
                 slug={slug}
-                categoryName={categoryName}
+                // categoryName={categoryName}
                 filters={filters}
                 setFilters={setFilters}
                 categories={categories}
@@ -79,11 +78,11 @@ const ProductSearchResult = ({
       </FlexBox>
 
       <Grid container spacing={6}>
-        <Hidden as={Grid} item lg={3} xs={12} down={1024}>
+        <Hidden as={Grid} item lg={3} md={12} xs={12} down={1024}>
           {/* <ProductFilterCard /> */}
           <CategoryFilterCard
             slug={slug}
-            categoryName={categoryName}
+            // categoryName={categoryName}
             filters={filters}
             setFilters={setFilters}
             categories={categories}
@@ -91,7 +90,7 @@ const ProductSearchResult = ({
           />
         </Hidden>
 
-        <Grid item lg={9} xs={12}>
+        <Grid item lg={9} md={12} xs={12}>
           {view === 'grid' ? (
             <ProductCard1List products={products} filters={filters} />
           ) : (
@@ -116,7 +115,6 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const categoryId = context.params.categoryId;
   try {
     const data = await useProductsByCategory(categoryId);
-    // console.log(data.reviews);
     if (data)
       return {
         props: {

@@ -7,13 +7,16 @@ import BlogFilterCard from '@component/products/BlogFilterCard';
 import useBlogCategoriesTree from '@hook/Blogs/useAllBlogCategory';
 import useBlogBySlug from '@hook/Blogs/useBlogBySlug';
 import { GetServerSideProps } from 'next';
+import OtherLayout from '@component/layout/OtherLayout';
 
 const BlogDetails = ({ blog, categories }) => {
   return (
     <Fragment>
       {/* <ProductHead product={product} /> */}
       <div className="hero">
-        <h2 className="hero__title">Our Blog</h2>
+        <h2 className="hero__title" style={{ marginBottom: '6rem' }}>
+          Our Blog
+        </h2>
       </div>
       <Grid container spacing={10}>
         <Grid item md={8} sm={12} xs={12} className="blog">
@@ -48,7 +51,7 @@ const BlogDetails = ({ blog, categories }) => {
   );
 };
 
-BlogDetails.layout = NavbarLayout;
+BlogDetails.layout = OtherLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const blogSlug = context.params.blogSlug;

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import { getDay, getHours } from 'date-fns';
 
 import Card from '@component/Card';
@@ -8,16 +8,16 @@ import Image from '@component/Image';
 import Typography, { H5, Paragraph } from '@component/Typography';
 import ProductCard from '@component/product-cards/ProductCard12';
 import Button from '@component/buttons/Button';
-import AddQuery from '@component/Shared/AddQuery';
 
 const Contacts = ({ slug, productName, productCode, contact, setIsOpen }) => {
   const currentDate = new Date();
   const day = getDay(currentDate);
   const hours = getHours(currentDate);
   const message = `Hello ${contact?.name},
-I want to know more about ${productName} 
+I want to know more about ${productName} Which Product Code is ${productCode}
 Product Link: https://nobarunbd.vercel.app/${slug}
-Product Code: ${productCode}`;
+Please send me more details.
+`;
 
   return (
     <Fragment>

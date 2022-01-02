@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import NavbarLayout from '@component/layout/NavbarLayout';
 import Box from '@component/Box';
-import { H1, H2, H4, Paragraph } from '@component/Typography';
+import { H2, H4 } from '@component/Typography';
 import HoverBox from '@component/HoverBox';
 import useAllClientsByCategory from '@hook/useAllClientsByCategory';
 import useWindowSize from '@hook/useWindowSize';
+import AppLayout from '@component/layout/AppLayout';
+import NavbarLayout from '@component/layout/NavbarLayout';
+import OtherLayout from '@component/layout/OtherLayout';
 
 const ClientsPage = () => {
   const [clients, setClients] = useState([]);
@@ -34,13 +36,9 @@ const ClientsPage = () => {
   if (width < 880) noOfClients = 7;
   if (width < 710) noOfClients = 6;
   return (
-    <Box py="4rem">
-      <div className="hero">
+    <Box mb="6rem">
+      <div className="hero" style={{ marginBottom: '2rem' }}>
         <h1 className="hero__title">Our Valuable Clients</h1>
-        <p className="hero__content">
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration.
-        </p>
       </div>
       {clients.map((category) => {
         const length =
@@ -48,7 +46,7 @@ const ClientsPage = () => {
             ? category.clients.length
             : noOfClients;
         return (
-          <Box mt="4rem">
+          <Box mb="2rem">
             <H2 mb="2rem">{category.categoryName}</H2>
             <div className="clients-list_wrapper">
               {category.clients.slice(0, length).map((item, idx) => (
@@ -87,6 +85,6 @@ const ClientsPage = () => {
   );
 };
 
-ClientsPage.layout = NavbarLayout;
+ClientsPage.layout = OtherLayout;
 
 export default ClientsPage;

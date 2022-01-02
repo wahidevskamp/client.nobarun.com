@@ -1,17 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@component/Box';
 import { H2, H3, H6, Paragraph } from '@component/Typography';
 import Grid from '@component/grid/Grid';
 import TextField from '@component/text-field/TextField';
 import TextArea from '@component/textarea/TextArea';
 import Icon from '@component/icon/Icon';
-import NavbarLayout from '@component/layout/NavbarLayout';
 import useWindowSize from '@hook/useWindowSize';
 import FlexBox from '@component/FlexBox';
 import Button from '@component/buttons/Button';
+import OtherLayout from '@component/layout/OtherLayout';
+
+const validateEmail = (email) => {
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  );
+};
 
 const ContactPage = () => {
   const width = useWindowSize();
+
+  const [showEmailError, setShowEmailError] = useState(false);
+  const [state, setState] = useState({
+    fullName: '',
+    email: '',
+    mobileNo: '',
+    altContactNo: '',
+    company: '',
+    message: '',
+  });
+
+  console.log(state);
+
+  const handleChange = (evt) => {
+    const value = evt.target.value;
+    const name = evt.target.name;
+    if (name === 'email') {
+      if (validateEmail(value)) setShowEmailError(false);
+      else setShowEmailError(true);
+    }
+    setState({
+      ...state,
+      [name]: value,
+    });
+  };
+
+  const onSubmit = () => {
+    if (showEmailError) return;
+    if (state.email === '' && state.mobileNo === '') return;
+    fetch(`https://formsubmit.co/ajax/nobarunbd@gmail.com`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        Title: 'Contact Person',
+        'Full Name': state.fullName,
+        'Mobile Number': state.mobileNo,
+        'Email Address': state.email,
+        'Company Name': state.company,
+        Attachment: '',
+        Message: state.message,
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        setState({
+          fullName: '',
+          email: '',
+          mobileNo: '',
+          altContactNo: '',
+          company: '',
+          message: '',
+        });
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <Box
@@ -110,6 +174,9 @@ const ContactPage = () => {
                   fullwidth
                   required
                   mb={width < 767 ? 15 : '3px'}
+                  name="fullName"
+                  value={state.fullName}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item md={6} xs={12}>
@@ -119,6 +186,10 @@ const ContactPage = () => {
                   fullwidth
                   required
                   mb={width < 767 ? 15 : '3px'}
+                  name="email"
+                  value={state.email}
+                  errorText={showEmailError && 'Email is wrong'}
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
@@ -130,6 +201,9 @@ const ContactPage = () => {
                   fullwidth
                   required
                   mb={width < 767 ? 15 : '3px'}
+                  name="mobileNo"
+                  value={state.mobileNo}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item md={6} xs={12}>
@@ -139,6 +213,9 @@ const ContactPage = () => {
                   fullwidth
                   required
                   mb={width < 767 ? 15 : '3px'}
+                  name="altContactNo"
+                  value={state.altContactNo}
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
@@ -150,6 +227,9 @@ const ContactPage = () => {
                   fullwidth
                   required
                   mb={width < 767 ? 15 : 0}
+                  name="company"
+                  value={state.company}
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
@@ -162,6 +242,9 @@ const ContactPage = () => {
                   style={{ minHeight: '150px' }}
                   required
                   mb={width < 767 ? 15 : '10px'}
+                  name="message"
+                  value={state.message}
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
@@ -177,6 +260,7 @@ const ContactPage = () => {
                     maxWidth: '60%',
                     margin: '1rem auto',
                   }}
+                  onClick={onSubmit}
                 >
                   <Icon size="1.5rem" mr="1rem">
                     telegram
@@ -204,15 +288,6 @@ const ContactPage = () => {
     </Box>
   );
 };
-ContactPage.layout = NavbarLayout;
+ContactPage.layout = OtherLayout;
 
 export default ContactPage;
-
-// <iframe
-//   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.9532234081103!2d90.396399215529!3d23.78467998457248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7404bd1656f%3A0x7ebd233d85ca7af8!2sNobarun%20International!5e0!3m2!1sen!2sbd!4v1640810467424!5m2!1sen!2sbd"
-//   width="800"
-//   height="600"
-//   style="border:0;"
-//   allowfullscreen=""
-//   loading="lazy"
-// ></iframe>;

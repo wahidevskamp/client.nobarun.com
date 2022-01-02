@@ -116,7 +116,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
                   borderRadius="10px"
                 />
                 <Box ml="20px">
-                  <Span fontSize="14px">{item.title}</Span>
+                  <Span fontSize="1.8rem">{item.title}</Span>
                   <FlexBox alignItems="center">
                     <Rating value={item.ratingAvg} color="warn" size="small" />
                     <Span fontSize="14px" ml="5px">
