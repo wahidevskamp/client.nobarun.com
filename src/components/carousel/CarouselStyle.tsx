@@ -74,15 +74,6 @@ export const StyledCarousel = styled(
   `
       : ''}
 
-  // @media only screen and (max-width: 1330px) {
-  //   .right-arrow-class {
-  //     right: 0px;
-  //   }
-  //   .left-arrow-class {
-  //     left: 0px;
-  //   }
-  // }
-
   .custom-dot {
     display: flex;
     justify-content: start;
@@ -114,5 +105,10 @@ export const StyledCarousel = styled(
   }
   .dot-active:after {
     transform: translate(-50%, -50%) scaleX(1);
+  }
+  @media only screen and (max-width: 900px) {
+    .custom-dot {
+      margin-left: 0px !important;
+    }
   }
 `;

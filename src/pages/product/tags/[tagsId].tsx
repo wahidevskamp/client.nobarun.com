@@ -23,7 +23,7 @@ const TagsPage = ({ tags, products, stocks: stockStatus, categories }) => {
   const isTablet = width < 1025;
 
   return (
-    <Box pt="20px" mb="15rem">
+    <Box pt="20px" mb="5rem">
       <FlexBox
         p="1.25rem"
         flexWrap="wrap"
@@ -70,7 +70,7 @@ const TagsPage = ({ tags, products, stocks: stockStatus, categories }) => {
             slug={selectedCategory}
             categories={categories}
             setSelectedCategory={setSelectedCategory}
-            stockStatus={stockStatus}
+            stockStatus={null}
           />
         </Hidden>
 

@@ -1,11 +1,8 @@
 import Box from '@component/Box';
-import productDatabase from '@data/product-database';
-import React from 'react';
-import FlexBox from '../FlexBox';
+import useWindowSize from '@hook/useWindowSize';
+import React, { useState, useEffect } from 'react';
 import Grid from '../grid/Grid';
-import Pagination from '../pagination/Pagination';
 import ProductCard1 from '../product-cards/ProductCard1';
-import { SemiSpan } from '../Typography';
 
 export interface ProductCard1ListProps {
   products: any;
@@ -16,6 +13,14 @@ const ProductCard1List: React.FC<ProductCard1ListProps> = ({
   products,
   filters,
 }) => {
+  const [slices, setSlices] = useState(0);
+  const width = useWindowSize();
+  const MAX_INITIAL_DISPLAY = width < 769 ? 6 : 9;
+
+  useEffect(() => {
+    width < 769 ? setSlices(6) : setSlices(9);
+  }, [width]);
+
   return (
     <Box>
       <Grid container spacing={6}>
@@ -25,6 +30,7 @@ const ProductCard1List: React.FC<ProductCard1ListProps> = ({
               ? filters.includes(p?.productData?.product?.stockStatus?.title)
               : p,
           )
+          .slice(0, slices)
           .map(
             ({ productData: { product, reviewCount, ratingAverage } }, ind) => (
               <Grid item lg={4} md={4} sm={6} xs={6} key={ind}>
@@ -46,16 +52,19 @@ const ProductCard1List: React.FC<ProductCard1ListProps> = ({
             ),
           )}
       </Grid>
-      {products.length > 9 && (
-        <FlexBox
-          flexWrap="wrap"
-          justifyContent="space-between"
-          alignItems="center"
-          mt="32px"
-        >
-          <SemiSpan>Showing 1-9 of {products.length + 1} Products</SemiSpan>
-          <Pagination pageCount={10} />
-        </FlexBox>
+      {products.length > MAX_INITIAL_DISPLAY && (
+        <Box textAlign="center" mt="4rem">
+          <button
+            className="client_load-btn"
+            onClick={() => {
+              if (slices < products.length) setSlices(products.length);
+              else if (slices === products.length)
+                setSlices(MAX_INITIAL_DISPLAY);
+            }}
+          >
+            {slices === products.length ? 'Show Less' : 'Load More'}
+          </button>
+        </Box>
       )}
     </Box>
   );

@@ -6,6 +6,7 @@ import CheckBox from '@component/CheckBox';
 import Divider from '@component/Divider';
 import Tags from '@component/Product/Tags';
 import { H6, SemiSpan, Paragraph } from '@component/Typography';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -24,7 +25,9 @@ const CollectionFilterCard = ({
   return (
     <>
       <Card p="18px 27px" elevation={5}>
-        <H6 mb="10px">Categories</H6>
+        <H6 mb="10px" fontSize="2.5rem">
+          Categories
+        </H6>
         {categories?.map((item) =>
           item?.children.length > 0 ? (
             <Accordion key={item?.name} expanded>
@@ -58,21 +61,43 @@ const CollectionFilterCard = ({
               ))}
             </Accordion>
           ) : (
-            <Paragraph
-              className="cursor-pointer"
-              fontSize="14px"
-              color={slug === item?.name ? 'red' : 'text.muted'}
-              py="6px"
-              key={item?.name}
-              onClick={() => selectCategory(item?.name)}
-            >
-              {item?.name}
-            </Paragraph>
+            <Link href={`/category/${item.slug}`}>
+              <a
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginBottom: '3px',
+                }}
+              >
+                {item.icon && (
+                  <img
+                    src={item.icon}
+                    height="30"
+                    width="30"
+                    style={{ marginRight: '1.5rem' }}
+                  />
+                )}
+                <Paragraph
+                  className="cursor-pointer"
+                  fontSize="18px"
+                  color={slug === item?.slug ? 'red' : 'text.muted'}
+                  py="6px"
+                  key={item?.name}
+                >
+                  {item?.name}
+                </Paragraph>
+              </a>
+            </Link>
           ),
         )}
-        <Divider my="24px" />
-
-        <H6 mb="16px">Stock Status</H6>
+        {stockStatus && (
+          <>
+            <Divider my="24px" />
+            <H6 mb="16px" fontSize="2.5rem">
+              Stock Status
+            </H6>
+          </>
+        )}
         {stockStatus?.map(
           (item) =>
             item.isPublished && (
@@ -81,7 +106,11 @@ const CollectionFilterCard = ({
                 name={item.title}
                 value={item.title}
                 color="secondary"
-                label={<SemiSpan color="inherit">{item.title}</SemiSpan>}
+                label={
+                  <SemiSpan color="inherit" fontSize="1.8rem">
+                    {item.title}
+                  </SemiSpan>
+                }
                 my="10px"
                 onChange={(e) => {
                   if (e.target.checked) {

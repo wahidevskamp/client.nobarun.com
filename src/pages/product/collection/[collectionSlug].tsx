@@ -16,6 +16,7 @@ import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 import CollectionFilterCard from '@component/Product/Collection/CollectionFilterCard';
+import CategoryFilterCard from '@component/products/CategoryFilterCard';
 
 const CollectionsPage = ({
   collectionName,
@@ -37,7 +38,7 @@ const CollectionsPage = ({
   );
 
   return (
-    <Box pt="20px" mb="15rem">
+    <Box pt="20px" mb="5rem">
       <FlexBox
         p="1.25rem"
         flexWrap="wrap"
@@ -90,15 +91,11 @@ const CollectionsPage = ({
         </Hidden>
 
         <Grid item lg={9} xs={12}>
-          {view === 'grid' ? (
-            <CollectionProductCard
-              selectedCategory={selectedCategory}
-              products={products}
-              filters={filters}
-            />
-          ) : (
-            <ProductCard9List />
-          )}
+          <CollectionProductCard
+            selectedCategory={selectedCategory}
+            products={products}
+            filters={filters}
+          />
         </Grid>
       </Grid>
     </Box>

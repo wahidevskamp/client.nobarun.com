@@ -91,23 +91,12 @@ const ProductSearchResult = ({
         </Hidden>
 
         <Grid item lg={9} md={12} xs={12}>
-          {view === 'grid' ? (
-            <ProductCard1List products={products} filters={filters} />
-          ) : (
-            <ProductCard9List />
-          )}
+          <ProductCard1List products={products} filters={filters} />
         </Grid>
       </Grid>
     </Box>
   );
 };
-
-const sortOptions = [
-  { label: 'Relevance', value: 'Relevance' },
-  { label: 'Date', value: 'Date' },
-  { label: 'Price Low to High', value: 'Price Low to High' },
-  { label: 'Price High to Low', value: 'Price High to Low' },
-];
 
 ProductSearchResult.layout = NavbarLayout;
 

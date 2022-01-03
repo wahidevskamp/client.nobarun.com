@@ -7,7 +7,15 @@ import Icon from '@component/icon/Icon';
 import Rating from '@component/rating/Rating';
 import TextField from '@component/text-field/TextField';
 import TextArea from '@component/textarea/TextArea';
-import { H1, SemiSpan, Span } from '@component/Typography';
+import {
+  H1,
+  H2,
+  H3,
+  H4,
+  Paragraph,
+  SemiSpan,
+  Span,
+} from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import React, { useState } from 'react';
 import { gql } from 'graphql-request';
@@ -162,6 +170,7 @@ const AddReview = ({ productCode }) => {
         <Grid item xs={12}>
           <TextArea
             fullwidth
+            label="Write your Review"
             name="review"
             value={formData?.review}
             onChange={formHandler}
@@ -172,6 +181,14 @@ const AddReview = ({ productCode }) => {
       </Grid>
       <Grid container spacing={10}>
         <Grid item xs={12}>
+          <Paragraph
+            fontWeight="600"
+            fontSize="2rem"
+            color="#4B566B"
+            mb="1.5rem"
+          >
+            Add Images & Videos to your review
+          </Paragraph>
           <div className="product-images">
             {images.map((image) => (
               <figure>
@@ -222,6 +239,10 @@ const AddReview = ({ productCode }) => {
               </label>
             </figure>
           </div>
+          <Paragraph fontSize="1.6rem" mt="1rem" color="#4B566B">
+            <strong>Allowed file types: </strong>jpg, gif, png,mp4,avi max total
+            size of files: 100MB, max number of files: 8!
+          </Paragraph>
         </Grid>
       </Grid>
       <FlexBox mt="3em" justifyContent="center">

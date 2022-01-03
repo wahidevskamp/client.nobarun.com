@@ -2,7 +2,6 @@ import Box from '@component/Box';
 import Button from '@component/buttons/Button';
 import IconButton from '@component/buttons/IconButton';
 import Card from '@component/Card';
-import CheckBox from '@component/CheckBox';
 import FlexBox from '@component/FlexBox';
 import Grid from '@component/grid/Grid';
 import Icon from '@component/icon/Icon';
@@ -12,6 +11,8 @@ import TextArea from '@component/textarea/TextArea';
 import { H1, SemiSpan } from '@component/Typography';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { gql } from 'graphql-request';
+import Client from '../../config/GraphQLRequest';
 
 interface AddQueryProps {
   isOpen: boolean;
@@ -21,6 +22,15 @@ interface AddQueryProps {
   productCode: string;
   contact: any;
 }
+
+const ADD_NEW_QUERY = gql`
+  mutation addNewQuery($data: AddQueryUserInput!) {
+    addNewQueryUserByAdmin(data: $data) {
+      name
+    }
+  }
+`;
+
 const validateEmail = (email) => {
   return email.match(
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -31,8 +41,7 @@ const AddQuery = (props: AddQueryProps) => {
 
   const [isAgreed, setIsAgreed] = useState(false);
   const [showEmailError, setShowEmailError] = useState(false);
-  // const [showPhoneError, setShowPhoneError] = useState(false);
-
+  const [file, setFile] = useState<any>({});
   const [state, setState] = useState({
     fullName: '',
     mobileNo: '',
@@ -60,41 +69,65 @@ const AddQuery = (props: AddQueryProps) => {
     });
   };
 
-  const onSubmit = () => {
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+  };
+
+  const onSubmit = async () => {
     if (showEmailError) return;
     if (state.email === '' || state.mobileNo === '') return;
-    fetch(`https://formsubmit.co/ajax/${contact?.email}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        'Product Name': productName,
-        'Product Code': productCode,
-        'Full Name': state.fullName,
-        'Mobile Number': state.mobileNo,
-        'Email Address': state.email,
-        'Company Name': state.company,
-        Address: state.address,
-        Attachment: '',
-        Message: state.message,
-      }),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        setState({
-          fullName: '',
-          mobileNo: '',
-          email: '',
-          company: '',
-          address: '',
-          attachment: '',
-          message: '',
-        });
-        setIsOpen(false);
+
+    const query = {
+      company: state.company,
+      email: state.email,
+      name: state.fullName,
+      message: state.message,
+      notes: '',
+      phone: state.mobileNo,
+      address: state.address,
+      productCode: productCode,
+      attachment: '',
+    };
+
+    try {
+      const data = await Client.request(ADD_NEW_QUERY, { data: query });
+      if (data) window.alert('Review is Pending');
+      fetch(`https://formsubmit.co/ajax/${contact?.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          'Product Name': productName,
+          'Product Code': productCode,
+          'Full Name': state.fullName,
+          'Mobile Number': state.mobileNo,
+          'Email Address': state.email,
+          'Company Name': state.company,
+          Address: state.address,
+          Attachment: '',
+          Message: state.message,
+        }),
       })
-      .catch((error) => console.log(error));
+        .then((response) => response.json())
+        .then(() => {
+          setState({
+            fullName: '',
+            mobileNo: '',
+            email: '',
+            company: '',
+            address: '',
+            attachment: '',
+            message: '',
+          });
+          setIsOpen(false);
+        })
+        .catch((error) => console.log(error));
+    } catch (error) {
+      console.error(JSON.stringify(error, undefined, 2));
+    }
   };
 
   return (
@@ -165,14 +198,24 @@ const AddQuery = (props: AddQueryProps) => {
                 </Grid>
                 <Grid item md={6} sm={12} xs={12} alignItems="center">
                   <label htmlFor="attachment" className="query__file">
-                    <input type="file" name="attachment" id="attachment" />
+                    <input
+                      type="file"
+                      name="attachment"
+                      id="attachment"
+                      onChange={handleFileChange}
+                    />
                     <FlexBox alignItems="center">
                       {/*
                           // @ts-ignore */}
                       <Icon size="5rem" color="#16ACEC" mr="1rem">
                         uploadQuery
                       </Icon>
-                      Upload Attachment
+                      Upload Attachment:{' '}
+                      <strong style={{ marginLeft: '.5rem', color: '#16ACEC' }}>
+                        {file.name.length > 5
+                          ? file.name.slice(0, 5).concat('..')
+                          : file.name}
+                      </strong>
                     </FlexBox>
                   </label>
                 </Grid>

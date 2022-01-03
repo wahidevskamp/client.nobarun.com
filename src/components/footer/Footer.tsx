@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
   const Blog = (
     <Grid item lg={4} md={width < 1025 ? 12 : 6}>
       <Typography fontSize="26px" fontWeight="600" mb="1.25rem" lineHeight="1">
-        Recent Blog Post
+        Important Links
       </Typography>
       <div>
         <Link href="/about">
@@ -45,22 +45,6 @@ const Footer: React.FC = () => {
         <Link href="/contact">
           <StyledLink>Contact Us</StyledLink>
         </Link>
-
-        {/* {blogs &&
-          blogs.map((blog, idx) => (
-            <Link href={`/blogs/${blog.blogTitle}`} key={blog.blogTitle + idx}>
-              <StyledLink
-                style={{
-                  color: '#fff',
-                  fontSize: '16px',
-                  textDecoration: 'underline',
-                  fontFamily: "'SolaimanLipi', sans-serif",
-                }}
-              >
-                {blog.blogTitle}
-              </StyledLink>
-            </Link>
-          ))} */}
       </div>
     </Grid>
   );
@@ -95,7 +79,7 @@ const Footer: React.FC = () => {
         ))}
       </FlexBox>
       <Typography py="0.8rem" fontSize="18px" fontWeight="600">
-        Copyright @Nobarun International (2017-2021)
+        Copyright @Nobarun International (2017-2022)
       </Typography>
     </Grid>
   );

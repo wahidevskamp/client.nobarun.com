@@ -31,6 +31,12 @@
   }
   &__modal {
     max-width: 50rem;
+    @include respond(500px) {
+      width: 80%;
+    }
+    @include respond(310px) {
+      width: 90%;
+    }
   }
   &__clipboard {
     flex-grow: 1;

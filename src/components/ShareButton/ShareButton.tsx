@@ -28,6 +28,7 @@ import {
 import Box from '@component/Box';
 import FlexBox from '@component/FlexBox';
 import Button from '@component/buttons/Button';
+import useWindowSize from '@hook/useWindowSize';
 
 interface ShareButtonProps {
   title: string;
@@ -41,6 +42,8 @@ const ShareButton = (props: ShareButtonProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const [url, setUrl] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const width = useWindowSize();
 
   useEffect(() => {
     setUrl(window.location.href);
@@ -85,10 +88,8 @@ const ShareButton = (props: ShareButtonProps) => {
           <Box py="2rem" mt="1rem" px="1rem">
             <Carousel
               totalSlides={9}
-              visibleSlides={5}
+              visibleSlides={width < 500 ? 4 : 5}
               arrowButtonClass="collection-arrow"
-              leftButtonClass="collection-arrow--left"
-              rightButtonClass="collection-arrow--right"
             >
               <FacebookShareButton
                 url={url}
