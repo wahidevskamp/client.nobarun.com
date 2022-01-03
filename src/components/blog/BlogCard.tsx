@@ -20,7 +20,7 @@ const BlogCard = (props: BlogCardProps) => {
   return (
     <Link href={`/blogs/${encodeURI(slug)}`}>
       <a>
-        <Card px="20px" py="10px">
+        <Card px="20px" py="10px" className="blog__card">
           <Box width="100%" textAlign="center" margin="1rem auto 1.5rem">
             <img src={image} style={{ height: '28.5rem', width: '33.5rem' }} />
           </Box>

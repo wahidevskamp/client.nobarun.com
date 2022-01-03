@@ -92,10 +92,11 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           position="relative"
           onClick={handleImageClick(url, 'video')}
         >
-          <Icon size="3rem" className="product__intro-video-icon">
-            play-solid
-          </Icon>
-          <Avatar src={url} borderRadius="10px" size={isSmall ? 50 : 65} />
+          <Avatar
+            src="/file-video-icon.png"
+            borderRadius="10px"
+            size={isSmall ? 50 : 65}
+          />
         </Box>
       </Grid>
     ))

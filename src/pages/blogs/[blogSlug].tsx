@@ -21,11 +21,9 @@ const BlogDetails = ({ blog, categories }) => {
       <Grid container spacing={10}>
         <Grid item md={8} sm={12} xs={12} className="blog">
           <H1 className="blog__title">{blog?.blogTitle}</H1>
-          <img
-            src={blog?.featured}
-            alt={blog?.SeoTitle}
-            className="blog__hero"
-          />
+          <div className="blog__hero">
+            <img src={blog?.featured} alt={blog?.SeoTitle} />
+          </div>
           {blog?.sections?.map((section) => (
             <Box key={section.id} className="blog__section">
               <H3>{section.title}</H3>

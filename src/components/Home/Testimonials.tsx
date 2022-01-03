@@ -1,8 +1,6 @@
 import Box from '@component/Box';
 import Card from '@component/Card';
 import Carousel from '@component/carousel-review/Carousel';
-import FlexBox from '@component/FlexBox';
-import Image from '@component/Image';
 import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
 import React from 'react';
@@ -24,19 +22,22 @@ const Testimonials: React.FC = () => {
           Whats Clients say about Us
         </H2>
         <Carousel
-          totalSlides={3}
-          visibleSlides={1}
+          totalSlides={cardList.length}
+          visibleSlides={width > 600 ? 2 : 1}
           showDots={true}
+          autoPlay
+          infinite
+          interval={2000}
           spacing="0px"
           arrowButtonColor="inherit"
           showArrowOnHover={true}
         >
           {cardList.map((_item, idx) => (
             <Box key={_item.title + idx}>
-              <Card py="2rem" className="carousel-card">
+              <Card pt="3rem" pb="5rem" px="1rem" className="carousel-card">
                 <Box maxWidth="80rem" margin="auto" textAlign="center">
+                  <img src={_item.imgUrl} alt={_item.title} height="100px" />
                   <H3
-                    mt=".8rem"
                     mb=".5rem"
                     fontWeight="500"
                     fontSize="2.2rem"
@@ -60,24 +61,6 @@ const Testimonials: React.FC = () => {
                     the freshness of the produce. I had tried (another delivery
                     service) and had to cancel because of low quality.
                   </Span>
-                  <FlexBox my="3rem" flexWrap="wrap" justifyContent="center">
-                    {[
-                      'https://nobarun.s3.us-east-2.amazonaws.com/3978459.jpg',
-                      'https://nobarun.s3.us-east-2.amazonaws.com/6181282.jpg',
-                      'https://nobarun.s3.us-east-2.amazonaws.com/7207919.jpg',
-                      'https://nobarun.s3.us-east-2.amazonaws.com/7831385.jpg',
-                      'https://nobarun.s3.us-east-2.amazonaws.com/5193139.jpg',
-                    ].map((image) => (
-                      <Image
-                        key={image}
-                        src={image}
-                        alt=""
-                        height="100px"
-                        borderRadius={8}
-                        mr="1.5rem"
-                      />
-                    ))}
-                  </FlexBox>
                 </Box>
               </Card>
             </Box>
@@ -85,11 +68,31 @@ const Testimonials: React.FC = () => {
         </Carousel>
       </Box>
     </Container>
-    // </Container>
   );
 };
 
 const cardList = [
+  {
+    title: '25% Special Off Today Only for Vegetables',
+    subtitle: 'Till 10 Sept, 2021',
+    imgUrl: 'https://nobarun.s3.us-east-2.amazonaws.com/4537382.jpg',
+    shopUrl: '/',
+    bgColor: '#F6FFE5',
+  },
+  {
+    title: '15% Off for All Product Only Need to Subscribe',
+    subtitle: 'Subscribe Us',
+    imgUrl: 'https://nobarun.s3.us-east-2.amazonaws.com/4529688.jpg',
+    shopUrl: '/',
+    bgColor: '#FFF8E5',
+  },
+  {
+    title: '25% Special Off Today Only for Vegetables',
+    subtitle: 'Till 10 Sept, 2021',
+    imgUrl: 'https://nobarun.s3.us-east-2.amazonaws.com/2638490.jpg',
+    shopUrl: '/',
+    bgColor: '#F6FFE5',
+  },
   {
     title: '25% Special Off Today Only for Vegetables',
     subtitle: 'Till 10 Sept, 2021',
@@ -99,12 +102,12 @@ const cardList = [
     bgColor: '#F6FFE5',
   },
   {
-    title: '15% Off for All Product Only Need to Subscribe',
-    subtitle: 'Subscribe Us',
+    title: '25% Special Off Today Only for Vegetables',
+    subtitle: 'Till 10 Sept, 2021',
     imgUrl:
-      '/assets/images/products/kisspng-organic-food-milk-food-gift-baskets-grocery-5abeaffc1e5b25 1.png',
+      '/assets/images/products/kisspng-organic-food-leaf-vegetable-fruit-rich-vegetables-5aa9f4d026ae09 1.png',
     shopUrl: '/',
-    bgColor: '#FFF8E5',
+    bgColor: '#F6FFE5',
   },
   {
     title: '25% Special Off Today Only for Vegetables',

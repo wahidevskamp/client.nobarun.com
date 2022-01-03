@@ -11,7 +11,7 @@ const Features = ({ features }) => {
   const width = useWindowSize();
   const isTablet = width < 900;
   return (
-    <Box py={isTablet ? '4rem' : '5rem'}>
+    <Box py={isTablet ? '1.2rem' : '2.2rem'}>
       {features?.map((feature, idx) => (
         <Card
           px="2rem"

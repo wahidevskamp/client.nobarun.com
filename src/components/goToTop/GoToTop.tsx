@@ -28,7 +28,7 @@ const GoToTop = ({ showBelow }) => {
     <>
       {show && (
         <IconButton size="small" className="goto" onClick={handleClick}>
-          <Icon size={width > 900 ? '4rem' : '3rem'}>caret-up-solid</Icon>
+          <Icon size={width > 900 ? '4rem' : '3rem'}>up-arrow</Icon>
         </IconButton>
       )}
     </>

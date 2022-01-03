@@ -172,7 +172,7 @@ const Navbar: React.FC<NavbarProps> = ({ navListOpen, height }) => {
                 mt="1.25rem"
                 py="0.5rem"
                 boxShadow="large"
-                minWidth="1200px"
+                maxWidth="1200px"
               >
                 <RecentViewedProducts />
               </Card>

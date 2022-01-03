@@ -10,6 +10,7 @@ import React from 'react';
 import StyledAppLayout from './AppLayoutStyle';
 import Navbar from '@component/navbar/Navbar';
 import Container from '@component/Container';
+import GoToTop from '@component/goToTop/GoToTop';
 
 type Props = {
   title?: string;
@@ -45,6 +46,7 @@ const OtherLayout: React.FC<Props> = ({
           </Link>
         </FlexBox>
       )}
+      <GoToTop showBelow={250} />
       <Sticky fixedOn={0}>
         <div>
           <Header />

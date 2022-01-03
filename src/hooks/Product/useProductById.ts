@@ -66,6 +66,7 @@ const GET_PRODUCT_BY_ID = gql`
         name
         rating
         createdAt
+        featuredImage
         reviewText
         reviewMedia {
           images

@@ -12,7 +12,7 @@ const Questions = ({ questions }) => {
     <Card
       mb="2em"
       px={width < 600 ? '.5em' : '2em'}
-      py={width < 600 ? '1.5rem' : '10rem'}
+      py={width < 600 ? '1.5rem' : '6.5rem'}
       mt="0.1rem"
     >
       <FlexBox

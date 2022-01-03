@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@component/Box';
-import NavbarLayout from '@component/layout/NavbarLayout';
 import Grid from '@component/grid/Grid';
 import BlogCard from '@component/blog/BlogCard';
 import useAllBlogs from '@hook/Blogs/useAllBlogs';

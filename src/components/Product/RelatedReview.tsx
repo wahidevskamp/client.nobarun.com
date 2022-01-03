@@ -12,6 +12,7 @@ import Modal from '@component/modal/Modal';
 import IconButton from '@component/buttons/IconButton';
 import Icon from '@component/icon/Icon';
 import Carousel from '@component/carousel/Carousel';
+import { format } from 'date-fns';
 
 const RelatedReview = ({ title, reviews, slug }) => {
   const width = useWindowSize();
@@ -19,7 +20,6 @@ const RelatedReview = ({ title, reviews, slug }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [reviewDetail, setReviewDetail] = useState<any>({});
-
   useEffect(() => {
     title === 'Read all reviews' ? setSlice(5) : setSlice(10);
   }, []);
@@ -125,7 +125,7 @@ const RelatedReview = ({ title, reviews, slug }) => {
             <Box marginBottom="8rem">
               <FlexBox alignItems="center">
                 <img
-                  src="https://www.artisan-outfitters.com/image/logo.png"
+                  src={review.featuredImage}
                   style={{ height: '8rem', width: '8rem' }}
                 />
                 <Box ml="2em">
@@ -133,7 +133,9 @@ const RelatedReview = ({ title, reviews, slug }) => {
                     {review.name}
                   </H3>
                   <SemiSpan mt="10px">
-                    From <strong>{review.title}</strong> on 9 sept 2021
+                    From <strong>{review.title}</strong> on{' '}
+                    {review?.createdAt &&
+                      format(new Date(review?.createdAt), 'do LLL, yyyy')}
                   </SemiSpan>
                   <Rating
                     outof={5}
@@ -172,12 +174,14 @@ const RelatedReview = ({ title, reviews, slug }) => {
                       onClick={() => {
                         setIsOpen(true);
                         setReviewDetail(review);
-
                         setCurrentSlide(
                           review?.reviewMedia?.images.length + idx,
                         );
                       }}
                     >
+                      <Icon size="3rem" className="product__intro-video-icon">
+                        play-solid
+                      </Icon>
                       <img src={link} alt="" />
                     </figure>
                   );

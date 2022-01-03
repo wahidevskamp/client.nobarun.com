@@ -18,6 +18,7 @@ const Tags = ({ chips }) => {
       tagsRef.current.style.height = `${maxHeight}px`;
     }
   }, []);
+  const REGEX = /\s/gim;
   return (
     <ProductCard12 title="Product Tags">
       <div
@@ -29,7 +30,7 @@ const Tags = ({ chips }) => {
         ref={tagsRef}
       >
         {chips?.map((chip) => (
-          <Link href={`/product/tags/${chip.replace(' ', '-')}`}>
+          <Link href={`/product/tags/${chip?.replace(REGEX, '-')}`}>
             <a>
               <Chip
                 bg="#eee"
