@@ -15,9 +15,11 @@ const StyledLink = styled.a`
   position: relative;
   display: block;
   padding: 0.3rem 0rem;
-  color: ${getTheme('colors.gray.500')};
   cursor: pointer;
   border-radius: 4px;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: underline;
   :hover {
     color: ${getTheme('colors.gray.100')};
   }
@@ -25,18 +27,26 @@ const StyledLink = styled.a`
 
 const Footer: React.FC = () => {
   const width = useWindowSize();
-  const [blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    useRecentBlogs().then((data) => setBlogs(data));
-  }, []);
-
   const Blog = (
     <Grid item lg={4} md={width < 1025 ? 12 : 6}>
       <Typography fontSize="26px" fontWeight="600" mb="1.25rem" lineHeight="1">
         Recent Blog Post
       </Typography>
       <div>
-        {blogs &&
+        <Link href="/about">
+          <StyledLink>About Us</StyledLink>
+        </Link>
+        <Link href="/clients">
+          <StyledLink>Clients</StyledLink>
+        </Link>
+        <Link href="/terms">
+          <StyledLink>Terms</StyledLink>
+        </Link>
+        <Link href="/contact">
+          <StyledLink>Contact Us</StyledLink>
+        </Link>
+
+        {/* {blogs &&
           blogs.map((blog, idx) => (
             <Link href={`/blogs/${blog.blogTitle}`} key={blog.blogTitle + idx}>
               <StyledLink
@@ -50,7 +60,7 @@ const Footer: React.FC = () => {
                 {blog.blogTitle}
               </StyledLink>
             </Link>
-          ))}
+          ))} */}
       </div>
     </Grid>
   );

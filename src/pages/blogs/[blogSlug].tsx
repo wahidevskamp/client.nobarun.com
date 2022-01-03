@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import Grid from '@component/grid/Grid';
-import NavbarLayout from '@component/layout/NavbarLayout';
 import Box from '@component/Box';
 import { H1, H3 } from '@component/Typography';
 import BlogFilterCard from '@component/products/BlogFilterCard';
@@ -8,6 +7,7 @@ import useBlogCategoriesTree from '@hook/Blogs/useAllBlogCategory';
 import useBlogBySlug from '@hook/Blogs/useBlogBySlug';
 import { GetServerSideProps } from 'next';
 import OtherLayout from '@component/layout/OtherLayout';
+import ShareButton from '@component/ShareButton/ShareButton';
 
 const BlogDetails = ({ blog, categories }) => {
   return (
@@ -23,6 +23,12 @@ const BlogDetails = ({ blog, categories }) => {
           <H1 className="blog__title">{blog?.blogTitle}</H1>
           <div className="blog__hero">
             <img src={blog?.featured} alt={blog?.SeoTitle} />
+            <ShareButton
+              title={blog?.blogTitle}
+              description={blog?.SeoTitle}
+              featured={blog?.featured}
+              hashtags={blog?.tags}
+            />
           </div>
           {blog?.sections?.map((section) => (
             <Box key={section.id} className="blog__section">

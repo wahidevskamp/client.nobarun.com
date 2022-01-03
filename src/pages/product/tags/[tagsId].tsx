@@ -91,7 +91,8 @@ TagsPage.layout = NavbarLayout;
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const tagsId = context.params?.tagsId;
   try {
-    const data = await useProductsByTag(tagsId?.replace('-', ' '));
+    const REGEX = /-/gim;
+    const data = await useProductsByTag(tagsId?.replace(REGEX, ' '));
     if (data)
       return {
         props: {

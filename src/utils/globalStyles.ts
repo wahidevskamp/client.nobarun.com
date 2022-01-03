@@ -36,12 +36,12 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Titillium Web', sans-serif;
   }
 
-#nprogress {
+  #nprogress {
   pointer-events: none;
 }
 
 #nprogress .bar {
-  background: ${({ theme }: any) => theme.colors.primary.main};
+  background: #E94560;
 
   position: fixed;
   z-index: 1031;
@@ -86,8 +86,8 @@ export const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
 
   border: solid 2px transparent;
-  border-top-color: ${({ theme }: any) => theme.colors.primary.main};
-  border-left-color: ${({ theme }: any) => theme.colors.primary.main};
+  border-top-color: #E94560;
+  border-left-color: #E94560;
   border-radius: 50%;
 
   -webkit-animation: nprogress-spinner 400ms linear infinite;

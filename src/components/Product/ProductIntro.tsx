@@ -13,6 +13,7 @@ import Typography, { H1, H4, SemiSpan, Span } from '../Typography';
 import Carousel from '@component/carousel/Carousel';
 import Modal from '@component/modal/Modal';
 import IconButton from '@component/buttons/IconButton';
+import ShareButton from '@component/ShareButton/ShareButton';
 
 export interface ProductIntroProps {
   data?: any;
@@ -309,27 +310,15 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
             )}
           </Box>
         </FlexBox>
-        <button className="product__share-btn">
-          <Icon size="1.78rem" mr="1rem">
-            share-solid
-          </Icon>
-          <Typography fontSize="20px" fontWeight="400">
-            Share
-          </Typography>
-        </button>
+        <ShareButton
+          title={data?.productName}
+          description={data?.productName}
+          featured={data?.featuredImage}
+          hashtags={[]}
+        />
       </Box>
     </Card>
   );
-};
-
-ProductIntro.defaultProps = {
-  imgUrl: [
-    '/assets/images/products/headphone.png',
-    '/assets/images/products/hiclipart.com (16).png',
-    '/assets/images/products/hiclipart.com (18).png',
-  ],
-  title: 'Mi Note 11 Pro',
-  price: 1100,
 };
 
 export default ProductIntro;

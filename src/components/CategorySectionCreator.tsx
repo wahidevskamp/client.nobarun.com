@@ -18,8 +18,8 @@ const CategorySectionCreator: React.FC<CategorySectionCreatorProps> = ({
 }) => {
   const width = useWindowSize();
   return (
-    <Box my="4rem">
-      <Container pb="1rem" style={width < 600 ? { margin: '0.5rem' } : {}}>
+    <Box my="4rem" mx={width < 900 && width > 600 ? '1rem' : '0.5rem'}>
+      <Container pb="1rem">
         {title && (
           <CategorySectionHeader
             title={title}

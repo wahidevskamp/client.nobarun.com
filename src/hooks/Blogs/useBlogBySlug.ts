@@ -6,6 +6,19 @@ const GET_BLOG_BY_SLUG = gql`
     getBlogBySlug(slug: $slug) {
       blogTitle
       featured
+      SeoTitle
+      contactPerson {
+        companyLogo
+        name
+        whatsAppNumber
+        email
+        address
+        maps
+        amenities {
+          title
+          image
+        }
+      }
       populatedCategory {
         name
       }
