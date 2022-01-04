@@ -212,9 +212,9 @@ const AddQuery = (props: AddQueryProps) => {
                       </Icon>
                       Upload Attachment:{' '}
                       <strong style={{ marginLeft: '.5rem', color: '#16ACEC' }}>
-                        {file.name.length > 5
-                          ? file.name.slice(0, 5).concat('..')
-                          : file.name}
+                        {file?.name?.length > 5
+                          ? file?.name?.slice(0, 5).concat('..')
+                          : file?.name}
                       </strong>
                     </FlexBox>
                   </label>
