@@ -98,7 +98,7 @@ const ShareButton = (props: ShareButtonProps) => {
               >
                 <FacebookIcon />
               </FacebookShareButton>
-              <FacebookMessengerShareButton appId="637786157664267" url={url}>
+              <FacebookMessengerShareButton appId="4408949989215502" url={url}>
                 <FacebookMessengerIcon />
               </FacebookMessengerShareButton>
               <LineShareButton url={url} title={title}>

@@ -7,11 +7,13 @@
   &_related {
     max-width: 14.2rem;
     height: auto;
+    margin-right: 10px !important;
     & > div {
       height: auto !important;
     }
     @include respond(600px) {
       max-width: 12rem;
+      margin-right: 5px !important;
     }
 
     // &:not(:last-child) {

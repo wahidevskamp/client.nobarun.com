@@ -27,7 +27,8 @@ const Testimonials: React.FC = () => {
           showDots={true}
           autoPlay
           infinite
-          interval={2000}
+          step={1}
+          interval={5000}
           spacing="0px"
           arrowButtonColor="inherit"
           showArrowOnHover={true}
