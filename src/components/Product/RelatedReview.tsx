@@ -16,13 +16,14 @@ import { format } from 'date-fns';
 
 const RelatedReview = ({ title, reviews, slug }) => {
   const width = useWindowSize();
-  const [slice, setSlice] = useState(5);
+  const MAX_INITIAL_DISPLAY = title === 'Read all reviews' ? 5 : 10;
+  const [slice, setSlice] = useState(MAX_INITIAL_DISPLAY);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [reviewDetail, setReviewDetail] = useState<any>({});
-  useEffect(() => {
-    title === 'Read all reviews' ? setSlice(5) : setSlice(10);
-  }, []);
+  // useEffect(() => {
+  //   title === 'Read all reviews' ? setSlice(5) : setSlice(10);
+  // }, []);
 
   return (
     <div>
@@ -189,13 +190,19 @@ const RelatedReview = ({ title, reviews, slug }) => {
               </Box>
             </Box>
           ))}
-          {reviews?.length > 5 && (
-            <FlexBox
-              mt="3em"
-              justifyContent={width < 600 ? 'center' : 'flex-end'}
-            >
-              <Pagination pageCount={5} />
-            </FlexBox>
+          {reviews?.length > MAX_INITIAL_DISPLAY && (
+            <Box textAlign="center" mt="4rem">
+              <button
+                className="client_load-btn"
+                onClick={() => {
+                  if (slice < reviews?.length) setSlice(reviews?.length);
+                  else if (slice === reviews.length)
+                    setSlice(MAX_INITIAL_DISPLAY);
+                }}
+              >
+                {slice === reviews?.length ? 'Show Less' : 'Load More'}
+              </button>
+            </Box>
           )}
         </Box>
       </Card>

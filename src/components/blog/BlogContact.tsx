@@ -1,27 +1,21 @@
 import React, { Fragment } from 'react';
-import { getDay, getHours } from 'date-fns';
 
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import Icon from '@component/icon/Icon';
 import Image from '@component/Image';
 import Typography, { H5, Paragraph } from '@component/Typography';
-import ProductCard from '@component/product-cards/ProductCard12';
-import Button from '@component/buttons/Button';
 
-const Contacts = ({ slug, productName, productCode, contact, setIsOpen }) => {
-  const currentDate = new Date();
-  const day = getDay(currentDate);
-  const hours = getHours(currentDate);
+const BlogContact = ({ slug, contact }) => {
   const message = `Hello ${contact?.name},
-I want to know more about ${productName} Which Product Code is ${productCode}
-Product Link: https://nobarunbd.vercel.app/${slug}
-Please send me more details.
+I came here after reading one of the article from your website. 
+Article Link: https://nobarunbd.vercel.app/blogs/${slug}
+Can you explain me more? Do you sell any product regarding this Article?
 `;
 
   return (
     <Fragment>
-      <Card px="1rem" py="1rem" mb="2rem">
+      <Card px="2rem" py="2rem" mb="2rem">
         {contact?.companyLogo && (
           <div className="product__contact-logo">
             <Image src={contact?.companyLogo} alt="logo" maxHeight="60px" />
@@ -83,7 +77,7 @@ Please send me more details.
             </Paragraph>
           </FlexBox>
         )}
-        <Button
+        {/* <Button
           variant="contained"
           color="primary"
           className="product_quote-btn"
@@ -95,28 +89,10 @@ Please send me more details.
             plus-circles
           </Icon>
           Get a Quote
-        </Button>
+        </Button> */}
       </Card>
-      {contact?.maps && (
-        <ProductCard
-          title={
-            day === 1
-              ? 'Today Closed'
-              : hours <= 9 || hours > 19
-              ? 'Today Closed'
-              : 'Today Open 09:00 am - 07:00 pm'
-          }
-        >
-          <iframe
-            src={contact?.maps}
-            style={{ width: '100%', height: '46.7rem', border: 0 }}
-            allowFullScreen
-            loading="lazy"
-          ></iframe>
-        </ProductCard>
-      )}
     </Fragment>
   );
 };
 
-export default Contacts;
+export default BlogContact;

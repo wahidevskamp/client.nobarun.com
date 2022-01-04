@@ -11,9 +11,10 @@ interface AlertProps {
   modalOpen: boolean;
   onClose: any;
   message: string;
+  type?: string;
 }
 const Alert = (props: AlertProps) => {
-  const { modalOpen, onClose, message } = props;
+  const { modalOpen, onClose, message, type } = props;
 
   return (
     <Modal open={modalOpen} onClose={onClose}>
@@ -30,14 +31,21 @@ const Alert = (props: AlertProps) => {
           <Icon>close</Icon>
         </IconButton>
         <FlexBox justifyContent="center">
-          <Icon size="15rem" color="#46ae2e">
-            Group 10498
-          </Icon>
+          {type === 'success' ? (
+            <Icon size="15rem" color="#46ae2e">
+              Group 10498
+            </Icon>
+          ) : (
+            <img height="150px" width="150px" src="/warning.png" />
+          )}
         </FlexBox>
         <H3>{message}</H3>
       </Card>
     </Modal>
   );
+};
+Alert.defaultProps = {
+  type: 'success',
 };
 
 export default Alert;

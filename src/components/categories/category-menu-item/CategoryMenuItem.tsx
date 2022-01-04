@@ -20,11 +20,13 @@ const CategoryMenuItem: React.FC<CategoryMenuItemProps> = ({
   return (
     <StyledCategoryMenuItem>
       <Link href={href}>
-        <div className="category-dropdown-link">
-          {icon && <img src={icon} height="30" width="30" />}
-          <span className="title">{title}</span>
-          {caret.length > 0 && <Icon variant="small">chevron-right</Icon>}
-        </div>
+        <a>
+          <div className="category-dropdown-link">
+            {icon && <img src={icon} height="30" width="30" />}
+            <span className="title">{title}</span>
+            {caret.length > 0 && <Icon variant="small">chevron-right</Icon>}
+          </div>
+        </a>
       </Link>
       {children}
     </StyledCategoryMenuItem>

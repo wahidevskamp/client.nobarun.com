@@ -21,7 +21,9 @@ const BlogFilterCard = ({
   return (
     <>
       <Card p="18px 27px" elevation={5}>
-        <H6 mb="10px">Categories</H6>
+        <H6 fontSize="24px" mb="10px">
+          Categories
+        </H6>
         {categories?.map((item) =>
           item?.children.length > 0 ? (
             <Accordion key={item?.name} expanded>
@@ -57,7 +59,8 @@ const BlogFilterCard = ({
           ) : (
             <Paragraph
               className="cursor-pointer"
-              fontSize="14px"
+              fontFamily="'SolaimanLipi', sans-serif"
+              fontSize="18px"
               color={slug === item?.name ? 'red' : 'text.muted'}
               py="6px"
               key={item?.name}

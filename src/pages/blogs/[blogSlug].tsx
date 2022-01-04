@@ -8,9 +8,9 @@ import useBlogBySlug from '@hook/Blogs/useBlogBySlug';
 import { GetServerSideProps } from 'next';
 import OtherLayout from '@component/layout/OtherLayout';
 import ShareButton from '@component/ShareButton/ShareButton';
-import Contacts from '@component/Product/Contacts';
+import BlogContact from '@component/blog/BlogContact';
 
-const BlogDetails = ({ blog, categories }) => {
+const BlogDetails = ({ blogSlug, blog, categories }) => {
   return (
     <Fragment>
       {/* <ProductHead product={product} /> */}
@@ -43,6 +43,7 @@ const BlogDetails = ({ blog, categories }) => {
           ))}
         </Grid>
         <Grid item md={4} sm={12} xs={12}>
+          <BlogContact slug={blogSlug} contact={blog?.contactPerson} />
           {/* <Contacts contact={blog?.contactPerson} /> */}
           <BlogFilterCard
             slug={blog?.populatedCategory?.name}
@@ -66,6 +67,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     const categories = await useBlogCategoriesTree();
     return {
       props: {
+        blogSlug,
         blog: { ...data },
         categories,
       },

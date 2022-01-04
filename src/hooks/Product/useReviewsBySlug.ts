@@ -24,6 +24,7 @@ const GET_REVIEWS_BY_PRODUCT_SLUG = gql`
         rating
         createdAt
         reviewText
+        featuredImage
         reviewMedia {
           images
           videos

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import NavbarLayout from '@component/layout/NavbarLayout';
 import Box from '@component/Box';
 import Grid from '@component/grid/Grid';
 import CustomerMedia from '@component/Product/CustomerMedia';
@@ -14,6 +13,7 @@ import ContactPerson from '@component/Product/Review/ContactPerson';
 import ReviewSummary from '@component/Product/Review/ReviewSummary';
 import StarRating from '@component/Product/Review/StarRating';
 import AddQuery from '@component/Shared/AddQuery';
+import OtherLayout from '@component/layout/OtherLayout';
 
 const ReviewsPage = (props) => {
   const { productTitle, featuredImage, contact, reviews, productCode, slug } =
@@ -101,7 +101,7 @@ const ReviewsPage = (props) => {
   );
 };
 
-ReviewsPage.layout = NavbarLayout;
+ReviewsPage.layout = OtherLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const slug = context.params.productId;

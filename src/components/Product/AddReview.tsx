@@ -40,6 +40,8 @@ const CREATE_REVIEW = gql`
 
 const AddReview = ({ productCode }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [modalType, setModalType] = useState('');
 
   const width = useWindowSize();
   const [rating, setRating] = useState(0);
@@ -48,10 +50,16 @@ const AddReview = ({ productCode }) => {
   const [videos, setVideos] = useState<string[]>([]);
 
   const postReviewHandler = async () => {
+    if (rating === 0) {
+      setModalOpen(true);
+      setModalMessage('You must add the Rating, Star Rating Cannot be Empty');
+      setModalType('error');
+      return;
+    }
     const review = {
       data: {
-        title: formData.name,
-        name: formData.company,
+        title: formData.company,
+        name: formData.name,
         email: formData.email,
         rating: rating,
         reviewText: formData.review,
@@ -66,8 +74,13 @@ const AddReview = ({ productCode }) => {
     try {
       const data = await Client.request(CREATE_REVIEW, review);
       if (data) {
+        setRating(0);
         setFormData(defaultState);
         setModalOpen(true);
+        setModalMessage(
+          'Your Review is Pending. We will notify you when it is posted',
+        );
+        setModalType('success');
       }
     } catch (error) {
       console.error(JSON.stringify(error, undefined, 2));
@@ -98,6 +111,8 @@ const AddReview = ({ productCode }) => {
   };
   const onClose = () => {
     setModalOpen(false);
+    setModalMessage('');
+    setModalType('');
   };
   const removeHandler = (link, type: 'video' | 'image') => {
     if (type === 'image') {
@@ -117,7 +132,8 @@ const AddReview = ({ productCode }) => {
       <Alert
         modalOpen={modalOpen}
         onClose={onClose}
-        message="Your Review is Pending. We will notify you when it is posted"
+        message={modalMessage}
+        type={modalType}
       />
       <H1 fontSize="3.4rem" fontWeight="500">
         Submit your review

@@ -29,8 +29,6 @@ const ContactPage = () => {
     message: '',
   });
 
-  console.log(state);
-
   const handleChange = (evt) => {
     const value = evt.target.value;
     const name = evt.target.name;
