@@ -5,20 +5,42 @@
   flex-grow: 1;
   width: 100%;
   &_related {
-    max-width: 14.2rem;
     height: auto;
+    cursor: pointer !important;
     margin-right: 10px !important;
+    &:hover {
+      animation-play-state: paused;
+    }
     & > div {
       height: auto !important;
     }
     @include respond(600px) {
-      max-width: 12rem;
       margin-right: 5px !important;
     }
-
-    // &:not(:last-child) {
-    //   margin-right: 30px !important;
-    // }
+    & .client__image {
+      width: 14rem;
+      height: 11rem;
+      @include respond(1700px) {
+        width: 12.5rem;
+      }
+      @include respond(1600px) {
+        width: 13rem;
+      }
+      @include respond(1400px) {
+        width: 12rem;
+      }
+      @include respond(900px) {
+        width: 11rem;
+      }
+      @include respond(600px) {
+        width: 9rem;
+        height: 8rem;
+      }
+      @include respond(400px) {
+        width: 8rem;
+        height: 8rem;
+      }
+    }
   }
   &:not(:last-child) {
     margin-right: 5px;
