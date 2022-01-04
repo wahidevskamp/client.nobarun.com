@@ -20,6 +20,7 @@ import useWindowSize from '@hook/useWindowSize';
 import React, { useState } from 'react';
 import { gql } from 'graphql-request';
 import Client from '../../config/GraphQLRequest';
+import Alert from '@component/alert/alert';
 
 const defaultState = {
   name: '',
@@ -38,6 +39,8 @@ const CREATE_REVIEW = gql`
 `;
 
 const AddReview = ({ productCode }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const width = useWindowSize();
   const [rating, setRating] = useState(0);
   const [formData, setFormData] = useState(defaultState);
@@ -62,7 +65,10 @@ const AddReview = ({ productCode }) => {
     };
     try {
       const data = await Client.request(CREATE_REVIEW, review);
-      if (data) window.alert('Review is Pending');
+      if (data) {
+        setFormData(defaultState);
+        setModalOpen(true);
+      }
     } catch (error) {
       console.error(JSON.stringify(error, undefined, 2));
     }
@@ -90,7 +96,9 @@ const AddReview = ({ productCode }) => {
       [e.target.name]: e.target.value,
     });
   };
-
+  const onClose = () => {
+    setModalOpen(false);
+  };
   const removeHandler = (link, type: 'video' | 'image') => {
     if (type === 'image') {
       let newImages = [...images];
@@ -106,6 +114,11 @@ const AddReview = ({ productCode }) => {
 
   return (
     <Card px="3rem" py="4rem">
+      <Alert
+        modalOpen={modalOpen}
+        onClose={onClose}
+        message="Your Review is Pending. We will notify you when it is posted"
+      />
       <H1 fontSize="3.4rem" fontWeight="500">
         Submit your review
       </H1>

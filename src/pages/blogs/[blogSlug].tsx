@@ -8,6 +8,7 @@ import useBlogBySlug from '@hook/Blogs/useBlogBySlug';
 import { GetServerSideProps } from 'next';
 import OtherLayout from '@component/layout/OtherLayout';
 import ShareButton from '@component/ShareButton/ShareButton';
+import Contacts from '@component/Product/Contacts';
 
 const BlogDetails = ({ blog, categories }) => {
   return (
@@ -42,6 +43,7 @@ const BlogDetails = ({ blog, categories }) => {
           ))}
         </Grid>
         <Grid item md={4} sm={12} xs={12}>
+          {/* <Contacts contact={blog?.contactPerson} /> */}
           <BlogFilterCard
             slug={blog?.populatedCategory?.name}
             categories={categories}

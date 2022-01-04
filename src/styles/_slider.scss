@@ -1,11 +1,11 @@
-.container {
+.slider-container {
   padding-right: 1rem;
   position: relative;
   display: flex;
   overflow: hidden;
 }
 
-.container::after {
+.slider-container::after {
   content: '';
   position: absolute;
   width: 100%;

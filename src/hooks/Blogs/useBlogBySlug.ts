@@ -14,10 +14,6 @@ const GET_BLOG_BY_SLUG = gql`
         email
         address
         maps
-        amenities {
-          title
-          image
-        }
       }
       populatedCategory {
         name

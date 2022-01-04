@@ -13,6 +13,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { gql } from 'graphql-request';
 import Client from '../../config/GraphQLRequest';
+import Alert from '@component/alert/alert';
 
 interface AddQueryProps {
   isOpen: boolean;
@@ -38,7 +39,7 @@ const validateEmail = (email) => {
 };
 const AddQuery = (props: AddQueryProps) => {
   const { isOpen, setIsOpen, productName, productCode, contact } = props;
-
+  const [modalOpen, setModalOpen] = useState(false);
   const [isAgreed, setIsAgreed] = useState(false);
   const [showEmailError, setShowEmailError] = useState(false);
   const [file, setFile] = useState<any>({});
@@ -91,8 +92,7 @@ const AddQuery = (props: AddQueryProps) => {
     };
 
     try {
-      const data = await Client.request(ADD_NEW_QUERY, { data: query });
-      if (data) window.alert('Review is Pending');
+      // const data = await Client.request(ADD_NEW_QUERY, { data: query });
       fetch(`https://formsubmit.co/ajax/${contact?.email}`, {
         method: 'POST',
         headers: {
@@ -123,159 +123,172 @@ const AddQuery = (props: AddQueryProps) => {
             message: '',
           });
           setIsOpen(false);
+          setModalOpen(true);
         })
         .catch((error) => console.log(error));
     } catch (error) {
       console.error(JSON.stringify(error, undefined, 2));
     }
   };
+  const onClose = () => {
+    setModalOpen(false);
+  };
 
   return (
-    <Modal open={isOpen} onClose={onCloseHandler}>
-      <Card className="query" position="relative">
-        <Box maxWidth="809px">
-          <Box textAlign="center" className="query__header">
-            <H1>Product Enquiry</H1>
-            <SemiSpan>We will contact you within short time</SemiSpan>
-          </Box>
-          <IconButton
-            style={{ position: 'absolute', right: '15px', top: '15px' }}
-            onClick={onCloseHandler}
-          >
-            <Icon>close</Icon>
-          </IconButton>
-          <div>
-            <div className="query__hero-wrapper">
-              <img src="/Review.png" className="query__hero" />
-            </div>
-            <Box className="query__form">
-              <Grid container spacing={5}>
-                <Grid item md={6} sm={12} xs={12}>
-                  <TextField
-                    fullwidth
-                    name="fullName"
-                    label="Your Full Name"
-                    value={state.fullName}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item md={6} sm={12} xs={12}>
-                  <TextField
-                    fullwidth
-                    name="mobileNo"
-                    label="Your Mobile No"
-                    value={state.mobileNo}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item md={6} sm={12} xs={12}>
-                  <TextField
-                    fullwidth
-                    name="email"
-                    label="Your Email Address"
-                    value={state.email}
-                    errorText={showEmailError && 'Email is wrong'}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item md={6} sm={12} xs={12}>
-                  <TextField
-                    fullwidth
-                    name="company"
-                    label="Company Name"
-                    value={state.company}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item md={6} sm={12} xs={12}>
-                  <TextField
-                    fullwidth
-                    name="address"
-                    label="Full Address"
-                    value={state.address}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item md={6} sm={12} xs={12} alignItems="center">
-                  <label htmlFor="attachment" className="query__file">
-                    <input
-                      type="file"
-                      name="attachment"
-                      id="attachment"
-                      onChange={handleFileChange}
-                    />
-                    <FlexBox alignItems="center">
-                      {/*
-                          // @ts-ignore */}
-                      <Icon size="5rem" color="#16ACEC" mr="1rem">
-                        uploadQuery
-                      </Icon>
-                      Upload Attachment:{' '}
-                      <strong style={{ marginLeft: '.5rem', color: '#16ACEC' }}>
-                        {file?.name?.length > 5
-                          ? file?.name?.slice(0, 5).concat('..')
-                          : file?.name}
-                      </strong>
-                    </FlexBox>
-                  </label>
-                </Grid>
-                <Grid item md={12} sm={12} xs={12}>
-                  <TextArea
-                    name="message"
-                    label="Write your Details Message"
-                    labelColor="warn"
-                    rows={8}
-                    className="query__textarea"
-                    value={state.message}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FlexBox alignItems="center">
-                    <input
-                      type="checkbox"
-                      id="terms"
-                      name="terms"
-                      defaultChecked={isAgreed}
-                      onChange={(e) => {
-                        console.log(e.target.checked);
-                        setIsAgreed(e.target.checked);
-                      }}
-                    />
-                    <label htmlFor="terms">
-                      <Link href="/terms">
-                        <a className="query__terms">
-                          I agree to the terms and conditions
-                        </a>
-                      </Link>
-                    </label>
-                  </FlexBox>
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Button
-                    disabled={!isAgreed}
-                    variant="contained"
-                    size="large"
-                    px="4rem"
-                    fullwidth
-                    style={{
-                      backgroundColor: '#EC1C24',
-                      color: '#fff',
-                      maxWidth: '30rem',
-                      margin: 'auto',
-                    }}
-                    onClick={onSubmit}
-                  >
-                    Send
-                  </Button>
-                </Grid>
-              </Grid>
+    <>
+      <Alert
+        modalOpen={modalOpen}
+        onClose={onClose}
+        message="Your Query is Pending. We will get back to you soon."
+      />
+      <Modal open={isOpen} onClose={onCloseHandler}>
+        <Card className="query" position="relative">
+          <Box maxWidth="809px">
+            <Box textAlign="center" className="query__header">
+              <H1>Product Enquiry</H1>
+              <SemiSpan>We will contact you within short time</SemiSpan>
             </Box>
-          </div>
-        </Box>
-      </Card>
-    </Modal>
+            <IconButton
+              style={{ position: 'absolute', right: '15px', top: '15px' }}
+              onClick={onCloseHandler}
+            >
+              <Icon>close</Icon>
+            </IconButton>
+            <div>
+              <div className="query__hero-wrapper">
+                <img src="/Review.png" className="query__hero" />
+              </div>
+              <Box className="query__form">
+                <Grid container spacing={5}>
+                  <Grid item md={6} sm={12} xs={12}>
+                    <TextField
+                      fullwidth
+                      name="fullName"
+                      label="Your Full Name"
+                      value={state.fullName}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item md={6} sm={12} xs={12}>
+                    <TextField
+                      fullwidth
+                      name="mobileNo"
+                      label="Your Mobile No"
+                      value={state.mobileNo}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item md={6} sm={12} xs={12}>
+                    <TextField
+                      fullwidth
+                      name="email"
+                      label="Your Email Address"
+                      value={state.email}
+                      errorText={showEmailError && 'Email is wrong'}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item md={6} sm={12} xs={12}>
+                    <TextField
+                      fullwidth
+                      name="company"
+                      label="Company Name"
+                      value={state.company}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item md={6} sm={12} xs={12}>
+                    <TextField
+                      fullwidth
+                      name="address"
+                      label="Full Address"
+                      value={state.address}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item md={6} sm={12} xs={12} alignItems="center">
+                    <label htmlFor="attachment" className="query__file">
+                      <input
+                        type="file"
+                        name="attachment"
+                        id="attachment"
+                        onChange={handleFileChange}
+                      />
+                      <FlexBox alignItems="center">
+                        {/*
+                          // @ts-ignore */}
+                        <Icon size="5rem" color="#16ACEC" mr="1rem">
+                          uploadQuery
+                        </Icon>
+                        Upload Attachment:{' '}
+                        <strong
+                          style={{ marginLeft: '.5rem', color: '#16ACEC' }}
+                        >
+                          {file?.name?.length > 5
+                            ? file?.name?.slice(0, 5).concat('..')
+                            : file?.name}
+                        </strong>
+                      </FlexBox>
+                    </label>
+                  </Grid>
+                  <Grid item md={12} sm={12} xs={12}>
+                    <TextArea
+                      name="message"
+                      label="Write your Details Message"
+                      labelColor="warn"
+                      rows={8}
+                      className="query__textarea"
+                      value={state.message}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FlexBox alignItems="center">
+                      <input
+                        type="checkbox"
+                        id="terms"
+                        name="terms"
+                        defaultChecked={isAgreed}
+                        onChange={(e) => {
+                          console.log(e.target.checked);
+                          setIsAgreed(e.target.checked);
+                        }}
+                      />
+                      <label htmlFor="terms">
+                        <Link href="/terms">
+                          <a className="query__terms">
+                            I agree to the terms and conditions
+                          </a>
+                        </Link>
+                      </label>
+                    </FlexBox>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Button
+                      disabled={!isAgreed}
+                      variant="contained"
+                      size="large"
+                      px="4rem"
+                      fullwidth
+                      style={{
+                        backgroundColor: '#EC1C24',
+                        color: '#fff',
+                        maxWidth: '30rem',
+                        margin: 'auto',
+                      }}
+                      onClick={onSubmit}
+                    >
+                      Send
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Box>
+            </div>
+          </Box>
+        </Card>
+      </Modal>
+    </>
   );
 };
 

@@ -36,7 +36,7 @@ const RelatedClients: React.FC<ClientProps> = (props) => {
           </H2>
         </FlexBox>
       </FlexBox>
-      <div className="container">
+      <div className="slider-container">
         <div className="scroll-wrapper">{Clients}</div>
         <div className="scroll-wrapper">{Clients}</div>
       </div>
