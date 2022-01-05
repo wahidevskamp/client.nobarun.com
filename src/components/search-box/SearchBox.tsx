@@ -17,11 +17,7 @@ import MenuItem from '../MenuItem';
 import TextField from '../text-field/TextField';
 import StyledSearchBox from './SearchBoxStyle';
 
-export interface SearchBoxProps {
-  isFixed: boolean;
-}
-
-const SearchBox: React.FC<SearchBoxProps> = () => {
+const SearchBox: React.FC = () => {
   const [resultList, setResultList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);

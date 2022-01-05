@@ -1,6 +1,8 @@
 import Box from '@component/Box';
 import Image from '@component/Image';
+import Sidemenu from '@component/layout/Sidemenu';
 import Sidenav from '@component/sidenav/Sidenav';
+import useAllProductCategories from '@hook/Home/useAllProductCategories';
 // import navbarNavigations from '@data/navbarNavigations';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
@@ -11,15 +13,12 @@ import FlexBox from '../FlexBox';
 import Icon from '../icon/Icon';
 import SearchBox from '../search-box/SearchBox';
 import StyledHeader from './HeaderStyle';
-import Sidemenu from '@component/layout/Sidemenu';
-import useAllProductCategories from '@hook/Home/useAllProductCategories';
 
 type HeaderProps = {
-  isFixed?: boolean;
   className?: string;
 };
 
-const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
+const Header: React.FC<HeaderProps> = ({ className }) => {
   const width = useWindowSize();
   const isTablet = width < 900;
   const [categoriesList, setCategoriesList] = useState<any[]>([]);
@@ -35,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
         <Box bg="#fff">
           <FlexBox width="100%" alignItems="center" py="1em" px="1em">
             <FlexBox flex="1 1 0" pt=".5em" px="1em">
-              <SearchBox isFixed={isFixed} />
+              <SearchBox />
             </FlexBox>
 
             {isTablet && (
@@ -62,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ isFixed, className }) => {
           </FlexBox>
 
           <FlexBox justifyContent="center" flex="1 1 0">
-            <SearchBox isFixed={isFixed} />
+            <SearchBox />
           </FlexBox>
           {/* {!isTablet && <Whatsapp width={width} />} */}
         </Container>

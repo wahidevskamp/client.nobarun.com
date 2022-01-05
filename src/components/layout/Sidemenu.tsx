@@ -11,17 +11,17 @@ import React from 'react';
 
 export interface SidemenuProps {
   categoriesList?: any;
-  isFixed?: boolean;
+  isfixed?: boolean;
 }
 
-const Sidemenu: React.FC<SidemenuProps> = ({ categoriesList, isFixed }) => {
+const Sidemenu: React.FC<SidemenuProps> = ({ categoriesList, isfixed }) => {
   return (
     <Card
       position="relative"
       boxShadow="large"
       height="100%"
       borderRadius={0}
-      overflow={isFixed ? 'auto' : 'unset'}
+      overflow={isfixed ? 'auto' : 'unset'}
       className="sidebar-menu"
     >
       <Accordion>

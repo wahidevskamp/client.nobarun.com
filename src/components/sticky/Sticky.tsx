@@ -86,7 +86,7 @@ const Sticky: React.FC<StickyProps> = ({
       fixed={fixed}
       ref={elementRef}
     >
-      {React.cloneElement(children, { isFixed: fixed })}
+      {React.cloneElement(children, { isfixed: fixed.toString() })}
     </StyledSticky>
   );
 };

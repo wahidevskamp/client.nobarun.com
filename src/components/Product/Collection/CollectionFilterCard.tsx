@@ -52,7 +52,7 @@ const CollectionFilterCard = ({
               ))}
             </Accordion>
           ) : (
-            <Link href={`/category/${item.slug}`}>
+            <Link href={`/category/${item.slug}`} key={item?.slug}>
               <a
                 style={{
                   display: 'flex',
