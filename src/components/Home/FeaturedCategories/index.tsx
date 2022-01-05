@@ -34,7 +34,6 @@ const Categories: React.FC = () => {
                   md={4}
                   sm={6}
                   xs={6}
-                  // xs={12}
                   key={item.title}
                   className="featuredCategories"
                 >

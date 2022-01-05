@@ -3,10 +3,9 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import React, { Fragment } from 'react';
 import { ThemeProvider } from 'styled-components';
+import '../styles/main.scss';
 import { GlobalStyles } from '../utils/globalStyles';
 import { theme } from '../utils/theme';
-
-import '../styles/main.scss';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -20,6 +19,7 @@ const App = ({ Component, pageProps }: any) => {
   return (
     <ThemeProvider theme={theme}>
       <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-SGG7GE7HZC"

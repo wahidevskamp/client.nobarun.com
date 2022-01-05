@@ -55,14 +55,14 @@ const RelatedReview = ({ title, reviews, slug }) => {
             spacing="0px"
           >
             {reviewDetail?.reviewMedia?.images.map((image) => (
-              <div className="product__review_modal-image">
-                <img key={image} src={image} alt="" />
+              <div className="product__review_modal-image" key={image}>
+                <img src={image} alt="" />
               </div>
             ))}
             {reviewDetail?.reviewMedia?.videos.map((video) => {
               const id = video && getYoutubeId(video);
               return (
-                <div className="product__review_modal-image">
+                <div className="product__review_modal-image" key={id}>
                   <iframe
                     src={`https://www.youtube.com/embed/${id}`}
                     title="YouTube video player"
@@ -121,8 +121,8 @@ const RelatedReview = ({ title, reviews, slug }) => {
             )}
           </FlexBox>
 
-          {reviews.slice(0, slice).map((review) => (
-            <Box marginBottom="8rem">
+          {reviews.slice(0, slice).map((review, idx) => (
+            <Box marginBottom="8rem" key={review.name + idx}>
               <FlexBox alignItems="center">
                 <img
                   src={review.featuredImage}
@@ -157,6 +157,7 @@ const RelatedReview = ({ title, reviews, slug }) => {
               <Box className="product-images" mt="2rem">
                 {review?.reviewMedia?.images.map((image, idx) => (
                   <figure
+                    key={image}
                     onClick={() => {
                       setIsOpen(true);
                       setReviewDetail(review);
@@ -171,6 +172,7 @@ const RelatedReview = ({ title, reviews, slug }) => {
                   const link = `https://img.youtube.com/vi/${id}/sddefault.jpg`;
                   return (
                     <figure
+                      key={id}
                       onClick={() => {
                         setIsOpen(true);
                         setReviewDetail(review);

@@ -50,7 +50,7 @@ const CollectionWiseProduct: React.FC = () => {
                   >
                     {collection?.products.map(
                       ({ product, reviewCount, ratingAverage }) => (
-                        <Box py="0.25rem">
+                        <Box py="0.25rem" key={product?.id}>
                           <ProductCard1
                             id={product?.id}
                             imgUrl={product?.featured}

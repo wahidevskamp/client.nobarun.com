@@ -15,7 +15,7 @@ const Features = ({ features }) => {
           px="2rem"
           py="3rem"
           mb="2rem"
-          key={idx}
+          key={feature.title + idx}
           className="product__keypoints"
         >
           {isTablet && (

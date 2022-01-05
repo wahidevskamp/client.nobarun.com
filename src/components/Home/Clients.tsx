@@ -37,7 +37,7 @@ const Clients: React.FC<ClientProps> = ({ isProductDetails }) => {
   }, []);
 
   const ClientList = clients.map((item, ind) => (
-    <Box key={ind} className="client client_related">
+    <Box key={item.title + ind} className="client client_related">
       <HoverBox borderRadius={5} className="client__body">
         <img src={item.imgUrl} style={{ width: '118px', height: '110px' }} />
       </HoverBox>

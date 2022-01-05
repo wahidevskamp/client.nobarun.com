@@ -10,7 +10,7 @@ import Grid from '../grid/Grid';
 import Icon from '../icon/Icon';
 import Typography from '../Typography';
 
-const StyledLink = styled.a`
+const StyledLink = styled.span`
   position: relative;
   display: block;
   padding: 0.3rem 0rem;

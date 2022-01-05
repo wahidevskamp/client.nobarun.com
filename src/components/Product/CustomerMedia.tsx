@@ -49,11 +49,11 @@ const CustomerMedia = ({ reviews }) => {
             showArrow={true}
             spacing="0px"
           >
-            {medias.map((media: string) => {
+            {medias.map((media: string, idx) => {
               if (media.includes('youtube')) {
                 const id = media && getYoutubeId(media);
                 return (
-                  <div className="product__review_modal-image">
+                  <div className="product__review_modal-image" key={idx + id}>
                     <iframe
                       src={`https://www.youtube.com/embed/${id}`}
                       title="YouTube video player"
@@ -81,6 +81,7 @@ const CustomerMedia = ({ reviews }) => {
             const link = `https://img.youtube.com/vi/${id}/sddefault.jpg`;
             return (
               <Box
+                key={idx + id}
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
                   setIsOpen(true);

@@ -1,14 +1,14 @@
-import Box from "@component/Box";
-import Card from "@component/Card";
-import FlexBox from "@component/FlexBox";
-import Grid from "@component/grid/Grid";
-import Image from "@component/Image";
-import LazyImage from "@component/LazyImage";
-import NavLink from "@component/nav-link/NavLink";
-import Typography, { H3, SemiSpan, Small } from "@component/Typography";
-import Link from "next/link";
-import React from "react";
-import { StyledMegaMenu1 } from "./MegaMenuStyle";
+import Box from '@component/Box';
+import Card from '@component/Card';
+import FlexBox from '@component/FlexBox';
+import Grid from '@component/grid/Grid';
+import Image from '@component/Image';
+import LazyImage from '@component/LazyImage';
+import NavLink from '@component/nav-link/NavLink';
+import Typography, { H3, SemiSpan, Small } from '@component/Typography';
+import Link from 'next/link';
+import React from 'react';
+import { StyledMegaMenu1 } from './MegaMenuStyle';
 
 interface Image {
   imgUrl: string;
@@ -55,8 +55,8 @@ const MegaMenu3: React.FC<MegaMenuProps> = ({
                   ) : (
                     <SemiSpan className="title-link">{item.title}</SemiSpan>
                   )}
-                  {item.subCategories?.map((sub) => (
-                    <NavLink className="child-link" href={sub.href}>
+                  {item.subCategories?.map((sub, ind) => (
+                    <NavLink className="child-link" href={sub.href} key={ind}>
                       {sub.title}
                     </NavLink>
                   ))}
@@ -130,7 +130,7 @@ const MegaMenu3: React.FC<MegaMenuProps> = ({
 };
 
 MegaMenu3.defaultProps = {
-  minWidth: "760px",
+  minWidth: '760px',
 };
 
 export default MegaMenu3;

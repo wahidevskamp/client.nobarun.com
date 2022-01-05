@@ -49,8 +49,6 @@ const CollectionProductCard: React.FC<ProductCard1ListProps> = ({
                   categoryName={product?.populatedCategory?.name}
                   categoryIcon={product?.populatedCategory?.icon}
                   price={250}
-                  // off={product.discount}
-                  // key={product.id}
                 />
               </Box>
             </Grid>

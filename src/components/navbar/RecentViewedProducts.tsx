@@ -36,7 +36,7 @@ const RecentViewedProducts: React.FC = () => {
             // .concat(products)
             // .concat(products)
             ?.map((product) => (
-              <Card px="2rem" py="1rem" minWidth="20rem">
+              <Card px="2rem" py="1rem" minWidth="20rem" key={product?.id}>
                 <Link href={`/${product.id}`}>
                   <a>
                     <HoverBox borderRadius={8} mb="0.5rem">

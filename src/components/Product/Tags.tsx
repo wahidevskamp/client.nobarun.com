@@ -29,8 +29,11 @@ const Tags = ({ chips }) => {
         }}
         ref={tagsRef}
       >
-        {chips?.map((chip) => (
-          <Link href={`/product/tags/${chip?.replace(REGEX, '-')}`}>
+        {chips?.map((chip, idx) => (
+          <Link
+            key={chip + idx}
+            href={`/product/tags/${chip?.replace(REGEX, '-')}`}
+          >
             <a>
               <Chip
                 bg="#eee"

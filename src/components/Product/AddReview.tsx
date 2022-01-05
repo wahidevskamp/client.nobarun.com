@@ -212,7 +212,7 @@ const AddReview = ({ productCode }) => {
           </Paragraph>
           <div className="product-images">
             {images.map((image) => (
-              <figure>
+              <figure key={image}>
                 <IconButton
                   className="remove-image"
                   onClick={() => removeHandler(image, 'image')}
@@ -224,6 +224,7 @@ const AddReview = ({ productCode }) => {
             ))}
             {videos.map((video) => (
               <figure
+                key={video}
                 style={{
                   backgroundColor: '#eee',
                   display: 'flex',

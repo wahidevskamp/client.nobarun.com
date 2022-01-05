@@ -52,10 +52,6 @@ export default class extends Document {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
           <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
           <meta name="apple-mobile-web-app-title" content="nobarun" />
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
           <meta name="application-name" content="nobarun" />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />

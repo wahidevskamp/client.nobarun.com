@@ -37,6 +37,7 @@ const Questions = ({ questions }) => {
       {questions &&
         questions?.map((question, idx) => (
           <Accordian
+            key={idx}
             label={`${(idx + 1).toString().length === 1 ? '0' : ''}${idx + 1}.	${
               question.title ? question.title : `Question - ${idx + 1}`
             }`}

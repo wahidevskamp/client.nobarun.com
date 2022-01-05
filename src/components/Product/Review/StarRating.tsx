@@ -8,7 +8,7 @@ const StarRating = ({ details, isLaptop }) => {
     <Box ml={isLaptop ? '3rem' : ''} className="star__wrapper">
       {isLaptop && <H2 mb="2rem">Rating Statistics</H2>}
       {details?.slice(0, 5).map((detail) => (
-        <Box className="star">
+        <Box className="star" key={detail?.title}>
           <H5 className="star__star">{detail?.title}</H5>
           <Line
             className="star__rating"

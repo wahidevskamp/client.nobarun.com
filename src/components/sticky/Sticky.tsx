@@ -4,8 +4,8 @@ import React, {
   useEffect,
   useRef,
   useState,
-} from "react";
-import StyledSticky from "./SickyStyle";
+} from 'react';
+import StyledSticky from './SickyStyle';
 
 export interface StickyProps {
   fixedOn: number;
@@ -42,7 +42,7 @@ const Sticky: React.FC<StickyProps> = ({
 
       if (notifyPosition && notifyOnScroll) {
         notifyOnScroll(
-          distance <= notifyPosition && containerDistance > notifyPosition
+          distance <= notifyPosition && containerDistance > notifyPosition,
         );
       }
       return setFixed(distance <= fixedOn && containerDistance > fixedOn);
@@ -59,11 +59,11 @@ const Sticky: React.FC<StickyProps> = ({
   useEffect(() => {
     if (!window) return;
 
-    window.addEventListener("scroll", scrollListener);
-    window.addEventListener("resize", scrollListener);
+    window.addEventListener('scroll', scrollListener);
+    window.addEventListener('resize', scrollListener);
     return () => {
-      window.removeEventListener("scroll", scrollListener);
-      window.removeEventListener("resize", scrollListener);
+      window.removeEventListener('scroll', scrollListener);
+      window.removeEventListener('resize', scrollListener);
     };
   }, []);
 

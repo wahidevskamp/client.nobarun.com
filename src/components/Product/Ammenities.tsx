@@ -8,7 +8,7 @@ const Ammenities = ({ contact }) => {
     <ProductCard12 title="Office Amenities">
       <ul>
         {contact.amenities.map((amenity) => (
-          <li className="mb-10">
+          <li className="mb-10" key={amenity.title}>
             <FlexBox alignItems="center">
               <img
                 src={amenity.image}
