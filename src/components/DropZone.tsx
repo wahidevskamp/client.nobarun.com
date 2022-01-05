@@ -74,7 +74,7 @@ const DropZone: React.FC<DropZoneProps> = ({ label, images, onChange }) => {
       ) : (
         <FlexBox>
           {images?.map((image) => (
-            <Box mr="1rem" mb="1rem">
+            <Box mr="1rem" mb="1rem" key={image}>
               <img src={image} height="100px" width="100px" />
             </Box>
           ))}
