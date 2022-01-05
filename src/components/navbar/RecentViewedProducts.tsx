@@ -59,7 +59,6 @@ const RecentViewedProducts: React.FC = () => {
         'No Products Recently Viewed'
       )}
     </FlexBox>
-    // </CategorySectionCreator>
   );
 };
 

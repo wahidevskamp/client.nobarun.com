@@ -1,10 +1,10 @@
 import Box from '@component/Box';
 import Carousel from '@component/carousel/Carousel';
+import ProductCard1 from '@component/product-cards/ProductCard';
 import useCollectionWiseProduct from '@hook/Home/useCollectionWiseProduct';
+import useWindowSize from '@hook/useWindowSize';
 import React, { useEffect, useState } from 'react';
-import useWindowSize from '../../hooks/useWindowSize';
-import CategorySectionCreator from '../CategorySectionCreator';
-import ProductCard1 from '../product-cards/ProductCard';
+import CategorySectionCreator from './CategorySectionCreator';
 
 const CollectionWiseProduct: React.FC = () => {
   const [collections, setCollections] = useState([]);

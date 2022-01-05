@@ -1,8 +1,8 @@
+import Box from '@component/Box';
+import Container from '@component/Container';
 import useWindowSize from '@hook/useWindowSize';
 import React from 'react';
-import Box from './Box';
-import CategorySectionHeader from './CategorySectionHeader';
-import Container from './Container';
+import CategorySectionHeader from '../FeaturedCategories/CategorySectionHeader';
 
 export interface CategorySectionCreatorProps {
   iconName?: string;

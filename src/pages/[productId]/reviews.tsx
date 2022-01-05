@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
 import Box from '@component/Box';
 import Grid from '@component/grid/Grid';
-import CustomerMedia from '@component/Product/CustomerMedia';
-import { GetServerSideProps } from 'next';
-import RelatedReview from '@component/Product/RelatedReview';
+import OtherLayout from '@component/layout/OtherLayout';
+import AddQuery from '@component/Product/AddQuery';
 import AddReview from '@component/Product/AddReview';
+import CustomerMedia from '@component/Product/CustomerMedia';
+import RelatedReview from '@component/Product/RelatedReview';
+import ContactPerson from '@component/Product/Review/ContactPerson';
+import FeaturedImage from '@component/Product/Review/FeaturedImage';
+import ReviewSummary from '@component/Product/Review/ReviewSummary';
+import StarRating from '@component/Product/Review/StarRating';
 import StarReview from '@component/Product/Review/StarReview';
 import useReviewsBySlug from '@hook/Product/useReviewsBySlug';
 import useWindowSize from '@hook/useWindowSize';
-import FeaturedImage from '@component/Product/Review/FeaturedImage';
-import ContactPerson from '@component/Product/Review/ContactPerson';
-import ReviewSummary from '@component/Product/Review/ReviewSummary';
-import StarRating from '@component/Product/Review/StarRating';
-import AddQuery from '@component/Shared/AddQuery';
-import OtherLayout from '@component/layout/OtherLayout';
+import { GetServerSideProps } from 'next';
+import React, { useState } from 'react';
 
 const ReviewsPage = (props) => {
   const { productTitle, featuredImage, contact, reviews, productCode, slug } =

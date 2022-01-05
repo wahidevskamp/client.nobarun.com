@@ -15,7 +15,7 @@ import useWindowSize from '@hook/useWindowSize';
 import { GetServerSideProps } from 'next';
 import React, { useState } from 'react';
 
-const ProductSearchResult = ({
+const CategoryPage = ({
   slug,
   categoryName,
   stockStatus,
@@ -84,7 +84,7 @@ const ProductSearchResult = ({
   );
 };
 
-ProductSearchResult.layout = OtherLayout;
+CategoryPage.layout = OtherLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const categoryId = context.params.categoryId;
@@ -119,4 +119,4 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   }
 };
 
-export default ProductSearchResult;
+export default CategoryPage;
