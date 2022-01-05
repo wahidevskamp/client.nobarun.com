@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
 import Box from '@component/Box';
-import { H2, H3, H6, Paragraph } from '@component/Typography';
+import Button from '@component/buttons/Button';
+import FlexBox from '@component/FlexBox';
 import Grid from '@component/grid/Grid';
+import Icon from '@component/icon/Icon';
+import OtherLayout from '@component/layout/OtherLayout';
 import TextField from '@component/text-field/TextField';
 import TextArea from '@component/textarea/TextArea';
-import Icon from '@component/icon/Icon';
+import { H2, H3, H6, Paragraph } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
-import FlexBox from '@component/FlexBox';
-import Button from '@component/buttons/Button';
-import OtherLayout from '@component/layout/OtherLayout';
+import React, { useState } from 'react';
 
 const validateEmail = (email) => {
   return email.match(
@@ -72,7 +72,7 @@ const ContactPage = () => {
           message: '',
         });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(JSON.stringify(error, undefined, 2)));
   };
 
   return (

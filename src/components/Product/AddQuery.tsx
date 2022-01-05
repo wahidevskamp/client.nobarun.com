@@ -124,7 +124,7 @@ const AddQuery = (props: AddQueryProps) => {
           setIsOpen(false);
           setModalOpen(true);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error(JSON.stringify(error, undefined, 2)));
     } catch (error) {
       console.error(JSON.stringify(error, undefined, 2));
     }
@@ -249,7 +249,6 @@ const AddQuery = (props: AddQueryProps) => {
                         name="terms"
                         defaultChecked={isAgreed}
                         onChange={(e) => {
-                          console.log(e.target.checked);
                           setIsAgreed(e.target.checked);
                         }}
                       />

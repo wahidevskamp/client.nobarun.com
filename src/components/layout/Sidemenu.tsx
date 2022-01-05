@@ -15,7 +15,6 @@ export interface SidemenuProps {
 }
 
 const Sidemenu: React.FC<SidemenuProps> = ({ categoriesList, isFixed }) => {
-  console.log(categoriesList);
   return (
     <Card
       position="relative"
