@@ -13,7 +13,7 @@ import { H5, Paragraph } from '@component/Typography';
 import useProductsByCollection from '@hook/Product/useProductsByCollectionName';
 import useWindowSize from '@hook/useWindowSize';
 import { GetServerSideProps } from 'next';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 const CollectionsPage = ({
   collectionName,
@@ -21,18 +21,10 @@ const CollectionsPage = ({
   stockStatus,
   categories,
 }) => {
-  const [view, setView] = useState('grid');
   const [filters, setFilters] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const width = useWindowSize();
   const isTablet = width < 1025;
-
-  const toggleView = useCallback(
-    (v) => () => {
-      setView(v);
-    },
-    [],
-  );
 
   return (
     <Box pt="20px" mb="5rem">
@@ -57,7 +49,7 @@ const CollectionsPage = ({
               position="left"
               scroll={true}
               handle={
-                <IconButton size="small" onClick={toggleView}>
+                <IconButton size="small">
                   <Icon>options</Icon>
                 </IconButton>
               }

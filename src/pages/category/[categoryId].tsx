@@ -7,13 +7,13 @@ import Hidden from '@component/hidden/Hidden';
 import Icon from '@component/icon/Icon';
 import OtherLayout from '@component/layout/OtherLayout';
 import CategoryFilterCard from '@component/products/CategoryFilterCard';
-import ProductCard1List from '@component/products/ProductCard1List';
+import ProductCard1List from '@component/products/ProductCardList';
 import Sidenav from '@component/sidenav/Sidenav';
 import { H5, Paragraph } from '@component/Typography';
 import useProductsByCategory from '@hook/Product/useProductsByCategory';
 import useWindowSize from '@hook/useWindowSize';
 import { GetServerSideProps } from 'next';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 const ProductSearchResult = ({
   slug,
@@ -22,17 +22,9 @@ const ProductSearchResult = ({
   products,
   categories,
 }) => {
-  const [view, setView] = useState('grid');
   const [filters, setFilters] = useState([]);
   const width = useWindowSize();
   const isTablet = width < 1025;
-
-  const toggleView = useCallback(
-    (v) => () => {
-      setView(v);
-    },
-    [],
-  );
   return (
     <Box pt="20px" mb="5rem">
       <FlexBox
@@ -56,7 +48,7 @@ const ProductSearchResult = ({
               position="left"
               scroll={true}
               handle={
-                <IconButton size="small" onClick={toggleView}>
+                <IconButton size="small">
                   <Icon>options</Icon>
                 </IconButton>
               }
@@ -76,17 +68,14 @@ const ProductSearchResult = ({
 
       <Grid container spacing={6}>
         <Hidden as={Grid} item lg={3} md={12} xs={12} down={1024}>
-          {/* <ProductFilterCard /> */}
           <CategoryFilterCard
             slug={slug}
-            // categoryName={categoryName}
             filters={filters}
             setFilters={setFilters}
             categories={categories}
             stockStatus={stockStatus}
           />
         </Hidden>
-
         <Grid item lg={9} md={12} xs={12}>
           <ProductCard1List products={products} filters={filters} />
         </Grid>

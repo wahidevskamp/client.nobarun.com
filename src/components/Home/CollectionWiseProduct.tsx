@@ -4,7 +4,7 @@ import useCollectionWiseProduct from '@hook/Home/useCollectionWiseProduct';
 import React, { useEffect, useState } from 'react';
 import useWindowSize from '../../hooks/useWindowSize';
 import CategorySectionCreator from '../CategorySectionCreator';
-import ProductCard1 from '../product-cards/ProductCard1';
+import ProductCard1 from '../product-cards/ProductCard';
 
 const CollectionWiseProduct: React.FC = () => {
   const [collections, setCollections] = useState([]);

@@ -5,7 +5,7 @@ import Carousel from '@component/carousel/Carousel';
 import Icon from '@component/icon/Icon';
 import Image from '@component/Image';
 import Modal from '@component/modal/Modal';
-import ProductCard12 from '@component/product-cards/ProductCard12';
+import ProductCard12 from '@component/product-cards/HeadlineCard';
 import getYoutubeId from 'helpers/getYoutubeId';
 import React, { useState } from 'react';
 

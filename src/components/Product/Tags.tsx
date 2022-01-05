@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import ProductCard12 from '@component/product-cards/ProductCard12';
-import { Chip } from '@component/Chip';
 import Button from '@component/buttons/Button';
+import { Chip } from '@component/Chip';
+import ProductCard12 from '@component/product-cards/HeadlineCard';
 import Link from 'next/link';
+import React, { useEffect, useRef, useState } from 'react';
 
 const NO_OF_LINES = 4;
 const LINE_HEIGHT = 55;

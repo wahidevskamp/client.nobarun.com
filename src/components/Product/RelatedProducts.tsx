@@ -1,7 +1,7 @@
 import Box from '@component/Box';
 import FlexBox from '@component/FlexBox';
 import Image from '@component/Image';
-import ProductCard12 from '@component/product-cards/ProductCard12';
+import ProductCard12 from '@component/product-cards/HeadlineCard';
 import Rating from '@component/rating/Rating';
 import { Span } from '@component/Typography';
 import Link from 'next/link';

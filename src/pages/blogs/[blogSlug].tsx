@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react';
-import Grid from '@component/grid/Grid';
+import BlogContact from '@component/blog/BlogContact';
 import Box from '@component/Box';
-import { H1, H3 } from '@component/Typography';
+import Grid from '@component/grid/Grid';
+import OtherLayout from '@component/layout/OtherLayout';
 import BlogFilterCard from '@component/products/BlogFilterCard';
+import ShareButton from '@component/ShareButton/ShareButton';
+import { H1, H3 } from '@component/Typography';
 import useBlogCategoriesTree from '@hook/Blogs/useAllBlogCategory';
 import useBlogBySlug from '@hook/Blogs/useBlogBySlug';
 import { GetServerSideProps } from 'next';
-import OtherLayout from '@component/layout/OtherLayout';
-import ShareButton from '@component/ShareButton/ShareButton';
-import BlogContact from '@component/blog/BlogContact';
+import React, { Fragment } from 'react';
 
 const BlogDetails = ({ blogSlug, blog, categories }) => {
   return (
@@ -47,7 +47,6 @@ const BlogDetails = ({ blogSlug, blog, categories }) => {
           <BlogFilterCard
             slug={blog?.populatedCategory?.name}
             categories={categories}
-            setSelectedCategory={''}
             showTags
             tags={blog.tags}
           />

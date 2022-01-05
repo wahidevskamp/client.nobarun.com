@@ -7,8 +7,7 @@ import Icon from '@component/icon/Icon';
 import NavLink from '@component/nav-link/NavLink';
 import { SemiSpan } from '@component/Typography';
 import navigations from '@data/groceryNavigations';
-import useAllProductCategories from '@hook/Home/useAllProductCategories';
-import React, { Fragment, useEffect, useState } from 'react';
+import React from 'react';
 
 export interface SidemenuProps {
   categoriesList?: any;

@@ -1,18 +1,13 @@
-import Button from '@component/buttons/Button';
 import Image from '@component/Image';
-import AddQuery from '@component/Shared/AddQuery';
-import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import { CSSProperties } from 'styled-components';
 import Box from '../Box';
 import { CardProps } from '../Card';
-import { Chip } from '../Chip';
 import FlexBox from '../FlexBox';
-import Icon from '../icon/Icon';
 import Rating from '../rating/Rating';
 import { H3, H6, SemiSpan } from '../Typography';
-import { StyledProductCard1 } from './ProductCardStyle';
+import { StyledProductCard1 } from './CardStyle';
 
 export interface ProductCard1Props extends CardProps {
   className?: string;
@@ -38,8 +33,6 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
   noOfRating,
   ...props
 }) => {
-  const [open, setOpen] = useState(false);
-  const width = useWindowSize();
   return (
     <StyledProductCard1 {...props}>
       <div className="image-holder">
