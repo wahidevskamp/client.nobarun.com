@@ -1,25 +1,17 @@
-import React, { useState } from 'react';
-import ProductCard12 from '@component/product-cards/ProductCard12';
-import Grid from '@component/grid/Grid';
-import Image from '@component/Image';
-import Button from '@component/buttons/Button';
-import getYoutubeId from 'helpers/getYoutubeId';
-import FlexBox from '@component/FlexBox';
 import Box from '@component/Box';
 import IconButton from '@component/buttons/IconButton';
 import Card from '@component/Card';
-import Icon from '@component/icon/Icon';
-import Modal from '@component/modal/Modal';
 import Carousel from '@component/carousel/Carousel';
+import Icon from '@component/icon/Icon';
+import Image from '@component/Image';
+import Modal from '@component/modal/Modal';
+import ProductCard12 from '@component/product-cards/ProductCard12';
+import getYoutubeId from 'helpers/getYoutubeId';
+import React, { useState } from 'react';
 
 const CustomerMedia = ({ reviews }) => {
-  const [image, setImage] = useState('');
-  const [videoLink, setVideoLink] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const [isVideo, setIsVideo] = useState(false);
-
   let medias = [];
   reviews.forEach((review) => {
     medias = medias

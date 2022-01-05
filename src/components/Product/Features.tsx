@@ -1,8 +1,6 @@
+import Box from '@component/Box';
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
-import Box from '@component/Box';
-import Grid from '@component/grid/Grid';
-import Image from '@component/Image';
 import Typography, { H2 } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import React from 'react';

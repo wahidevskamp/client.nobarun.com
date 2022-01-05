@@ -1,12 +1,8 @@
 import Box from '@component/Box';
-import productDatabase from '@data/product-database';
 import useWindowSize from '@hook/useWindowSize';
 import React, { useEffect, useState } from 'react';
-import FlexBox from '../../FlexBox';
 import Grid from '../../grid/Grid';
-import Pagination from '../../pagination/Pagination';
 import ProductCard1 from '../../product-cards/ProductCard1';
-import { SemiSpan } from '../../Typography';
 
 export interface ProductCard1ListProps {
   selectedCategory: string;

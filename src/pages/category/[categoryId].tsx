@@ -5,17 +5,14 @@ import FlexBox from '@component/FlexBox';
 import Grid from '@component/grid/Grid';
 import Hidden from '@component/hidden/Hidden';
 import Icon from '@component/icon/Icon';
-import NavbarLayout from '@component/layout/NavbarLayout';
+import OtherLayout from '@component/layout/OtherLayout';
 import CategoryFilterCard from '@component/products/CategoryFilterCard';
 import ProductCard1List from '@component/products/ProductCard1List';
-import ProductCard9List from '@component/products/ProductCard9List';
-import Select from '@component/Select';
 import Sidenav from '@component/sidenav/Sidenav';
 import { H5, Paragraph } from '@component/Typography';
 import useProductsByCategory from '@hook/Product/useProductsByCategory';
 import useWindowSize from '@hook/useWindowSize';
 import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 
 const ProductSearchResult = ({
@@ -98,7 +95,7 @@ const ProductSearchResult = ({
   );
 };
 
-ProductSearchResult.layout = NavbarLayout;
+ProductSearchResult.layout = OtherLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const categoryId = context.params.categoryId;

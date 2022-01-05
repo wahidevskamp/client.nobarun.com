@@ -1,12 +1,11 @@
-import React from 'react';
 import Box from '@component/Box';
+import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import Divider from '@component/Divider';
 import FlexBox from '@component/FlexBox';
-import Button from '@component/buttons/Button';
 import { H2, Paragraph } from '@component/Typography';
-import { width } from 'styled-system';
 import Link from 'next/link';
+import React from 'react';
 
 interface BlogCardProps {
   postTitle: string;

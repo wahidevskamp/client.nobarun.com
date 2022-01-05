@@ -1,3 +1,4 @@
+import Alert from '@component/alert/alert';
 import Box from '@component/Box';
 import Button from '@component/buttons/Button';
 import IconButton from '@component/buttons/IconButton';
@@ -11,9 +12,6 @@ import TextArea from '@component/textarea/TextArea';
 import { H1, SemiSpan } from '@component/Typography';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { gql } from 'graphql-request';
-import Client from '../../config/GraphQLRequest';
-import Alert from '@component/alert/alert';
 
 interface AddQueryProps {
   isOpen: boolean;
@@ -24,19 +22,20 @@ interface AddQueryProps {
   contact: any;
 }
 
-const ADD_NEW_QUERY = gql`
-  mutation addNewQuery($data: AddQueryUserInput!) {
-    addNewQueryUserByAdmin(data: $data) {
-      name
-    }
-  }
-`;
+// const ADD_NEW_QUERY = gql`
+//   mutation addNewQuery($data: AddQueryUserInput!) {
+//     addNewQueryUserByAdmin(data: $data) {
+//       name
+//     }
+//   }
+// `;
 
 const validateEmail = (email) => {
   return email.match(
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   );
 };
+
 const AddQuery = (props: AddQueryProps) => {
   const { isOpen, setIsOpen, productName, productCode, contact } = props;
   const [modalOpen, setModalOpen] = useState(false);
@@ -79,17 +78,17 @@ const AddQuery = (props: AddQueryProps) => {
     if (showEmailError) return;
     if (state.email === '' || state.mobileNo === '') return;
 
-    const query = {
-      company: state.company,
-      email: state.email,
-      name: state.fullName,
-      message: state.message,
-      notes: '',
-      phone: state.mobileNo,
-      address: state.address,
-      productCode: productCode,
-      attachment: '',
-    };
+    // const query = {
+    //   company: state.company,
+    //   email: state.email,
+    //   name: state.fullName,
+    //   message: state.message,
+    //   notes: '',
+    //   phone: state.mobileNo,
+    //   address: state.address,
+    //   productCode: productCode,
+    //   attachment: '',
+    // };
 
     try {
       // const data = await Client.request(ADD_NEW_QUERY, { data: query });

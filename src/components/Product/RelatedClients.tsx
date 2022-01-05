@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
 import Box from '@component/Box';
+import Carousel from '@component/carousel/Carousel';
 import Container from '@component/Container';
+import FlexBox from '@component/FlexBox';
 import HoverBox from '@component/HoverBox';
 import { H2, H4 } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
-import FlexBox from '@component/FlexBox';
-import useAllFeaturedClients from '@hook/Home/useFeaturedClients';
-import Carousel from '@component/carousel/Carousel';
+import React from 'react';
 
 interface ClientProps {
   slides?: number;

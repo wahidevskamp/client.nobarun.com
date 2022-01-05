@@ -1,7 +1,6 @@
-import useRecentBlogs from '@hook/useRecentBlogs';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { getTheme } from '../../utils/utils';
 import Box from '../Box';

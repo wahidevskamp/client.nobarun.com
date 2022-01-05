@@ -1,9 +1,9 @@
-import Button from "@component/buttons/Button";
-import FlexBox from "@component/FlexBox";
-import Image from "@component/Image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React from "react";
+import Button from '@component/buttons/Button';
+import FlexBox from '@component/FlexBox';
+import Image from '@component/Image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React from 'react';
 
 const Error404 = () => {
   const router = useRouter();
@@ -14,7 +14,7 @@ const Error404 = () => {
 
   return (
     <FlexBox
-                          flexDirection="column"
+      flexDirection="column"
       minHeight="100vh"
       justifyContent="center"
       alignItems="center"

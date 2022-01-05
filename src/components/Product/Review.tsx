@@ -1,22 +1,22 @@
+import Avatar from '@component/avatar/Avatar';
 import Box from '@component/Box';
+import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import Image from '@component/Image';
+import Modal from '@component/modal/Modal';
+import Pagination from '@component/pagination/Pagination';
 import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
-import React, { useState } from 'react';
-import Avatar from '@component/avatar/Avatar';
-import Pagination from '@component/pagination/Pagination';
-import Link from 'next/link';
-import Button from '@component/buttons/Button';
-import Modal from '@component/modal/Modal';
 import getYoutubeId from 'helpers/getYoutubeId';
-import { textAlign } from 'styled-system';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
 interface ReviewProps {
   reviews: any[];
 }
+
 const Review: React.FC<ReviewProps> = ({ reviews }) => {
   const width = useWindowSize();
   const [image, setImage] = useState('');

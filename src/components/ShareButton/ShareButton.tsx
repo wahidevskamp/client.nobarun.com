@@ -1,34 +1,34 @@
-import React, { useState, useRef, useEffect } from 'react';
+import Box from '@component/Box';
+import Button from '@component/buttons/Button';
 import IconButton from '@component/buttons/IconButton';
 import Card from '@component/Card';
 import Carousel from '@component/carousel/Carousel';
+import FlexBox from '@component/FlexBox';
 import Icon from '@component/icon/Icon';
 import Modal from '@component/modal/Modal';
 import Typography, { H3 } from '@component/Typography';
+import useWindowSize from '@hook/useWindowSize';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  FacebookShareButton,
-  FacebookIcon,
-  LineIcon,
-  LineShareButton,
-  TelegramIcon,
+  EmailIcon,
   EmailShareButton,
-  PinterestShareButton,
-  TelegramShareButton,
-  TwitterShareButton,
-  ViberShareButton,
-  WhatsappShareButton,
+  FacebookIcon,
   FacebookMessengerIcon,
   FacebookMessengerShareButton,
-  TwitterIcon,
-  ViberIcon,
-  WhatsappIcon,
+  FacebookShareButton,
+  LineIcon,
+  LineShareButton,
   PinterestIcon,
-  EmailIcon,
+  PinterestShareButton,
+  TelegramIcon,
+  TelegramShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  ViberIcon,
+  ViberShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
 } from 'react-share';
-import Box from '@component/Box';
-import FlexBox from '@component/FlexBox';
-import Button from '@component/buttons/Button';
-import useWindowSize from '@hook/useWindowSize';
 
 interface ShareButtonProps {
   title: string;
@@ -49,7 +49,7 @@ const ShareButton = (props: ShareButtonProps) => {
     setUrl(window.location.href);
   });
 
-  const clipboardHandler = (e) => {
+  const clipboardHandler = () => {
     const copyText = inputRef?.current;
     copyText.select();
     copyText.setSelectionRange(0, 99999);

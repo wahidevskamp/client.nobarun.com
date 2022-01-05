@@ -5,16 +5,15 @@ import FlexBox from '@component/FlexBox';
 import Grid from '@component/grid/Grid';
 import Hidden from '@component/hidden/Hidden';
 import Icon from '@component/icon/Icon';
-import NavbarLayout from '@component/layout/NavbarLayout';
+import OtherLayout from '@component/layout/OtherLayout';
+import CollectionFilterCard from '@component/Product/Collection/CollectionFilterCard';
+import TagsProductCard from '@component/Product/Tags/TagProductCards';
 import Sidenav from '@component/sidenav/Sidenav';
 import { H5, Paragraph } from '@component/Typography';
+import useProductsByTag from '@hook/Product/useProductsByTag';
 import useWindowSize from '@hook/useWindowSize';
 import { GetServerSideProps } from 'next';
 import React, { useState } from 'react';
-import CollectionFilterCard from '@component/Product/Collection/CollectionFilterCard';
-import useProductsByTag from '@hook/Product/useProductsByTag';
-import TagsProductCard from '@component/Product/Tags/TagProductCards';
-
 const TagsPage = ({ tags, products, stocks: stockStatus, categories }) => {
   const [filters, setFilters] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -86,7 +85,7 @@ const TagsPage = ({ tags, products, stocks: stockStatus, categories }) => {
   );
 };
 
-TagsPage.layout = NavbarLayout;
+TagsPage.layout = OtherLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const tagsId = context.params?.tagsId;

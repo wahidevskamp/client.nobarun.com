@@ -44,7 +44,6 @@ const BlogDetails = ({ blogSlug, blog, categories }) => {
         </Grid>
         <Grid item md={4} sm={12} xs={12}>
           <BlogContact slug={blogSlug} contact={blog?.contactPerson} />
-          {/* <Contacts contact={blog?.contactPerson} /> */}
           <BlogFilterCard
             slug={blog?.populatedCategory?.name}
             categories={categories}

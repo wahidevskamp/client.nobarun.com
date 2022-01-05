@@ -1,12 +1,11 @@
-import React from 'react';
-import ProductCard12 from '@component/product-cards/ProductCard12';
-import Grid from '@component/grid/Grid';
-import Typography, { Span } from '@component/Typography';
-import Image from '@component/Image';
-import Link from 'next/link';
 import Box from '@component/Box';
 import FlexBox from '@component/FlexBox';
+import Image from '@component/Image';
+import ProductCard12 from '@component/product-cards/ProductCard12';
 import Rating from '@component/rating/Rating';
+import { Span } from '@component/Typography';
+import Link from 'next/link';
+import React from 'react';
 
 interface RelatedProductProps {
   products: any[];

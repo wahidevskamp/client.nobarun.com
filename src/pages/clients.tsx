@@ -4,8 +4,6 @@ import { H2, H4 } from '@component/Typography';
 import HoverBox from '@component/HoverBox';
 import useAllClientsByCategory from '@hook/useAllClientsByCategory';
 import useWindowSize from '@hook/useWindowSize';
-import AppLayout from '@component/layout/AppLayout';
-import NavbarLayout from '@component/layout/NavbarLayout';
 import OtherLayout from '@component/layout/OtherLayout';
 
 const ClientsPage = () => {

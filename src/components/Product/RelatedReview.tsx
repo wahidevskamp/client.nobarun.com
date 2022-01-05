@@ -1,18 +1,17 @@
 import Box from '@component/Box';
+import IconButton from '@component/buttons/IconButton';
+import Card from '@component/Card';
+import Carousel from '@component/carousel/Carousel';
 import FlexBox from '@component/FlexBox';
+import Icon from '@component/icon/Icon';
+import Modal from '@component/modal/Modal';
 import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
-import getYoutubeId from 'helpers/getYoutubeId';
-import React, { useState, useEffect } from 'react';
-import Card from '@component/Card';
 import useWindowSize from '@hook/useWindowSize';
-import Link from 'next/link';
-import Pagination from '@component/pagination/Pagination';
-import Modal from '@component/modal/Modal';
-import IconButton from '@component/buttons/IconButton';
-import Icon from '@component/icon/Icon';
-import Carousel from '@component/carousel/Carousel';
 import { format } from 'date-fns';
+import getYoutubeId from 'helpers/getYoutubeId';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
 const RelatedReview = ({ title, reviews, slug }) => {
   const width = useWindowSize();
