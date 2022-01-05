@@ -34,16 +34,24 @@ const Footer: React.FC = () => {
       </Typography>
       <div>
         <Link href="/about">
-          <StyledLink>About Us</StyledLink>
+          <a>
+            <StyledLink>About Us</StyledLink>
+          </a>
         </Link>
         <Link href="/clients">
-          <StyledLink>Clients</StyledLink>
+          <a>
+            <StyledLink>Clients</StyledLink>
+          </a>
         </Link>
         <Link href="/terms">
-          <StyledLink>Terms</StyledLink>
+          <a>
+            <StyledLink>Terms</StyledLink>
+          </a>
         </Link>
         <Link href="/contact">
-          <StyledLink>Contact Us</StyledLink>
+          <a>
+            <StyledLink>Contact Us</StyledLink>
+          </a>
         </Link>
       </div>
     </Grid>

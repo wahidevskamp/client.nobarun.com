@@ -33,35 +33,37 @@ const Testimonials: React.FC = () => {
           arrowButtonColor="inherit"
           showArrowOnHover={true}
         >
-          {cardList.map((_item, idx) => (
-            <Box key={_item.title + idx}>
-              <Card pt="3rem" pb="5rem" px="1rem" className="carousel-card">
+          {cardList.map((item, idx) => (
+            <Box key={item.company + idx}>
+              <Card
+                pt="3rem"
+                pb="5rem"
+                px="1rem"
+                minHeight="40rem"
+                className="carousel-card"
+              >
                 <Box maxWidth="80rem" margin="auto" textAlign="center">
-                  <img src={_item.imgUrl} alt={_item.title} height="100px" />
+                  <img src={item.imgUrl} alt={item.company} height="100px" />
                   <H3
                     mb=".5rem"
                     fontWeight="500"
                     fontSize="2.2rem"
                     color="#000"
                   >
-                    Shamim Ahmmed
+                    {item.name}
                   </H3>
                   <SemiSpan mt="1.5rem" fontSize="2rem" color="#6A6A6A">
-                    From <strong>The Wood House Grill</strong> on 9 sept 2021
+                    From <strong>{item.company}</strong>
                   </SemiSpan>
                   <Rating
                     outof={5}
-                    value={4}
+                    value={+item.rating}
                     size="large"
                     readonly
                     color="warn"
                     className="review__rating"
                   />
-                  <Span color="#848484">
-                    Yesterday I received my first box. I was very impressed by
-                    the freshness of the produce. I had tried (another delivery
-                    service) and had to cancel because of low quality.
-                  </Span>
+                  <Span color="#848484">{item.testimonial}</Span>
                 </Box>
               </Card>
             </Box>
@@ -74,49 +76,52 @@ const Testimonials: React.FC = () => {
 
 const cardList = [
   {
-    title: '25% Special Off Today Only for Vegetables',
-    subtitle: 'Till 10 Sept, 2021',
-    imgUrl: 'https://nobarun.s3.us-east-2.amazonaws.com/4537382.jpg',
-    shopUrl: '/',
-    bgColor: '#F6FFE5',
+    company: 'The ACME Laboratories Ltd.',
+    name: 'Major Syed Tamur Hasan (Retd)',
+    imgUrl: '/assets/images/clients/ACME.png',
+    rating: '5',
+    testimonial:
+      'We bought a rubber speed breaker from Nobarun International for Court De La ACME (Kallayanpur). The quality was very high. Their support team came and Installed it in time. Even after a few years, the quality of the product remains the same. Good luck with this company',
   },
   {
-    title: '15% Off for All Product Only Need to Subscribe',
-    subtitle: 'Subscribe Us',
-    imgUrl: 'https://nobarun.s3.us-east-2.amazonaws.com/4529688.jpg',
-    shopUrl: '/',
-    bgColor: '#FFF8E5',
+    company: 'PITZA',
+    name: 'Nahid Hasan',
+    imgUrl: '/assets/images/clients/Pitza.png',
+    rating: '5',
+    testimonial:
+      'We bought a lot of goods for our restaurant from Nobarun International. The quality of the goods made from their workshop is really very good. I am also getting after-sales service on time. Highly recommended.',
   },
   {
-    title: '25% Special Off Today Only for Vegetables',
-    subtitle: 'Till 10 Sept, 2021',
-    imgUrl: 'https://nobarun.s3.us-east-2.amazonaws.com/2638490.jpg',
-    shopUrl: '/',
-    bgColor: '#F6FFE5',
+    company: 'Roser Misty',
+    name: 'Mohammad Hanif',
+    imgUrl: '/assets/images/clients/Roser-Misti.png',
+    rating: '5',
+    testimonial:
+      'We have many outlets in Dhaka and outside Dhaka, most of the products were supplied by Nobarun International. One of the reasons they like it is because of the quality of their products and the timely support. I have bought goods from many business places, but I have seldom got companies like these. Inshallah I will buy from them again if needed.',
   },
   {
-    title: '25% Special Off Today Only for Vegetables',
-    subtitle: 'Till 10 Sept, 2021',
-    imgUrl:
-      '/assets/images/products/kisspng-organic-food-leaf-vegetable-fruit-rich-vegetables-5aa9f4d026ae09 1.png',
-    shopUrl: '/',
-    bgColor: '#F6FFE5',
+    company: 'Honda (Bangladesh)',
+    name: 'Shakhawat Hossain',
+    imgUrl: '/assets/images/clients/Honda.png',
+    rating: '5',
+    testimonial:
+      "I bought some goods for our factory in Bangladesh from Nobarun International. Nobarun's product quality was superior to other companies. Even though they are out of Dhaka, they came on time and installed us. You can also try it once.",
   },
   {
-    title: '25% Special Off Today Only for Vegetables',
-    subtitle: 'Till 10 Sept, 2021',
-    imgUrl:
-      '/assets/images/products/kisspng-organic-food-leaf-vegetable-fruit-rich-vegetables-5aa9f4d026ae09 1.png',
-    shopUrl: '/',
-    bgColor: '#F6FFE5',
+    company: 'Creative IT',
+    name: 'Monir Hosen',
+    imgUrl: '/assets/images/clients/Creative-IT-Ins..png',
+    rating: '5',
+    testimonial:
+      'Many of you may know that Creative IT is one of the best educational institutions in Bangladesh. Since we are the best, we have confidence in Nobarun International for the best quality products. They like the quality and timely support of their products. Good luck to Nobarun International',
   },
   {
-    title: '25% Special Off Today Only for Vegetables',
-    subtitle: 'Till 10 Sept, 2021',
-    imgUrl:
-      '/assets/images/products/kisspng-organic-food-leaf-vegetable-fruit-rich-vegetables-5aa9f4d026ae09 1.png',
-    shopUrl: '/',
-    bgColor: '#F6FFE5',
+    company: 'MAX Group',
+    name: 'Gouranga Sikder',
+    imgUrl: '/assets/images/clients/MAX-Group.png',
+    rating: '5',
+    testimonial:
+      'We have purchased a number of products for our project from Nobarun. Their greatest quality is to select the right product at the right time. We are happy with both product quality and service. Good luck to Nobarun.',
   },
 ];
 export default Testimonials;

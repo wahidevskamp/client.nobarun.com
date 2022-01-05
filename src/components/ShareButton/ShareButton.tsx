@@ -101,21 +101,21 @@ const ShareButton = (props: ShareButtonProps) => {
               <FacebookMessengerShareButton appId="4408949989215502" url={url}>
                 <FacebookMessengerIcon />
               </FacebookMessengerShareButton>
-              <LineShareButton url={url} title={title}>
-                <LineIcon />
-              </LineShareButton>
-              <TelegramShareButton url={url} title={title}>
-                <TelegramIcon />
-              </TelegramShareButton>
-              <TwitterShareButton url={url} title={title} hashtags={hashtags}>
-                <TwitterIcon />
-              </TwitterShareButton>
-              <ViberShareButton url={url} title={title}>
-                <ViberIcon />
-              </ViberShareButton>
               <WhatsappShareButton url={url} title={title}>
                 <WhatsappIcon />
               </WhatsappShareButton>
+              <ViberShareButton url={url} title={title}>
+                <ViberIcon />
+              </ViberShareButton>
+              <TelegramShareButton url={url} title={title}>
+                <TelegramIcon />
+              </TelegramShareButton>
+              <LineShareButton url={url} title={title}>
+                <LineIcon />
+              </LineShareButton>
+              <TwitterShareButton url={url} title={title} hashtags={hashtags}>
+                <TwitterIcon />
+              </TwitterShareButton>
               <PinterestShareButton
                 media={featured}
                 description={description}
