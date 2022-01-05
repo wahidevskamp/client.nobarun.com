@@ -21,13 +21,6 @@ const App = ({ Component, pageProps }: any) => {
   return (
     <ThemeProvider theme={theme}>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta property="og:url" content="/cover.jpeg" />
-        {/* thumbnail And title for social media */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Nobarun International" />
-
         {/* Google analytics */}
         <script
           async
