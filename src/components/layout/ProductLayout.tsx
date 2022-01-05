@@ -4,7 +4,6 @@ import Header from '@component/header/Header';
 import Sticky from '@component/sticky/Sticky';
 import Image from '@component/Image';
 
-import Head from 'next/head';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import StyledProductLayout from './AppLayoutStyle';
@@ -18,7 +17,7 @@ type Props = {
 const ProductLayout: React.FC<Props> = ({
   children,
   navbar,
-  title = 'Nobarun International | Get all the equipment with a hassle-free experience',
+  title = 'Nobarun International || The Ultimate Name of Trust',
 }) => {
   const [active, setActive] = useState(false);
   const [section, setSection] = useState('#details');
@@ -39,11 +38,6 @@ const ProductLayout: React.FC<Props> = ({
 
   return (
     <StyledProductLayout>
-      <Head>
-        <title>{title}</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
       {isTablet && (
         <FlexBox
           justifyContent="center"

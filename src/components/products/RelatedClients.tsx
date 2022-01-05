@@ -3,6 +3,7 @@ import Box from '@component/Box';
 import HoverBox from '@component/HoverBox';
 import { H2, H4 } from '@component/Typography';
 import FlexBox from '@component/FlexBox';
+import styled from 'styled-components';
 
 interface ClientProps {
   slides?: number;
@@ -37,11 +38,21 @@ const RelatedClients: React.FC<ClientProps> = (props) => {
         </FlexBox>
       </FlexBox>
       <div className="slider-container">
-        <div className="scroll-wrapper">{Clients}</div>
-        <div className="scroll-wrapper">{Clients}</div>
+        <ScrollWrapper className="scroll" length={clients.length}>
+          {Clients}
+        </ScrollWrapper>
+        <ScrollWrapper className="scroll" length={clients.length}>
+          {Clients}
+        </ScrollWrapper>
       </div>
     </Box>
   );
 };
+
+const ScrollWrapper = styled.div<{ length: number }>`
+  display: flex;
+  -webkit-animation: marquee ${(props) => props.length * 4}s linear infinite;
+  animation: marquee ${(props) => props.length * 4}s linear infinite;
+`;
 
 export default RelatedClients;

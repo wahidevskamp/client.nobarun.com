@@ -130,10 +130,10 @@ const RelatedReview = ({ title, reviews, slug }) => {
                   style={{ height: '8rem', width: '8rem' }}
                 />
                 <Box ml="2em">
-                  <H3 mt="0.5rem" fontWeight="700">
+                  <H3 mt="0.5rem" fontWeight="700" fontSize="2.5rem">
                     {review.name}
                   </H3>
-                  <SemiSpan mt="10px">
+                  <SemiSpan mt="10px" fontSize="1.8rem">
                     From <strong>{review.title}</strong> on{' '}
                     {review?.createdAt &&
                       format(new Date(review?.createdAt), 'do LLL, yyyy')}
@@ -148,7 +148,7 @@ const RelatedReview = ({ title, reviews, slug }) => {
                   />
                 </Box>
               </FlexBox>
-              <Span color="gray.700">
+              <Span color="gray.700" fontSize="2.2rem">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: review?.reviewText,

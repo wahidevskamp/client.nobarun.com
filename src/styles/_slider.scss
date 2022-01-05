@@ -3,6 +3,10 @@
   position: relative;
   display: flex;
   overflow: hidden;
+  cursor: pointer;
+  &:hover .scroll {
+    animation-play-state: paused;
+  }
 }
 
 .slider-container::after {
@@ -14,12 +18,11 @@
   top: 0;
 }
 
-/* Animation Class */
-.scroll-wrapper {
-  display: flex;
-  -webkit-animation: marquee 20s linear infinite;
-  animation: marquee 20s linear infinite;
+.client_related {
+  cursor: pointer !important;
 }
+
+/* Animation Class */
 
 @-webkit-keyframes marquee {
   0% {
