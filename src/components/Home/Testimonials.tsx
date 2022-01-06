@@ -1,11 +1,11 @@
 import Box from '@component/Box';
 import Card from '@component/Card';
 import Carousel from '@component/carousel-review/Carousel';
+import Container from '@component/Container';
 import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
-import React from 'react';
 import useWindowSize from '@hook/useWindowSize';
-import Container from '@component/Container';
+import React from 'react';
 
 const Testimonials: React.FC = () => {
   const width = useWindowSize();
@@ -113,7 +113,7 @@ const cardList = [
     imgUrl: '/assets/images/clients/Creative-IT-Ins..png',
     rating: '5',
     testimonial:
-      'Many of you may know that Creative IT is one of the best educational institutions in Bangladesh. Since we are the best, we have confidence in Nobarun International for the best quality products. They like the quality and timely support of their products. Good luck to Nobarun International',
+      'As you all know, Creative IT Institute is one of the leading IT training institutes in the country. Creative IT Institute has been working successfully for 13 long years with quality training, we never compromise with quality so Nobarun International has taken our place of trust for quality products. Their product quality and support have increased their reliability.I wish Nobarun International all the best and their continued progress',
   },
   {
     company: 'MAX Group',
@@ -122,6 +122,30 @@ const cardList = [
     rating: '5',
     testimonial:
       'We have purchased a number of products for our project from Nobarun. Their greatest quality is to select the right product at the right time. We are happy with both product quality and service. Good luck to Nobarun.',
+  },
+  {
+    company: 'Bhawal Bazar',
+    name: 'Shamim Ahammed',
+    imgUrl: '/assets/images/clients/Bhawal-Bazar.png',
+    rating: '5',
+    testimonial:
+      "We've got everything you need to make a supershop from Nabarun International. The quality of their products and the after sales support has impressed us even outside Dhaka. I pray Nabarun will go a long way.",
+  },
+  {
+    company: 'United Hospital',
+    name: 'Mr. Imran Ahmed Bhuiyan',
+    imgUrl: '/assets/images/clients/United-Hospital-Ltd.png',
+    rating: '5',
+    testimonial:
+      "At first, We brought a machine from Nobarun International to work on our accounts. Since we were getting very good service, then we brought another 4 machines from them again. We like them because they are the best in service and quality. Let's go farther in the future, Nobarun had this wish.",
+  },
+  {
+    company: 'VITTI Sthapati Brindo Ltd.',
+    name: 'Mr. Auli Hasan',
+    imgUrl: '/assets/images/clients/Vitti.png',
+    rating: '5',
+    testimonial:
+      'Since we work on building development, this type of work requires a lot of products. We have so far found a supplier who works with quality products and we are happy to work with them. Thanks to Nobarun International.',
   },
 ];
 export default Testimonials;

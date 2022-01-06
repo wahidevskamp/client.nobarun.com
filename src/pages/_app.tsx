@@ -22,6 +22,7 @@ const App = ({ Component, pageProps }: any) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <script
           async
+          defer
           src="https://www.googletagmanager.com/gtag/js?id=G-SGG7GE7HZC"
         ></script>
         <script

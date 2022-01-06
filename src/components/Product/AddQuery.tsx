@@ -10,6 +10,8 @@ import Modal from '@component/modal/Modal';
 import TextField from '@component/text-field/TextField';
 import TextArea from '@component/textarea/TextArea';
 import { H1, SemiSpan } from '@component/Typography';
+import Client from 'config/GraphQLRequest';
+import { gql } from 'graphql-request';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
@@ -22,13 +24,13 @@ interface AddQueryProps {
   contact: any;
 }
 
-// const ADD_NEW_QUERY = gql`
-//   mutation addNewQuery($data: AddQueryUserInput!) {
-//     addNewQueryUserByAdmin(data: $data) {
-//       name
-//     }
-//   }
-// `;
+const ADD_NEW_QUERY = gql`
+  mutation addNewQuery($data: AddQueryUserInput!) {
+    addNewQueryUserByUser(data: $data) {
+      name
+    }
+  }
+`;
 
 const validateEmail = (email) => {
   return email.match(
@@ -78,20 +80,21 @@ const AddQuery = (props: AddQueryProps) => {
     if (showEmailError) return;
     if (state.email === '' || state.mobileNo === '') return;
 
-    // const query = {
-    //   company: state.company,
-    //   email: state.email,
-    //   name: state.fullName,
-    //   message: state.message,
-    //   notes: '',
-    //   phone: state.mobileNo,
-    //   address: state.address,
-    //   productCode: productCode,
-    //   attachment: '',
-    // };
+    const query = {
+      company: state.company,
+      email: state.email,
+      name: state.fullName,
+      message: state.message,
+      notes: '',
+      phone: state.mobileNo,
+      address: state.address,
+      productCode: productCode,
+      attachment: '',
+    };
 
     try {
-      // const data = await Client.request(ADD_NEW_QUERY, { data: query });
+      const data = await Client.request(ADD_NEW_QUERY, { data: query });
+      console.log(data);
       fetch(`https://formsubmit.co/ajax/${contact?.email}`, {
         method: 'POST',
         headers: {
