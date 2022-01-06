@@ -1,9 +1,5 @@
-import React from 'react';
-import { Line } from 'rc-progress';
 import Box from '@component/Box';
-import FlexBox from '@component/FlexBox';
-import { H1, H2, H4, H5, SemiSpan, Span } from '@component/Typography';
-import Rating from '@component/rating/Rating';
+import React from 'react';
 import ReviewSummary from './ReviewSummary';
 import StarRating from './StarRating';
 

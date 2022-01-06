@@ -1,3 +1,4 @@
+import Alert from '@component/alert/alert';
 import Box from '@component/Box';
 import Button from '@component/buttons/Button';
 import IconButton from '@component/buttons/IconButton';
@@ -9,11 +10,10 @@ import Modal from '@component/modal/Modal';
 import TextField from '@component/text-field/TextField';
 import TextArea from '@component/textarea/TextArea';
 import { H1, SemiSpan } from '@component/Typography';
+import Client from 'config/GraphQLRequest';
+import { gql } from 'graphql-request';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { gql } from 'graphql-request';
-import Client from '../../config/GraphQLRequest';
-import Alert from '@component/alert/alert';
 
 interface AddQueryProps {
   isOpen: boolean;
@@ -26,7 +26,7 @@ interface AddQueryProps {
 
 const ADD_NEW_QUERY = gql`
   mutation addNewQuery($data: AddQueryUserInput!) {
-    addNewQueryUserByAdmin(data: $data) {
+    addNewQueryUserByUser(data: $data) {
       name
     }
   }
@@ -37,6 +37,7 @@ const validateEmail = (email) => {
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   );
 };
+
 const AddQuery = (props: AddQueryProps) => {
   const { isOpen, setIsOpen, productName, productCode, contact } = props;
   const [modalOpen, setModalOpen] = useState(false);
@@ -92,7 +93,8 @@ const AddQuery = (props: AddQueryProps) => {
     };
 
     try {
-      // const data = await Client.request(ADD_NEW_QUERY, { data: query });
+      const data = await Client.request(ADD_NEW_QUERY, { data: query });
+      console.log(data);
       fetch(`https://formsubmit.co/ajax/${contact?.email}`, {
         method: 'POST',
         headers: {
@@ -125,7 +127,7 @@ const AddQuery = (props: AddQueryProps) => {
           setIsOpen(false);
           setModalOpen(true);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error(JSON.stringify(error, undefined, 2)));
     } catch (error) {
       console.error(JSON.stringify(error, undefined, 2));
     }
@@ -250,7 +252,6 @@ const AddQuery = (props: AddQueryProps) => {
                         name="terms"
                         defaultChecked={isAgreed}
                         onChange={(e) => {
-                          console.log(e.target.checked);
                           setIsAgreed(e.target.checked);
                         }}
                       />

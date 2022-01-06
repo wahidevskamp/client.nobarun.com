@@ -1,8 +1,8 @@
 import Box from '@component/Box';
 import useWindowSize from '@hook/useWindowSize';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '../grid/Grid';
-import ProductCard1 from '../product-cards/ProductCard1';
+import ProductCard1 from '../product-cards/ProductCard';
 
 export interface ProductCard1ListProps {
   products: any;

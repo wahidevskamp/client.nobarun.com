@@ -1,5 +1,5 @@
+import ProductCard12 from '@component/product-cards/HeadlineCard';
 import React from 'react';
-import ProductCard12 from '@component/product-cards/ProductCard12';
 
 interface SpecificationsProps {
   specifications: string;

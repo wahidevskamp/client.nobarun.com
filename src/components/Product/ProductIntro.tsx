@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import IconButton from '@component/buttons/IconButton';
 import Card from '@component/Card';
+import Carousel from '@component/carousel/Carousel';
+import Modal from '@component/modal/Modal';
+import ShareButton from '@component/ShareButton/ShareButton';
 import Spinner from '@component/Spinner';
 import useWindowSize from '@hook/useWindowSize';
 import getYoutubeId from 'helpers/getYoutubeId';
+import React, { useEffect, useState } from 'react';
 import Avatar from '../avatar/Avatar';
 import Box from '../Box';
 import FlexBox from '../FlexBox';
@@ -10,10 +14,6 @@ import Grid from '../grid/Grid';
 import Icon from '../icon/Icon';
 import Rating from '../rating/Rating';
 import Typography, { H1, H4, SemiSpan, Span } from '../Typography';
-import Carousel from '@component/carousel/Carousel';
-import Modal from '@component/modal/Modal';
-import IconButton from '@component/buttons/IconButton';
-import ShareButton from '@component/ShareButton/ShareButton';
 
 export interface ProductIntroProps {
   data?: any;
@@ -76,7 +76,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
 
   const videos = data ? (
     data?.videos.map((url, ind) => (
-      <Grid item xs={6}>
+      <Grid item xs={6} key={url + ind}>
         <Box
           key={ind}
           size={isSmall ? 60 : 80}

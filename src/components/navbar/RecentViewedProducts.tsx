@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import Box from '@component/Box';
 import Card from '@component/Card';
 import Carousel from '@component/carousel/Carousel';
+import FlexBox from '@component/FlexBox';
 import HoverBox from '@component/HoverBox';
 import { H4 } from '@component/Typography';
-import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
-import FlexBox from '@component/FlexBox';
+import React, { useEffect, useState } from 'react';
 
 const RecentViewedProducts: React.FC = () => {
-  const [visibleSlides, setVisibleSlides] = useState(6);
+  // const [visibleSlides, setVisibleSlides] = useState(6);
   const [products, setProducts] = useState([]);
-  const width = useWindowSize();
+  // const width = useWindowSize();
 
   useEffect(() => {
     const products = JSON.parse(localStorage.getItem('recentlyViewed'));
@@ -38,7 +36,7 @@ const RecentViewedProducts: React.FC = () => {
             // .concat(products)
             // .concat(products)
             ?.map((product) => (
-              <Card px="2rem" py="1rem" minWidth="20rem">
+              <Card px="2rem" py="1rem" minWidth="20rem" key={product?.id}>
                 <Link href={`/${product.id}`}>
                   <a>
                     <HoverBox borderRadius={8} mb="0.5rem">
@@ -61,7 +59,6 @@ const RecentViewedProducts: React.FC = () => {
         'No Products Recently Viewed'
       )}
     </FlexBox>
-    // </CategorySectionCreator>
   );
 };
 

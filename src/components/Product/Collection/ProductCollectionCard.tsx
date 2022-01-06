@@ -2,7 +2,7 @@ import Box from '@component/Box';
 import useWindowSize from '@hook/useWindowSize';
 import React, { useEffect, useState } from 'react';
 import Grid from '../../grid/Grid';
-import ProductCard1 from '../../product-cards/ProductCard1';
+import ProductCard1 from '../../product-cards/ProductCard';
 
 export interface ProductCard1ListProps {
   selectedCategory: string;
@@ -49,8 +49,6 @@ const CollectionProductCard: React.FC<ProductCard1ListProps> = ({
                   categoryName={product?.populatedCategory?.name}
                   categoryIcon={product?.populatedCategory?.icon}
                   price={250}
-                  // off={product.discount}
-                  // key={product.id}
                 />
               </Box>
             </Grid>

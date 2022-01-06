@@ -1,11 +1,10 @@
-import Box from '@component/Box';
 import IconButton from '@component/buttons/IconButton';
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import Icon from '@component/icon/Icon';
 import Modal from '@component/modal/Modal';
 import { H3 } from '@component/Typography';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface AlertProps {
   modalOpen: boolean;

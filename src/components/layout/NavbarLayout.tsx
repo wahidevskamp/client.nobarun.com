@@ -1,4 +1,3 @@
-import MobileNavigationBar from '@component/mobile-navigation/MobileNavigationBar';
 import React from 'react';
 import Container from '../Container';
 import Navbar from '../navbar/Navbar';

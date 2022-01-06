@@ -1,7 +1,6 @@
-import useRecentBlogs from '@hook/useRecentBlogs';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { getTheme } from '../../utils/utils';
 import Box from '../Box';
@@ -11,7 +10,7 @@ import Grid from '../grid/Grid';
 import Icon from '../icon/Icon';
 import Typography from '../Typography';
 
-const StyledLink = styled.a`
+const StyledLink = styled.span`
   position: relative;
   display: block;
   padding: 0.3rem 0rem;

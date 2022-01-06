@@ -1,8 +1,8 @@
-import React from 'react';
 import Box from '@component/Box';
+import OtherLayout from '@component/layout/OtherLayout';
 import { H1, H4, Paragraph } from '@component/Typography';
-import NavbarLayout from '@component/layout/NavbarLayout';
 import useWindowSize from '@hook/useWindowSize';
+import React from 'react';
 
 const ProductSearchResult = () => {
   const width = useWindowSize();
@@ -344,6 +344,6 @@ const ProductSearchResult = () => {
   );
 };
 
-ProductSearchResult.layout = NavbarLayout;
+ProductSearchResult.layout = OtherLayout;
 
 export default ProductSearchResult;

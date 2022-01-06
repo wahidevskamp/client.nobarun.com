@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import BlogCard from '@component/blog/BlogCard';
 import Box from '@component/Box';
 import Grid from '@component/grid/Grid';
-import BlogCard from '@component/blog/BlogCard';
-import useAllBlogs from '@hook/Blogs/useAllBlogs';
-import { H1 } from '@component/Typography';
-import { useRouter } from 'next/router';
 import OtherLayout from '@component/layout/OtherLayout';
+import { H1 } from '@component/Typography';
+import useAllBlogs from '@hook/Blogs/useAllBlogs';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 
 const BlogsList = () => {
   const router = useRouter();
@@ -38,7 +38,7 @@ const BlogsList = () => {
                 : blog.category === selectedCategory;
             })
             .map((blog) => (
-              <Grid item lg={4} md={6} xs={12}>
+              <Grid item lg={4} md={6} xs={12} key={blog.postTitle}>
                 <BlogCard {...blog} />
               </Grid>
             ))}

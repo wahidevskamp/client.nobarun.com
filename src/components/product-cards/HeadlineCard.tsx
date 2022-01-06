@@ -1,7 +1,7 @@
-import React from 'react';
 import Card from '@component/Card';
 import { H5 } from '@component/Typography';
-import { StyledProductCard12 } from './ProductCardStyle';
+import React from 'react';
+import { StyledProductCard12 } from './CardStyle';
 
 interface ProductCardProps {
   title: string;

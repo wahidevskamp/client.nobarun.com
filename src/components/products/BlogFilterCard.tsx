@@ -7,13 +7,7 @@ import AccordionHeader from '../accordion/AccordionHeader';
 import Card from '../Card';
 import { H6, Paragraph, SemiSpan } from '../Typography';
 
-const BlogFilterCard = ({
-  slug,
-  categories,
-  setSelectedCategory,
-  showTags,
-  tags,
-}) => {
+const BlogFilterCard = ({ slug, categories, showTags, tags }) => {
   const router = useRouter();
   const selectCategory = (name) => {
     router.push(`/blogs?category=${name}`);

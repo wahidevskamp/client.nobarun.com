@@ -1,14 +1,14 @@
-import React from 'react';
 import FlexBox from '@component/FlexBox';
-import ProductCard12 from '@component/product-cards/ProductCard12';
+import ProductCard12 from '@component/product-cards/HeadlineCard';
 import Typography from '@component/Typography';
+import React from 'react';
 
 const Ammenities = ({ contact }) => {
   return (
     <ProductCard12 title="Office Amenities">
       <ul>
         {contact.amenities.map((amenity) => (
-          <li className="mb-10">
+          <li className="mb-10" key={amenity.title}>
             <FlexBox alignItems="center">
               <img
                 src={amenity.image}

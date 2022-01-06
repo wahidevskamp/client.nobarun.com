@@ -5,7 +5,7 @@
     "dev": "next -p 4000",
     "build": "next build",
     "build-static-page": "next build && next export",
-    "start": "next start -p $PORT",
+    "start": "next start -p 4000",
     "type-check": "tsc",
     "heroku-postbuild": "npm run build"
   },
@@ -27,6 +27,7 @@
     "react-dom": "^16.14.0",
     "react-dropzone": "^11.2.4",
     "react-hook-form": "^7.22.3",
+    "react-lazy-load-image-component": "^1.5.1",
     "react-paginate": "^7.0.0",
     "react-scroll": "^1.8.2",
     "react-scrollspy": "^3.4.3",

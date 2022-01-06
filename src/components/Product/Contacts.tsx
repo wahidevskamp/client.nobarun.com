@@ -1,13 +1,12 @@
-import React, { Fragment } from 'react';
-import { getDay, getHours } from 'date-fns';
-
+import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import Icon from '@component/icon/Icon';
 import Image from '@component/Image';
+import ProductCard from '@component/product-cards/HeadlineCard';
 import Typography, { H5, Paragraph } from '@component/Typography';
-import ProductCard from '@component/product-cards/ProductCard12';
-import Button from '@component/buttons/Button';
+import { getDay, getHours } from 'date-fns';
+import React, { Fragment } from 'react';
 
 const Contacts = ({ slug, productName, productCode, contact, setIsOpen }) => {
   const currentDate = new Date();

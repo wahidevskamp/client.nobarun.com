@@ -1,9 +1,9 @@
+import FlexBox from '@component/FlexBox';
+import Icon from '@component/icon/Icon';
+import { H2, SemiSpan } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
 import React from 'react';
-import FlexBox from './FlexBox';
-import Icon from './icon/Icon';
-import { H2, SemiSpan } from './Typography';
 
 export interface CategorySectionHeaderProps {
   title?: string;

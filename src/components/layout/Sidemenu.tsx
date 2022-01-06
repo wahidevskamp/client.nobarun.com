@@ -7,23 +7,22 @@ import Icon from '@component/icon/Icon';
 import NavLink from '@component/nav-link/NavLink';
 import { SemiSpan } from '@component/Typography';
 import navigations from '@data/groceryNavigations';
-import useAllProductCategories from '@hook/Home/useAllProductCategories';
-import React, { Fragment, useEffect, useState } from 'react';
+import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export interface SidemenuProps {
   categoriesList?: any;
-  isFixed?: boolean;
+  isfixed?: boolean;
 }
 
-const Sidemenu: React.FC<SidemenuProps> = ({ categoriesList, isFixed }) => {
-  console.log(categoriesList);
+const Sidemenu: React.FC<SidemenuProps> = ({ categoriesList, isfixed }) => {
   return (
     <Card
       position="relative"
       boxShadow="large"
       height="100%"
       borderRadius={0}
-      overflow={isFixed ? 'auto' : 'unset'}
+      overflow={isfixed ? 'auto' : 'unset'}
       className="sidebar-menu"
     >
       <Accordion>
@@ -44,9 +43,20 @@ const Sidemenu: React.FC<SidemenuProps> = ({ categoriesList, isFixed }) => {
           </Box>
         </AccordionHeader>
         {categoriesList.map((item) => (
-          <NavLink href={'/category/' + item.slug} color="gray.700">
+          <NavLink
+            href={'/category/' + item.slug}
+            color="gray.700"
+            key={item.slug}
+          >
             <FlexBox key={item.name} mt=".5rem" ml=".5rem">
-              {item?.image && <img src={item.image} height="30" width="30" />}
+              {item?.image && (
+                <LazyLoadImage
+                  src={item?.image}
+                  alt={item.name + 'icon'}
+                  height={30}
+                  width={30}
+                />
+              )}
               <SemiSpan ml="1rem" py="6px" color="inherit" flex="1 1 0">
                 {item.name}
               </SemiSpan>

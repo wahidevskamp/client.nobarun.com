@@ -1,3 +1,4 @@
+import Alert from '@component/alert/alert';
 import Button from '@component/buttons/Button';
 import IconButton from '@component/buttons/IconButton';
 import Card from '@component/Card';
@@ -7,20 +8,11 @@ import Icon from '@component/icon/Icon';
 import Rating from '@component/rating/Rating';
 import TextField from '@component/text-field/TextField';
 import TextArea from '@component/textarea/TextArea';
-import {
-  H1,
-  H2,
-  H3,
-  H4,
-  Paragraph,
-  SemiSpan,
-  Span,
-} from '@component/Typography';
+import { H1, Paragraph, SemiSpan, Span } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
-import React, { useState } from 'react';
 import { gql } from 'graphql-request';
+import React, { useState } from 'react';
 import Client from '../../config/GraphQLRequest';
-import Alert from '@component/alert/alert';
 
 const defaultState = {
   name: '',
@@ -220,7 +212,7 @@ const AddReview = ({ productCode }) => {
           </Paragraph>
           <div className="product-images">
             {images.map((image) => (
-              <figure>
+              <figure key={image}>
                 <IconButton
                   className="remove-image"
                   onClick={() => removeHandler(image, 'image')}
@@ -232,6 +224,7 @@ const AddReview = ({ productCode }) => {
             ))}
             {videos.map((video) => (
               <figure
+                key={video}
                 style={{
                   backgroundColor: '#eee',
                   display: 'flex',

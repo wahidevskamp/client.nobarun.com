@@ -1,6 +1,3 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import Link from 'next/link';
-import { debounce } from 'lodash';
 import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
@@ -8,30 +5,26 @@ import Image from '@component/Image';
 import Rating from '@component/rating/Rating';
 import Spinner from '@component/Spinner';
 import { H6, Span } from '@component/Typography';
+import useHideOnClickOutside from '@hook/useHandleClickOutside';
+import useProductCount from '@hook/useNoOfProduct';
 import useProductSearch from '@hook/useProductSearch';
+import { debounce } from 'lodash';
+import Router from 'next/router';
+import React, { useCallback, useEffect, useState } from 'react';
 import Box from '../Box';
 import Icon from '../icon/Icon';
 import MenuItem from '../MenuItem';
 import TextField from '../text-field/TextField';
 import StyledSearchBox from './SearchBoxStyle';
-import Router from 'next/router';
-import useProductCount from '@hook/useNoOfProduct';
-import useHideOnClickOutside from '@hook/useHandleClickOutside';
 
-export interface SearchBoxProps {
-  isFixed: boolean;
-}
-
-const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
+const SearchBox: React.FC = () => {
   const [resultList, setResultList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
-  const [value, setValue] = useState('');
   const [keyword, setKeyword] = useState('');
 
   const search = debounce(async (e) => {
     const value = e.target?.value;
-    setValue(e.target?.value);
     if (!value) setResultList([]);
     else {
       setLoading(true);
@@ -102,7 +95,6 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
             <MenuItem
               key={item.title}
               onClick={() => {
-                setValue('');
                 setKeyword('');
                 setResultList([]);
                 Router.push(`/${item.slug}`);
@@ -139,24 +131,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isFixed }) => {
           )
         )}
       </Card>
-      {/* )} */}
     </Box>
   );
 };
-
-const dummySearchResult = [
-  'Macbook Air 13',
-  'Ksus K555LA',
-  'Acer Aspire X453',
-  'iPad Mini 3',
-  'Macbook Air 13',
-  'Ksus K555LA',
-  'Acer Aspire X453',
-  'iPad Mini 3',
-  'Macbook Air 13',
-  'Ksus K555LA',
-  'Acer Aspire X453',
-  'iPad Mini 3',
-];
 
 export default SearchBox;

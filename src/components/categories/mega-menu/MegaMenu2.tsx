@@ -1,7 +1,6 @@
 import Card from '@component/Card';
 import React from 'react';
 import CategoryMenuItem from '../category-menu-item/CategoryMenuItem';
-import MegaMenu3 from './MegaMenu3';
 import { StyledMegaMenu1 } from './MegaMenuStyle';
 
 export interface MegaMenu2Props {
@@ -22,7 +21,7 @@ const MegaMenu2: React.FC<MegaMenu2Props> = ({ data }) => {
             caret={item.children}
             key={item.id}
           >
-            {item.child && <MegaMenu3 minWidth="560px" data={item.menuData} />}
+            {/* {item.child && <MegaMenu3 minWidth="560px" data={item.menuData} />} */}
           </CategoryMenuItem>
         ))}
       </Card>

@@ -5,37 +5,26 @@ import FlexBox from '@component/FlexBox';
 import Grid from '@component/grid/Grid';
 import Hidden from '@component/hidden/Hidden';
 import Icon from '@component/icon/Icon';
-import NavbarLayout from '@component/layout/NavbarLayout';
+import OtherLayout from '@component/layout/OtherLayout';
 import CategoryFilterCard from '@component/products/CategoryFilterCard';
-import ProductCard1List from '@component/products/ProductCard1List';
-import ProductCard9List from '@component/products/ProductCard9List';
-import Select from '@component/Select';
+import ProductCard1List from '@component/products/ProductCardList';
 import Sidenav from '@component/sidenav/Sidenav';
 import { H5, Paragraph } from '@component/Typography';
 import useProductsByCategory from '@hook/Product/useProductsByCategory';
 import useWindowSize from '@hook/useWindowSize';
 import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
-const ProductSearchResult = ({
+const CategoryPage = ({
   slug,
   categoryName,
   stockStatus,
   products,
   categories,
 }) => {
-  const [view, setView] = useState('grid');
   const [filters, setFilters] = useState([]);
   const width = useWindowSize();
   const isTablet = width < 1025;
-
-  const toggleView = useCallback(
-    (v) => () => {
-      setView(v);
-    },
-    [],
-  );
   return (
     <Box pt="20px" mb="5rem">
       <FlexBox
@@ -59,7 +48,7 @@ const ProductSearchResult = ({
               position="left"
               scroll={true}
               handle={
-                <IconButton size="small" onClick={toggleView}>
+                <IconButton size="small">
                   <Icon>options</Icon>
                 </IconButton>
               }
@@ -79,17 +68,14 @@ const ProductSearchResult = ({
 
       <Grid container spacing={6}>
         <Hidden as={Grid} item lg={3} md={12} xs={12} down={1024}>
-          {/* <ProductFilterCard /> */}
           <CategoryFilterCard
             slug={slug}
-            // categoryName={categoryName}
             filters={filters}
             setFilters={setFilters}
             categories={categories}
             stockStatus={stockStatus}
           />
         </Hidden>
-
         <Grid item lg={9} md={12} xs={12}>
           <ProductCard1List products={products} filters={filters} />
         </Grid>
@@ -98,7 +84,7 @@ const ProductSearchResult = ({
   );
 };
 
-ProductSearchResult.layout = NavbarLayout;
+CategoryPage.layout = OtherLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const categoryId = context.params.categoryId;
@@ -133,4 +119,4 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   }
 };
 
-export default ProductSearchResult;
+export default CategoryPage;

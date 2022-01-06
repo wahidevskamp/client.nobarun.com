@@ -5,18 +5,15 @@ import FlexBox from '@component/FlexBox';
 import Grid from '@component/grid/Grid';
 import Hidden from '@component/hidden/Hidden';
 import Icon from '@component/icon/Icon';
-import NavbarLayout from '@component/layout/NavbarLayout';
-import ProductCard9List from '@component/products/ProductCard9List';
+import OtherLayout from '@component/layout/OtherLayout';
+import CollectionFilterCard from '@component/Product/Collection/CollectionFilterCard';
 import CollectionProductCard from '@component/Product/Collection/ProductCollectionCard';
 import Sidenav from '@component/sidenav/Sidenav';
 import { H5, Paragraph } from '@component/Typography';
 import useProductsByCollection from '@hook/Product/useProductsByCollectionName';
 import useWindowSize from '@hook/useWindowSize';
 import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
-import React, { useCallback, useState } from 'react';
-import CollectionFilterCard from '@component/Product/Collection/CollectionFilterCard';
-import CategoryFilterCard from '@component/products/CategoryFilterCard';
+import React, { useState } from 'react';
 
 const CollectionsPage = ({
   collectionName,
@@ -24,18 +21,10 @@ const CollectionsPage = ({
   stockStatus,
   categories,
 }) => {
-  const [view, setView] = useState('grid');
   const [filters, setFilters] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const width = useWindowSize();
   const isTablet = width < 1025;
-
-  const toggleView = useCallback(
-    (v) => () => {
-      setView(v);
-    },
-    [],
-  );
 
   return (
     <Box pt="20px" mb="5rem">
@@ -60,7 +49,7 @@ const CollectionsPage = ({
               position="left"
               scroll={true}
               handle={
-                <IconButton size="small" onClick={toggleView}>
+                <IconButton size="small">
                   <Icon>options</Icon>
                 </IconButton>
               }
@@ -102,7 +91,7 @@ const CollectionsPage = ({
   );
 };
 
-CollectionsPage.layout = NavbarLayout;
+CollectionsPage.layout = OtherLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const slug = context.params.collectionSlug;

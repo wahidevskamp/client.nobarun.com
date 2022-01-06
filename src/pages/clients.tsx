@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import Box from '@component/Box';
-import { H2, H4 } from '@component/Typography';
 import HoverBox from '@component/HoverBox';
+import OtherLayout from '@component/layout/OtherLayout';
+import { H2, H4 } from '@component/Typography';
 import useAllClientsByCategory from '@hook/useAllClientsByCategory';
 import useWindowSize from '@hook/useWindowSize';
-import AppLayout from '@component/layout/AppLayout';
-import NavbarLayout from '@component/layout/NavbarLayout';
-import OtherLayout from '@component/layout/OtherLayout';
+import React, { useEffect, useState } from 'react';
 
 const ClientsPage = () => {
   const [clients, setClients] = useState([]);
@@ -46,7 +44,7 @@ const ClientsPage = () => {
             ? category.clients.length
             : noOfClients;
         return (
-          <Box mb="2rem">
+          <Box mb="2rem" key={category.categoryName}>
             <H2 mb="2rem">{category.categoryName}</H2>
             <div className="clients-list_wrapper">
               {category.clients.slice(0, length).map((item, idx) => (

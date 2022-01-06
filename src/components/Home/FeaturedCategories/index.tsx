@@ -6,10 +6,10 @@ import useFeaturedCategories from '@hook/Home/useFeaturedCategories';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
 import React from 'react';
-import Box from '../Box';
-import CategorySectionHeader from '../CategorySectionHeader';
-import Container from '../Container';
-import Grid from '../grid/Grid';
+import Box from '../../Box';
+import Container from '../../Container';
+import Grid from '../../grid/Grid';
+import CategorySectionHeader from './CategorySectionHeader';
 
 const Categories: React.FC = () => {
   const width = useWindowSize();
@@ -34,7 +34,6 @@ const Categories: React.FC = () => {
                   md={4}
                   sm={6}
                   xs={6}
-                  // xs={12}
                   key={item.title}
                   className="featuredCategories"
                 >

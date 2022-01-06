@@ -1,13 +1,10 @@
 import Accordion from '@component/accordion/Accordion';
 import AccordionHeader from '@component/accordion/AccordionHeader';
-import Box from '@component/Box';
 import Card from '@component/Card';
 import CheckBox from '@component/CheckBox';
 import Divider from '@component/Divider';
-import Tags from '@component/Product/Tags';
-import { H6, SemiSpan, Paragraph } from '@component/Typography';
+import { H6, Paragraph, SemiSpan } from '@component/Typography';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React from 'react';
 
 const CollectionFilterCard = ({
@@ -18,7 +15,6 @@ const CollectionFilterCard = ({
   filters,
   setFilters,
 }) => {
-  const router = useRouter();
   const selectCategory = (name) => {
     setSelectedCategory(name);
   };
@@ -31,12 +27,7 @@ const CollectionFilterCard = ({
         {categories?.map((item) =>
           item?.children.length > 0 ? (
             <Accordion key={item?.name} expanded>
-              <AccordionHeader
-                px="0px"
-                py="6px"
-                color="text.muted"
-                // justifyContent="flex-start"
-              >
+              <AccordionHeader px="0px" py="6px" color="text.muted">
                 <SemiSpan
                   className="cursor-pointer"
                   mr="9px"
@@ -61,7 +52,7 @@ const CollectionFilterCard = ({
               ))}
             </Accordion>
           ) : (
-            <Link href={`/category/${item.slug}`}>
+            <Link href={`/category/${item.slug}`} key={item?.slug}>
               <a
                 style={{
                   display: 'flex',

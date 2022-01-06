@@ -11,7 +11,7 @@ interface MobileStickyBarProps {
   reviewLength: number;
 }
 const MobileStickyBar = (props: MobileStickyBarProps) => {
-  const { active, product, setIsOpen, reviewLength } = props;
+  const { active, setIsOpen, reviewLength } = props;
   const width = useWindowSize();
   const isTablet = width < 900;
   return (

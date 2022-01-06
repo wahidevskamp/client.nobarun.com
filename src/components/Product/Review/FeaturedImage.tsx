@@ -1,4 +1,3 @@
-import Box from '@component/Box';
 import React from 'react';
 
 const FeaturedImage = ({ featuredImage, productTitle, isTablet }) => {

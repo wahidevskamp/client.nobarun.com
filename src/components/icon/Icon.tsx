@@ -1,6 +1,5 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import { SpaceProps } from 'styled-system';
-import { colorOptions } from '../../interfaces';
 import StyledIcon from './IconStyle';
 
 export interface IconProps {
