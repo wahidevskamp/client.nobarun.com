@@ -25,7 +25,7 @@ const CategorySectionHeader: React.FC<CategorySectionHeaderProps> = ({
           </Icon>
         )} */}
         <H2
-          fontWeight="bold"
+          fontWeight="600"
           lineHeight="1"
           fontSize={width < 600 ? (width < 400 ? '20px' : '26px') : '32px'}
           mb="1.5rem"

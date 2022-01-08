@@ -90,7 +90,7 @@ const RelatedReview = ({ title, reviews, slug }) => {
             flexDirection={width < 600 ? 'column' : 'row'}
           >
             <H2
-              fontWeight="bold"
+              fontWeight="600"
               textAlign="center"
               lineHeight="1"
               color="#EC1C24"

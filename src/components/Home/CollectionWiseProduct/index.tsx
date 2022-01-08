@@ -1,14 +1,13 @@
 import Box from '@component/Box';
 import Carousel from '@component/carousel/Carousel';
 import ProductCard1 from '@component/product-cards/ProductCard';
-import useCollectionWiseProduct from '@hook/Home/useCollectionWiseProduct';
 import useWindowSize from '@hook/useWindowSize';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import CategorySectionCreator from './CategorySectionCreator';
 
-const CollectionWiseProduct: React.FC = () => {
-  const [collections, setCollections] = useState([]);
-
+const CollectionWiseProduct: React.FC<{ collections: any[] }> = ({
+  collections,
+}) => {
   let slice: number;
   const width = useWindowSize();
   if (width > 1200) {
@@ -18,10 +17,6 @@ const CollectionWiseProduct: React.FC = () => {
   } else if (width < 800) {
     slice = 2;
   }
-
-  useEffect(() => {
-    useCollectionWiseProduct().then((data) => setCollections(data));
-  }, []);
 
   return (
     <Box mb="8rem">

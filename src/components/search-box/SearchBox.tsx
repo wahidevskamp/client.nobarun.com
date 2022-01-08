@@ -6,21 +6,20 @@ import Rating from '@component/rating/Rating';
 import Spinner from '@component/Spinner';
 import { H6, Span } from '@component/Typography';
 import useHideOnClickOutside from '@hook/useHandleClickOutside';
-import useProductCount from '@hook/useNoOfProduct';
 import useProductSearch from '@hook/useProductSearch';
 import { debounce } from 'lodash';
 import Router from 'next/router';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Box from '../Box';
 import Icon from '../icon/Icon';
 import MenuItem from '../MenuItem';
 import TextField from '../text-field/TextField';
 import StyledSearchBox from './SearchBoxStyle';
 
-const SearchBox: React.FC = () => {
+const SearchBox: React.FC<{ count: number | string }> = ({ count }) => {
   const [resultList, setResultList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [keyword, setKeyword] = useState('');
 
   const search = debounce(async (e) => {
@@ -40,9 +39,9 @@ const SearchBox: React.FC = () => {
     search(event);
   }, []);
 
-  useEffect(() => {
-    useProductCount().then((data) => setCount(data));
-  }, []);
+  // useEffect(() => {
+  //   useProductCount().then((data) => setCount(data));
+  // }, []);
 
   const searchBoxRef = useHideOnClickOutside(() => {
     setResultList([]);

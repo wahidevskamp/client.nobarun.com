@@ -6,7 +6,7 @@ const getLocalBusiness = () => ({
   '@type': 'LocalBusiness',
   name: 'Nobarun Bangladesh',
   address: 'Mohakhali',
-  image: 'https://nobarunbd.vercel.app/assets/images/logo.png',
+  image: 'https://nobarunbd.vercel.app/assets/images/logo.svg',
 });
 
 const ProductHead = ({ product }: { product: any }) => {

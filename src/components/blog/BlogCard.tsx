@@ -6,6 +6,7 @@ import FlexBox from '@component/FlexBox';
 import { H2, Paragraph } from '@component/Typography';
 import Link from 'next/link';
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface BlogCardProps {
   postTitle: string;
@@ -17,11 +18,17 @@ interface BlogCardProps {
 const BlogCard = (props: BlogCardProps) => {
   const { postTitle, slug, description, category, image } = props;
   return (
-    <Link href={`/blogs/${encodeURI(slug)}`}>
+    <Link href={`/blogs/${slug}`}>
       <a>
         <Card px="20px" py="10px" className="blog__card">
           <Box width="100%" textAlign="center" margin="1rem auto 1.5rem">
-            <img src={image} style={{ height: '28.5rem', width: '33.5rem' }} />
+            <LazyLoadImage
+              src={image}
+              alt={postTitle}
+              effect="blur"
+              height="285px"
+              width="335px"
+            />
           </Box>
           <H2 fontSize="32px" mb="1rem">
             {postTitle}

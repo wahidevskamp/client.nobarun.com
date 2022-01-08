@@ -23,7 +23,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         Everything is changing nowadays very fast because time is elapsing.
@@ -41,7 +41,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         An office, factory or a corporate house needs a variety of equipment,
@@ -56,7 +56,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         Basically we work and provide service within 3-4 parts. Firstly, current
@@ -73,7 +73,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         Moreover, if you are going to open a supermarket or super shop, we can
@@ -87,7 +87,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         A restaurant’s kitchenis its opportunity to stand out and make a lasting
@@ -123,7 +123,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         Beside our product lines, we work for to decorate a new and old
@@ -142,7 +142,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         Nobarun International is an owner's best place to make the ideal
@@ -157,7 +157,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         We honor your feedback, whether it is positive or negative and we are
@@ -171,7 +171,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         If you are a first-time visitor or long-standing customer, we hope you

@@ -6,7 +6,7 @@ import Navbar from '@component/navbar/Navbar';
 import useWindowSize from '@hook/useWindowSize';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 
-const Slider: React.FC = () => {
+const Slider: React.FC<{ categories: any[] }> = ({ categories }) => {
   const width = useWindowSize();
   const [height, setHeight] = useState(400);
   const isTablet = width < 1025;
@@ -17,7 +17,7 @@ const Slider: React.FC = () => {
   }, [heroContainer?.current?.offsetHeight]);
   return (
     <Fragment>
-      <Navbar navListOpen={true} height={height} />
+      <Navbar navListOpen={true} height={height} categories={categories} />
       <Box bg="gray.white" ref={heroContainer} mt={isTablet ? '2.5rem' : ''}>
         <Container>
           <Carousel

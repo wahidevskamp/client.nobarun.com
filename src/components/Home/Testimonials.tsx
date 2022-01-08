@@ -13,7 +13,7 @@ const Testimonials: React.FC = () => {
     <Container mb="10rem">
       <Box m="-0.25rem" mt="3em" position="relative">
         <H2
-          fontWeight="bold"
+          fontWeight="600"
           fontSize={width > 600 ? '32px' : '26px'}
           mb={width > 600 ? '3rem' : '1rem'}
           textAlign={width > 600 ? 'left' : 'center'}
@@ -46,7 +46,7 @@ const Testimonials: React.FC = () => {
                   <img src={item.imgUrl} alt={item.company} height="100px" />
                   <H3
                     mb=".5rem"
-                    fontWeight="500"
+                    fontWeight="600"
                     fontSize="2.2rem"
                     color="#000"
                   >

@@ -8,11 +8,26 @@ import { H1, H3 } from '@component/Typography';
 import useBlogCategoriesTree from '@hook/Blogs/useAllBlogCategory';
 import useBlogBySlug from '@hook/Blogs/useBlogBySlug';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 import React, { Fragment } from 'react';
 
 const BlogDetails = ({ blogSlug, blog, categories }) => {
   return (
     <Fragment>
+      <Head>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+         @font-face {
+          font-family: 'SolaimanLipi';
+          src: url('/SolaimanLipi.woff');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }`,
+          }}
+        />
+      </Head>
       {/* <ProductHead product={product} /> */}
       <div className="hero">
         <h2 className="hero__title" style={{ marginBottom: '6rem' }}>

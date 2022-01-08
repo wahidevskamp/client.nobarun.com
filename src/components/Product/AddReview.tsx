@@ -127,7 +127,7 @@ const AddReview = ({ productCode }) => {
         message={modalMessage}
         type={modalType}
       />
-      <H1 fontSize="3.4rem" fontWeight="500">
+      <H1 fontSize="3.4rem" fontWeight="600">
         Submit your review
       </H1>
       <SemiSpan my="0.8em" fontSize="1.8rem" color="#848484">

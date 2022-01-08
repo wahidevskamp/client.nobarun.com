@@ -8,6 +8,7 @@ export interface CategoriesProps {
   menu?: any;
   isFixed?: boolean;
   height?: number;
+  categories: any[];
 }
 
 const Categories: React.FC<CategoriesProps> = ({
@@ -16,6 +17,7 @@ const Categories: React.FC<CategoriesProps> = ({
   isFixed,
   children,
   height,
+  categories,
 }) => {
   const [open, setOpen] = useState(isOpen);
   const popoverRef = useRef(open);
@@ -59,7 +61,13 @@ const Categories: React.FC<CategoriesProps> = ({
         className: `${children.props.className} cursor-pointer`,
         onClick: toggleMenu,
       })}
-      <CategoryDropdown ref={ref} open={open} menu={menu} CONTAINER={height} />
+      <CategoryDropdown
+        ref={ref}
+        open={open}
+        menu={menu}
+        CONTAINER={height}
+        categories={categories}
+      />
     </StyledCategory>
   );
 };

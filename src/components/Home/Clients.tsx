@@ -4,16 +4,15 @@ import Container from '@component/Container';
 import FlexBox from '@component/FlexBox';
 import HoverBox from '@component/HoverBox';
 import { H2, H4 } from '@component/Typography';
-import useAllFeaturedClients from '@hook/Home/useFeaturedClients';
 import useWindowSize from '@hook/useWindowSize';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 interface ClientProps {
   slides?: number;
   isProductDetails?: boolean;
+  clients?: any[];
 }
-const Clients: React.FC<ClientProps> = ({ isProductDetails }) => {
-  const [clients, setClients] = useState([]);
+const Clients: React.FC<ClientProps> = ({ isProductDetails, clients }) => {
   const width = useWindowSize();
   const slices =
     width > 1700
@@ -29,12 +28,6 @@ const Clients: React.FC<ClientProps> = ({ isProductDetails }) => {
       : width > 650
       ? 5
       : 4;
-
-  useEffect(() => {
-    useAllFeaturedClients().then((data) => {
-      setClients(data);
-    });
-  }, []);
 
   const ClientList = clients.map((item, ind) => (
     <Box key={item.title + ind} className="client client_related">

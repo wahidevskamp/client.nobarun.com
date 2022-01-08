@@ -26,7 +26,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         These terms and conditions outline the rules and regulations for the use
@@ -64,7 +64,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         We employ the use of cookies. By accessing Nobarun International, you
@@ -85,7 +85,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         Unless otherwise stated, Nobarun International and/or its licensors own
@@ -157,7 +157,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         The following organizations may link to our Website without prior
@@ -236,7 +236,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         Without prior approval and written permission, you may not create frames
@@ -251,7 +251,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         We shall not be hold responsible for any content that appears on your
@@ -269,7 +269,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         We reserve the right to request that you remove all links or any
@@ -287,7 +287,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         If you find any link on our Website that is offensive for any reason,
@@ -307,7 +307,7 @@ const ProductSearchResult = () => {
         fontSize="2.5rem"
         lineHeight="3.5rem"
         textAlign="justify"
-        fontWeight="500"
+        fontWeight="600"
         color="#7D879C"
       >
         To the maximum extent permitted by applicable law, we exclude all

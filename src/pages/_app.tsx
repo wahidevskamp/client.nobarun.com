@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import React, { Fragment } from 'react';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { ThemeProvider } from 'styled-components';
 import '../styles/main.scss';
 import { GlobalStyles } from '../utils/globalStyles';
@@ -15,12 +16,11 @@ NProgress.configure({ showSpinner: false });
 
 const App = ({ Component, pageProps }: any) => {
   let Layout = Component.layout || Fragment;
-
   return (
     <ThemeProvider theme={theme}>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <script
+        {/* <script
           async
           defer
           src="https://www.googletagmanager.com/gtag/js?id=G-SGG7GE7HZC"
@@ -34,10 +34,13 @@ const App = ({ Component, pageProps }: any) => {
             gtag('config', 'G-SGG7GE7HZC');
           `,
           }}
-        ></script>
+        ></script> */}
       </Head>
       <GlobalStyles />
-      <Layout>
+      <Layout
+        count={pageProps?.count || 0}
+        categories={pageProps?.categories || []}
+      >
         <Component {...pageProps} />
       </Layout>
     </ThemeProvider>

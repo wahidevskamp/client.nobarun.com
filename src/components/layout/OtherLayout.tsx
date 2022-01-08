@@ -14,9 +14,11 @@ import StyledAppLayout from './AppLayoutStyle';
 type Props = {
   title?: string;
   navbar?: React.ReactChild;
+  count?: number;
+  categories?: any[];
 };
 
-const OtherLayout: React.FC<Props> = ({ children }) => {
+const OtherLayout: React.FC<Props> = ({ count, categories, children }) => {
   const width = useWindowSize();
   const isTablet = width < 900;
 
@@ -31,7 +33,12 @@ const OtherLayout: React.FC<Props> = ({ children }) => {
         >
           <Link href="/">
             <a>
-              <Image src="/assets/images/logo.png" alt="logo" />
+              <Image
+                src="/assets/images/logo.svg"
+                alt="logo"
+                height="50px"
+                width="200px"
+              />
             </a>
           </Link>
         </FlexBox>
@@ -39,10 +46,10 @@ const OtherLayout: React.FC<Props> = ({ children }) => {
       <GoToTop showBelow={250} />
       <Sticky fixedOn={0}>
         <div>
-          <Header />
+          <Header count={count} categories={categories} />
         </div>
       </Sticky>
-      <Navbar />
+      <Navbar categories={categories} />
       <Container>{children}</Container>
       <Footer />
     </StyledAppLayout>

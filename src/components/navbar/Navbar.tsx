@@ -2,9 +2,10 @@ import Box from '@component/Box';
 import Card from '@component/Card';
 import MenuItem from '@component/MenuItem';
 import navbarNavigations from '@data/navbarNavigations';
+import dynamic from 'next/dynamic';
 import React from 'react';
 import Button from '../buttons/Button';
-import Categories from '../categories/Categories';
+// import Categories from '../categories/Categories';
 import Container from '../Container';
 import FlexBox from '../FlexBox';
 import Icon from '../icon/Icon';
@@ -13,10 +14,13 @@ import Typography, { Span } from '../Typography';
 import StyledNavbar from './NavbarStyle';
 import RecentViewedProducts from './RecentViewedProducts';
 
+const Categories = dynamic(() => import('../categories/Categories'));
+
 export interface NavbarProps {
   navListOpen?: boolean;
   noOfCategory?: number;
   height?: number;
+  categories?: any[];
 }
 
 interface Nav {
@@ -26,7 +30,7 @@ interface Nav {
   extLink?: boolean;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ navListOpen, height }) => {
+const Navbar: React.FC<NavbarProps> = ({ navListOpen, height, categories }) => {
   const renderNestedNav = (list: any[], isRoot = false) => {
     return list?.map((nav: Nav) => {
       if (isRoot) {
@@ -115,7 +119,7 @@ const Navbar: React.FC<NavbarProps> = ({ navListOpen, height }) => {
         alignItems="center"
         height="100%"
       >
-        <Categories open={navListOpen} height={height}>
+        <Categories open={navListOpen} height={height} categories={categories}>
           <Button
             width="30rem"
             height="40px"
@@ -143,7 +147,6 @@ const Navbar: React.FC<NavbarProps> = ({ navListOpen, height }) => {
             </Icon>
           </Button>
         </Categories>
-
         <FlexBox
           style={{ flexGrow: 1 }}
           justifyContent="space-between"

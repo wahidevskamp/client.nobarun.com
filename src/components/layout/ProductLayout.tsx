@@ -27,7 +27,12 @@ const ProductLayout: React.FC<Props> = ({ children, navbar }) => {
         >
           <Link href="/">
             <a>
-              <Image src="/assets/images/logo.png" alt="logo" />
+              <Image
+                src="/assets/images/logo.svg"
+                alt="logo"
+                height="50px"
+                width="200px"
+              />
             </a>
           </Link>
         </FlexBox>
