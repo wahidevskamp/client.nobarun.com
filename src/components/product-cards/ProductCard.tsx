@@ -40,7 +40,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
         <Link href={`/${id}`}>
           <a>
             <LazyLoadImage
-              src={imgUrl}
+              src={process.env.NEXT_PUBLIC_IMAGE_URL + imgUrl}
               alt={title}
               effect="blur"
               height="385px"

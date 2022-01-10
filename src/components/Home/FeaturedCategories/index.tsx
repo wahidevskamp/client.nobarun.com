@@ -56,6 +56,7 @@ const Categories: React.FC = () => {
                             }
                             alt={item.title}
                             effect="blur"
+                            style={{ height: '100%', width: '100%' }}
                           />
                         </HoverBox>
                         <H4

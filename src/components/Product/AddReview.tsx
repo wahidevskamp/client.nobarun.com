@@ -38,7 +38,7 @@ const AddReview = ({ productCode }) => {
   const width = useWindowSize();
   const [rating, setRating] = useState(0);
   const [formData, setFormData] = useState(defaultState);
-  const [images, setImages] = useState<string[]>([]);
+  const [medias, setMedias] = useState<any[]>([]);
   const [videos, setVideos] = useState<string[]>([]);
 
   const postReviewHandler = async () => {
@@ -56,13 +56,28 @@ const AddReview = ({ productCode }) => {
         rating: rating,
         reviewText: formData.review,
         productCode,
-        reviewMedia: {
-          images,
-          videos,
-        },
+        // reviewMedia: {
+        //   images,
+        //   videos,
+        // },
         isPublished: false,
       },
     };
+    // for (let i = 0; i < images.length; i++) {
+    //   const response = await axios.get(`${baseUrl}${extension}`);
+    //   const { obj_location, fields, upload_url } = response.data;
+    //   const formData = new FormData();
+    //   formData.append('key', fields?.key);
+    //   formData.append('policy', fields?.policy);
+    //   formData.append('x-amz-algorithm', fields['x-amz-algorithm']);
+    //   formData.append('x-amz-credential', fields['x-amz-credential']);
+    //   formData.append('x-amz-date', fields['x-amz-date']);
+    //   formData.append('x-amz-security-token', fields['x-amz-security-token']);
+    //   formData.append('x-amz-signature', fields['x-amz-signature']);
+    //   formData.append('file', imageFile[i]);
+    //   await axios.post(upload_url, formData);
+    // }
+
     try {
       const data = await Client.request(CREATE_REVIEW, review);
       if (data) {
@@ -81,18 +96,19 @@ const AddReview = ({ productCode }) => {
 
   const addImageHandler = (e) => {
     const files = e.target.files;
-    const tempImages: string[] = [];
-    const tempVideos: string[] = [];
-    for (let i = 0; i < files.length; i++) {
-      const src = URL.createObjectURL(files[i]);
-      if (files[i]['type'].split('/')[0] === 'image') {
-        tempImages.push(src);
-      } else {
-        tempVideos.push(src);
-      }
-    }
-    tempImages.length > 0 && setImages([...images, ...tempImages]);
-    tempVideos.length > 0 && setVideos([...videos, ...tempVideos]);
+    setMedias([...medias, ...files]);
+    // const tempImages: string[] = [];
+    // const tempVideos: string[] = [];
+    // for (let i = 0; i < files.length; i++) {
+    //   const src = URL.createObjectURL(files[i]);
+    //   if (files[i]['type'].split('/')[0] === 'image') {
+    //     tempImages.push(src);
+    //   } else {
+    //     tempVideos.push(src);
+    //   }
+    // }
+    // tempImages.length > 0 && setImages([...images, ...tempImages]);
+    // tempVideos.length > 0 && setVideos([...videos, ...tempVideos]);
   };
 
   const formHandler = (e) => {
@@ -107,16 +123,17 @@ const AddReview = ({ productCode }) => {
     setModalType('');
   };
   const removeHandler = (link, type: 'video' | 'image') => {
-    if (type === 'image') {
-      let newImages = [...images];
-      newImages = images.filter((img) => img !== link);
-      setImages(newImages);
-    }
-    if (type === 'video') {
-      let newImages = [...videos];
-      newImages = videos.filter((img) => img !== link);
-      setVideos(newImages);
-    }
+    setMedias(medias.filter((media) => URL.createObjectURL(media) !== link));
+    // if (type === 'image') {
+    //   let newImages = [...images];
+    //   newImages = images.filter((img) => img !== link);
+    //   setImages(newImages);
+    // }
+    // if (type === 'video') {
+    //   let newImages = [...videos];
+    //   newImages = videos.filter((img) => img !== link);
+    //   setVideos(newImages);
+    // }
   };
 
   return (
@@ -211,44 +228,47 @@ const AddReview = ({ productCode }) => {
             Add Images & Videos to your review
           </Paragraph>
           <div className="product-images">
-            {images.map((image) => (
-              <figure key={image}>
-                <IconButton
-                  className="remove-image"
-                  onClick={() => removeHandler(image, 'image')}
+            {medias.map((media, idx) => {
+              return ['mp4', 'mov', 'wmv', 'avi', 'mkv']?.includes(
+                media?.name?.split('.').pop()?.toLowerCase(),
+              ) ? (
+                <figure
+                  key={idx}
+                  style={{
+                    backgroundColor: '#eee',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
                 >
-                  <Icon size="1.5rem">close</Icon>
-                </IconButton>
-                <img src={image} alt="" />
-              </figure>
-            ))}
-            {videos.map((video) => (
-              <figure
-                key={video}
-                style={{
-                  backgroundColor: '#eee',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <IconButton
-                  className="remove-image"
-                  onClick={() => removeHandler(video, 'video')}
-                >
-                  <Icon size="1.5rem">close</Icon>
-                </IconButton>
-                <video
-                  src={video}
-                  controls={false}
-                  autoPlay
-                  muted
-                  style={{ height: '7.5rem', width: '7.5rem' }}
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </figure>
-            ))}
+                  <IconButton
+                    className="remove-image"
+                    onClick={() => removeHandler(media, 'video')}
+                  >
+                    <Icon size="1.5rem">close</Icon>
+                  </IconButton>
+                  <video
+                    src={URL.createObjectURL(media)}
+                    controls={false}
+                    autoPlay
+                    muted
+                    style={{ height: '7.5rem', width: '7.5rem' }}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                </figure>
+              ) : (
+                <figure key={idx}>
+                  <IconButton
+                    className="remove-image"
+                    onClick={() => removeHandler(media, 'image')}
+                  >
+                    <Icon size="1.5rem">close</Icon>
+                  </IconButton>
+                  <img src={URL.createObjectURL(media)} alt="" />
+                </figure>
+              );
+            })}
             <figure>
               <label className="add-new-image">
                 <Icon>plus</Icon>

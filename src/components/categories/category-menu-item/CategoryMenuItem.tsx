@@ -24,7 +24,12 @@ const CategoryMenuItem: React.FC<CategoryMenuItemProps> = ({
         <a>
           <div className="category-dropdown-link">
             {icon && (
-              <LazyLoadImage alt={title} src={icon} height={30} width={30} />
+              <LazyLoadImage
+                alt={title}
+                src={process.env.NEXT_PUBLIC_IMAGE_URL + icon}
+                height={30}
+                width={30}
+              />
             )}
             <span className="title">{title}</span>
             {caret.length > 0 && <Icon variant="small">chevron-right</Icon>}

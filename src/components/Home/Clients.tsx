@@ -34,7 +34,7 @@ const Clients: React.FC<ClientProps> = ({ isProductDetails, clients }) => {
     <Box key={item.title + ind} className="client client_related">
       <HoverBox borderRadius={5} className="client__body">
         <LazyLoadImage
-          src={item.imgUrl}
+          src={process.env.NEXT_PUBLIC_IMAGE_URL + item.imgUrl}
           alt={item.title}
           effect="blur"
           height="118px"

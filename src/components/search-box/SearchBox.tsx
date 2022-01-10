@@ -101,7 +101,7 @@ const SearchBox: React.FC<{ count: number | string }> = ({ count }) => {
             >
               <FlexBox alignItems="center">
                 <Image
-                  src={item.featuredImage}
+                  src={process.env.NEXT_PUBLIC_IMAGE_URL + item.featuredImage}
                   height="60"
                   width="60"
                   borderRadius="10px"

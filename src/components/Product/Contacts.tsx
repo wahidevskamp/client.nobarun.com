@@ -115,7 +115,7 @@ Please send me more details.
             style={{ width: '100%', height: '46.7rem', border: 0 }}
             allowFullScreen
             loading="lazy"
-          ></iframe>
+          />
         </ProductCard>
       )}
     </Fragment>
