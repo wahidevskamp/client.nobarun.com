@@ -39,7 +39,6 @@ const AddReview = ({ productCode }) => {
   const [rating, setRating] = useState(0);
   const [formData, setFormData] = useState(defaultState);
   const [medias, setMedias] = useState<any[]>([]);
-  const [videos, setVideos] = useState<string[]>([]);
 
   const postReviewHandler = async () => {
     if (rating === 0) {
@@ -122,7 +121,7 @@ const AddReview = ({ productCode }) => {
     setModalMessage('');
     setModalType('');
   };
-  const removeHandler = (link, type: 'video' | 'image') => {
+  const removeHandler = (link) => {
     setMedias(medias.filter((media) => URL.createObjectURL(media) !== link));
     // if (type === 'image') {
     //   let newImages = [...images];
@@ -243,7 +242,7 @@ const AddReview = ({ productCode }) => {
                 >
                   <IconButton
                     className="remove-image"
-                    onClick={() => removeHandler(media, 'video')}
+                    onClick={() => removeHandler(media)}
                   >
                     <Icon size="1.5rem">close</Icon>
                   </IconButton>
@@ -261,7 +260,7 @@ const AddReview = ({ productCode }) => {
                 <figure key={idx}>
                   <IconButton
                     className="remove-image"
-                    onClick={() => removeHandler(media, 'image')}
+                    onClick={() => removeHandler(media)}
                   >
                     <Icon size="1.5rem">close</Icon>
                   </IconButton>
