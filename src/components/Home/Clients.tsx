@@ -6,6 +6,7 @@ import HoverBox from '@component/HoverBox';
 import { H2, H4 } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface ClientProps {
   slides?: number;
@@ -32,7 +33,13 @@ const Clients: React.FC<ClientProps> = ({ isProductDetails, clients }) => {
   const ClientList = clients.map((item, ind) => (
     <Box key={item.title + ind} className="client client_related">
       <HoverBox borderRadius={5} className="client__body">
-        <img src={item.imgUrl} style={{ width: '118px', height: '110px' }} />
+        <LazyLoadImage
+          src={item.imgUrl}
+          alt={item.title}
+          effect="blur"
+          height="118px"
+          width="110px"
+        />
       </HoverBox>
       <H4 fontSize="1.4rem" fontWeight="600" className="client__title">
         {item.title}

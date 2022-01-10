@@ -18,7 +18,10 @@ const ProductHead = ({ product }: { product: any }) => {
       <meta property="og:title" content={product?.seo?.title} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://www.nobarunbd.com/" />
-      <meta property="og:image:url" content={product?.intro?.featuredImage} />
+      <meta
+        property="og:image:url"
+        content={product?.intro?.featuredImage?.src}
+      />
       <meta property="og:image:width" content="200" />
       <meta property="og:image:height" content="200" />
       <meta property="og:description" content={product?.seo?.description} />

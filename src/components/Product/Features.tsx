@@ -33,7 +33,10 @@ const Features = ({ features }) => {
           >
             <span className="product__keypoints-image">
               {feature?.images.length > 0 ? (
-                <img src={feature?.images[0]} alt="Featured Image" />
+                <img
+                  src={process.env.NEXT_PUBLIC_IMAGE_URL + feature?.images[0]}
+                  alt="Featured Image"
+                />
               ) : (
                 <img src="/assets/images/features.png" alt="Featured Image" />
               )}

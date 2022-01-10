@@ -6,6 +6,7 @@ import useFeaturedCategories from '@hook/Home/useFeaturedCategories';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Box from '../../Box';
 import Container from '../../Container';
 import Grid from '../../grid/Grid';
@@ -49,7 +50,13 @@ const Categories: React.FC = () => {
                           mb="0.5rem"
                           className="featuredCategories__image"
                         >
-                          <img src={item.imgUrl} />
+                          <LazyLoadImage
+                            src={
+                              process.env.NEXT_PUBLIC_IMAGE_URL + item.imgUrl
+                            }
+                            alt={item.title}
+                            effect="blur"
+                          />
                         </HoverBox>
                         <H4
                           fontSize="18px"

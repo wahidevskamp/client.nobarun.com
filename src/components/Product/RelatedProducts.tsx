@@ -21,7 +21,8 @@ const RelatedProducts: React.FC<RelatedProductProps> = ({ products }) => {
               <a>
                 <FlexBox alignItems="center">
                   <Image
-                    src={product?.image}
+                    src={process.env.NEXT_PUBLIC_IMAGE_URL + product?.image}
+                    alt="Related Products"
                     height="80"
                     width="80"
                     borderRadius="10px"

@@ -32,12 +32,12 @@ const Slider: React.FC<{ categories: any[] }> = ({ categories }) => {
             spacing="0px"
           >
             {[
-              '/assets/images/banners/1 Bakery-Equipment-nobarun.png',
-              '/assets/images/banners/2 Slaughterhouse-Equipment-4.png',
-              '/assets/images/banners/3 Supermarket-Equipment-with-logo.png',
-              '/assets/images/banners/4 Slaughterhouse-Equipment.png',
-              '/assets/images/banners/5 Metal-Detector-&-Scanning-System.png',
-              '/assets/images/banners/6-Slaughterhouse-Equipment-nobarun.png',
+              '/assets/images/banners/1 Bakery-Equipment-nobarun.webp',
+              '/assets/images/banners/2 Slaughterhouse-Equipment-4.webp',
+              '/assets/images/banners/3 Supermarket-Equipment-with-logo.webp',
+              '/assets/images/banners/4 Slaughterhouse-Equipment.webp',
+              '/assets/images/banners/5 Metal-Detector-&-Scanning-System.webp',
+              '/assets/images/banners/6-Slaughterhouse-Equipment-nobarun.webp',
             ].map((link) => (
               <CarouselCard1 link={link} key={link} />
             ))}

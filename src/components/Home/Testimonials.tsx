@@ -6,6 +6,7 @@ import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Testimonials: React.FC = () => {
   const width = useWindowSize();
@@ -43,7 +44,12 @@ const Testimonials: React.FC = () => {
                 className="carousel-card"
               >
                 <Box maxWidth="80rem" margin="auto" textAlign="center">
-                  <img src={item.imgUrl} alt={item.company} height="100px" />
+                  <LazyLoadImage
+                    src={item.imgUrl}
+                    alt={item.company}
+                    effect="blur"
+                    height="100px"
+                  />
                   <H3
                     mb=".5rem"
                     fontWeight="600"

@@ -11,7 +11,7 @@ const Ammenities = ({ contact }) => {
           <li className="mb-10" key={amenity.title}>
             <FlexBox alignItems="center">
               <img
-                src={amenity.image}
+                src={process.env.NEXT_PUBLIC_IMAGE_URL + amenity.image}
                 alt={amenity.title}
                 style={{ height: '4rem', width: '4rem' }}
               />

@@ -1,6 +1,7 @@
 import Image from '@component/Image';
 import Link from 'next/link';
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CSSProperties } from 'styled-components';
 import Box from '../Box';
 import { CardProps } from '../Card';
@@ -38,7 +39,12 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
       <div className="image-holder">
         <Link href={`/${id}`}>
           <a>
-            <img src={imgUrl} alt={title} />
+            <LazyLoadImage
+              src={imgUrl}
+              alt={title}
+              effect="blur"
+              height="385px"
+            />
           </a>
         </Link>
       </div>

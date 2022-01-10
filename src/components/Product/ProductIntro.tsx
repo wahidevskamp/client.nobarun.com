@@ -23,24 +23,37 @@ export interface ProductIntroProps {
   id?: string | number;
 }
 
+const getHallmarkImage = (imageObj: any) => {
+  const { name, src: image } = imageObj;
+  const imagePath = image.slice(0, 16);
+  const imageName = imagePath.replace('media/', '');
+  const src = `${process.env.NEXT_PUBLIC_IMAGE_URL}media/hallmark-${imageName}.png`;
+  return { name, src };
+};
+
 const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
+  console.log(data);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedImage, setSelectedImage] = useState({ name: '', src: '' });
   const [isVideo, setIsVideo] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const width = useWindowSize();
   const isPhone = width < 660;
   const isSmall = (width > 380 && width < 450) || (width > 230 && width < 330);
+
   useEffect(() => {
-    setSelectedImage(data?.featuredImage);
+    setSelectedImage(getHallmarkImage(data?.featuredImage));
     setIsLoading(false);
   }, [data?.images[0]]);
 
   const handleImageClick = (ind, type) => () => {
-    setSelectedImage(ind);
-    if (type === 'image') setIsVideo(false);
+    if (type === 'image') {
+      setSelectedImage(getHallmarkImage(ind));
+      setIsVideo(false);
+    }
     if (type === 'video') {
+      setSelectedImage({ name: '', src: ind });
       setIsVideo(true);
       setModalOpen(true);
     }
@@ -64,7 +77,11 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           borderColor={selectedImage === ind ? 'primary.main' : 'gray.400'}
           onClick={handleImageClick(url, 'image')}
         >
-          <Avatar src={url} borderRadius="10px" size={isSmall ? 50 : 65} />
+          <Avatar
+            src={process.env.NEXT_PUBLIC_IMAGE_URL + url.src}
+            borderRadius="10px"
+            size={isSmall ? 50 : 65}
+          />
         </Box>
       </Grid>
     ))
@@ -75,7 +92,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
   );
 
   const videos = data ? (
-    data?.videos.map((url, ind) => (
+    data?.videos?.map((url, ind) => (
       <Grid item xs={6} key={url + ind}>
         <Box
           key={ind}
@@ -138,7 +155,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
         onClose={() => {
           setModalOpen(false);
           setIsVideo(false);
-          setSelectedImage(data?.featuredImage);
+          setSelectedImage(getHallmarkImage(data?.featuredImage));
         }}
       >
         <Card
@@ -152,14 +169,14 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
             onClick={() => {
               setModalOpen(false);
               setIsVideo(false);
-              setSelectedImage(data?.featuredImage);
+              setSelectedImage(getHallmarkImage(data?.featuredImage));
             }}
           >
             <Icon>close</Icon>
           </IconButton>
           <iframe
             src={`https://www.youtube.com/embed/${getYoutubeId(
-              selectedImage,
+              selectedImage.src,
             )}?autoplay=1`}
             title="YouTube video player"
             frameBorder={0}
@@ -255,8 +272,8 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
             ) : (
               !isVideo && (
                 <img
-                  src={selectedImage}
-                  alt={data?.productName}
+                  src={selectedImage.src}
+                  alt={selectedImage.name}
                   loading="eager"
                   className="product__hero-image"
                   // objectFit="contain"
@@ -313,7 +330,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
         <ShareButton
           title={data?.productName}
           description={data?.productName}
-          featured={data?.featuredImage}
+          featured={data?.featuredImage.src}
           hashtags={[]}
         />
       </Box>

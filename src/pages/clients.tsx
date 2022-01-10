@@ -51,7 +51,7 @@ const ClientsPage = () => {
                 <Box key={item.clientName + idx} className="client client_list">
                   <HoverBox borderRadius={5} className="client__body">
                     <img
-                      src={item.logo}
+                      src={process.env.NEXT_PUBLIC_IMAGE_URL + item.logo}
                       style={{ width: '155px', height: '156px' }}
                     />
                   </HoverBox>

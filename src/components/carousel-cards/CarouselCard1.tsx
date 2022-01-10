@@ -1,6 +1,5 @@
 import React from 'react';
-// import Button from '../buttons/Button';
-// import Typography from '../Typography';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { StyledCarouselCard1 } from './CarouselCardStyle';
 
 export interface CarouselCard1Props {
@@ -11,7 +10,14 @@ const CarouselCard1: React.FC<CarouselCard1Props> = ({ link }) => {
   return (
     <StyledCarouselCard1>
       <div className="image-holder">
-        <img src={link} alt="Hero Image of Nobarun" />
+        <LazyLoadImage
+          src={link}
+          alt="Hero Image of Nobarun"
+          effect="blur"
+          height="578px"
+          width="1290px"
+          // width="1600"
+        />
       </div>
     </StyledCarouselCard1>
   );

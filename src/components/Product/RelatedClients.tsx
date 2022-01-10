@@ -43,7 +43,11 @@ const RelatedClients: React.FC<ClientProps> = (props) => {
             {clients?.map((item, ind) => (
               <Box key={item.title + ind} className="client client_related">
                 <HoverBox borderRadius={5} className="client__body">
-                  <img src={item.imgUrl} className="client__image" />
+                  <img
+                    src={process.env.NEXT_PUBLIC_IMAGE_URL + item.imgUrl}
+                    alt={`Nobarun-Client-${item.title}`}
+                    className="client__image"
+                  />
                 </HoverBox>
                 <H4
                   fontSize="1.4rem"

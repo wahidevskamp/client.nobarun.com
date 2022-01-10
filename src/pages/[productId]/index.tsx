@@ -14,12 +14,12 @@ import MobileStickyBar from '@component/Product/MobileStickyBar';
 import ProductHead from '@component/Product/ProductHead';
 import ProductIntro from '@component/Product/ProductIntro';
 import Questions from '@component/Product/Questions';
+import RelatedClients from '@component/Product/RelatedClients';
 import RelatedProducts from '@component/Product/RelatedProducts';
 import RelatedReview from '@component/Product/RelatedReview';
 import SpecialFeatures from '@component/Product/SpecialFeatures';
 import Specifications from '@component/Product/Specifications';
 import Tags from '@component/Product/Tags';
-import RelatedClients from '@component/products/RelatedClients';
 import useProductById from '@hook/Product/useProductById';
 import useWindowSize from '@hook/useWindowSize';
 import Client from 'config/GraphQLRequest';
@@ -36,6 +36,7 @@ const INCREASE_VIEW = gql`
 `;
 
 const ProductDetails = ({ product, reviews }) => {
+  console.log(product);
   const router = useRouter();
   const pid = router.query.productId;
   const [active, setActive] = useState(false);

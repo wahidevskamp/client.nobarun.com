@@ -23,7 +23,11 @@ Please send me more details.
       <Card px="1rem" py="1rem" mb="2rem">
         {contact?.companyLogo && (
           <div className="product__contact-logo">
-            <Image src={contact?.companyLogo} alt="logo" maxHeight="60px" />
+            <Image
+              src={process.env.NEXT_PUBLIC_IMAGE_URL + contact?.companyLogo}
+              alt="logo"
+              maxHeight="60px"
+            />
           </div>
         )}
         {contact?.name && (

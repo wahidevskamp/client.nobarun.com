@@ -1,8 +1,8 @@
-import React from 'react';
 import Box from '@component/Box';
+import FlexBox from '@component/FlexBox';
 import HoverBox from '@component/HoverBox';
 import { H2, H4 } from '@component/Typography';
-import FlexBox from '@component/FlexBox';
+import React from 'react';
 import styled from 'styled-components';
 
 interface ClientProps {
@@ -16,7 +16,11 @@ const RelatedClients: React.FC<ClientProps> = (props) => {
   const Clients = clients?.map((item, ind) => (
     <Box key={ind} className="client client_related" mr="1rem">
       <HoverBox borderRadius={5} className="client__body">
-        <img src={item.imgUrl} className="client__image" />
+        <img
+          src={process.env.NEXT_PUBLIC_IMAGE_URL + item.imgUrl}
+          alt={`Nobarun-Client-${item.title}`}
+          className="client__image"
+        />
       </HoverBox>
       <H4 fontSize="1.4rem" fontWeight="600" className="client__title">
         {item.title}

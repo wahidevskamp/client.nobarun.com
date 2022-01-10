@@ -17,9 +17,11 @@ export const StyledCarouselCard1 = styled.div`
 
   .image-holder {
     position: relative;
+    /* height: 600px; */
     //   width: 50%;
     img {
       width: 100%;
+      height: 100%;
     }
   }
 
