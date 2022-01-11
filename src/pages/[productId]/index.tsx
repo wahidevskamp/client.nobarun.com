@@ -82,13 +82,13 @@ const ProductDetails = ({ product, reviews }) => {
         product={product}
         active={active}
         setIsOpen={setIsOpen}
-        reviewLength={reviews.length}
+        reviewLength={product.intro.review}
       />
       <MobileStickyBar
         product={product}
         active={active}
         setIsOpen={setIsOpen}
-        reviewLength={reviews.length}
+        reviewLength={product.intro.review}
       />
       <Grid container>
         <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>

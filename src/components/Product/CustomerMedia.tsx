@@ -64,11 +64,34 @@ const CustomerMedia = ({ reviews }) => {
                   </div>
                 );
               } else {
-                return (
-                  <div className="product__review_modal-image">
-                    <img key={media} src={media} alt="" />
-                  </div>
-                );
+                if (
+                  ['mp4', 'mov', 'wmv', 'avi', 'mkv']?.includes(
+                    media!?.split('.')?.pop()?.toLowerCase(),
+                  )
+                ) {
+                  return (
+                    <div className="product__review_modal-image">
+                      <video
+                        src={process.env.NEXT_PUBLIC_IMAGE_URL + media}
+                        controls={true}
+                        autoPlay={true}
+                        muted
+                      >
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div className="product__review_modal-image">
+                      <img
+                        key={media}
+                        src={process.env.NEXT_PUBLIC_IMAGE_URL + media}
+                        alt=""
+                      />
+                    </div>
+                  );
+                }
               }
             })}
           </Carousel>
@@ -108,8 +131,8 @@ const CustomerMedia = ({ reviews }) => {
               >
                 <Image
                   key={media}
-                  src={media}
-                  alt={media}
+                  src={process.env.NEXT_PUBLIC_IMAGE_URL + media}
+                  alt="Review Media"
                   height="100px"
                   width="100px"
                 />

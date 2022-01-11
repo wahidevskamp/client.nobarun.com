@@ -83,7 +83,7 @@ const GET_PRODUCT_BY_ID = gql`
 const useProductById = async (pid) => {
   const data = await Client.request(GET_PRODUCT_BY_ID, { id: pid });
   const productById = data?.getPopulatedProductBySlug?.productData;
-  console.log(data);
+  // console.log(data);
   const product = {
     intro: {
       productName: productById?.product?.productName,

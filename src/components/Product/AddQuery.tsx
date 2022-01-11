@@ -10,10 +10,14 @@ import Modal from '@component/modal/Modal';
 import TextField from '@component/text-field/TextField';
 import TextArea from '@component/textarea/TextArea';
 import { H1, SemiSpan } from '@component/Typography';
+import axios from 'axios';
 import Client from 'config/GraphQLRequest';
 import { gql } from 'graphql-request';
 import Link from 'next/link';
 import React, { useState } from 'react';
+
+const baseUrl =
+  'https://xwkodx6vi3.execute-api.ap-south-1.amazonaws.com/v1?extension=';
 
 interface AddQueryProps {
   isOpen: boolean;
@@ -80,6 +84,23 @@ const AddQuery = (props: AddQueryProps) => {
     if (showEmailError) return;
     if (state.email === '' || state.mobileNo === '') return;
 
+    const fileName = file.name;
+    const extension = fileName.split('.').pop();
+    const response = await axios.get(`${baseUrl}${extension}`);
+    const { obj_location, fields, upload_url } = response.data;
+
+    const formData = new FormData();
+    formData.append('key', fields?.key);
+    formData.append('policy', fields?.policy);
+    formData.append('x-amz-algorithm', fields['x-amz-algorithm']);
+    formData.append('x-amz-credential', fields['x-amz-credential']);
+    formData.append('x-amz-date', fields['x-amz-date']);
+    formData.append('x-amz-security-token', fields['x-amz-security-token']);
+    formData.append('x-amz-signature', fields['x-amz-signature']);
+    formData.append('file', file);
+
+    await axios.post(upload_url, formData);
+
     const query = {
       company: state.company,
       email: state.email,
@@ -89,45 +110,46 @@ const AddQuery = (props: AddQueryProps) => {
       phone: state.mobileNo,
       address: state.address,
       productCode: productCode,
-      attachment: '',
+      attachment: obj_location,
     };
 
     try {
       const data = await Client.request(ADD_NEW_QUERY, { data: query });
-      console.log(data);
-      fetch(`https://formsubmit.co/ajax/${contact?.email}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          'Product Name': productName,
-          'Product Code': productCode,
-          'Full Name': state.fullName,
-          'Mobile Number': state.mobileNo,
-          'Email Address': state.email,
-          'Company Name': state.company,
-          Address: state.address,
-          Attachment: '',
-          Message: state.message,
-        }),
-      })
-        .then((response) => response.json())
-        .then(() => {
-          setState({
-            fullName: '',
-            mobileNo: '',
-            email: '',
-            company: '',
-            address: '',
-            attachment: '',
-            message: '',
-          });
-          setIsOpen(false);
-          setModalOpen(true);
+      if (data) {
+        fetch(`https://formsubmit.co/ajax/${contact?.email}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            'Product Name': productName,
+            'Product Code': productCode,
+            'Full Name': state.fullName,
+            'Mobile Number': state.mobileNo,
+            'Email Address': state.email,
+            'Company Name': state.company,
+            Address: state.address,
+            Attachment: '',
+            Message: state.message,
+          }),
         })
-        .catch((error) => console.error(JSON.stringify(error, undefined, 2)));
+          .then((response) => response.json())
+          .then(() => {
+            setState({
+              fullName: '',
+              mobileNo: '',
+              email: '',
+              company: '',
+              address: '',
+              attachment: '',
+              message: '',
+            });
+            setIsOpen(false);
+            setModalOpen(true);
+          })
+          .catch((error) => console.error(JSON.stringify(error, undefined, 2)));
+      }
     } catch (error) {
       console.error(JSON.stringify(error, undefined, 2));
     }
@@ -141,7 +163,7 @@ const AddQuery = (props: AddQueryProps) => {
       <Alert
         modalOpen={modalOpen}
         onClose={onClose}
-        message="Your Query is Pending. We will get back to you soon."
+        message="Thanks for sending us Quotation. We will get back to you soon."
       />
       <Modal open={isOpen} onClose={onCloseHandler}>
         <Card className="query" position="relative">

@@ -54,11 +54,35 @@ const RelatedReview = ({ title, reviews, slug }) => {
             showArrow={true}
             spacing="0px"
           >
-            {reviewDetail?.reviewMedia?.images.map((image) => (
-              <div className="product__review_modal-image" key={image}>
-                <img src={image} alt="" />
-              </div>
-            ))}
+            {reviewDetail?.reviewMedia?.images.map((image) => {
+              if (
+                ['mp4', 'mov', 'wmv', 'avi', 'mkv']?.includes(
+                  image!?.split('.')?.pop()?.toLowerCase(),
+                )
+              ) {
+                return (
+                  <div className="product__review_modal-image">
+                    <video
+                      src={process.env.NEXT_PUBLIC_IMAGE_URL + image}
+                      controls={true}
+                      autoPlay={true}
+                      muted
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="product__review_modal-image" key={image}>
+                    <img
+                      src={process.env.NEXT_PUBLIC_IMAGE_URL + image}
+                      alt=""
+                    />
+                  </div>
+                );
+              }
+            })}
             {reviewDetail?.reviewMedia?.videos.map((video) => {
               const id = video && getYoutubeId(video);
               return (
@@ -125,7 +149,7 @@ const RelatedReview = ({ title, reviews, slug }) => {
             <Box marginBottom="8rem" key={review.name + idx}>
               <FlexBox alignItems="center">
                 <img
-                  src={review.featuredImage}
+                  src={process.env.NEXT_PUBLIC_IMAGE_URL + review.featuredImage}
                   style={{ height: '8rem', width: '8rem' }}
                 />
                 <Box ml="2em">
@@ -155,18 +179,58 @@ const RelatedReview = ({ title, reviews, slug }) => {
                 />
               </Span>
               <Box className="product-images" mt="2rem">
-                {review?.reviewMedia?.images.map((image, idx) => (
-                  <figure
-                    key={image}
-                    onClick={() => {
-                      setIsOpen(true);
-                      setReviewDetail(review);
-                      setCurrentSlide(idx);
-                    }}
-                  >
-                    <img src={image} alt="" />
-                  </figure>
-                ))}
+                {review?.reviewMedia?.images.map((image, idx) => {
+                  if (
+                    ['mp4', 'mov', 'wmv', 'avi', 'mkv']?.includes(
+                      image!?.split('.')?.pop()?.toLowerCase(),
+                    )
+                  ) {
+                    return (
+                      <figure
+                        key={image}
+                        onClick={() => {
+                          setIsOpen(true);
+                          setReviewDetail(review);
+                          setCurrentSlide(idx);
+                        }}
+                      >
+                        <Icon
+                          size="3rem"
+                          className="product__intro-video-icon"
+                          style={{ color: 'rgba(255,255,255,0.8)' }}
+                        >
+                          play-solid
+                        </Icon>
+
+                        <video
+                          src={process.env.NEXT_PUBLIC_IMAGE_URL + image}
+                          controls={false}
+                          autoPlay={false}
+                          muted
+                          style={{ height: '7.5rem', width: '7.5rem' }}
+                        >
+                          Your browser does not support the video tag.
+                        </video>
+                      </figure>
+                    );
+                  } else {
+                    return (
+                      <figure
+                        key={image}
+                        onClick={() => {
+                          setIsOpen(true);
+                          setReviewDetail(review);
+                          setCurrentSlide(idx);
+                        }}
+                      >
+                        <img
+                          src={process.env.NEXT_PUBLIC_IMAGE_URL + image}
+                          alt=""
+                        />
+                      </figure>
+                    );
+                  }
+                })}
                 {review?.reviewMedia?.videos.map((video, idx) => {
                   const id = video && getYoutubeId(video);
                   const link = `https://img.youtube.com/vi/${id}/sddefault.jpg`;
@@ -181,7 +245,11 @@ const RelatedReview = ({ title, reviews, slug }) => {
                         );
                       }}
                     >
-                      <Icon size="3rem" className="product__intro-video-icon">
+                      <Icon
+                        size="3rem"
+                        className="product__intro-video-icon"
+                        style={{ color: 'rgba(255,0,0,0.75)' }}
+                      >
                         play-solid
                       </Icon>
                       <img src={link} alt="" />

@@ -10,9 +10,13 @@ import TextField from '@component/text-field/TextField';
 import TextArea from '@component/textarea/TextArea';
 import { H1, Paragraph, SemiSpan, Span } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
+import axios from 'axios';
 import { gql } from 'graphql-request';
 import React, { useState } from 'react';
 import Client from '../../config/GraphQLRequest';
+
+const baseUrl =
+  'https://xwkodx6vi3.execute-api.ap-south-1.amazonaws.com/v1?extension=';
 
 const defaultState = {
   name: '',
@@ -47,6 +51,28 @@ const AddReview = ({ productCode }) => {
       setModalType('error');
       return;
     }
+
+    const uploadedImages: string[] = [];
+    for (let i = 0; i < medias.length; i++) {
+      const fileName = medias[i].name;
+      const extension = fileName.split('.').pop();
+      const response = await axios.get(`${baseUrl}${extension}`);
+      const { obj_location, fields, upload_url } = response.data;
+
+      const formData = new FormData();
+      formData.append('key', fields?.key);
+      formData.append('policy', fields?.policy);
+      formData.append('x-amz-algorithm', fields['x-amz-algorithm']);
+      formData.append('x-amz-credential', fields['x-amz-credential']);
+      formData.append('x-amz-date', fields['x-amz-date']);
+      formData.append('x-amz-security-token', fields['x-amz-security-token']);
+      formData.append('x-amz-signature', fields['x-amz-signature']);
+      formData.append('file', medias[i]);
+
+      await axios.post(upload_url, formData);
+      uploadedImages.push(obj_location);
+    }
+
     const review = {
       data: {
         title: formData.company,
@@ -55,27 +81,13 @@ const AddReview = ({ productCode }) => {
         rating: rating,
         reviewText: formData.review,
         productCode,
-        // reviewMedia: {
-        //   images,
-        //   videos,
-        // },
+        reviewMedia: {
+          images: uploadedImages,
+          videos: [],
+        },
         isPublished: false,
       },
     };
-    // for (let i = 0; i < images.length; i++) {
-    //   const response = await axios.get(`${baseUrl}${extension}`);
-    //   const { obj_location, fields, upload_url } = response.data;
-    //   const formData = new FormData();
-    //   formData.append('key', fields?.key);
-    //   formData.append('policy', fields?.policy);
-    //   formData.append('x-amz-algorithm', fields['x-amz-algorithm']);
-    //   formData.append('x-amz-credential', fields['x-amz-credential']);
-    //   formData.append('x-amz-date', fields['x-amz-date']);
-    //   formData.append('x-amz-security-token', fields['x-amz-security-token']);
-    //   formData.append('x-amz-signature', fields['x-amz-signature']);
-    //   formData.append('file', imageFile[i]);
-    //   await axios.post(upload_url, formData);
-    // }
 
     try {
       const data = await Client.request(CREATE_REVIEW, review);
@@ -96,18 +108,6 @@ const AddReview = ({ productCode }) => {
   const addImageHandler = (e) => {
     const files = e.target.files;
     setMedias([...medias, ...files]);
-    // const tempImages: string[] = [];
-    // const tempVideos: string[] = [];
-    // for (let i = 0; i < files.length; i++) {
-    //   const src = URL.createObjectURL(files[i]);
-    //   if (files[i]['type'].split('/')[0] === 'image') {
-    //     tempImages.push(src);
-    //   } else {
-    //     tempVideos.push(src);
-    //   }
-    // }
-    // tempImages.length > 0 && setImages([...images, ...tempImages]);
-    // tempVideos.length > 0 && setVideos([...videos, ...tempVideos]);
   };
 
   const formHandler = (e) => {
@@ -123,16 +123,6 @@ const AddReview = ({ productCode }) => {
   };
   const removeHandler = (link) => {
     setMedias(medias.filter((media) => URL.createObjectURL(media) !== link));
-    // if (type === 'image') {
-    //   let newImages = [...images];
-    //   newImages = images.filter((img) => img !== link);
-    //   setImages(newImages);
-    // }
-    // if (type === 'video') {
-    //   let newImages = [...videos];
-    //   newImages = videos.filter((img) => img !== link);
-    //   setVideos(newImages);
-    // }
   };
 
   return (
