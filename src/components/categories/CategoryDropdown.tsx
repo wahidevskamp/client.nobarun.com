@@ -41,13 +41,13 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = forwardRef(
     items =
       categories?.length > 0 &&
       categories
-        .concat(categories)
+        // .concat(categories)
         .slice(0, slice)
         .map((item) => (
           <CategoryMenuItem
             title={item.name}
             href={`/category/${item.slug}`}
-            icon={item.image}
+            icon={item.icon}
             caret={item.children}
             key={item.id}
           >

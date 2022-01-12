@@ -3,22 +3,25 @@ import Client from '../../config/GraphQLRequest';
 
 const GET_ALL_CATEGORY = gql`
   query GetCategoryTree {
-    getCategories
+    getCategoriesForClient
   }
 `;
 
 const useAllProductCategories = async () => {
   const data = await Client.request(GET_ALL_CATEGORY);
 
-  const categories = JSON.parse(data?.getCategories).map((category) => ({
-    id: category.id,
-    name: category.name,
-    description: category.description,
-    image: category.image,
-    slug: category.slug,
-    children: category.children,
-    isPublished: category.isPublished,
-  }));
+  const categories = JSON.parse(data?.getCategoriesForClient).map(
+    (category) => ({
+      name: category.name,
+      slug: category.slug,
+      description: category.description,
+      icon: category.icon,
+      image: category.image,
+      isFeatured: category.isFeatured,
+      isPublished: category.isPublished,
+      children: category.children,
+    }),
+  );
 
   return categories;
 };

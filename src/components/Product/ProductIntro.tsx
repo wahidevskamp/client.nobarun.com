@@ -13,7 +13,7 @@ import FlexBox from '../FlexBox';
 import Grid from '../grid/Grid';
 import Icon from '../icon/Icon';
 import Rating from '../rating/Rating';
-import Typography, { H1, H4, SemiSpan, Span } from '../Typography';
+import Typography, { H1, H4, Span } from '../Typography';
 
 export interface ProductIntroProps {
   data?: any;
@@ -137,16 +137,16 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
       ''
     );
   const documentDownload = data?.document && (
-    <Box mt="5px" pr="2rem" textAlign="center">
-      <SemiSpan color="#000">Datasheet</SemiSpan>
-      <a
-        href={data?.document}
-        className="product__intro-attachment"
-        target="_blank"
-      >
-        Download
-      </a>
-    </Box>
+    <a
+      href={data?.document}
+      className="product__intro-attachment"
+      target="_blank"
+    >
+      <FlexBox alignItems="center">
+        <Icon size="2rem">pdf</Icon>
+        <span>Download</span>
+      </FlexBox>
+    </a>
   );
   return (
     <Card position="relative">
@@ -235,7 +235,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                   fontSize="20px"
                   fontWeight="600"
                 >
-                  Price: {data?.price} Taka
+                  Price: {data?.price.toLocaleString('en-IN')} Taka
                 </H4>
               ) : (
                 ''

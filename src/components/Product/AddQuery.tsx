@@ -277,10 +277,16 @@ const AddQuery = (props: AddQueryProps) => {
                           setIsAgreed(e.target.checked);
                         }}
                       />
-                      <label htmlFor="terms">
+                      <label htmlFor="terms" className="query__terms">
+                        I agree to the{' '}
                         <Link href="/terms">
-                          <a className="query__terms">
-                            I agree to the terms and conditions
+                          <a
+                            style={{
+                              color: '#16ACEC',
+                              textDecoration: 'underline',
+                            }}
+                          >
+                            terms and conditions
                           </a>
                         </Link>
                       </label>

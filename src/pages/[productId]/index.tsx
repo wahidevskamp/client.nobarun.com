@@ -21,6 +21,7 @@ import Specifications from '@component/Product/Specifications';
 import Tags from '@component/Product/Tags';
 import RelatedClients from '@component/products/RelatedClients';
 import useProductById from '@hook/Product/useProductById';
+import useProductCount from '@hook/useNoOfProduct';
 import useWindowSize from '@hook/useWindowSize';
 import Client from 'config/GraphQLRequest';
 import { gql } from 'graphql-request';
@@ -198,9 +199,12 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   try {
     //! We have to debug furthermore
     const data = await useProductById(productId);
+    const count = await useProductCount();
+
     return {
       props: {
         product: data,
+        count,
         reviews: data?.reviews,
         isError: false,
       },

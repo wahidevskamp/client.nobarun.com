@@ -51,7 +51,7 @@ const Sidemenu: React.FC<SidemenuProps> = ({ categoriesList, isfixed }) => {
             <FlexBox key={item.name} mt=".5rem" ml=".5rem">
               {item?.image && (
                 <LazyLoadImage
-                  src={item?.image}
+                  src={process.env.NEXT_PUBLIC_IMAGE_URL + item?.icon}
                   alt={item.name + 'icon'}
                   height={30}
                   width={30}

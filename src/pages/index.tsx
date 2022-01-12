@@ -11,13 +11,20 @@ import React from 'react';
 import Slider from '../components/Home/Slider';
 import AppLayout from '../components/layout/AppLayout';
 
-const IndexPage = ({ clients, categories, collections }) => {
+const IndexPage = ({
+  clients,
+  categories,
+  featuredCategories,
+  collections,
+}) => {
+  console.log(featuredCategories);
+
   return (
     <main>
       <GoToTop showBelow={250} />
       <Slider categories={categories} />
       <Clients slides={8} clients={clients} />
-      <FeaturedCategories />
+      <FeaturedCategories categories={featuredCategories} />
       <CollectionWiseProduct collections={collections} />
       <Testimonials />
     </main>
@@ -32,10 +39,14 @@ export async function getStaticProps() {
   const count = await useProductCount();
   const collections = await useCollectionWiseProduct();
 
+  const featuredCategories = await categories.filter(
+    (category) => category.isFeatured,
+  );
   return {
     props: {
       clients,
       categories,
+      featuredCategories,
       collections,
       count,
     },

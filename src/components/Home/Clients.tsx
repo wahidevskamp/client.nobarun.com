@@ -37,8 +37,8 @@ const Clients: React.FC<ClientProps> = ({ isProductDetails, clients }) => {
           src={process.env.NEXT_PUBLIC_IMAGE_URL + item.imgUrl}
           alt={item.title}
           effect="blur"
-          height="118px"
-          width="110px"
+          width="118px"
+          height="110px"
         />
       </HoverBox>
       <H4 fontSize="1.4rem" fontWeight="600" className="client__title">

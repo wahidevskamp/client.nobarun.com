@@ -2,7 +2,6 @@ import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import HoverBox from '@component/HoverBox';
 import { H4 } from '@component/Typography';
-import useFeaturedCategories from '@hook/Home/useFeaturedCategories';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
 import React from 'react';
@@ -12,14 +11,11 @@ import Container from '../../Container';
 import Grid from '../../grid/Grid';
 import CategorySectionHeader from './CategorySectionHeader';
 
-const Categories: React.FC = () => {
+interface CategoriesProps {
+  categories: any[];
+}
+const Categories: React.FC<CategoriesProps> = ({ categories }) => {
   const width = useWindowSize();
-  const [categories, setCategories] = React.useState<any[]>([]);
-  React.useEffect(() => {
-    useFeaturedCategories().then((data) => {
-      setCategories(data);
-    });
-  }, []);
   return (
     <Box mt="5rem" mb="5rem">
       <Container style={width < 600 ? { margin: '0rem' } : {}}>
@@ -35,10 +31,10 @@ const Categories: React.FC = () => {
                   md={4}
                   sm={6}
                   xs={6}
-                  key={item.title}
+                  key={item.name}
                   className="featuredCategories"
                 >
-                  <Link href={item.productUrl}>
+                  <Link href={`/category/${item.slug}`}>
                     <a>
                       <FlexBox
                         alignItems="center"
@@ -51,10 +47,8 @@ const Categories: React.FC = () => {
                           className="featuredCategories__image"
                         >
                           <LazyLoadImage
-                            src={
-                              process.env.NEXT_PUBLIC_IMAGE_URL + item.imgUrl
-                            }
-                            alt={item.title}
+                            src={process.env.NEXT_PUBLIC_IMAGE_URL + item.image}
+                            alt={item.name}
                             effect="blur"
                             style={{ height: '100%', width: '100%' }}
                           />
@@ -64,7 +58,7 @@ const Categories: React.FC = () => {
                           fontWeight="600"
                           className="featuredCategories__title"
                         >
-                          {item.title}
+                          {item.name}
                         </H4>
                       </FlexBox>
                     </a>
