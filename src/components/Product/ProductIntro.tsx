@@ -215,7 +215,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                         fontSize="20px"
                         fontWeight="600"
                       >
-                        Price: {data?.price} Taka
+                        Price: {data?.price.toLocaleString('en-IN')} Taka
                       </H4>
                     ) : (
                       ''

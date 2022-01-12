@@ -198,7 +198,7 @@ const RelatedReview = ({ title, reviews, slug }) => {
                         <Icon
                           size="3rem"
                           className="product__intro-video-icon"
-                          style={{ color: 'rgba(255,255,255,0.8)' }}
+                          style={{ color: 'rgba(255,10,10,0.8)' }}
                         >
                           play-solid
                         </Icon>
@@ -208,7 +208,13 @@ const RelatedReview = ({ title, reviews, slug }) => {
                           controls={false}
                           autoPlay={false}
                           muted
-                          style={{ height: '7.5rem', width: '7.5rem' }}
+                          style={{
+                            height: '7.5rem',
+                            width: '7.5rem',
+                            objectFit: 'cover',
+                            borderRadius: '0.8rem',
+                            border: '1px solid #ddd',
+                          }}
                         >
                           Your browser does not support the video tag.
                         </video>
@@ -227,6 +233,9 @@ const RelatedReview = ({ title, reviews, slug }) => {
                         <img
                           src={process.env.NEXT_PUBLIC_IMAGE_URL + image}
                           alt=""
+                          style={{
+                            border: '1px solid #ddd',
+                          }}
                         />
                       </figure>
                     );
@@ -249,7 +258,10 @@ const RelatedReview = ({ title, reviews, slug }) => {
                       <Icon
                         size="3rem"
                         className="product__intro-video-icon"
-                        style={{ color: 'rgba(255,0,0,0.75)' }}
+                        style={{
+                          border: '1px solid #ddd',
+                          color: 'rgba(255,0,0,0.75)',
+                        }}
                       >
                         play-solid
                       </Icon>

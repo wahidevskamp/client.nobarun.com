@@ -131,7 +131,7 @@ const cardList = [
   },
   {
     company: 'Bhawal Bazar',
-    name: 'Shamim Ahammed',
+    name: 'Engr. Sharif Hossain Dhali',
     imgUrl: '/assets/images/clients/Bhawal-Bazar.png',
     rating: '5',
     testimonial:

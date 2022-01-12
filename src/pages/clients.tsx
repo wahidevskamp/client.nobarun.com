@@ -52,7 +52,7 @@ const ClientsPage = () => {
                   <HoverBox borderRadius={5} className="client__body">
                     <img
                       src={process.env.NEXT_PUBLIC_IMAGE_URL + item.logo}
-                      style={{ width: '155px', height: '156px' }}
+                      style={{ width: '155px', height: '144.4px' }}
                     />
                   </HoverBox>
                   <H4

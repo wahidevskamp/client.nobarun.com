@@ -22,23 +22,27 @@
       height: 11.85rem;
       @include respond(1700px) {
         width: 12.5rem;
+        height: 11.72rem;
       }
       @include respond(1600px) {
         width: 13rem;
+        height: 12.35rem;
       }
       @include respond(1400px) {
         width: 12rem;
+        height: 11.1rem;
       }
       @include respond(900px) {
         width: 11rem;
+        height: 10.18rem;
       }
       @include respond(600px) {
         width: 9rem;
-        height: 8rem;
+        height: 8.33rem;
       }
       @include respond(400px) {
         width: 8rem;
-        height: 8rem;
+        height: 7.4rem;
       }
     }
   }

@@ -18,7 +18,7 @@ const setRecentlyViewedProduct = (slug, product) => {
       recentlyViewed.push({
         id: slug,
         title: product?.intro?.productName,
-        image: product?.intro?.featuredImage,
+        image: product?.intro?.featuredImage.src,
       });
       localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewed));
     }
