@@ -67,6 +67,7 @@ const RelatedReview = ({ title, reviews, slug }) => {
                       controls={true}
                       autoPlay={true}
                       muted
+                      style={{ width: '98%', height: '98%' }}
                     >
                       Your browser does not support the video tag.
                     </video>

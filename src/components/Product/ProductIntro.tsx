@@ -142,10 +142,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
       className="product__intro-attachment"
       target="_blank"
     >
-      <FlexBox alignItems="center">
-        <Icon size="2rem">pdf</Icon>
-        <span>Download</span>
-      </FlexBox>
+      <span>Document</span>
     </a>
   );
   return (

@@ -17,8 +17,6 @@ const IndexPage = ({
   featuredCategories,
   collections,
 }) => {
-  console.log(featuredCategories);
-
   return (
     <main>
       <GoToTop showBelow={250} />
