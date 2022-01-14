@@ -11,6 +11,7 @@ import ProductCard1List from '@component/products/ProductCardList';
 import Sidenav from '@component/sidenav/Sidenav';
 import { H5, Paragraph } from '@component/Typography';
 import useProductsByCategory from '@hook/Product/useProductsByCategory';
+import useProductCount from '@hook/useNoOfProduct';
 import useWindowSize from '@hook/useWindowSize';
 import { GetServerSideProps } from 'next';
 import React, { useState } from 'react';
@@ -90,6 +91,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const categoryId = context.params.categoryId;
   try {
     const data = await useProductsByCategory(categoryId);
+    const count = await useProductCount();
     if (data)
       return {
         props: {
@@ -98,6 +100,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
           products: data?.products,
           categories: data?.categories,
           stockStatus: data?.stockStatus,
+          count,
           isError: false,
         },
       };

@@ -26,7 +26,7 @@ const GET_CATEGORY_WISE_PRODUCT = gql`
         }
       }
     }
-    getCategories
+    getCategoriesForClient
     getAllTheStockStatus {
       title
       isPublished
@@ -38,7 +38,7 @@ const useProductsByCategory = async (slug) => {
   const data = await Client.request(GET_CATEGORY_WISE_PRODUCT, { slug });
   // const products = data.getPopulatedProductByCategorySlug;
   return {
-    categories: JSON.parse(data?.getCategories),
+    categories: JSON.parse(data?.getCategoriesForClient),
     categoryName: data?.getPopulatedProductByCategorySlug?.name,
     products: data?.getPopulatedProductByCategorySlug?.productData,
     stockStatus: data?.getAllTheStockStatus,

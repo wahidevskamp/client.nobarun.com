@@ -55,7 +55,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
               <a>
                 <FlexBox alignItems="center">
                   <Image
-                    src={props.categoryIcon}
+                    src={process.env.NEXT_PUBLIC_IMAGE_URL + props.categoryIcon}
                     height="30px"
                     width="30px"
                     mr=".3rem"

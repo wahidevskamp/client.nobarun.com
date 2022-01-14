@@ -13,7 +13,7 @@ const GET_PRODUCTS_BY_TAG = gql`
       avgReview
       featuredImage
     }
-    getCategories
+    getCategoriesForClient
     getAllTheStockStatus {
       title
       isPublished
@@ -26,7 +26,7 @@ const useProductsByTag = async (tag) => {
   return {
     products: data.searchProductByTag,
     stocks: data.getAllTheStockStatus,
-    categories: JSON.parse(data?.getCategories),
+    categories: JSON.parse(data?.getCategoriesForClient),
   };
 };
 

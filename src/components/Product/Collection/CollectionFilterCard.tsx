@@ -62,7 +62,7 @@ const CollectionFilterCard = ({
               >
                 {item.icon && (
                   <img
-                    src={item.icon}
+                    src={process.env.NEXT_PUBLIC_IMAGE_URL + item.icon}
                     height="30"
                     width="30"
                     style={{ marginRight: '1.5rem' }}

@@ -1,6 +1,8 @@
 import Box from '@component/Box';
 import OtherLayout from '@component/layout/OtherLayout';
 import { H1, Paragraph } from '@component/Typography';
+import useAllProductCategories from '@hook/Home/useAllProductCategories';
+import useProductCount from '@hook/useNoOfProduct';
 import useWindowSize from '@hook/useWindowSize';
 import React from 'react';
 
@@ -184,5 +186,18 @@ const ProductSearchResult = () => {
 };
 
 ProductSearchResult.layout = OtherLayout;
+
+export async function getStaticProps() {
+  const categories = await useAllProductCategories();
+  const count = await useProductCount();
+
+  return {
+    props: {
+      categories,
+      count,
+    },
+    revalidate: 30,
+  };
+}
 
 export default ProductSearchResult;

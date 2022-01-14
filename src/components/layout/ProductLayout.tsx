@@ -10,9 +10,16 @@ import StyledProductLayout from './AppLayoutStyle';
 type Props = {
   title?: string;
   navbar?: React.ReactChild;
+  count?: number;
+  categories?: any[];
 };
 
-const ProductLayout: React.FC<Props> = ({ children, navbar }) => {
+const ProductLayout: React.FC<Props> = ({
+  count,
+  categories,
+  children,
+  navbar,
+}) => {
   const width = useWindowSize();
   const isTablet = width < 900;
 
@@ -37,7 +44,7 @@ const ProductLayout: React.FC<Props> = ({ children, navbar }) => {
           </Link>
         </FlexBox>
       )}
-      <Header />
+      <Header count={count} categories={categories} />
       {navbar && <div className="section-after-sticky">{navbar}</div>}
       {!navbar ? (
         <div className="section-after-sticky">{children}</div>

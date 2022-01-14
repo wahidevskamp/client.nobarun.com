@@ -1,10 +1,9 @@
-import React, { Fragment } from 'react';
-
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import Icon from '@component/icon/Icon';
 import Image from '@component/Image';
 import Typography, { H5, Paragraph } from '@component/Typography';
+import React, { Fragment } from 'react';
 
 const BlogContact = ({ slug, contact }) => {
   const message = `Hello ${contact?.name},
@@ -18,7 +17,11 @@ Can you explain me more? Do you sell any product regarding this Article?
       <Card px="2rem" py="2rem" mb="2rem">
         {contact?.companyLogo && (
           <div className="product__contact-logo">
-            <Image src={contact?.companyLogo} alt="logo" maxHeight="60px" />
+            <Image
+              src={process.env.NEXT_PUBLIC_IMAGE_URL + contact?.companyLogo}
+              alt="logo"
+              maxHeight="60px"
+            />
           </div>
         )}
         {contact?.name && (

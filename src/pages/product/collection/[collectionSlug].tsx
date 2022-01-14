@@ -11,6 +11,7 @@ import CollectionProductCard from '@component/Product/Collection/ProductCollecti
 import Sidenav from '@component/sidenav/Sidenav';
 import { H5, Paragraph } from '@component/Typography';
 import useProductsByCollection from '@hook/Product/useProductsByCollectionName';
+import useProductCount from '@hook/useNoOfProduct';
 import useWindowSize from '@hook/useWindowSize';
 import { GetServerSideProps } from 'next';
 import React, { useState } from 'react';
@@ -97,6 +98,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const slug = context.params.collectionSlug;
   try {
     const data = await useProductsByCollection(slug);
+    const count = await useProductCount();
     if (data)
       return {
         props: {
@@ -104,6 +106,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
           products: data.products.products,
           stockStatus: data.stocks,
           categories: data.categories,
+          count,
         },
       };
     else {

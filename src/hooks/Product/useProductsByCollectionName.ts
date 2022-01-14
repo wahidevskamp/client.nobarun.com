@@ -22,7 +22,7 @@ const GET_CATEGORY_WISE_PRODUCT = gql`
         ratingAvg
       }
     }
-    getCategories
+    getCategoriesForClient
     getAllTheStockStatus {
       title
       isPublished
@@ -35,7 +35,7 @@ const useProductsByCollection = async (slug) => {
   return {
     products: data.getProductByCollectionName,
     stocks: data.getAllTheStockStatus,
-    categories: JSON.parse(data?.getCategories),
+    categories: JSON.parse(data?.getCategoriesForClient),
   };
 };
 

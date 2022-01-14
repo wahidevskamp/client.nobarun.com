@@ -11,6 +11,7 @@ import TagsProductCard from '@component/Product/Tags/TagProductCards';
 import Sidenav from '@component/sidenav/Sidenav';
 import { H5, Paragraph } from '@component/Typography';
 import useProductsByTag from '@hook/Product/useProductsByTag';
+import useProductCount from '@hook/useNoOfProduct';
 import useWindowSize from '@hook/useWindowSize';
 import { GetServerSideProps } from 'next';
 import React, { useState } from 'react';
@@ -92,10 +93,14 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   try {
     const REGEX = /-/gim;
     const data = await useProductsByTag(tagsId?.replace(REGEX, ' '));
+    const count = await useProductCount();
+
     if (data)
       return {
         props: {
-          tags: tagsId,
+          tags: tagsId?.replace(REGEX, ' '),
+          count,
+          categories: data?.categories,
           ...data,
         },
       };

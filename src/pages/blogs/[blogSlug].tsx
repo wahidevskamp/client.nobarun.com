@@ -38,7 +38,10 @@ const BlogDetails = ({ blogSlug, blog, categories }) => {
         <Grid item md={8} sm={12} xs={12} className="blog">
           <H1 className="blog__title">{blog?.blogTitle}</H1>
           <div className="blog__hero">
-            <img src={blog?.featured} alt={blog?.SeoTitle} />
+            <img
+              src={process.env.NEXT_PUBLIC_IMAGE_URL + blog?.featured}
+              alt={blog?.SeoTitle}
+            />
             <ShareButton
               title={blog?.blogTitle}
               description={blog?.SeoTitle}

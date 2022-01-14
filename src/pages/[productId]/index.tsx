@@ -20,6 +20,7 @@ import SpecialFeatures from '@component/Product/SpecialFeatures';
 import Specifications from '@component/Product/Specifications';
 import Tags from '@component/Product/Tags';
 import RelatedClients from '@component/products/RelatedClients';
+import useAllProductCategories from '@hook/Home/useAllProductCategories';
 import useProductById from '@hook/Product/useProductById';
 import useProductCount from '@hook/useNoOfProduct';
 import useWindowSize from '@hook/useWindowSize';
@@ -200,11 +201,13 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     //! We have to debug furthermore
     const data = await useProductById(productId);
     const count = await useProductCount();
+    const categories = await useAllProductCategories();
 
     return {
       props: {
         product: data,
         count,
+        categories,
         reviews: data?.reviews,
         isError: false,
       },

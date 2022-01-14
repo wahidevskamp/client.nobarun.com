@@ -2,8 +2,8 @@ import Box from '@component/Box';
 import Button from '@component/buttons/Button';
 import FlexBox from '@component/FlexBox';
 import Icon from '@component/icon/Icon';
-import Typography, { H5, Paragraph } from '@component/Typography';
 import Image from '@component/Image';
+import Typography, { H5, Paragraph } from '@component/Typography';
 import React from 'react';
 
 const ContactPerson = ({
@@ -23,7 +23,11 @@ Please send me more details.
     <Box px="1rem" py="1rem" mb="2rem">
       {contact?.companyLogo && (
         <div className="product__contact-logo">
-          <Image src={contact?.companyLogo} alt="logo" maxHeight="60px" />
+          <Image
+            src={process.env.NEXT_PUBLIC_IMAGE_URL + contact?.companyLogo}
+            alt="logo"
+            maxHeight="60px"
+          />
         </div>
       )}
       {contact?.name && (

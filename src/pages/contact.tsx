@@ -7,6 +7,8 @@ import OtherLayout from '@component/layout/OtherLayout';
 import TextField from '@component/text-field/TextField';
 import TextArea from '@component/textarea/TextArea';
 import { H2, H3, H6, Paragraph } from '@component/Typography';
+import useAllProductCategories from '@hook/Home/useAllProductCategories';
+import useProductCount from '@hook/useNoOfProduct';
 import useWindowSize from '@hook/useWindowSize';
 import React, { useState } from 'react';
 
@@ -287,5 +289,18 @@ const ContactPage = () => {
   );
 };
 ContactPage.layout = OtherLayout;
+
+export async function getStaticProps() {
+  const categories = await useAllProductCategories();
+  const count = await useProductCount();
+
+  return {
+    props: {
+      categories,
+      count,
+    },
+    revalidate: 30,
+  };
+}
 
 export default ContactPage;

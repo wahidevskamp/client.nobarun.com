@@ -2,18 +2,14 @@ import Box from '@component/Box';
 import HoverBox from '@component/HoverBox';
 import OtherLayout from '@component/layout/OtherLayout';
 import { H2, H4 } from '@component/Typography';
+import useAllProductCategories from '@hook/Home/useAllProductCategories';
 import useAllClientsByCategory from '@hook/useAllClientsByCategory';
+import useProductCount from '@hook/useNoOfProduct';
 import useWindowSize from '@hook/useWindowSize';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-const ClientsPage = () => {
-  const [clients, setClients] = useState([]);
+const ClientsPage = ({ clients }) => {
   const [allLoadedCategory, setAllLoadedCategory] = useState('');
-  useEffect(() => {
-    useAllClientsByCategory().then((data) => {
-      setClients(data);
-    });
-  }, []);
 
   const loadMoreHandler = (id: string) => {
     if (allLoadedCategory === id) {
@@ -84,5 +80,20 @@ const ClientsPage = () => {
 };
 
 ClientsPage.layout = OtherLayout;
+
+export async function getStaticProps() {
+  const clients = await useAllClientsByCategory();
+  const categories = await useAllProductCategories();
+  const count = await useProductCount();
+
+  return {
+    props: {
+      clients,
+      categories,
+      count,
+    },
+    revalidate: 30,
+  };
+}
 
 export default ClientsPage;
