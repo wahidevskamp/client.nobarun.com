@@ -64,6 +64,14 @@ export default class extends Document {
         <body>
           <Main />
           <NextScript />
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-WXL5GDL"
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
         </body>
       </Html>
     );

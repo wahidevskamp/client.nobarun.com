@@ -73,14 +73,6 @@ const App = ({ Component, pageProps }: any) => {
       >
         <Component {...pageProps} />
       </Layout>
-      <noscript>
-        <iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-WXL5GDL"
-          height="0"
-          width="0"
-          style={{ display: 'none', visibility: 'hidden' }}
-        ></iframe>
-      </noscript>
     </ThemeProvider>
   );
 };
