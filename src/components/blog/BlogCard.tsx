@@ -23,7 +23,7 @@ const BlogCard = (props: BlogCardProps) => {
         <Card px="20px" py="10px" className="blog__card">
           <Box width="100%" textAlign="center" margin="1rem auto 1.5rem">
             <LazyLoadImage
-              src={image}
+              src={process.env.NEXT_PUBLIC_IMAGE_URL + image}
               alt={postTitle}
               effect="blur"
               height="285px"

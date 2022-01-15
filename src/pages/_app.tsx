@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { ThemeProvider } from 'styled-components';
 import '../styles/main.scss';
@@ -16,9 +16,9 @@ NProgress.configure({ showSpinner: false });
 
 const App = ({ Component, pageProps }: any) => {
   let Layout = Component.layout || Fragment;
-  useEffect(() => {
-    document.addEventListener('contextmenu', (event) => event.preventDefault());
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener('contextmenu', (event) => event.preventDefault());
+  // }, []);
   return (
     <ThemeProvider theme={theme}>
       <Head>
