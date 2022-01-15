@@ -46,6 +46,7 @@ const AddQuery = (props: AddQueryProps) => {
   const { isOpen, setIsOpen, productName, productCode, contact } = props;
   const [modalOpen, setModalOpen] = useState(false);
   const [isAgreed, setIsAgreed] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
   const [showEmailError, setShowEmailError] = useState(false);
   const [file, setFile] = useState<any>({});
   const [state, setState] = useState({
@@ -81,6 +82,13 @@ const AddQuery = (props: AddQueryProps) => {
   };
 
   const onSubmit = async () => {
+    if (!isAgreed) {
+      return setShowMessage(true);
+    }
+    if (isAgreed) {
+      setShowMessage(false);
+    }
+
     if (showEmailError) return;
     if (state.email === '' || state.mobileNo === '') return;
 
@@ -291,11 +299,15 @@ const AddQuery = (props: AddQueryProps) => {
                         </Link>
                       </label>
                     </FlexBox>
+                    {showMessage && (
+                      <SemiSpan style={{ color: 'red' }}>
+                        ***You must agree to the terms and condition
+                      </SemiSpan>
+                    )}
                   </Grid>
 
                   <Grid item xs={12}>
                     <Button
-                      disabled={!isAgreed}
                       variant="contained"
                       size="large"
                       px="4rem"

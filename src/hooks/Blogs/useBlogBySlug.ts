@@ -7,6 +7,7 @@ const GET_BLOG_BY_SLUG = gql`
       blogTitle
       featured
       SeoTitle
+      description: title
       contactPerson {
         companyLogo
         name

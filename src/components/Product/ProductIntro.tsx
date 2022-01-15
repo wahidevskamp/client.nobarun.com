@@ -32,7 +32,6 @@ const getHallmarkImage = (imageObj: any) => {
 };
 
 const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
-  console.log(data);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState({ name: '', src: '' });
   const [isVideo, setIsVideo] = useState(false);
@@ -215,7 +214,16 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                         fontSize="20px"
                         fontWeight="600"
                       >
-                        Price: {data?.price.toLocaleString('en-IN')} Taka
+                        Price:
+                        <span
+                          style={{
+                            textDecoration: 'line-through',
+                            margin: '0 .5rem',
+                          }}
+                        >
+                          {data?.originalPrice.toLocaleString('en-IN')} Taka
+                        </span>
+                        {data?.price.toLocaleString('en-IN')} Taka
                       </H4>
                     ) : (
                       ''
@@ -232,7 +240,16 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                   fontSize="20px"
                   fontWeight="600"
                 >
-                  Price: {data?.price.toLocaleString('en-IN')} Taka
+                  Price:{' '}
+                  <span
+                    style={{
+                      textDecoration: 'line-through',
+                      marginRight: '.5rem',
+                    }}
+                  >
+                    {data?.originalPrice.toLocaleString('en-IN')} Taka
+                  </span>
+                  {data?.price.toLocaleString('en-IN')} Taka
                 </H4>
               ) : (
                 ''

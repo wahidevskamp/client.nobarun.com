@@ -37,7 +37,7 @@ const INCREASE_VIEW = gql`
   }
 `;
 
-const ProductDetails = ({ product, reviews }) => {
+const ProductDetails = ({ schema, product, reviews }) => {
   console.log(product);
   const router = useRouter();
   const pid = router.query.productId;
@@ -65,7 +65,7 @@ const ProductDetails = ({ product, reviews }) => {
   }, []);
   return (
     <Fragment>
-      <ProductHead product={product} />
+      <ProductHead schema={schema} product={product} />
       <AddQuery
         id={pid as string}
         isOpen={isOpen}
@@ -203,9 +203,34 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     const count = await useProductCount();
     const categories = await useAllProductCategories();
 
+    const schema = {
+      '@context': 'https://schema.org/',
+      '@type': 'Product',
+      name: data?.intro?.productName,
+      image: data?.intro?.featuredImage?.src,
+      description: data?.seo?.description,
+      sku: data?.intro?.productCode,
+      offers: {
+        '@type': 'Offer',
+        url: '',
+        priceCurrency: 'BDT',
+        price: data?.intro?.price,
+        availability: 'https://schema.org/InStock',
+        itemCondition: 'https://schema.org/NewCondition',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: data?.intro?.rating,
+        bestRating: '5',
+        worstRating: '1',
+        ratingCount: data?.intro?.review,
+      },
+    };
+
     return {
       props: {
         product: data,
+        schema,
         count,
         categories,
         reviews: data?.reviews,

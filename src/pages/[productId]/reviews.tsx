@@ -14,18 +14,46 @@ import useAllProductCategories from '@hook/Home/useAllProductCategories';
 import useReviewsBySlug from '@hook/Product/useReviewsBySlug';
 import useProductCount from '@hook/useNoOfProduct';
 import useWindowSize from '@hook/useWindowSize';
+import { format } from 'date-fns';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 import React, { useState } from 'react';
 
 const ReviewsPage = (props) => {
-  const { productTitle, featuredImage, contact, reviews, productCode, slug } =
-    props;
+  const {
+    schema,
+    seoTitle,
+    keywords,
+    description,
+    productTitle,
+    featuredImage,
+    contact,
+    reviews,
+    productCode,
+    slug,
+  } = props;
   const width = useWindowSize();
   const [isOpen, setIsOpen] = useState(false);
   const isLaptop = width < 1400 && width > 900;
   const isTablet = width < 900;
   return (
     <>
+      <Head>
+        <title>{seoTitle}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords.join(', ')} />
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.nobarunbd.com/" />
+        <meta property="og:image:url" content={featuredImage} />
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="200" />
+        <meta property="og:description" content={description} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      </Head>
       <AddQuery
         id={'pid as string'}
         isOpen={isOpen}
@@ -120,9 +148,51 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     const categories = await useAllProductCategories();
     const count = await useProductCount();
 
+    const reviewSchema = data.reviews.map((review) => ({
+      '@type': 'Review',
+      name: review.title,
+      reviewBody: review.reviewText,
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: review.rating,
+        bestRating: '5',
+        worstRating: '1',
+      },
+      datePublished: format(new Date(review.createdAt), 'yyyy-MM-dd'),
+      author: { '@type': 'Person', name: review.name },
+    }));
+    const schema = {
+      '@context': 'https://schema.org/',
+      '@type': 'Product',
+      name: data?.productTitle,
+      image:
+        'https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/' +
+        data?.featuredImage,
+      description: data?.description,
+      sku: data?.productCode,
+      offers: {
+        '@type': 'Offer',
+        url: '',
+        priceCurrency: 'BDT',
+        price: data?.price,
+        availability: 'https://schema.org/InStock',
+        itemCondition: 'https://schema.org/NewCondition',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: data?.summary?.avgRating,
+        bestRating: '5',
+        worstRating: '1',
+        ratingCount: data?.summary?.noOfReviews,
+        reviewCount: data?.summary?.noOfReviews,
+      },
+      review: reviewSchema,
+    };
+
     return {
       props: {
         ...data,
+        schema,
         featuredImage: getHallmarkImage(data.featuredImage),
         slug,
         categories,

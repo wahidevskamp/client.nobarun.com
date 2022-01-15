@@ -7,6 +7,7 @@ import useAllProductCategories from '@hook/Home/useAllProductCategories';
 import useCollectionWiseProduct from '@hook/Home/useCollectionWiseProduct';
 import useAllFeaturedClients from '@hook/Home/useFeaturedClients';
 import useProductCount from '@hook/useNoOfProduct';
+import Head from 'next/head';
 import React from 'react';
 import Slider from '../components/Home/Slider';
 import AppLayout from '../components/layout/AppLayout';
@@ -18,14 +19,23 @@ const IndexPage = ({
   collections,
 }) => {
   return (
-    <main>
-      <GoToTop showBelow={250} />
-      <Slider categories={categories} />
-      <Clients slides={8} clients={clients} />
-      <FeaturedCategories categories={featuredCategories} />
-      <CollectionWiseProduct collections={collections} />
-      <Testimonials />
-    </main>
+    <>
+      <Head>
+        <title>Nobarun International</title>
+        <meta
+          name="description"
+          content="Call Us ☎01711998626☎ Supplier of Electronic Security,Parking Safety,Super Shop Equipment &amp; Commercial Kitchen Equipment in Bangladesh"
+        />
+      </Head>
+      <main>
+        <GoToTop showBelow={250} />
+        <Slider categories={categories} />
+        <Clients slides={8} clients={clients} />
+        <FeaturedCategories categories={featuredCategories} />
+        <CollectionWiseProduct collections={collections} />
+        <Testimonials />
+      </main>
+    </>
   );
 };
 

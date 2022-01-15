@@ -10,6 +10,7 @@ const GET_PRODUCT_BY_ID = gql`
           productName
           productCode
           price
+          originalPrice
           featured
           imageObject {
             name
@@ -88,6 +89,7 @@ const useProductById = async (pid) => {
     intro: {
       productName: productById?.product?.productName,
       price: productById?.product?.price,
+      originalPrice: productById?.product?.originalPrice,
       review: productById?.reviewCount,
       rating: productById?.ratingAverage,
       productCode: productById?.product?.productCode,

@@ -1,15 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 
-const getLocalBusiness = () => ({
-  '@context': 'https://schema.org/',
-  '@type': 'LocalBusiness',
-  name: 'Nobarun Bangladesh',
-  address: 'Mohakhali',
-  image: 'https://nobarunbd.vercel.app/assets/images/logo.svg',
-});
-
-const ProductHead = ({ product }: { product: any }) => {
+const ProductHead = ({ product, schema }: { product: any; schema: any }) => {
   return (
     <Head>
       <title>{product?.seo?.title || 'Nobarun - Product Details'}</title>
@@ -27,7 +19,7 @@ const ProductHead = ({ product }: { product: any }) => {
       <meta property="og:description" content={product?.seo?.description} />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(getLocalBusiness()) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
     </Head>
   );

@@ -14,6 +14,7 @@ import useProductsByCollection from '@hook/Product/useProductsByCollectionName';
 import useProductCount from '@hook/useNoOfProduct';
 import useWindowSize from '@hook/useWindowSize';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 import React, { useState } from 'react';
 
 const CollectionsPage = ({
@@ -28,67 +29,75 @@ const CollectionsPage = ({
   const isTablet = width < 1025;
 
   return (
-    <Box pt="20px" mb="5rem">
-      <FlexBox
-        p="1.25rem"
-        flexWrap="wrap"
-        justifyContent="space-between"
-        alignItems="center"
-        mb="55px"
-        elevation={5}
-        as={Card}
-      >
-        <div>
-          <H5>{collectionName}</H5>
-          <Paragraph color="text.muted">
-            {products.length} results found
-          </Paragraph>
-        </div>
-        <FlexBox alignItems="center" flexWrap="wrap">
-          {isTablet && (
-            <Sidenav
-              position="left"
-              scroll={true}
-              handle={
-                <IconButton size="small">
-                  <Icon>options</Icon>
-                </IconButton>
-              }
-            >
-              <CollectionFilterCard
-                filters={filters}
-                setFilters={setFilters}
-                slug={selectedCategory}
-                categories={categories}
-                setSelectedCategory={setSelectedCategory}
-                stockStatus={stockStatus}
-              />
-            </Sidenav>
-          )}
-        </FlexBox>
-      </FlexBox>
-      <Grid container spacing={6}>
-        <Hidden as={Grid} item lg={3} xs={12} down={1024}>
-          {/* <ProductFilterCard /> */}
-          <CollectionFilterCard
-            filters={filters}
-            setFilters={setFilters}
-            slug={selectedCategory}
-            categories={categories}
-            setSelectedCategory={setSelectedCategory}
-            stockStatus={stockStatus}
-          />
-        </Hidden>
+    <>
+      <Head>
+        <title>
+          {collectionName + " Collection's Products Price in Bangladesh"}
+        </title>
+      </Head>
 
-        <Grid item lg={9} xs={12}>
-          <CollectionProductCard
-            selectedCategory={selectedCategory}
-            products={products}
-            filters={filters}
-          />
+      <Box pt="20px" mb="5rem">
+        <FlexBox
+          p="1.25rem"
+          flexWrap="wrap"
+          justifyContent="space-between"
+          alignItems="center"
+          mb="55px"
+          elevation={5}
+          as={Card}
+        >
+          <div>
+            <H5>{collectionName}</H5>
+            <Paragraph color="text.muted">
+              {products.length} results found
+            </Paragraph>
+          </div>
+          <FlexBox alignItems="center" flexWrap="wrap">
+            {isTablet && (
+              <Sidenav
+                position="left"
+                scroll={true}
+                handle={
+                  <IconButton size="small">
+                    <Icon>options</Icon>
+                  </IconButton>
+                }
+              >
+                <CollectionFilterCard
+                  filters={filters}
+                  setFilters={setFilters}
+                  slug={selectedCategory}
+                  categories={categories}
+                  setSelectedCategory={setSelectedCategory}
+                  stockStatus={stockStatus}
+                />
+              </Sidenav>
+            )}
+          </FlexBox>
+        </FlexBox>
+        <Grid container spacing={6}>
+          <Hidden as={Grid} item lg={3} xs={12} down={1024}>
+            {/* <ProductFilterCard /> */}
+            <CollectionFilterCard
+              filters={filters}
+              setFilters={setFilters}
+              slug={selectedCategory}
+              categories={categories}
+              setSelectedCategory={setSelectedCategory}
+              stockStatus={stockStatus}
+            />
+          </Hidden>
+
+          <Grid item lg={9} xs={12}>
+            <CollectionProductCard
+              selectedCategory={selectedCategory}
+              products={products}
+              filters={filters}
+            />
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </>
   );
 };
 

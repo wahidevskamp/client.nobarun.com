@@ -5,6 +5,7 @@ const GET_CATEGORY_WISE_PRODUCT = gql`
   query getPopulatedProductByCategorySlug($slug: String!) {
     getPopulatedProductByCategorySlug(CategorySulg: $slug) {
       name
+      description
       productData {
         productData {
           product {
@@ -40,6 +41,7 @@ const useProductsByCategory = async (slug) => {
   return {
     categories: JSON.parse(data?.getCategoriesForClient),
     categoryName: data?.getPopulatedProductByCategorySlug?.name,
+    categoryDescription: data?.getPopulatedProductByCategorySlug?.description,
     products: data?.getPopulatedProductByCategorySlug?.productData,
     stockStatus: data?.getAllTheStockStatus,
   };

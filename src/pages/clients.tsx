@@ -6,6 +6,7 @@ import useAllProductCategories from '@hook/Home/useAllProductCategories';
 import useAllClientsByCategory from '@hook/useAllClientsByCategory';
 import useProductCount from '@hook/useNoOfProduct';
 import useWindowSize from '@hook/useWindowSize';
+import Head from 'next/head';
 import React, { useState } from 'react';
 
 const ClientsPage = ({ clients }) => {
@@ -30,52 +31,60 @@ const ClientsPage = ({ clients }) => {
   if (width < 880) noOfClients = 7;
   if (width < 710) noOfClients = 6;
   return (
-    <Box mb="6rem">
-      <div className="hero" style={{ marginBottom: '2rem' }}>
-        <h1 className="hero__title">Our Valuable Clients</h1>
-      </div>
-      {clients.map((category) => {
-        const length =
-          allLoadedCategory === category.categoryName
-            ? category.clients.length
-            : noOfClients;
-        return (
-          <Box mb="2rem" key={category.categoryName}>
-            <H2 mb="2rem">{category.categoryName}</H2>
-            <div className="clients-list_wrapper">
-              {category.clients.slice(0, length).map((item, idx) => (
-                <Box key={item.clientName + idx} className="client client_list">
-                  <HoverBox borderRadius={5} className="client__body">
-                    <img
-                      src={process.env.NEXT_PUBLIC_IMAGE_URL + item.logo}
-                      style={{ width: '155px', height: '144.4px' }}
-                    />
-                  </HoverBox>
-                  <H4
-                    fontSize="1.4rem"
-                    fontWeight="600"
-                    className="client__title"
+    <>
+      <Head>
+        <title>Client List- Nobarun International</title>{' '}
+      </Head>
+      <Box mb="6rem">
+        <div className="hero" style={{ marginBottom: '2rem' }}>
+          <h1 className="hero__title">Our Valuable Clients</h1>
+        </div>
+        {clients.map((category) => {
+          const length =
+            allLoadedCategory === category.categoryName
+              ? category.clients.length
+              : noOfClients;
+          return (
+            <Box mb="2rem" key={category.categoryName}>
+              <H2 mb="2rem">{category.categoryName}</H2>
+              <div className="clients-list_wrapper">
+                {category.clients.slice(0, length).map((item, idx) => (
+                  <Box
+                    key={item.clientName + idx}
+                    className="client client_list"
                   >
-                    {item.clientName}
-                  </H4>
-                </Box>
-              ))}
-            </div>
-            <Box textAlign="right">
-              <button
-                className="client_load-btn"
-                disabled={category.clients.length < 7}
-                onClick={() => loadMoreHandler(category.categoryName)}
-              >
-                {allLoadedCategory === category.categoryName
-                  ? 'Show Less'
-                  : 'Load More'}
-              </button>
+                    <HoverBox borderRadius={5} className="client__body">
+                      <img
+                        src={process.env.NEXT_PUBLIC_IMAGE_URL + item.logo}
+                        style={{ width: '155px', height: '144.4px' }}
+                      />
+                    </HoverBox>
+                    <H4
+                      fontSize="1.4rem"
+                      fontWeight="600"
+                      className="client__title"
+                    >
+                      {item.clientName}
+                    </H4>
+                  </Box>
+                ))}
+              </div>
+              <Box textAlign="right">
+                <button
+                  className="client_load-btn"
+                  disabled={category.clients.length < 7}
+                  onClick={() => loadMoreHandler(category.categoryName)}
+                >
+                  {allLoadedCategory === category.categoryName
+                    ? 'Show Less'
+                    : 'Load More'}
+                </button>
+              </Box>
             </Box>
-          </Box>
-        );
-      })}
-    </Box>
+          );
+        })}
+      </Box>
+    </>
   );
 };
 

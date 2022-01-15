@@ -22,6 +22,7 @@ const CustomerMedia = ({ reviews }) => {
     return <></>;
   }
 
+  console.log(medias.length);
   return (
     <ProductCard12 title="Customer Submitted  Photos & Videos">
       <Modal
@@ -76,6 +77,7 @@ const CustomerMedia = ({ reviews }) => {
                         controls={true}
                         autoPlay={true}
                         muted
+                        style={{ width: '98%', height: '98%' }}
                       >
                         Your browser does not support the video tag.
                       </video>
@@ -121,23 +123,64 @@ const CustomerMedia = ({ reviews }) => {
               </Box>
             );
           } else {
-            return (
-              <Box
-                style={{ cursor: 'pointer' }}
-                onClick={() => {
-                  setIsOpen(true);
-                  setCurrentSlide(idx);
-                }}
-              >
-                <Image
+            if (
+              ['mp4', 'mov', 'wmv', 'avi', 'mkv']?.includes(
+                media!?.split('.')?.pop()?.toLowerCase(),
+              )
+            ) {
+              return (
+                <Box
                   key={media}
-                  src={process.env.NEXT_PUBLIC_IMAGE_URL + media}
-                  alt="Review Media"
-                  height="100px"
-                  width="100px"
-                />
-              </Box>
-            );
+                  style={{ cursor: 'pointer', position: 'relative' }}
+                  onClick={() => {
+                    setIsOpen(true);
+                    setCurrentSlide(idx);
+                  }}
+                >
+                  <Icon
+                    size="3rem"
+                    className="product__intro-video-icon"
+                    style={{ color: 'rgba(255,10,10,0.8)' }}
+                  >
+                    play-solid
+                  </Icon>
+
+                  <video
+                    src={process.env.NEXT_PUBLIC_IMAGE_URL + media}
+                    controls={false}
+                    autoPlay={false}
+                    muted
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      objectFit: 'cover',
+                      borderRadius: '0.8rem',
+                      border: '1px solid #ddd',
+                    }}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                </Box>
+              );
+            } else {
+              return (
+                <Box
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    setIsOpen(true);
+                    setCurrentSlide(idx);
+                  }}
+                >
+                  <Image
+                    key={media}
+                    src={process.env.NEXT_PUBLIC_IMAGE_URL + media}
+                    alt="Review Media"
+                    height="100px"
+                    width="100px"
+                  />
+                </Box>
+              );
+            }
           }
         })}
       </Box>

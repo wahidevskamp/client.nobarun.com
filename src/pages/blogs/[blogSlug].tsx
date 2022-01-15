@@ -15,6 +15,8 @@ const BlogDetails = ({ blogSlug, blog, categories }) => {
   return (
     <Fragment>
       <Head>
+        <title>{blog.SeoTitle}</title>
+        <meta name="description" content={blog.description} />
         <style
           dangerouslySetInnerHTML={{
             __html: `
