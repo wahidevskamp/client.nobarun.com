@@ -207,7 +207,9 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
       '@context': 'https://schema.org/',
       '@type': 'Product',
       name: data?.intro?.productName,
-      image: data?.intro?.featuredImage?.src,
+      image:
+        'https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/' +
+        data?.intro?.featuredImage?.src,
       description: data?.seo?.description,
       sku: data?.intro?.productCode,
       offers: {

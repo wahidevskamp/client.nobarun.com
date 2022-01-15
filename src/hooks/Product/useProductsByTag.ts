@@ -5,6 +5,7 @@ const GET_PRODUCTS_BY_TAG = gql`
   query GetProductsByTag($tag: String!) {
     searchProductByTag(tag: $tag) {
       name
+      slug
       category {
         name
         icon
