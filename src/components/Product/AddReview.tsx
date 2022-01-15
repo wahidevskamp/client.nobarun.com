@@ -51,6 +51,9 @@ const AddReview = ({ productCode }) => {
       setModalType('error');
       return;
     }
+    setModalOpen(true);
+    setModalType('spinner');
+    setModalMessage('Please wait for a while, We are posting your review');
 
     const uploadedImages: string[] = [];
     for (let i = 0; i < medias.length; i++) {
@@ -94,11 +97,14 @@ const AddReview = ({ productCode }) => {
       if (data) {
         setRating(0);
         setFormData(defaultState);
+
+        setMedias([]);
+
         setModalOpen(true);
+        setModalType('success');
         setModalMessage(
           'Your Review is Pending. We will notify you when it is posted',
         );
-        setModalType('success');
       }
     } catch (error) {
       console.error(JSON.stringify(error, undefined, 2));
@@ -122,7 +128,7 @@ const AddReview = ({ productCode }) => {
     setModalType('');
   };
   const removeHandler = (link) => {
-    setMedias(medias.filter((media) => URL.createObjectURL(media) !== link));
+    setMedias(medias.filter((media) => media.name !== link.name));
   };
 
   return (

@@ -3,6 +3,7 @@ import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import Icon from '@component/icon/Icon';
 import Modal from '@component/modal/Modal';
+import Spinner from '@component/Spinner';
 import { H3 } from '@component/Typography';
 import React from 'react';
 
@@ -34,6 +35,10 @@ const Alert = (props: AlertProps) => {
             <Icon size="15rem" color="#46ae2e">
               Group 10498
             </Icon>
+          ) : type === 'spinner' ? (
+            <Spinner
+              style={{ width: '12rem', height: '12rem', marginBottom: '2rem' }}
+            />
           ) : (
             <img height="150px" width="150px" src="/warning.png" />
           )}
