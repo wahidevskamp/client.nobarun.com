@@ -1,4 +1,5 @@
 import Icon from '@component/icon/Icon';
+import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
 import React, { forwardRef, useEffect, useState } from 'react';
 import CategoryMenuItem from './category-menu-item/CategoryMenuItem';
@@ -19,15 +20,37 @@ export interface CategoryDropdownProps {
 const MENU = 45;
 
 const CategoryDropdown: React.FC<CategoryDropdownProps> = forwardRef(
-  ({ open, position, CONTAINER, categories }, ref) => {
+  ({ open, position, categories }, ref) => {
     const [slice, setSlice] = useState(0);
     const [showLoadMore, setShowLoadMore] = useState(false);
     const [showAll, setShowAll] = useState(false);
+    const width = useWindowSize();
+
+    let CONTAINER;
+    if (width > 1700) {
+      CONTAINER = 580;
+    }
+    if (width <= 1700) {
+      CONTAINER = 520;
+    }
+    if (width <= 1400) {
+      CONTAINER = 450;
+    }
+    if (width <= 1100) {
+      CONTAINER = 400;
+    }
 
     useEffect(() => {
       const menuHeight = categories?.length * 45;
-      const height = CONTAINER - 45;
-      if (menuHeight > CONTAINER) {
+      const height = CONTAINER;
+      console.log({
+        length: categories?.length,
+        width,
+        CONTAINER,
+        menuHeight,
+        height,
+      });
+      if (menuHeight > height) {
         const noOfMenu = Math.floor(height / MENU);
         setSlice(noOfMenu);
         setShowLoadMore(true);
@@ -35,7 +58,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = forwardRef(
         setSlice(categories?.length);
         setShowLoadMore(false);
       }
-    }, [categories]);
+    }, [width]);
 
     let items = [];
     items =
@@ -65,7 +88,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = forwardRef(
                 onClick={(e) => {
                   e.preventDefault();
                   if (showAll) {
-                    const height = CONTAINER - 45;
+                    const height = CONTAINER;
                     const noOfMenu = Math.floor(height / MENU);
                     setSlice(noOfMenu);
                     setShowAll(false);

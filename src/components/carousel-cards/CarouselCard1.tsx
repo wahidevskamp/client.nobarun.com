@@ -10,14 +10,7 @@ const CarouselCard1: React.FC<CarouselCard1Props> = ({ link }) => {
   return (
     <StyledCarouselCard1>
       <div className="image-holder">
-        <LazyLoadImage
-          src={link}
-          alt="Hero Image of Nobarun"
-          effect="blur"
-          height="578px"
-          width="1290px"
-          // width="1600"
-        />
+        <LazyLoadImage src={link} alt="Hero Image of Nobarun" effect="blur" />
       </div>
     </StyledCarouselCard1>
   );

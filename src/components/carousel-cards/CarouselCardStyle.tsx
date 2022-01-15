@@ -21,7 +21,19 @@ export const StyledCarouselCard1 = styled.div`
     //   width: 50%;
     img {
       width: 100%;
-      height: 100%;
+      height: 58rem;
+      @media only screen and (max-width: 1700px) {
+        height: 52rem;
+      }
+      @media only screen and (max-width: 1400px) {
+        height: 45rem;
+      }
+      @media only screen and (max-width: 1100px) {
+        height: 40rem;
+      }
+      @media only screen and (max-width: 900px) {
+        height: 100%;
+      }
     }
   }
 

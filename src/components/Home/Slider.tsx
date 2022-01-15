@@ -4,22 +4,23 @@ import Carousel from '@component/carousel/Carousel';
 import Container from '@component/Container';
 import Navbar from '@component/navbar/Navbar';
 import useWindowSize from '@hook/useWindowSize';
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useLayoutEffect, useRef, useState } from 'react';
 
 const Slider: React.FC<{ categories: any[] }> = ({ categories }) => {
   const width = useWindowSize();
   const [height, setHeight] = useState(400);
   const isTablet = width < 1025;
   const heroContainer = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const height = heroContainer?.current?.offsetHeight;
-    setHeight(height);
+  useLayoutEffect(() => {
+    const rect = heroContainer?.current?.getBoundingClientRect();
+    console.log(rect.height);
+    setHeight(rect.height);
   }, [heroContainer?.current?.offsetHeight]);
   return (
     <Fragment>
       <Navbar navListOpen={true} height={height} categories={categories} />
-      <Box bg="gray.white" ref={heroContainer} mt={isTablet ? '2.5rem' : ''}>
-        <Container>
+      <Box bg="gray.white" mt={isTablet ? '2.5rem' : ''}>
+        <Container ref={heroContainer}>
           <Carousel
             totalSlides={6}
             visibleSlides={1}

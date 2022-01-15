@@ -43,7 +43,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
               src={process.env.NEXT_PUBLIC_IMAGE_URL + imgUrl}
               alt={title}
               effect="blur"
-              height="385px"
+              height="350"
             />
           </a>
         </Link>
