@@ -214,16 +214,17 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                         fontSize="20px"
                         fontWeight="600"
                       >
-                        Price:
-                        <span
-                          style={{
-                            textDecoration: 'line-through',
-                            margin: '0 .5rem',
-                          }}
-                        >
-                          {data?.originalPrice.toLocaleString('en-IN')} Taka
-                        </span>
-                        {data?.price.toLocaleString('en-IN')} Taka
+                        Price: {data?.price.toLocaleString('en-IN')} Taka
+                        {data?.originalPrice > 0 && (
+                          <span
+                            style={{
+                              textDecoration: 'line-through',
+                              margin: '0 .5rem',
+                            }}
+                          >
+                            {data?.originalPrice.toLocaleString('en-IN')} Taka
+                          </span>
+                        )}
                       </H4>
                     ) : (
                       ''
@@ -240,16 +241,17 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                   fontSize="20px"
                   fontWeight="600"
                 >
-                  Price:{' '}
-                  <span
-                    style={{
-                      textDecoration: 'line-through',
-                      marginRight: '.5rem',
-                    }}
-                  >
-                    {data?.originalPrice.toLocaleString('en-IN')} Taka
-                  </span>
-                  {data?.price.toLocaleString('en-IN')} Taka
+                  Price: {data?.price.toLocaleString('en-IN')} Taka
+                  {data?.originalPrice > 0 && (
+                    <span
+                      style={{
+                        textDecoration: 'line-through',
+                        marginLeft: '.5rem',
+                      }}
+                    >
+                      {data?.originalPrice.toLocaleString('en-IN')} Taka
+                    </span>
+                  )}
                 </H4>
               ) : (
                 ''
