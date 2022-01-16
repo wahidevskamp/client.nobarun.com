@@ -215,16 +215,18 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
                         fontWeight="600"
                       >
                         Price: {data?.price.toLocaleString('en-IN')} Taka
-                        {data?.originalPrice > 0 && (
-                          <span
-                            style={{
-                              textDecoration: 'line-through',
-                              margin: '0 .5rem',
-                            }}
-                          >
-                            {data?.originalPrice.toLocaleString('en-IN')} Taka
-                          </span>
-                        )}
+                        {data?.originalPrice > 0 &&
+                          data?.originalPrice !== data?.price &&
+                          data?.originalPrice > data?.price && (
+                            <span
+                              style={{
+                                textDecoration: 'line-through',
+                                margin: '0 .5rem',
+                              }}
+                            >
+                              {data?.originalPrice.toLocaleString('en-IN')} Taka
+                            </span>
+                          )}
                       </H4>
                     ) : (
                       ''
