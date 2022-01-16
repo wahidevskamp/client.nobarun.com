@@ -120,18 +120,12 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
       };
     else {
       return {
-        props: {
-          products: {},
-          isError: false,
-        },
+        notFound: true,
       };
     }
   } catch (err) {
     return {
-      props: {
-        product: err,
-        isError: true,
-      },
+      notFound: true,
     };
   }
 };

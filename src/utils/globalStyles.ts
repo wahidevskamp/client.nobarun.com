@@ -12,6 +12,11 @@ export const GlobalStyles = createGlobalStyle`
     /* font-family: Open Sans, Roboto, -apple-system, BlinkMacSystemFont, Segoe UI,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     sans-serif; */
+    -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     line-height: 1.5;
     overflow-x: hidden;
   }

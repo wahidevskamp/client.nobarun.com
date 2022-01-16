@@ -72,18 +72,24 @@ const BlogsList = ({ blogs }) => {
 BlogsList.layout = OtherLayout;
 
 export async function getStaticProps() {
-  const blogs = await useAllBlogs();
-  const categories = await useAllProductCategories();
-  const count = await useProductCount();
+  try {
+    const blogs = await useAllBlogs();
+    const categories = await useAllProductCategories();
+    const count = await useProductCount();
 
-  return {
-    props: {
-      blogs,
-      categories,
-      count,
-    },
-    revalidate: 30,
-  };
+    return {
+      props: {
+        blogs,
+        categories,
+        count,
+      },
+      revalidate: 30,
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export default BlogsList;

@@ -1,6 +1,9 @@
 import Button from '@component/buttons/Button';
 import FlexBox from '@component/FlexBox';
 import Image from '@component/Image';
+import OtherLayout from '@component/layout/OtherLayout';
+import useAllProductCategories from '@hook/Home/useAllProductCategories';
+import useProductCount from '@hook/useNoOfProduct';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -15,7 +18,7 @@ const Error404 = () => {
   return (
     <FlexBox
       flexDirection="column"
-      minHeight="100vh"
+      minHeight="57.1vh"
       justifyContent="center"
       alignItems="center"
       px="1rem"
@@ -44,5 +47,20 @@ const Error404 = () => {
     </FlexBox>
   );
 };
+
+Error404.layout = OtherLayout;
+
+export async function getStaticProps() {
+  const categories = await useAllProductCategories();
+  const count = await useProductCount();
+
+  return {
+    props: {
+      categories,
+      count,
+    },
+    revalidate: 10000,
+  };
+}
 
 export default Error404;

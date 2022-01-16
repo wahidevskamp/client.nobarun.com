@@ -42,24 +42,30 @@ const IndexPage = ({
 IndexPage.layout = AppLayout;
 
 export async function getStaticProps() {
-  const categories = await useAllProductCategories();
-  const clients = await useAllFeaturedClients();
-  const count = await useProductCount();
-  const collections = await useCollectionWiseProduct();
+  try {
+    const categories = await useAllProductCategories();
+    const clients = await useAllFeaturedClients();
+    const count = await useProductCount();
+    const collections = await useCollectionWiseProduct();
 
-  const featuredCategories = await categories.filter(
-    (category) => category.isFeatured,
-  );
-  return {
-    props: {
-      clients,
-      categories,
-      featuredCategories,
-      collections,
-      count,
-    },
-    revalidate: 30,
-  };
+    const featuredCategories = await categories.filter(
+      (category) => category.isFeatured,
+    );
+    return {
+      props: {
+        clients,
+        categories,
+        featuredCategories,
+        collections,
+        count,
+      },
+      revalidate: 30,
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export default IndexPage;

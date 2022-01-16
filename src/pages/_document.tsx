@@ -74,12 +74,19 @@ export default class extends Document {
           <meta property="og:type" content="website" />
           <meta property="og:title" content="Nobarun International" />
         </Head>
-        <body>
+        <body
+          onCopy={() => false}
+          onCut={() => false}
+          // onDrag={() => false}
+          // onDrop={() => false}
+          onMouseDown={() => false}
+          onSelect={() => false}
+        >
           {/* <!-- Google Tag Manager (noscript) --> */}
           <noscript
             dangerouslySetInnerHTML={{
               __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXL5GDL"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+              height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
             }}
           />
           {/* <!-- End Google Tag Manager (noscript) --> */}
