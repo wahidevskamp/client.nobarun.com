@@ -64,8 +64,8 @@ const RelatedReview = ({ title, reviews, slug }) => {
                   <div className="product__review_modal-image">
                     <video
                       src={process.env.NEXT_PUBLIC_IMAGE_URL + image}
-                      controls={false}
-                      autoPlay={false}
+                      controls={true}
+                      autoPlay={true}
                       muted
                       style={{ width: '98%', height: '98%' }}
                     >
