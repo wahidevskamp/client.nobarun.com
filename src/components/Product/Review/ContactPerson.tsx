@@ -15,7 +15,7 @@ const ContactPerson = ({
 }) => {
   const message = `Hello ${contact?.name},
 I want to know more about ${productName} Which Product Code is ${productCode}
-Product Link: https://nobarunbd.vercel.app/${slug}
+Product Link: https://www.nobarunbd.com/${slug}
 Please send me more details.
 `;
 

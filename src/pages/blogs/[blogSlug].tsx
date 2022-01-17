@@ -7,11 +7,12 @@ import ShareButton from '@component/ShareButton/ShareButton';
 import { H1, H3 } from '@component/Typography';
 import useBlogCategoriesTree from '@hook/Blogs/useAllBlogCategory';
 import useBlogBySlug from '@hook/Blogs/useBlogBySlug';
+import useAllProductCategories from '@hook/Home/useAllProductCategories';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import React, { Fragment } from 'react';
 
-const BlogDetails = ({ blogSlug, blog, categories }) => {
+const BlogDetails = ({ blogSlug, blog, blogCategories, categories }) => {
   return (
     <Fragment>
       <Head>
@@ -66,7 +67,7 @@ const BlogDetails = ({ blogSlug, blog, categories }) => {
           <BlogContact slug={blogSlug} contact={blog?.contactPerson} />
           <BlogFilterCard
             slug={blog?.populatedCategory?.name}
-            categories={categories}
+            categories={blogCategories}
             showTags
             tags={blog.tags}
           />
@@ -82,12 +83,15 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const blogSlug = context.params.blogSlug;
   try {
     const data = await useBlogBySlug(blogSlug);
-    const categories = await useBlogCategoriesTree();
+    const blogCategories = await useBlogCategoriesTree();
+    const categories = await useAllProductCategories();
+
     return {
       props: {
         blogSlug,
         blog: { ...data },
         categories,
+        blogCategories,
       },
     };
   } catch (err) {

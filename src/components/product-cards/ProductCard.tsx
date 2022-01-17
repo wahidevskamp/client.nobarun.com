@@ -60,6 +60,7 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
                     width="30px"
                     mr=".3rem"
                     display="block"
+                    alt={props.categoryName}
                   />
                   <SemiSpan
                     className="title"
@@ -95,18 +96,8 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
           </Box>
         </FlexBox>
       </div>
-      {/* <AddQuery id={id as string} isOpen={open} setIsOpen={setOpen} /> */}
     </StyledProductCard1>
   );
-};
-
-ProductCard1.defaultProps = {
-  id: '324321',
-  title: 'KSUS ROG Strix G15',
-  imgUrl: '/assets/images//macbook.png',
-  off: 50,
-  price: 450,
-  rating: 0,
 };
 
 export default ProductCard1;

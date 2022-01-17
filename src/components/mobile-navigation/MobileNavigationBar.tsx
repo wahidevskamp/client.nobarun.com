@@ -13,7 +13,7 @@ const MobileNavigationBar: React.FC<MobileNavigationBarProps> = (props) => {
   const width = useWindowSize();
   const message = `Hello ${product?.contact?.name},
 I want to know more about ${product?.intro?.productName} Which Product Code is ${product?.intro?.productCode}
-Product Link: https://nobarunbd.vercel.app/${product.slug}
+Product Link: https://www.nobarunbd.com/${product.slug}
 Please send me more details.
 }`;
   return (

@@ -8,7 +8,7 @@ import React, { Fragment } from 'react';
 const BlogContact = ({ slug, contact }) => {
   const message = `Hello ${contact?.name},
 I came here after reading one of the article from your website. 
-Article Link: https://nobarunbd.vercel.app/blogs/${slug}
+Article Link: https://www.nobarunbd.com/blogs/${slug}
 Can you explain me more? Do you sell any product regarding this Article?
 `;
 
