@@ -12,7 +12,7 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import React, { Fragment } from 'react';
 
-const BlogDetails = ({ blogSlug, blog, blogCategories, categories }) => {
+const BlogDetails = ({ blogSlug, blog, blogCategories }) => {
   return (
     <Fragment>
       <Head>
