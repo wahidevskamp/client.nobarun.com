@@ -117,8 +117,8 @@ const CustomerMedia = ({ reviews }) => {
                   key={link}
                   src={link}
                   alt={media}
-                  height="100px"
-                  width="100px"
+                  height="100"
+                  width="100"
                 />
               </Box>
             );
@@ -175,8 +175,8 @@ const CustomerMedia = ({ reviews }) => {
                     key={media}
                     src={process.env.NEXT_PUBLIC_IMAGE_URL + media}
                     alt="Review Media"
-                    height="100px"
-                    width="100px"
+                    height="100"
+                    width="100"
                   />
                 </Box>
               );

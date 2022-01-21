@@ -12,7 +12,9 @@ const ProductHead = ({ product, schema }: { product: any; schema: any }) => {
       <meta property="og:url" content="https://www.nobarunbd.com/" />
       <meta
         property="og:image:url"
-        content={product?.intro?.featuredImage?.src}
+        content={
+          process.env.NEXT_PUBLIC_IMAGE_URL + product?.intro?.featuredImage?.src
+        }
       />
       <meta property="og:image:width" content="200" />
       <meta property="og:image:height" content="200" />
