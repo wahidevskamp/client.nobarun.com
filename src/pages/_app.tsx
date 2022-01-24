@@ -35,7 +35,7 @@ const App = ({ Component, pageProps }: any) => {
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Corporation',
-              name: 'Nobarun Bangladesh',
+              name: 'Nobarun International',
               url: 'https://www.nobarunbd.com/',
               logo: 'https://www.nobarunbd.com/assets/images/logo.svg',
               contactPoint: {

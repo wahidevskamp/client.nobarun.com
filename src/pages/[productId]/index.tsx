@@ -37,7 +37,7 @@ const INCREASE_VIEW = gql`
   }
 `;
 
-const ProductDetails = ({ schema, product, reviews }) => {
+const ProductDetails = ({ schema, slug, product, reviews }) => {
   console.log(product);
   const router = useRouter();
   const pid = router.query.productId;
@@ -108,7 +108,7 @@ const ProductDetails = ({ schema, product, reviews }) => {
             {isTabPhone && product?.contact && (
               <>
                 <Contacts
-                  slug={product.slug}
+                  slug={slug}
                   productName={product?.intro?.productName}
                   productCode={product?.intro?.productCode}
                   contact={product?.contact}
@@ -132,7 +132,7 @@ const ProductDetails = ({ schema, product, reviews }) => {
         <Grid item lg={width > 1600 ? 3 : 4} xs={width > 900 ? 4 : 12}>
           {!isTabPhone && product?.contact && (
             <Contacts
-              slug={product?.slug}
+              slug={slug}
               productName={product?.intro?.productName}
               productCode={product?.intro?.productCode}
               contact={product?.contact}
@@ -231,6 +231,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 
     return {
       props: {
+        slug: productId,
         product: data,
         schema,
         count,

@@ -486,13 +486,15 @@
     }
     &_media {
       display: grid;
-      gap: 0.5rem;
-      grid-template-columns: repeat(4, minmax(80px, 1fr));
+      gap: 0.7rem;
+      grid-template-columns: repeat(4, 9rem);
       @include respond(1400px) {
         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
       }
       & img {
         width: 100%;
+        height: 9rem;
+        border-radius: 5px;
       }
     }
     &_btn {

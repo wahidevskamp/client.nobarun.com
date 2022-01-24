@@ -17,7 +17,6 @@ I want to know more about ${productName} Which Product Code is ${productCode}
 Product Link: https://www.nobarunbd.com/${slug}
 Please send me more details.
 `;
-
   return (
     <Fragment>
       <Card px="1rem" py="1rem" mb="2rem">
