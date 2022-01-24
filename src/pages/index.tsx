@@ -1,12 +1,11 @@
+import { gql } from "@apollo/client";
+import client from '../config/ApolloClient';
 import GoToTop from '@component/goToTop/GoToTop';
 import Clients from '@component/Home/Clients';
 import CollectionWiseProduct from '@component/Home/CollectionWiseProduct';
 import FeaturedCategories from '@component/Home/FeaturedCategories';
 import Testimonials from '@component/Home/Testimonials';
 import useAllProductCategories from '@hook/Home/useAllProductCategories';
-import useCollectionWiseProduct from '@hook/Home/useCollectionWiseProduct';
-import useAllFeaturedClients from '@hook/Home/useFeaturedClients';
-import useProductCount from '@hook/useNoOfProduct';
 import Head from 'next/head';
 import React from 'react';
 import Slider from '../components/Home/Slider';
@@ -21,11 +20,13 @@ const IndexPage = ({
   return (
     <>
       <Head>
-        <title>Nobarun International</title>
         <meta
           name="description"
           content="Call Us ☎01711998626☎ Supplier of Electronic Security,Parking Safety,Super Shop Equipment &amp; Commercial Kitchen Equipment in Bangladesh"
         />
+        <meta name="keywords" content="HTML, CSS, JavaScript"/>
+        <meta name="author" content="John Doe"/>
+        <title>Nobarun International</title>
       </Head>
       <main>
         <GoToTop showBelow={250} />
@@ -38,19 +39,72 @@ const IndexPage = ({
     </>
   );
 };
-
+//
 IndexPage.layout = AppLayout;
-
+//
 export async function getStaticProps() {
+  let categories=[];
+  let clients=[];
+  let count=null;
+  let collections=null;
+  let featuredCategories=[];
   try {
-    const categories = await useAllProductCategories();
-    const clients = await useAllFeaturedClients();
-    const count = await useProductCount();
-    const collections = await useCollectionWiseProduct();
-
-    const featuredCategories = await categories.filter(
+    categories = await useAllProductCategories();
+    featuredCategories = categories.filter(
       (category) => category.isFeatured,
     );
+  }
+  catch (e) {
+
+  }
+  try {
+    let { data } = await client.query({
+      query: gql`
+        query getFeaturedClients {
+          getAllFeaturedClients {
+            id
+            title: clientName
+            imgUrl: logo
+          }
+        }
+      `,
+    });
+    clients=data.getAllFeaturedClients;
+  }
+  catch (e) {
+
+  }
+  try {
+    let { data } = await client.query({
+      query: gql`
+         query getCollectionWiseProduct {
+            getAllPopulatedCollection {
+              name
+              slug
+              products {
+                product {
+                  id: slug
+                  productName
+                  discount
+                  featured
+                  populatedCategory {
+                    name
+                    icon
+                  }
+                }
+                reviewCount
+                ratingAverage
+              }
+            }
+          }
+      `,
+    });
+    collections=data.getAllPopulatedCollection;
+  }
+  catch (e) {
+
+  }
+  finally {
     return {
       props: {
         clients,
@@ -60,10 +114,6 @@ export async function getStaticProps() {
         count,
       },
       revalidate: 30,
-    };
-  } catch (err) {
-    return {
-      notFound: true,
     };
   }
 }

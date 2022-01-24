@@ -10,13 +10,14 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "@apollo/client": "^3.5.7",
     "@styled-system/theme-get": "^5.1.2",
     "axios": "^0.24.0",
     "chart.js": "^2.9.4",
     "clsx": "^1.1.1",
     "date-fns": "^2.21.1",
     "formik": "^2.2.6",
-    "graphql": "^15.6.1",
+    "graphql": "^15.8.0",
     "graphql-request": "^3.5.0",
     "lodash": "^4.17.20",
     "next": "^10.1.3",

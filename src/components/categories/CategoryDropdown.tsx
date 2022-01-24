@@ -43,13 +43,13 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = forwardRef(
     useEffect(() => {
       const menuHeight = categories?.length * 45;
       const height = CONTAINER;
-      console.log({
-        length: categories?.length,
-        width,
-        CONTAINER,
-        menuHeight,
-        height,
-      });
+      // console.log({
+      //   length: categories?.length,
+      //   width,
+      //   CONTAINER,
+      //   menuHeight,
+      //   height,
+      // });
       if (menuHeight > height) {
         const noOfMenu = Math.floor(height / MENU);
         setSlice(noOfMenu);
@@ -66,13 +66,13 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = forwardRef(
       categories
         // .concat(categories)
         .slice(0, slice)
-        .map((item) => (
+        .map((item,index) => (
           <CategoryMenuItem
             title={item.name}
             href={`/category/${item.slug}`}
             icon={item.icon}
             caret={item.children}
-            key={item.id}
+            key={index+1}
           >
             <MegaMenu data={item.children || {}} />
           </CategoryMenuItem>

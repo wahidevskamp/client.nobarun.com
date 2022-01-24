@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect,Fragment } from 'react';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { ThemeProvider } from 'styled-components';
 import '../styles/main.scss';
@@ -23,11 +23,12 @@ const App = ({ Component, pageProps }: any) => {
         process.env.NODE_ENV === 'production' && event.preventDefault(),
     );
   }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="robots" content="noindex" />
+        {/*<meta name="robots" content="noindex" />*/}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

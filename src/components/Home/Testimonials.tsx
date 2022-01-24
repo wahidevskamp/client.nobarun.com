@@ -6,7 +6,7 @@ import Rating from '@component/rating/Rating';
 import { H2, H3, SemiSpan, Span } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Testimonials: React.FC = () => {
   const width = useWindowSize();
@@ -44,11 +44,17 @@ const Testimonials: React.FC = () => {
                 className="carousel-card"
               >
                 <Box maxWidth="80rem" margin="auto" textAlign="center">
-                  <LazyLoadImage
+                  {/*<LazyLoadImage*/}
+                    {/*src={item.imgUrl}*/}
+                    {/*alt={item.company}*/}
+                    {/*effect="blur"*/}
+                    {/*height="100px"*/}
+                  {/*/>*/}
+                  <img
                     src={item.imgUrl}
                     alt={item.company}
-                    effect="blur"
-                    height="100px"
+                    width={100}
+                    height={100}
                   />
                   <H3
                     mb=".5rem"
@@ -79,7 +85,7 @@ const Testimonials: React.FC = () => {
     </Container>
   );
 };
-
+//
 const cardList = [
   {
     company: 'The ACME Laboratories Ltd.',
@@ -154,4 +160,5 @@ const cardList = [
       'Since we work on building development, this type of work requires a lot of products. We have so far found a supplier who works with quality products and we are happy to work with them. Thanks to Nobarun International.',
   },
 ];
-export default Testimonials;
+//
+export default React.memo(Testimonials);

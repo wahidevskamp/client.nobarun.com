@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Icon from '../../icon/Icon';
 import { StyledCategoryMenuItem } from './CategoryMenuItemStyle';
 
@@ -24,7 +24,7 @@ const CategoryMenuItem: React.FC<CategoryMenuItemProps> = ({
         <a>
           <div className="category-dropdown-link">
             {icon && (
-              <LazyLoadImage
+              <img
                 alt={title}
                 src={process.env.NEXT_PUBLIC_IMAGE_URL + icon}
                 height={30}

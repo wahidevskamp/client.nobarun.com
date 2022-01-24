@@ -89,7 +89,7 @@ const Carousel: React.FC<CarouselProps> = ({
     >
       <Slider className="custom-slider">
         {React.Children.map(children, (child, ind) => (
-          <Slide index={ind}>{child}</Slide>
+          <Slide index={ind} role="listitem" aria-level={ind+1}>{child}</Slide>
         ))}
       </Slider>
 
@@ -99,7 +99,6 @@ const Carousel: React.FC<CarouselProps> = ({
           renderDots={(props: any) => renderDots({ ...props, step })}
         />
       )}
-
       {showArrow && (
         <Fragment>
           <IconButton

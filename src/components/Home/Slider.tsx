@@ -4,18 +4,19 @@ import Carousel from '@component/carousel/Carousel';
 import Container from '@component/Container';
 import Navbar from '@component/navbar/Navbar';
 import useWindowSize from '@hook/useWindowSize';
-import React, { Fragment, useLayoutEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect,useRef, useState } from 'react';
 
 const Slider: React.FC<{ categories: any[] }> = ({ categories }) => {
   const width = useWindowSize();
   const [height, setHeight] = useState(400);
   const isTablet = width < 1025;
   const heroContainer = useRef<HTMLDivElement>(null);
-  useLayoutEffect(() => {
+  // useLayoutEffect(() => {
+  useEffect(() => {
     const rect = heroContainer?.current?.getBoundingClientRect();
-    console.log(rect.height);
     setHeight(rect.height);
   }, [heroContainer?.current?.offsetHeight]);
+
   return (
     <Fragment>
       <Navbar navListOpen={true} height={height} categories={categories} />
@@ -25,13 +26,12 @@ const Slider: React.FC<{ categories: any[] }> = ({ categories }) => {
             totalSlides={6}
             visibleSlides={1}
             infinite={true}
-            autoPlay={true}
+            autoPlay={false}
             showDots={true}
             interval={4000}
             dotClass="hero-slider"
             showArrow={false}
-            spacing="0px"
-          >
+            spacing="0px">
             {[
               '/assets/images/banners/1 Bakery-Equipment-nobarun.webp',
               '/assets/images/banners/2 Slaughterhouse-Equipment-4.webp',

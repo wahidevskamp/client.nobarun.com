@@ -5,7 +5,7 @@ import { H4 } from '@component/Typography';
 import useWindowSize from '@hook/useWindowSize';
 import Link from 'next/link';
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Box from '../../Box';
 import Container from '../../Container';
 import Grid from '../../grid/Grid';
@@ -46,10 +46,15 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
                           mb="0.5rem"
                           className="featuredCategories__image"
                         >
-                          <LazyLoadImage
+                          {/*<LazyLoadImage*/}
+                            {/*src={process.env.NEXT_PUBLIC_IMAGE_URL + item.image}*/}
+                            {/*alt={item.name}*/}
+                            {/*effect="blur"*/}
+                            {/*style={{ height: '100%', width: '100%' }}*/}
+                          {/*/>*/}
+                          <img
                             src={process.env.NEXT_PUBLIC_IMAGE_URL + item.image}
                             alt={item.name}
-                            effect="blur"
                             style={{ height: '100%', width: '100%' }}
                           />
                         </HoverBox>
