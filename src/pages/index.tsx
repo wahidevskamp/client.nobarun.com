@@ -33,7 +33,7 @@ const IndexPage = ({
         <Slider categories={categories} />
         <Clients slides={8} clients={clients} />
         <FeaturedCategories categories={featuredCategories} />
-        <CollectionWiseProduct collections={collections} />
+        {collections && collections.length && collections.map((item,index)=><CollectionWiseProduct collection={item} key={index+1}/>)}
         <Testimonials />
       </main>
     </>
@@ -46,7 +46,7 @@ export async function getStaticProps() {
   let categories=[];
   let clients=[];
   let count=null;
-  let collections=null;
+  let collections=[];
   let featuredCategories=[];
   try {
     categories = await useAllProductCategories();

@@ -26,7 +26,7 @@ const Slider: React.FC<{ categories: any[] }> = ({ categories }) => {
             totalSlides={6}
             visibleSlides={1}
             infinite={true}
-            autoPlay={false}
+            autoPlay={true}
             showDots={true}
             interval={4000}
             dotClass="hero-slider"
