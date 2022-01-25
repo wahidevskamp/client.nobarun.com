@@ -28,7 +28,7 @@ const App = ({ Component, pageProps }: any) => {
     <ThemeProvider theme={theme}>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        {/*<meta name="robots" content="noindex" />*/}
+        <meta name="robots" content="noindex" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
