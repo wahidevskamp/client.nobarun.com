@@ -91,18 +91,38 @@ const ClientsPage = ({ clients }) => {
 ClientsPage.layout = OtherLayout;
 
 export async function getStaticProps() {
-  const clients = await useAllClientsByCategory();
-  const categories = await useAllProductCategories();
-  const count = await useProductCount();
+  let clients=[];
+  let categories=[];
+  let count=null;
+  try {
+    clients = await useAllClientsByCategory();
+  }
+  catch (e) {
 
-  return {
-    props: {
-      clients,
-      categories,
-      count,
-    },
-    revalidate: 30,
-  };
+  }
+  try {
+    categories = await useAllProductCategories();
+    categories=JSON.parse(JSON.stringify(categories));
+  }
+  catch (e) {
+
+  }
+  try {
+    count = await useProductCount();
+  }
+  catch (e) {
+
+  }
+  finally {
+    return {
+      props: {
+        clients,
+        categories,
+        count,
+      },
+      revalidate: 30,
+    };
+  }
 }
 
 export default ClientsPage;

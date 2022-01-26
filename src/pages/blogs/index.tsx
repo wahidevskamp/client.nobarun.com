@@ -72,11 +72,29 @@ const BlogsList = ({ blogs }) => {
 BlogsList.layout = OtherLayout;
 
 export async function getStaticProps() {
+  let blogs=[];
+  let categories=[];
+  let count=null;
   try {
-    const blogs = await useAllBlogs();
-    const categories = await useAllProductCategories();
-    const count = await useProductCount();
+    blogs = await useAllBlogs();
+  }
+  catch (e) {
 
+  }
+  try {
+    categories = await useAllProductCategories();
+    categories=JSON.parse(JSON.stringify(categories));
+  }
+  catch (e) {
+
+  }
+  try {
+    count = await useProductCount();
+  }
+  catch (e) {
+
+  }
+  finally {
     return {
       props: {
         blogs,
@@ -84,10 +102,6 @@ export async function getStaticProps() {
         count,
       },
       revalidate: 30,
-    };
-  } catch (err) {
-    return {
-      notFound: true,
     };
   }
 }

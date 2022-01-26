@@ -358,16 +358,30 @@ const ProductSearchResult = () => {
 ProductSearchResult.layout = OtherLayout;
 
 export async function getStaticProps() {
-  const categories = await useAllProductCategories();
-  const count = await useProductCount();
+  let categories=[];
+  let count=null;
+  try {
+    categories = await useAllProductCategories();
+    categories=JSON.parse(JSON.stringify(categories));
+  }
+  catch (e) {
 
-  return {
-    props: {
-      categories,
-      count,
-    },
-    revalidate: 30,
-  };
+  }
+  try {
+    count = await useProductCount();
+  }
+  catch (e) {
+
+  }
+  finally {
+    return {
+      props: {
+        categories,
+        count,
+      },
+      revalidate: 30,
+    };
+  }
 }
 
 export default ProductSearchResult;

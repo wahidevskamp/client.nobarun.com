@@ -50,6 +50,7 @@ export async function getStaticProps() {
   let featuredCategories=[];
   try {
     categories = await useAllProductCategories();
+    categories=JSON.parse(JSON.stringify(categories));
     featuredCategories = categories.filter(
       (category) => category.isFeatured,
     );
