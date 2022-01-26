@@ -27,7 +27,7 @@ const StyledLink = styled.span`
 const Footer: React.FC = () => {
   const width = useWindowSize();
   const Blog = (
-    <Grid item lg={4} md={width < 1025 ? 12 : 6}>
+    <Grid item lg={3} md={width < 1025 ? 12 : 6}>
       <Typography fontSize="26px" fontWeight="600" mb="1.25rem" lineHeight="1">
         Important Links
       </Typography>
@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
     </Grid>
   );
   const Contact = (
-    <Grid item lg={4} md={6} sm={12} xs={12}>
+    <Grid item lg={3} md={6} sm={12} xs={12}>
       <Typography fontSize="18px" mb="1.25rem" textAlign="justify">
         <strong>NOBARUN INTERNATIONAL</strong> is leading supplier of Digital
         Safety & Security Products, Supermarket Equipments, Slaughterhouse
@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
         <Container p="1rem" color="white">
           <Box py="5rem" overflow="hidden">
             <Grid container spacing={6}>
-              <Grid item lg={4} md={6} sm={12}>
+              <Grid item lg={3} md={6} sm={12}>
                 <Typography
                   fontSize="26px"
                   fontWeight="600"
@@ -122,6 +122,15 @@ const Footer: React.FC = () => {
               </Grid>
               {width > 1024 || width < 765 ? Blog : Contact}
               {width < 1024 && width > 765 ? Blog : Contact}
+              <Grid item lg={3} md={6} sm={12}>
+                <div style={{textAlign:"center"}}>
+                  <a href="//www.dmca.com/Protection/Status.aspx?ID=b678e4b2-c844-4be2-a23b-448888201af6"
+                     title="DMCA.com Protection Status" className="dmca-badge"> <img
+                    src="https://images.dmca.com/Badges/dmca_protected_24_120.png?ID=b678e4b2-c844-4be2-a23b-448888201af6"
+                    alt="DMCA.com Protection Status"/></a>
+                  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
+                </div>
+              </Grid>
             </Grid>
           </Box>
         </Container>
