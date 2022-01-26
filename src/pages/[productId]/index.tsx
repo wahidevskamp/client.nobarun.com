@@ -38,7 +38,6 @@ const INCREASE_VIEW = gql`
 `;
 
 const ProductDetails = ({ schema, slug, product, reviews }) => {
-  console.log(product);
   const router = useRouter();
   const pid = router.query.productId;
   const [active, setActive] = useState(false);
@@ -201,8 +200,8 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     //! We have to debug furthermore
     const data = await useProductById(productId);
     const count = await useProductCount();
-    const categories = await useAllProductCategories();
-
+    let categories = await useAllProductCategories();
+    categories=JSON.parse(JSON.stringify(categories));
     const schema = {
       '@context': 'https://schema.org/',
       '@type': 'Product',
@@ -241,6 +240,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
       },
     };
   } catch (err) {
+    console.log(err);
     return {
       notFound: true,
     };

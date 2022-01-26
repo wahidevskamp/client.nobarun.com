@@ -85,9 +85,8 @@ const CustomerMedia = ({ reviews }) => {
                   );
                 } else {
                   return (
-                    <div className="product__review_modal-image">
+                    <div className="product__review_modal-image" key={media}>
                       <img
-                        key={media}
                         src={process.env.NEXT_PUBLIC_IMAGE_URL + media}
                         alt=""
                       />
@@ -165,6 +164,7 @@ const CustomerMedia = ({ reviews }) => {
             } else {
               return (
                 <Box
+                  key={idx}
                   style={{ cursor: 'pointer' }}
                   onClick={() => {
                     setIsOpen(true);
