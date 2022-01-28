@@ -149,10 +149,10 @@ const RelatedReview = ({ title, reviews, slug }) => {
           {reviews.slice(0, slice).map((review, idx) => (
             <Box marginBottom="8rem" key={review.name + idx}>
               <FlexBox alignItems="center">
-                <img
+                {review && review.featuredImage && <img
                   src={process.env.NEXT_PUBLIC_IMAGE_URL + review.featuredImage}
                   style={{ height: '8rem', width: '8rem' }}
-                />
+                />}
                 <Box ml="2em">
                   <H3 mt="0.5rem" fontWeight="700" fontSize="2.5rem">
                     {review.name}
