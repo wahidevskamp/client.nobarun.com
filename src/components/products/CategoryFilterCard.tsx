@@ -20,7 +20,7 @@ const CategoryFilterCard = ({
         Categories
       </H6>
 
-      {categories?.map((item) =>
+      {categories?.map((item,index) =>
         item?.children.length > 0 ? (
           <Accordion key={item?.name} expanded>
             <AccordionHeader
@@ -33,21 +33,20 @@ const CategoryFilterCard = ({
                 {item?.name}
               </SemiSpan>
             </AccordionHeader>
-            {item?.children?.map((name) => (
+            {Object.keys(item.children).length ? Object.keys(item.children).map((key) => (
               <Paragraph
                 className="cursor-pointer"
                 fontSize="18px"
                 color="text.muted"
                 pl="22px"
                 py="6px"
-                key={name}
-              >
-                {name}
+                key={key}>
+                {item.children[key].name}
               </Paragraph>
-            ))}
+            )):null}
           </Accordion>
         ) : (
-          <Link href={`/category/${item.slug}`}>
+          <Link key={index+1} href={`/category/${item.slug}`}>
             <a
               style={{
                 display: 'flex',
