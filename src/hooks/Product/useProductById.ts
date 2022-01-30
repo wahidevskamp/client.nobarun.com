@@ -84,7 +84,7 @@ const GET_PRODUCT_BY_ID = gql`
 const useProductById = async (pid) => {
   const data = await Client.request(GET_PRODUCT_BY_ID, { id: pid });
   const productById = data?.getPopulatedProductBySlug?.productData;
-  // console.log(data);
+  // console.log(productById.product.stockStatus);
   const product = {
     intro: {
       productName: productById?.product?.productName,
@@ -93,7 +93,7 @@ const useProductById = async (pid) => {
       review: productById?.reviewCount,
       rating: productById?.ratingAverage,
       productCode: productById?.product?.productCode,
-      stockStatus: productById?.product?.stockStatus?.title,
+      stockStatus: productById && productById.product && productById.product.stockStatus && productById.product.stockStatus.title ? productById.product.stockStatus.title:null ,
       featuredImage: productById?.product?.imageObject?.find(
         (img) => img.src === productById?.product?.featured,
       ) || { name: '', src: '' },

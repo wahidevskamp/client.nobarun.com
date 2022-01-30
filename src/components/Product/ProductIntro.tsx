@@ -181,7 +181,7 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
           />
         </Card>
       </Modal>
-      <Box className="product__stock-status">{data?.stockStatus}</Box>
+      {data && data.stockStatus && <Box className="product__stock-status">{data.stockStatus}</Box>}
       <Box overflow="hidden" px="15px" py="5px">
         <H1 fontSize={width > 660 ? '32px' : '24px'}>{data?.productName}</H1>
 
