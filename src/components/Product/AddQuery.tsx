@@ -91,25 +91,10 @@ const AddQuery = (props: AddQueryProps) => {
 
     if (showEmailError) return;
     if (state.email === '' || state.mobileNo === '') return;
-
+    //
     const fileName = file.name;
-    const extension = fileName.split('.').pop();
-    const response = await axios.get(`${baseUrl}${extension}`);
-    const { obj_location, fields, upload_url } = response.data;
-
-    const formData = new FormData();
-    formData.append('key', fields?.key);
-    formData.append('policy', fields?.policy);
-    formData.append('x-amz-algorithm', fields['x-amz-algorithm']);
-    formData.append('x-amz-credential', fields['x-amz-credential']);
-    formData.append('x-amz-date', fields['x-amz-date']);
-    formData.append('x-amz-security-token', fields['x-amz-security-token']);
-    formData.append('x-amz-signature', fields['x-amz-signature']);
-    formData.append('file', file);
-
-    await axios.post(upload_url, formData);
-
-    const query = {
+    //
+    let query = {
       company: state.company,
       email: state.email,
       name: state.fullName,
@@ -118,9 +103,28 @@ const AddQuery = (props: AddQueryProps) => {
       phone: state.mobileNo,
       address: state.address,
       productCode: productCode,
-      attachment: obj_location,
+      attachment: "",
     };
-
+    if(fileName){
+      const extension = fileName.split('.').pop();
+      const response = await axios.get(`${baseUrl}${extension}`);
+      const { obj_location, fields, upload_url } = response.data;
+      //
+      const formData = new FormData();
+      formData.append('key', fields?.key);
+      formData.append('policy', fields?.policy);
+      formData.append('x-amz-algorithm', fields['x-amz-algorithm']);
+      formData.append('x-amz-credential', fields['x-amz-credential']);
+      formData.append('x-amz-date', fields['x-amz-date']);
+      formData.append('x-amz-security-token', fields['x-amz-security-token']);
+      formData.append('x-amz-signature', fields['x-amz-signature']);
+      formData.append('file', file);
+      //
+      await axios.post(upload_url, formData);
+      //
+      query.attachment=obj_location
+    }
+    //
     try {
       const data = await Client.request(ADD_NEW_QUERY, { data: query });
       if (data) {
