@@ -27,7 +27,7 @@ const Categories: React.FC<CategoriesProps> = ({
     e.stopPropagation();
     if (!isOpen) setOpen(!open);
   };
-
+  /*
   const handleDocumentClick = () => {
     if (popoverRef.current && !isOpen) setOpen(false);
   };
@@ -38,7 +38,7 @@ const Categories: React.FC<CategoriesProps> = ({
       window.removeEventListener('click', handleDocumentClick);
     };
   }, []);
-
+  */
   const ref = useRef(null);
   useEffect(() => {
     function handleClickOutside(event) {
