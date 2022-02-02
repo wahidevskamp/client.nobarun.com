@@ -29,8 +29,16 @@ const CategoryFilterCard = ({
               color="text.muted"
               // justifyContent="flex-start"
             >
-              <SemiSpan className="cursor-pointer" mr="9px">
-                {item?.name}
+              <SemiSpan className="cursor-pointer" mr="9px" fontSize="18px" display={"flex"}>
+                {item.icon && (
+                  <img
+                    src={process.env.NEXT_PUBLIC_IMAGE_URL + item.icon}
+                    alt={item?.name}
+                    height="30"
+                    width="30"
+                    style={{ marginRight: '1.5rem' }}
+                  />
+                )}{item?.name}
               </SemiSpan>
             </AccordionHeader>
             {Object.keys(item.children).length ? Object.keys(item.children).map((key) => (
