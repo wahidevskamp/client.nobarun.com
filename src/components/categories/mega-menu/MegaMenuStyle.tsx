@@ -8,6 +8,7 @@ export const StyledMegaMenu1 = styled.div`
   right: auto;
   top: 0;
   z-index: 99;
+  height:100%;
 
   .title-link,
   .child-link {
