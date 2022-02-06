@@ -96,6 +96,7 @@ const AddQuery = (props: AddQueryProps) => {
     //
     let query = {
       productId:productId,
+      productName:productName,
       company: state.company,
       email: state.email,
       name: state.fullName,
