@@ -62,6 +62,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
     Client.request(INCREASE_VIEW, { slug: pid });
     setRecentlyViewedProduct(pid, product);
   }, []);
+
   return (
     <Fragment>
       <ProductHead schema={schema} product={product} />
@@ -69,6 +70,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
         id={pid as string}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
+        productId={product?.intro?.id}
         productName={product?.intro?.productName}
         productCode={product?.intro?.productCode}
         contact={product?.contact}

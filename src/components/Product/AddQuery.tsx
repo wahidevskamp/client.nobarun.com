@@ -43,7 +43,7 @@ const validateEmail = (email) => {
 };
 
 const AddQuery = (props: AddQueryProps) => {
-  const { isOpen, setIsOpen, productName, productCode, contact } = props;
+  const { isOpen, setIsOpen,productId, productName, productCode, contact } = props;
   const [modalOpen, setModalOpen] = useState(false);
   const [isAgreed, setIsAgreed] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
@@ -95,6 +95,7 @@ const AddQuery = (props: AddQueryProps) => {
     const fileName = file.name;
     //
     let query = {
+      productId:productId,
       company: state.company,
       email: state.email,
       name: state.fullName,

@@ -7,6 +7,7 @@ const GET_PRODUCT_BY_ID = gql`
     getPopulatedProductBySlug(slug: $id) {
       productData {
         product {
+          id
           productName
           productCode
           price
@@ -84,9 +85,10 @@ const GET_PRODUCT_BY_ID = gql`
 const useProductById = async (pid) => {
   const data = await Client.request(GET_PRODUCT_BY_ID, { id: pid });
   const productById = data?.getPopulatedProductBySlug?.productData;
-  // console.log(productById.product.stockStatus);
+  // console.log(productById.product);
   const product = {
     intro: {
+      id: productById && productById.product && productById.product.id ? productById.product.id:null ,
       productName: productById?.product?.productName,
       price: productById?.product?.price,
       originalPrice: productById?.product?.originalPrice,
