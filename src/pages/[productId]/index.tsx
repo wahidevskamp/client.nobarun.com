@@ -204,23 +204,33 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     const count = await useProductCount();
     let categories = await useAllProductCategories();
     categories=JSON.parse(JSON.stringify(categories));
+
+    let imageName=""
+    if(data && data.intro && data.intro.featuredImage && data.intro.featuredImage.src){
+      let imagePath = data.intro.featuredImage.src.slice(0, 16);
+      if(imagePath){
+        imageName = imagePath.replace('media/', '');
+      }
+    }
+
     const schema = {
       '@context': 'https://schema.org/',
       '@type': 'Product',
       name: data?.intro?.productName,
-      image:
-        'https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/' +
-        data?.intro?.featuredImage?.src,
+      // image:
+      //   'https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/' +
+      //   data?.intro?.featuredImage?.src,
+      image:`https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/media/hallmark-${imageName}.png`,
       description: data?.seo?.description,
       sku: data?.intro?.productCode,
-      offers: {
-        '@type': 'Offer',
-        url: '',
-        priceCurrency: 'BDT',
-        price: data?.intro?.price,
-        availability: 'https://schema.org/InStock',
-        itemCondition: 'https://schema.org/NewCondition',
-      },
+      // offers: {
+      //   '@type': 'Offer',
+      //   url: '',
+      //   priceCurrency: 'BDT',
+      //   price: data?.intro?.price,
+      //   availability: 'https://schema.org/InStock',
+      //   itemCondition: 'https://schema.org/NewCondition',
+      // },
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: data?.intro?.rating,
