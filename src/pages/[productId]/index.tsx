@@ -234,7 +234,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         ratingValue: data?.intro?.rating,
         bestRating: '5',
         worstRating: '1',
-        ratingCount: data?.intro?.review,
+        reviewCount: data?.intro?.review,
       },
     };
 
