@@ -14,8 +14,14 @@ const GET_PRODUCT_BY_SEARCH = gql`
 `;
 
 const useProductSearch = async (keyword) => {
-  const data = await Client.request(GET_PRODUCT_BY_SEARCH, { keyword });
-  return data.searchProductByName;
+  try {
+    console.log(keyword);
+    const data = await Client.request(GET_PRODUCT_BY_SEARCH, { keyword });
+    return data.searchProductByName;
+  }
+  catch (e) {
+    console.log(e)
+  }
 };
 
 export default useProductSearch;
