@@ -89,7 +89,7 @@ const SearchBox: React.FC<{ count: number | string }> = ({ count }) => {
           >
             <Spinner />
           </FlexBox>
-        ) : resultList.length > 0 ? (
+        ) : resultList && resultList.length && resultList.length > 0 ? (
           resultList?.map((item) => (
             <MenuItem
               key={item.title}
