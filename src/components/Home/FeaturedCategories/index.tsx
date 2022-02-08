@@ -53,9 +53,10 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
                             {/*style={{ height: '100%', width: '100%' }}*/}
                           {/*/>*/}
                           <img
-                            src={process.env.NEXT_PUBLIC_IMAGE_URL + item.image}
+                            data-src={process.env.NEXT_PUBLIC_IMAGE_URL + item.image}
                             alt={item.name}
                             style={{ height: '100%', width: '100%' }}
+                            className="lazyload"
                           />
                         </HoverBox>
                         <H4

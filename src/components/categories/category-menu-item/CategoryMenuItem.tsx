@@ -26,9 +26,10 @@ const CategoryMenuItem: React.FC<CategoryMenuItemProps> = ({
             {icon && (
               <img
                 alt={title}
-                src={process.env.NEXT_PUBLIC_IMAGE_URL + icon}
+                data-src={process.env.NEXT_PUBLIC_IMAGE_URL + icon}
                 height={30}
                 width={30}
+                className="lazyload"
               />
             )}
             <span className="title">{title}</span>

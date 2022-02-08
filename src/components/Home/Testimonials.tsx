@@ -51,10 +51,11 @@ const Testimonials: React.FC = () => {
                     {/*height="100px"*/}
                   {/*/>*/}
                   <img
-                    src={item.imgUrl}
+                    data-src={item.imgUrl}
                     alt={item.company}
                     width={100}
                     height={100}
+                    className="lazyload"
                   />
                   <H3
                     mb=".5rem"
