@@ -75,12 +75,12 @@ export default class extends Document {
           <meta property="og:title" content="Nobarun International" />
         </Head>
         <body
-          onCopy={() => false}
-          onCut={() => false}
+          // onCopy={() => false}
+          // onCut={() => false}
           // onDrag={() => false}
           // onDrop={() => false}
-          onMouseDown={() => false}
-          onSelect={() => false}
+          // onMouseDown={() => false}
+          // onSelect={() => false}
         >
           {/* <!-- Google Tag Manager (noscript) --> */}
           <noscript
