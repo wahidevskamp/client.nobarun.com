@@ -46,9 +46,10 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
               {/*height="360"*/}
             {/*/>*/}
             <img
-              src={process.env.NEXT_PUBLIC_IMAGE_URL + imgUrl}
+              data-src={process.env.NEXT_PUBLIC_IMAGE_URL + imgUrl}
               alt={title}
-              height={360}/>
+              height={360}
+              className="lazyload"/>
           </a>
         </Link>
       </div>
@@ -59,12 +60,13 @@ const ProductCard1: React.FC<ProductCard1Props> = ({
               <a>
                 <FlexBox alignItems="center">
                   <Image
-                    src={process.env.NEXT_PUBLIC_IMAGE_URL + props.categoryIcon}
+                    data-src={process.env.NEXT_PUBLIC_IMAGE_URL + props.categoryIcon}
                     height="30px"
                     width="30px"
                     mr=".3rem"
                     display="block"
                     alt={props.categoryName}
+                    className="lazyload"
                   />
                   <SemiSpan
                     className="title"

@@ -40,7 +40,12 @@ const Clients: React.FC<ClientProps> = ({ isProductDetails, clients }) => {
           {/*width="118px"*/}
           {/*height="110px"*/}
         {/*/>*/}
-        <img src={process.env.NEXT_PUBLIC_IMAGE_URL + item.imgUrl} alt={item.title} width={118} height={110}/>
+        <img
+          data-src={process.env.NEXT_PUBLIC_IMAGE_URL + item.imgUrl}
+          alt={item.title}
+          width={118}
+          height={110}
+          className="lazyload"/>
       </HoverBox>
       <H4 fontSize="1.4rem" fontWeight="600" className="client__title">
         {item.title}

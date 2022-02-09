@@ -125,9 +125,13 @@ const Footer: React.FC = () => {
               <Grid item lg={3} md={6} sm={12}>
                 <div style={{textAlign:"center"}}>
                   <a href="//www.dmca.com/Protection/Status.aspx?ID=b678e4b2-c844-4be2-a23b-448888201af6"
-                     title="DMCA.com Protection Status" className="dmca-badge"> <img
-                    src="https://images.dmca.com/Badges/dmca_protected_24_120.png?ID=b678e4b2-c844-4be2-a23b-448888201af6"
-                    alt="DMCA.com Protection Status"/></a>
+                     title="DMCA.com Protection Status" className="dmca-badge">
+                    <img data-src="https://images.dmca.com/Badges/dmca_protected_24_120.png?ID=b678e4b2-c844-4be2-a23b-448888201af6"
+                         alt="DMCA.com Protection Status"
+                         width={120}
+                         height={70}
+                         className="lazyload"/>
+                  </a>
                   <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
                 </div>
               </Grid>

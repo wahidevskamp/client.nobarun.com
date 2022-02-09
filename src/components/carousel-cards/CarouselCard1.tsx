@@ -11,7 +11,7 @@ const CarouselCard1: React.FC<CarouselCard1Props> = ({ link }) => {
     <StyledCarouselCard1>
       <div className="image-holder">
         {/*<LazyLoadImage src={link} alt="Hero Image of Nobarun" effect="blur" />*/}
-        <img src={link} alt="Hero Image of Nobarun"/>
+        <img data-src={link} alt="Hero Image of Nobarun" className="lazyload"/>
       </div>
     </StyledCarouselCard1>
   );
