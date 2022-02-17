@@ -29,7 +29,7 @@ const App = ({ Component, pageProps }: any) => {
     <ThemeProvider theme={theme}>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="robots" content="index" />
+        {/*<meta name="robots" content="index" />*/}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
