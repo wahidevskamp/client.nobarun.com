@@ -31,6 +31,7 @@ const App = ({ Component, pageProps }: any) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         {/*<meta name="robots" content="index" />*/}
         <script
+          defer={true}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
