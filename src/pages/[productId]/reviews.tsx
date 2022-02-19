@@ -25,7 +25,7 @@ const ReviewsPage = (props) => {
     seoTitle,
     keywords,
     description,
-    id,
+    // id,
     productTitle,
     featuredImage,
     contact,
@@ -59,7 +59,7 @@ const ReviewsPage = (props) => {
         id={'pid as string'}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        productId={id}
+        // productId={id}
         productName={productTitle}
         productCode={productCode}
         contact={contact}

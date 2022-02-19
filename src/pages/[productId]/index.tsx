@@ -70,7 +70,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
         id={pid as string}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        productId={product?.intro?.id as string}
+        // productId={product?.intro?.id as string}
         productName={product?.intro?.productName}
         productCode={product?.intro?.productCode}
         contact={product?.contact}
