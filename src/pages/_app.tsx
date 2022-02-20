@@ -29,7 +29,32 @@ const App = ({ Component, pageProps }: any) => {
     <ThemeProvider theme={theme}>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title>Nobarun International</title>
         {/*<meta name="robots" content="index" />*/}
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="apple-mobile-web-app-title" content="nobarun" />
+        <meta name="application-name" content="nobarun" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+        <meta
+          name="description"
+          content="Supplier of Electronic Safety Security Items, Parking Equipment, Super Shop Equipment,
+          Slaughterhouse Equipment & Commercial Kitchen Equipment in Bangladesh"
+        />
+        <meta name="keywords" content="Supplier of Electronic Safety Security Items,
+        Parking Equipment, Super Shop Equipment,
+        Slaughterhouse Equipment & Commercial Kitchen Equipment in Bangladesh"
+        />
+        {/* SOCIAL META TAGS */}
+        <meta property="og:url" content="/cover.jpeg" />
+        {/* thumbnail And title for social media */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Nobarun International" />
+
         <script
           defer={true}
           type="application/ld+json"

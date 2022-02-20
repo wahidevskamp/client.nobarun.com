@@ -6,7 +6,7 @@ import CollectionWiseProduct from '@component/Home/CollectionWiseProduct';
 import FeaturedCategories from '@component/Home/FeaturedCategories';
 import Testimonials from '@component/Home/Testimonials';
 import useAllProductCategories from '@hook/Home/useAllProductCategories';
-import Head from 'next/head';
+// import Head from 'next/head';
 import React from 'react';
 import Slider from '../components/Home/Slider';
 import AppLayout from '../components/layout/AppLayout';
@@ -19,15 +19,15 @@ const IndexPage = ({
 }) => {
   return (
     <>
-      <Head>
-        <meta
-          name="description"
-          content="Call Us ☎01711998626☎ Supplier of Electronic Security,Parking Safety,Super Shop Equipment &amp; Commercial Kitchen Equipment in Bangladesh"
-        />
-        <meta name="keywords" content="HTML, CSS, JavaScript"/>
-        <meta name="author" content="John Doe"/>
-        <title>Nobarun International</title>
-      </Head>
+      {/*<Head>*/}
+        {/*<meta*/}
+          {/*name="description"*/}
+          {/*content="Call Us ☎01711998626☎ Supplier of Electronic Security,Parking Safety,Super Shop Equipment &amp; Commercial Kitchen Equipment in Bangladesh"*/}
+        {/*/>*/}
+        {/*<meta name="keywords" content="Supplier of Electronic Safety Security Items, Parking Equipment, Super Shop Equipment, Slaughterhouse Equipment & Commercial Kitchen Equipment in Bangladesh"/>*/}
+        {/*<meta name="author" content="John Doe"/>*/}
+        {/*<title>Nobarun International</title>*/}
+      {/*</Head>*/}
       <main>
         <GoToTop showBelow={250} />
         <Slider categories={categories} />

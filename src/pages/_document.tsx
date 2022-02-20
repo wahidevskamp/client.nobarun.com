@@ -1,5 +1,6 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import React from 'react';
 
 export default class extends Document {
   static async getInitialProps(ctx) {
@@ -56,24 +57,6 @@ export default class extends Document {
             href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap"
             rel="stylesheet"
           />
-          <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-          <link rel="manifest" href="/site.webmanifest" />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-          <meta name="apple-mobile-web-app-title" content="nobarun" />
-          <meta name="application-name" content="nobarun" />
-          <meta name="msapplication-TileColor" content="#da532c" />
-          <meta name="theme-color" content="#ffffff" />
-          <meta
-            name="description"
-            content="Supplier of Electronic Safety Security Items, Parking Equipment, Super Shop Equipment, Slaughterhouse Equipment & Commercial Kitchen Equipment in Bangladesh"
-          />
-          {/* SOCIAL META TAGS */}
-          <meta property="og:url" content="/cover.jpeg" />
-          {/* thumbnail And title for social media */}
-          <meta property="og:type" content="website" />
-          <meta property="og:title" content="Nobarun International" />
         </Head>
         <body
           // onCopy={() => false}
