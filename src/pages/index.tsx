@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { gql } from "@apollo/client";
 import client from '../config/ApolloClient';
 import GoToTop from '@component/goToTop/GoToTop';
-import Clients from '@component/Home/Clients';
-import Testimonials from '@component/Home/Testimonials';
+// import Testimonials from '@component/Home/Testimonials';
 import useAllProductCategories from '@hook/Home/useAllProductCategories';
 import AppLayout from '../components/layout/AppLayout';
 //
@@ -51,7 +50,6 @@ const IndexPage = ({
       {/*</Head>*/}
       <main>
         <GoToTop showBelow={250} />
-
         <Fragment>
           <Navbar navListOpen={true} height={height} categories={categories} />
           <Box bg="gray.white" mt={isTablet ? '2.5rem' : ''}>
@@ -64,10 +62,62 @@ const IndexPage = ({
             </Container>
           </Box>
         </Fragment>
-
-
-        <Clients slides={8} clients={clients} />
-
+        {clients && clients.length?
+          <Container style={width < 600 ? { margin: '0rem' } : {}}>
+            <FlexBox justifyContent="space-between" alignItems="center" mb="1.5rem">
+              <H2
+                fontWeight="600"
+                lineHeight="1"
+                fontSize={width < 600 ? (width < 400 ? '20px' : '26px') : '32px'}
+                mb="1.5rem"
+                ml={width < 600 ? '1rem' : '0'}
+                style={{
+                  marginLeft:'50%',
+                  textTransform: 'capitalize',
+                  transform: 'translateY(.8rem)',
+                }}>
+                {"Our Clients"}
+              </H2>
+              <Link href={`/clients`}>
+                <a>
+                  <FlexBox alignItems="center" ml="0.5rem" color="text.muted">
+                    <SemiSpan mr="0.5rem">View all</SemiSpan>
+                    <Icon size="12px" defaultcolor="currentColor">
+                      right-arrow
+                    </Icon>
+                  </FlexBox>
+                </a>
+              </Link>
+            </FlexBox>
+            <Grid container spacing={0}>
+              {clients.filter((item,index)=>item && index<6).map((item,index) => (
+                <Grid
+                  item
+                  lg={2}
+                  md={2}
+                  sm={4}
+                  key={index+1}
+                  className="featuredCategories">
+                  <Box className="client client_related">
+                    <HoverBox borderRadius={5} className="client__body">
+                      <img
+                        data-src={process.env.NEXT_PUBLIC_IMAGE_URL + item.imgUrl}
+                        alt={item.title}
+                        width={118}
+                        height={110}
+                        className="lazyload"/>
+                    </HoverBox>
+                    <H4 fontSize="1.4rem" fontWeight="600" className="client__title">
+                      {item.title}
+                    </H4>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
+          :
+          null
+        }
         {featuredCategories && featuredCategories.length?
           <Box mt="5rem" mb="5rem">
             <Container style={width < 600 ? { margin: '0rem' } : {}}>
@@ -140,8 +190,6 @@ const IndexPage = ({
           :
           null
         }
-
-
         {collections && collections.length && collections[0] && collections[0].products && collections[0].products.length?
           <Box mb="8rem">
             <Box my="4rem" mx={width < 900 && width > 600 ? '1rem' : '0.5rem'}>
@@ -161,7 +209,6 @@ const IndexPage = ({
                       {collections[0].name}
                     </H2>
                   </FlexBox>
-
                   {collections[0].slug && (
                     <Link href={`/product/collection/${collections[0].slug}`}>
                       <a>
@@ -490,7 +537,7 @@ const IndexPage = ({
           :
           null
         }
-        <Testimonials />
+        {/*<Testimonials />*/}
       </main>
     </>
   );
