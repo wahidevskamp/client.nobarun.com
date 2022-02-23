@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 // import Head from 'next/head';
 import { gql } from "@apollo/client";
@@ -7,7 +7,6 @@ import GoToTop from '@component/goToTop/GoToTop';
 import Clients from '@component/Home/Clients';
 import Testimonials from '@component/Home/Testimonials';
 import useAllProductCategories from '@hook/Home/useAllProductCategories';
-import Slider from '../components/Home/Slider';
 import AppLayout from '../components/layout/AppLayout';
 //
 import useWindowSize from '../hooks/useWindowSize';
@@ -21,7 +20,8 @@ import HoverBox from '../components/HoverBox';
 import { H2, H3, H4, H6, SemiSpan } from '../components/Typography';
 import { StyledProductCard1 } from '../components/product-cards/CardStyle';
 import Icon from '../components/icon/Icon';
-
+import Navbar from '../components/navbar/Navbar';
+import { StyledCarouselCard1 } from '../components/carousel-cards/CarouselCardStyle';
 
 const IndexPage = ({
   clients,
@@ -30,6 +30,14 @@ const IndexPage = ({
   collections,
 }) => {
   const width = useWindowSize();
+  const [height, setHeight] = useState(400);
+  const isTablet = width < 1025;
+  const heroContainer = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const rect = heroContainer?.current?.getBoundingClientRect();
+    setHeight(rect.height);
+  }, [heroContainer?.current?.offsetHeight]);
+
   return (
     <>
       {/*<Head>*/}
@@ -43,7 +51,21 @@ const IndexPage = ({
       {/*</Head>*/}
       <main>
         <GoToTop showBelow={250} />
-        <Slider categories={categories} />
+
+        <Fragment>
+          <Navbar navListOpen={true} height={height} categories={categories} />
+          <Box bg="gray.white" mt={isTablet ? '2.5rem' : ''}>
+            <Container ref={heroContainer}>
+              <StyledCarouselCard1>
+                <div className="image-holder">
+                  <img data-src={'/assets/images/banners/1 Bakery-Equipment-nobarun.webp'} alt="Hero Image of Nobarun" className="lazyload"/>
+                </div>
+              </StyledCarouselCard1>
+            </Container>
+          </Box>
+        </Fragment>
+
+
         <Clients slides={8} clients={clients} />
 
         {featuredCategories && featuredCategories.length?
