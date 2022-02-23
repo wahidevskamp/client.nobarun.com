@@ -5,8 +5,6 @@ import { gql } from "@apollo/client";
 import client from '../config/ApolloClient';
 import GoToTop from '@component/goToTop/GoToTop';
 import Clients from '@component/Home/Clients';
-// import CollectionWiseProduct from '@component/Home/CollectionWiseProduct';
-import FeaturedCategories from '@component/Home/FeaturedCategories';
 import Testimonials from '@component/Home/Testimonials';
 import useAllProductCategories from '@hook/Home/useAllProductCategories';
 import Slider from '../components/Home/Slider';
@@ -18,7 +16,9 @@ import Grid from '../components/grid/Grid';
 import Box from '../components/Box';
 import FlexBox from '../components/FlexBox';
 import Rating from '../components/rating/Rating';
-import { H2, H3, H6, SemiSpan } from '../components/Typography';
+import Card from '../components/Card';
+import HoverBox from '../components/HoverBox';
+import { H2, H3, H4, H6, SemiSpan } from '../components/Typography';
 import { StyledProductCard1 } from '../components/product-cards/CardStyle';
 import Icon from '../components/icon/Icon';
 
@@ -45,8 +45,81 @@ const IndexPage = ({
         <GoToTop showBelow={250} />
         <Slider categories={categories} />
         <Clients slides={8} clients={clients} />
-        <FeaturedCategories categories={featuredCategories} />
-        {/*{collections && collections.length && collections.map((item,index)=><CollectionWiseProduct collection={item} key={index+1}/>)}*/}
+
+        {featuredCategories && featuredCategories.length?
+          <Box mt="5rem" mb="5rem">
+            <Container style={width < 600 ? { margin: '0rem' } : {}}>
+              <Box>
+                <FlexBox justifyContent="space-between" alignItems="center" mb="1.5rem">
+                  <FlexBox alignItems="center">
+                    <H2
+                      fontWeight="600"
+                      lineHeight="1"
+                      fontSize={width < 600 ? (width < 400 ? '20px' : '26px') : '32px'}
+                      mb="1.5rem"
+                      ml={width < 600 ? '1rem' : '0'}
+                      style={{
+                        textTransform: 'capitalize',
+                        transform: 'translateY(.8rem)',
+                      }}>
+                      {"Featured Categories"}
+                    </H2>
+                  </FlexBox>
+                </FlexBox>
+                <Card p="1rem" mt="4rem" bg="transparent" boxShadow="none">
+                  <Grid container spacing={4}>
+                    {featuredCategories.map((item) => (
+                      <Grid
+                        item
+                        xl={3}
+                        lg={3}
+                        md={4}
+                        sm={6}
+                        xs={6}
+                        key={item.name}
+                        className="featuredCategories"
+                      >
+                        <Link href={`/category/${item.slug}`}>
+                          <a>
+                            <FlexBox
+                              alignItems="center"
+                              flexDirection="column"
+                              justifyContent="center"
+                            >
+                              <HoverBox
+                                borderRadius={5}
+                                mb="0.5rem"
+                                className="featuredCategories__image"
+                              >
+                                <img
+                                  data-src={process.env.NEXT_PUBLIC_IMAGE_URL + item.image}
+                                  alt={item.name}
+                                  style={{ height: '100%', width: '100%' }}
+                                  className="lazyload"
+                                />
+                              </HoverBox>
+                              <H4
+                                fontSize="18px"
+                                fontWeight="600"
+                                className="featuredCategories__title"
+                              >
+                                {item.name}
+                              </H4>
+                            </FlexBox>
+                          </a>
+                        </Link>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Card>
+              </Box>
+            </Container>
+          </Box>
+          :
+          null
+        }
+
+
         {collections && collections.length && collections[0] && collections[0].products && collections[0].products.length?
           <Box mb="8rem">
             <Box my="4rem" mx={width < 900 && width > 600 ? '1rem' : '0.5rem'}>
