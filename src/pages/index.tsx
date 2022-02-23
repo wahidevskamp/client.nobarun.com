@@ -1,15 +1,27 @@
+import React from 'react';
+import Link from 'next/link';
+// import Head from 'next/head';
 import { gql } from "@apollo/client";
 import client from '../config/ApolloClient';
 import GoToTop from '@component/goToTop/GoToTop';
 import Clients from '@component/Home/Clients';
-import CollectionWiseProduct from '@component/Home/CollectionWiseProduct';
+// import CollectionWiseProduct from '@component/Home/CollectionWiseProduct';
 import FeaturedCategories from '@component/Home/FeaturedCategories';
 import Testimonials from '@component/Home/Testimonials';
 import useAllProductCategories from '@hook/Home/useAllProductCategories';
-// import Head from 'next/head';
-import React from 'react';
 import Slider from '../components/Home/Slider';
 import AppLayout from '../components/layout/AppLayout';
+//
+import useWindowSize from '../hooks/useWindowSize';
+import Container from '../components/Container';
+import Grid from '../components/grid/Grid';
+import Box from '../components/Box';
+import FlexBox from '../components/FlexBox';
+import Rating from '../components/rating/Rating';
+import { H2, H3, H6, SemiSpan } from '../components/Typography';
+import { StyledProductCard1 } from '../components/product-cards/CardStyle';
+import Icon from '../components/icon/Icon';
+
 
 const IndexPage = ({
   clients,
@@ -17,6 +29,7 @@ const IndexPage = ({
   featuredCategories,
   collections,
 }) => {
+  const width = useWindowSize();
   return (
     <>
       {/*<Head>*/}
@@ -33,7 +46,355 @@ const IndexPage = ({
         <Slider categories={categories} />
         <Clients slides={8} clients={clients} />
         <FeaturedCategories categories={featuredCategories} />
-        {collections && collections.length && collections.map((item,index)=><CollectionWiseProduct collection={item} key={index+1}/>)}
+        {/*{collections && collections.length && collections.map((item,index)=><CollectionWiseProduct collection={item} key={index+1}/>)}*/}
+        {collections && collections.length && collections[0] && collections[0].products && collections[0].products.length?
+          <Box mb="8rem">
+            <Box my="4rem" mx={width < 900 && width > 600 ? '1rem' : '0.5rem'}>
+              <Container pb="1rem">
+                <FlexBox justifyContent="space-between" alignItems="center" mb="1.5rem">
+                  <FlexBox alignItems="center">
+                    <H2
+                      fontWeight="600"
+                      lineHeight="1"
+                      fontSize={width < 600 ? (width < 400 ? '20px' : '26px') : '32px'}
+                      mb="1.5rem"
+                      ml={width < 600 ? '1rem' : '0'}
+                      style={{
+                        textTransform: 'capitalize',
+                        transform: 'translateY(.8rem)',
+                      }}>
+                      {collections[0].name}
+                    </H2>
+                  </FlexBox>
+
+                  {collections[0].slug && (
+                    <Link href={`/product/collection/${collections[0].slug}`}>
+                      <a>
+                        <FlexBox alignItems="center" ml="0.5rem" color="text.muted">
+                          <SemiSpan mr="0.5rem">View all</SemiSpan>
+                          <Icon size="12px" defaultcolor="currentColor">
+                            right-arrow
+                          </Icon>
+                        </FlexBox>
+                      </a>
+                    </Link>
+                  )}
+                </FlexBox>
+                <Grid container spacing={4}>
+                {collections[0].products.filter((item,index)=>item && index<4).map(
+                  ({ product, reviewCount, ratingAverage }) => (
+                    <Grid
+                      item
+                      xl={3}
+                      lg={3}
+                      md={6}
+                      sm={6}
+                      key={product?.id}
+                    >
+                    <Box py="0.25rem" key={product?.id}>
+                      <StyledProductCard1 {...product}>
+                        <div className="image-holder">
+                          <Link href={`/${product.id}`}>
+                            <a>
+                              <img
+                                data-src={process.env.NEXT_PUBLIC_IMAGE_URL + product.featured}
+                                alt={product.productName}
+                                height={360}
+                                className="lazyload"/>
+                            </a>
+                          </Link>
+                        </div>
+                        <div className="details">
+                          <FlexBox>
+                            <Box flex="1 1 0" minWidth="0px" mr="0.5rem">
+                              <Link href={`/${product.id}`}>
+                                <a>
+                                  <FlexBox alignItems="center">
+                                    <img
+                                      data-src={product.populatedCategory && product.populatedCategory.icon?process.env.NEXT_PUBLIC_IMAGE_URL+product.populatedCategory.icon:""}
+                                      width={30}
+                                      height={30}
+                                      alt={product.populatedCategory && product.populatedCategory.name ? product.populatedCategory.name:""}
+                                      className="lazyload"
+                                    />
+                                    <SemiSpan
+                                      className="title"
+                                      color="text.hint"
+                                      title={product.populatedCategory && product.populatedCategory.name ? product.populatedCategory.name:""}
+                                    >
+                                      {product.populatedCategory && product.populatedCategory.name ? product.populatedCategory.name:""}
+                                    </SemiSpan>
+                                  </FlexBox>
+                                </a>
+                              </Link>
+                              <Link href={`/${product.id}`}>
+                                <a>
+                                  <H3
+                                    className="title"
+                                    textAlign="left"
+                                    fontWeight="600"
+                                    color="text.secondary"
+                                    mt="10px"
+                                    mb="5px"
+                                    title={product.productName}
+                                  >
+                                    {product.productName}
+                                  </H3>
+                                </a>
+                              </Link>
+                              <FlexBox alignItems="center">
+                                <Rating value={ratingAverage || 0} outof={5} color="warn" readonly />
+                                <H6 ml=".5rem" color="#ddd">
+                                  ({reviewCount || 0})
+                                </H6>
+                              </FlexBox>
+                            </Box>
+                          </FlexBox>
+                        </div>
+                      </StyledProductCard1>
+                    </Box>
+                    </Grid>
+                  ),
+                )}
+                </Grid>
+              </Container>
+            </Box>
+          </Box>
+          :
+          null
+        }
+        {collections && collections.length && collections[1] && collections[1].products && collections[1].products.length?
+          <Box mb="8rem">
+            <Box my="4rem" mx={width < 900 && width > 600 ? '1rem' : '0.5rem'}>
+              <Container pb="1rem">
+                <FlexBox justifyContent="space-between" alignItems="center" mb="1.5rem">
+                  <FlexBox alignItems="center">
+                    <H2
+                      fontWeight="600"
+                      lineHeight="1"
+                      fontSize={width < 600 ? (width < 400 ? '20px' : '26px') : '32px'}
+                      mb="1.5rem"
+                      ml={width < 600 ? '1rem' : '0'}
+                      style={{
+                        textTransform: 'capitalize',
+                        transform: 'translateY(.8rem)',
+                      }}>
+                      {collections[1].name}
+                    </H2>
+                  </FlexBox>
+
+                  {collections[1].slug && (
+                    <Link href={`/product/collection/${collections[1].slug}`}>
+                      <a>
+                        <FlexBox alignItems="center" ml="0.5rem" color="text.muted">
+                          <SemiSpan mr="0.5rem">View all</SemiSpan>
+                          <Icon size="12px" defaultcolor="currentColor">
+                            right-arrow
+                          </Icon>
+                        </FlexBox>
+                      </a>
+                    </Link>
+                  )}
+                </FlexBox>
+                <Grid container spacing={4}>
+                  {collections[1].products.filter((item,index)=>item && index<4).map(
+                    ({ product, reviewCount, ratingAverage }) => (
+                      <Grid
+                        item
+                        xl={3}
+                        lg={3}
+                        md={6}
+                        sm={6}
+                        key={product?.id}
+                      >
+                        <Box py="0.25rem" key={product?.id}>
+                          <StyledProductCard1 {...product}>
+                            <div className="image-holder">
+                              <Link href={`/${product.id}`}>
+                                <a>
+                                  <img
+                                    data-src={process.env.NEXT_PUBLIC_IMAGE_URL + product.featured}
+                                    alt={product.productName}
+                                    height={360}
+                                    className="lazyload"/>
+                                </a>
+                              </Link>
+                            </div>
+                            <div className="details">
+                              <FlexBox>
+                                <Box flex="1 1 0" minWidth="0px" mr="0.5rem">
+                                  <Link href={`/${product.id}`}>
+                                    <a>
+                                      <FlexBox alignItems="center">
+                                        <img
+                                          data-src={product.populatedCategory && product.populatedCategory.icon?process.env.NEXT_PUBLIC_IMAGE_URL+product.populatedCategory.icon:""}
+                                          width={30}
+                                          height={30}
+                                          alt={product.populatedCategory && product.populatedCategory.name ? product.populatedCategory.name:""}
+                                          className="lazyload"
+                                        />
+                                        <SemiSpan
+                                          className="title"
+                                          color="text.hint"
+                                          title={product.populatedCategory && product.populatedCategory.name ? product.populatedCategory.name:""}
+                                        >
+                                          {product.populatedCategory && product.populatedCategory.name ? product.populatedCategory.name:""}
+                                        </SemiSpan>
+                                      </FlexBox>
+                                    </a>
+                                  </Link>
+                                  <Link href={`/${product.id}`}>
+                                    <a>
+                                      <H3
+                                        className="title"
+                                        textAlign="left"
+                                        fontWeight="600"
+                                        color="text.secondary"
+                                        mt="10px"
+                                        mb="5px"
+                                        title={product.productName}
+                                      >
+                                        {product.productName}
+                                      </H3>
+                                    </a>
+                                  </Link>
+                                  <FlexBox alignItems="center">
+                                    <Rating value={ratingAverage || 0} outof={5} color="warn" readonly />
+                                    <H6 ml=".5rem" color="#ddd">
+                                      ({reviewCount || 0})
+                                    </H6>
+                                  </FlexBox>
+                                </Box>
+                              </FlexBox>
+                            </div>
+                          </StyledProductCard1>
+                        </Box>
+                      </Grid>
+                    ),
+                  )}
+                </Grid>
+              </Container>
+            </Box>
+          </Box>
+          :
+          null
+        }
+        {collections && collections.length && collections[2] && collections[2].products && collections[2].products.length?
+          <Box mb="8rem">
+            <Box my="4rem" mx={width < 900 && width > 600 ? '1rem' : '0.5rem'}>
+              <Container pb="1rem">
+                <FlexBox justifyContent="space-between" alignItems="center" mb="1.5rem">
+                  <FlexBox alignItems="center">
+                    <H2
+                      fontWeight="600"
+                      lineHeight="1"
+                      fontSize={width < 600 ? (width < 400 ? '20px' : '26px') : '32px'}
+                      mb="1.5rem"
+                      ml={width < 600 ? '1rem' : '0'}
+                      style={{
+                        textTransform: 'capitalize',
+                        transform: 'translateY(.8rem)',
+                      }}>
+                      {collections[2].name}
+                    </H2>
+                  </FlexBox>
+
+                  {collections[2].slug && (
+                    <Link href={`/product/collection/${collections[2].slug}`}>
+                      <a>
+                        <FlexBox alignItems="center" ml="0.5rem" color="text.muted">
+                          <SemiSpan mr="0.5rem">View all</SemiSpan>
+                          <Icon size="12px" defaultcolor="currentColor">
+                            right-arrow
+                          </Icon>
+                        </FlexBox>
+                      </a>
+                    </Link>
+                  )}
+                </FlexBox>
+                <Grid container spacing={4}>
+                  {collections[2].products.filter((item,index)=>item && index<4).map(
+                    ({ product, reviewCount, ratingAverage }) => (
+                      <Grid
+                        item
+                        xl={3}
+                        lg={3}
+                        md={6}
+                        sm={6}
+                        key={product?.id}
+                      >
+                        <Box py="0.25rem" key={product?.id}>
+                          <StyledProductCard1 {...product}>
+                            <div className="image-holder">
+                              <Link href={`/${product.id}`}>
+                                <a>
+                                  <img
+                                    data-src={process.env.NEXT_PUBLIC_IMAGE_URL + product.featured}
+                                    alt={product.productName}
+                                    height={360}
+                                    className="lazyload"/>
+                                </a>
+                              </Link>
+                            </div>
+                            <div className="details">
+                              <FlexBox>
+                                <Box flex="1 1 0" minWidth="0px" mr="0.5rem">
+                                  <Link href={`/${product.id}`}>
+                                    <a>
+                                      <FlexBox alignItems="center">
+                                        <img
+                                          data-src={product.populatedCategory && product.populatedCategory.icon?process.env.NEXT_PUBLIC_IMAGE_URL+product.populatedCategory.icon:""}
+                                          width={30}
+                                          height={30}
+                                          alt={product.populatedCategory && product.populatedCategory.name ? product.populatedCategory.name:""}
+                                          className="lazyload"
+                                        />
+                                        <SemiSpan
+                                          className="title"
+                                          color="text.hint"
+                                          title={product.populatedCategory && product.populatedCategory.name ? product.populatedCategory.name:""}
+                                        >
+                                          {product.populatedCategory && product.populatedCategory.name ? product.populatedCategory.name:""}
+                                        </SemiSpan>
+                                      </FlexBox>
+                                    </a>
+                                  </Link>
+                                  <Link href={`/${product.id}`}>
+                                    <a>
+                                      <H3
+                                        className="title"
+                                        textAlign="left"
+                                        fontWeight="600"
+                                        color="text.secondary"
+                                        mt="10px"
+                                        mb="5px"
+                                        title={product.productName}
+                                      >
+                                        {product.productName}
+                                      </H3>
+                                    </a>
+                                  </Link>
+                                  <FlexBox alignItems="center">
+                                    <Rating value={ratingAverage || 0} outof={5} color="warn" readonly />
+                                    <H6 ml=".5rem" color="#ddd">
+                                      ({reviewCount || 0})
+                                    </H6>
+                                  </FlexBox>
+                                </Box>
+                              </FlexBox>
+                            </div>
+                          </StyledProductCard1>
+                        </Box>
+                      </Grid>
+                    ),
+                  )}
+                </Grid>
+              </Container>
+            </Box>
+          </Box>
+          :
+          null
+        }
         <Testimonials />
       </main>
     </>

@@ -1,7 +1,6 @@
 import Image from '@component/Image';
 import Link from 'next/link';
 import React from 'react';
-// import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CSSProperties } from 'styled-components';
 import Box from '../Box';
 import { CardProps } from '../Card';

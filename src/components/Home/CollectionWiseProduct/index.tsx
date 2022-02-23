@@ -30,7 +30,7 @@ const CollectionWiseProduct: React.FC<{ collection: any }> = ({
           <Box>
             <Carousel
               // totalSlides={collection?.products?.length}
-              totalSlides={5}
+              totalSlides={4}
               visibleSlides={slice}
               interval={2000}
               autoPlay={true}
@@ -40,7 +40,7 @@ const CollectionWiseProduct: React.FC<{ collection: any }> = ({
               rightButtonClass="collection-arrow--right"
               showArrowOnHover={slice === 2}
             >
-              {collection.products.filter((item,index)=>item && index<5).map(
+              {collection.products.filter((item,index)=>item && index<4).map(
                 ({ product, reviewCount, ratingAverage }) => (
                   <Box py="0.25rem" key={product?.id}>
                     <ProductCard1
