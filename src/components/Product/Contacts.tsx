@@ -2,7 +2,6 @@ import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import Icon from '@component/icon/Icon';
-import Image from '@component/Image';
 import ProductCard from '@component/product-cards/HeadlineCard';
 import Typography, { H5, Paragraph } from '@component/Typography';
 import { getDay, getHours } from 'date-fns';
@@ -22,10 +21,12 @@ Please send me more details.
       <Card px="1rem" py="1rem" mb="2rem">
         {contact?.companyLogo && (
           <div className="product__contact-logo">
-            <Image
+            <img
+              width={200}
+              height={51}
               src={process.env.NEXT_PUBLIC_IMAGE_URL + contact?.companyLogo}
               alt="logo"
-              maxHeight="60px"
+              style={{maxHeight:"60px"}}
             />
           </div>
         )}
@@ -53,7 +54,9 @@ Please send me more details.
               <Typography ml="1rem" fontSize="22px">
                 {contact?.whatsAppNumber}
               </Typography>
-              <Image
+              <img
+                width={136}
+                height={46}
                 src="/whatsapp.png"
                 alt="Whatsapp"
                 className="product__contact-icon--whatsapp"

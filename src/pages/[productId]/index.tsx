@@ -198,29 +198,45 @@ ProductDetails.layout = NavbarLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const productId = context.params.productId;
+  let data:any=[];
+  let count=0;
+  let categories=[];
+  let schema={};
   try {
-    //! We have to debug furthermore
-    const data = await useProductById(productId);
-    const count = await useProductCount();
-    let categories = await useAllProductCategories();
-    categories=JSON.parse(JSON.stringify(categories));
+    data = await useProductById(productId);
+  }
+  catch (e) {
 
-    let imageName=""
-    if(data && data.intro && data.intro.featuredImage && data.intro.featuredImage.src){
+  }
+  try {
+    count = await useProductCount();
+  }
+  catch (e) {
+
+  }
+  try {
+    categories = await useAllProductCategories();
+  }
+  catch (e) {
+
+  }
+  try {
+    categories = JSON.parse(JSON.stringify(categories));
+    let imageName = "";
+    if (data && data.intro && data.intro.featuredImage && data.intro.featuredImage.src) {
       let imagePath = data.intro.featuredImage.src.slice(0, 16);
-      if(imagePath){
+      if (imagePath) {
         imageName = imagePath.replace('media/', '');
       }
     }
-
-    const schema = {
+    schema = {
       '@context': 'https://schema.org/',
       '@type': 'Product',
       name: data?.intro?.productName,
       // image:
       //   'https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/' +
       //   data?.intro?.featuredImage?.src,
-      image:`https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/media/hallmark-${imageName}.png`,
+      image: `https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/media/hallmark-${imageName}.png`,
       description: data?.seo?.description,
       sku: data?.intro?.productCode,
       // offers: {
@@ -238,25 +254,21 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         worstRating: '1',
         reviewCount: data?.intro?.review,
       },
-    };
-
-    return {
-      props: {
-        slug: productId,
-        product: data,
-        schema,
-        count,
-        categories,
-        reviews: data?.reviews,
-        isError: false,
-      },
-    };
-  } catch (err) {
-    console.log(err);
-    return {
-      notFound: true,
-    };
+    }
   }
+  finally {
+      return {
+        props: {
+          slug: productId,
+          product: data,
+          schema,
+          count,
+          categories,
+          reviews: data?.reviews,
+          isError: false,
+        },
+      };
+    }
 };
 
 export default ProductDetails;
