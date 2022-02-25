@@ -232,6 +232,7 @@ const IndexPage = ({
                       lg={3}
                       md={6}
                       sm={6}
+                      xs={6}
                       key={product?.id}
                     >
                     <Box py="0.25rem" key={product?.id}>
@@ -348,6 +349,7 @@ const IndexPage = ({
                         lg={3}
                         md={6}
                         sm={6}
+                        xs={6}
                         key={product?.id}
                       >
                         <Box py="0.25rem" key={product?.id}>
@@ -464,6 +466,7 @@ const IndexPage = ({
                         lg={3}
                         md={6}
                         sm={6}
+                        xs={6}
                         key={product?.id}
                       >
                         <Box py="0.25rem" key={product?.id}>
