@@ -50,13 +50,12 @@ const Features = ({ features }) => {
               </H2>
             )}
             <Typography>
-              {/*{feature.content && feature.content.length &&*/}
-                {/*<div className="product__keypoints-content"*/}
-                  {/*dangerouslySetInnerHTML={{*/}
-                    {/*__html: feature?.content.replace('font-family:Titillium', ''),*/}
-                  {/*}}>*/}
-                {/*</div>*/}
-              {/*}*/}
+              {feature.content && feature.content.length &&
+                <div className="product__keypoints-content"
+                  dangerouslySetInnerHTML={{
+                    __html: feature?.content.replace('font-family:Titillium', ''),
+                  }}></div>
+              }
             </Typography>
           </div>
         </Card>
