@@ -132,7 +132,7 @@ const Footer: React.FC = () => {
                          height={70}
                          className="lazyload"/>
                   </a>
-                  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
+                  {/*<script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>*/}
                 </div>
               </Grid>
             </Grid>

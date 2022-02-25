@@ -5,7 +5,7 @@ import NavbarLayout from '@component/layout/NavbarLayout';
 import MobileNavigationBar from '@component/mobile-navigation/MobileNavigationBar';
 import AddQuery from '@component/Product/AddQuery';
 import AddReview from '@component/Product/AddReview';
-import Ammenities from '@component/Product/Ammenities';
+// import Ammenities from '@component/Product/Ammenities';
 import Contacts from '@component/Product/Contacts';
 import CustomerMedia from '@component/Product/CustomerMedia';
 import DesktopStickyBar from '@component/Product/DesktopStickyBar';
@@ -19,7 +19,6 @@ import RelatedReview from '@component/Product/RelatedReview';
 import SpecialFeatures from '@component/Product/SpecialFeatures';
 import Specifications from '@component/Product/Specifications';
 import Tags from '@component/Product/Tags';
-import RelatedClients from '@component/products/RelatedClients';
 import useAllProductCategories from '@hook/Home/useAllProductCategories';
 import useProductById from '@hook/Product/useProductById';
 import useProductCount from '@hook/useNoOfProduct';
@@ -30,7 +29,11 @@ import setRecentlyViewedProduct from 'helpers/setRecentlyViewedProduct';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import React, { Fragment, useEffect, useState } from 'react';
-
+//
+import HoverBox from '../../components/HoverBox';
+import { H2, H4 } from '../../components/Typography';
+import FlexBox from '../../components/FlexBox';
+//
 const INCREASE_VIEW = gql`
   mutation increaseView($slug: String!) {
     increaseViewCountById(slug: $slug)
@@ -62,6 +65,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
     Client.request(INCREASE_VIEW, { slug: pid });
     setRecentlyViewedProduct(pid, product);
   }, []);
+
 
   return (
     <Fragment>
@@ -99,12 +103,44 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
             <section id="details">
               <ProductIntro data={product?.intro} />
             </section>
-            {product?.clients?.length > 0 && (
-              <RelatedClients
-                clients={product?.clients}
-                slides={6}
-                isProductDetails
-              />
+            {product?.clients?.length > 0 &&(
+              <Box pt="1em" mb="2rem">
+                <FlexBox justifyContent="center" alignItems="center" mb="1em">
+                  <FlexBox alignItems="center">
+                    <H2
+                      fontWeight="600"
+                      fontSize="26px"
+                      textAlign="center"
+                      lineHeight="1"
+                    >
+                      Our Clients
+                    </H2>
+                  </FlexBox>
+                </FlexBox>
+                <Grid container spacing={4}>
+                  {product.clients.map((item,index) => (
+                    <Grid
+                      item
+                      lg={2}
+                      md={2}
+                      sm={2}
+                      key={index+1}>
+                      <Box className="client client_related" mr="1rem">
+                        <HoverBox borderRadius={5} className="client__body">
+                          <img
+                            data-src={process.env.NEXT_PUBLIC_IMAGE_URL + item.imgUrl}
+                            alt={`Nobarun-Client-${item.title}`}
+                            className="client__image lazyload"
+                          />
+                        </HoverBox>
+                        <H4 fontSize="1.4rem" fontWeight="600" className="client__title">
+                          {item.title}
+                        </H4>
+                      </Box>
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
             )}
             {isTabPhone && product?.contact && (
               <>
@@ -115,7 +151,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
                   contact={product?.contact}
                   setIsOpen={setIsOpen}
                 />
-                <Ammenities contact={product?.contact} />
+                {/*<Ammenities contact={product?.contact} />*/}
               </>
             )}
             {product?.keyPoints &&
@@ -140,7 +176,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
               setIsOpen={setIsOpen}
             />
           )}
-          {!isTabPhone && <Ammenities contact={product?.contact} />}
+          {/*{!isTabPhone && <Ammenities contact={product?.contact} />}*/}
           {product?.features && (
             <SpecialFeatures features={product?.features} />
           )}
@@ -197,6 +233,10 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
 ProductDetails.layout = NavbarLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
+  context.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=30, stale-while-revalidate=59'
+  );
   const productId = context.params.productId;
   let data:any=[];
   let count=0;
