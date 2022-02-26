@@ -9,9 +9,6 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }: any) => theme.colors.body.text};
     transition: all 0.50s linear;
     font-family: 'Titillium Web', sans-serif;
-    /* font-family: Open Sans, Roboto, -apple-system, BlinkMacSystemFont, Segoe UI,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-    sans-serif; */
     -webkit-user-select: none;
         -webkit-touch-callout: none;
         -moz-user-select: none;
