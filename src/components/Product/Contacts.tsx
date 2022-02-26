@@ -16,6 +16,7 @@ I want to know more about ${productName} Which Product Code is ${productCode}
 Product Link: https://www.nobarunbd.com/${slug}
 Please send me more details.
 `;
+
   return (
     <Fragment>
       <Card px="1rem" py="1rem" mb="2rem">
@@ -113,10 +114,11 @@ Please send me more details.
           }
         >
           <iframe
-            src={contact?.maps}
+            data-src={contact?.maps}
             style={{ width: '100%', height: '46.7rem', border: 0 }}
             allowFullScreen
             loading="lazy"
+            className="lazyload"
           />
         </ProductCard>
       )}
