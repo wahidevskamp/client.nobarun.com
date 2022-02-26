@@ -1,85 +1,36 @@
-import dynamic from 'next/dynamic'
-import Box from '@component/Box';
-import GoToTop from '@component/goToTop/GoToTop';
-import Grid from '@component/grid/Grid';
-import NavbarLayout from '@component/layout/NavbarLayout';
-import MobileNavigationBar from '@component/mobile-navigation/MobileNavigationBar';
-import AddQuery from '@component/Product/AddQuery';
-// import AddReview from '@component/Product/AddReview';
-const AddReview = dynamic(
-  () => import('../../components/Product/AddReview'),
-  { ssr: false }
-);
-// import Ammenities from '@component/Product/Ammenities';
-const Ammenities = dynamic(
-  () => import('../../components/Product/Ammenities'),
-  { ssr: false }
-);
-// import Contacts from '@component/Product/Contacts';
-const Contacts = dynamic(
-  () => import('../../components/Product/Contacts'),
-  { ssr: false }
-);
-// import CustomerMedia from '@component/Product/CustomerMedia';
-const CustomerMedia = dynamic(
-  () => import('../../components/Product/CustomerMedia'),
-  { ssr: false }
-);
-import DesktopStickyBar from '@component/Product/DesktopStickyBar';
-import Features from '@component/Product/Features';
-import MobileStickyBar from '@component/Product/MobileStickyBar';
-import ProductHead from '@component/Product/ProductHead';
-import ProductIntro from '@component/Product/ProductIntro';
-// import Questions from '@component/Product/Questions';
-const Questions = dynamic(
-  () => import('../../components/Product/Questions'),
-  { ssr: false }
-);
-// import RelatedProducts from '@component/Product/RelatedProducts';
-const RelatedProducts = dynamic(
-  () => import('../../components/Product/RelatedProducts'),
-  { ssr: false }
-);
-// import RelatedReview from '@component/Product/RelatedReview';
-const RelatedReview = dynamic(
-  () => import('../../components/Product/RelatedReview'),
-  { ssr: false }
-);
-// import SpecialFeatures from '@component/Product/SpecialFeatures';
-const SpecialFeatures = dynamic(
-  () => import('../../components/Product/SpecialFeatures'),
-  { ssr: false }
-);
-// import Specifications from '@component/Product/Specifications';
-const Specifications = dynamic(
-  () => import('../../components/Product/Specifications'),
-  { ssr: false }
-);
-// import Tags from '@component/Product/Tags';
-const Tags = dynamic(
-  () => import('../../components/Product/Tags'),
-  { ssr: false }
-);
-// import RelatedClients from '../../components/products/RelatedClients';
-// const RelatedClients = dynamic(
-//   () => import('../../components/products/RelatedClients'),
-//   { ssr: false }
-// );
-import useAllProductCategories from '@hook/Home/useAllProductCategories';
-import useProductById from '@hook/Product/useProductById';
-import useProductCount from '@hook/useNoOfProduct';
-import useWindowSize from '@hook/useWindowSize';
-import Client from 'config/GraphQLRequest';
+import Box from '../../components/Box';
+import GoToTop from '../../components/goToTop/GoToTop';
+import Grid from '../../components/grid/Grid';
+import NavbarLayout from '../../components/layout/NavbarLayout';
+import MobileNavigationBar from '../../components/mobile-navigation/MobileNavigationBar';
+import AddQuery from '../../components/Product/AddQuery';
+import AddReview from '../../components/Product/AddReview';
+import Ammenities from '../../components/Product/Ammenities';
+import Contacts from '../../components/Product/Contacts';
+import CustomerMedia from '../../components/Product/CustomerMedia';
+import DesktopStickyBar from '../../components/Product/DesktopStickyBar';
+import Features from '../../components/Product/Features';
+import MobileStickyBar from '../../components/Product/MobileStickyBar';
+import ProductHead from '../../components/Product/ProductHead';
+import ProductIntro from '../../components/Product/ProductIntro';
+import Questions from '../../components/Product/Questions';
+import RelatedProducts from '../../components/Product/RelatedProducts';
+import RelatedReview from '../../components/Product/RelatedReview';
+import SpecialFeatures from '../../components/Product/SpecialFeatures';
+import Specifications from '../../components/Product/Specifications';
+import Tags from '../../components/Product/Tags';
+import RelatedClients from '../../components/products/RelatedClients';
+import AllProductCategories from '../../hooks/Home/useAllProductCategories';
+import ProductById from '../../hooks/Product/useProductById';
+import ProductCount from '../../hooks/useNoOfProduct';
+import useWindowSize from '../../hooks/useWindowSize';
+import Client from '../../config/GraphQLRequest';
 import { gql } from 'graphql-request';
-import setRecentlyViewedProduct from 'helpers/setRecentlyViewedProduct';
+import setRecentlyViewedProduct from '../../helpers/setRecentlyViewedProduct';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import React, { Fragment, useEffect, useState } from 'react';
-//
-import HoverBox from '../../components/HoverBox';
-import { H2, H4 } from '../../components/Typography';
-import FlexBox from '../../components/FlexBox';
-//
+
 const INCREASE_VIEW = gql`
   mutation increaseView($slug: String!) {
     increaseViewCountById(slug: $slug)
@@ -110,8 +61,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
   useEffect(() => {
     Client.request(INCREASE_VIEW, { slug: pid });
     setRecentlyViewedProduct(pid, product);
-  }, []);
-
+  }, [pid]);
 
   return (
     <Fragment>
@@ -120,7 +70,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
         id={pid as string}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        // productId={product?.intro?.id as string}
+        productId={product?.intro?.id as string}
         productName={product?.intro?.productName}
         productCode={product?.intro?.productCode}
         contact={product?.contact}
@@ -149,53 +99,13 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
             <section id="details">
               <ProductIntro data={product?.intro} />
             </section>
-            {/*{product?.clients?.length > 0 && (*/}
-              {/*<RelatedClients*/}
-                {/*clients={product?.clients}*/}
-                {/*slides={6}*/}
-                {/*isProductDetails*/}
-              {/*/>*/}
-            {/*)}*/}
-            {product?.clients?.length > 0 &&(
-              <Box pt="1em" mb="2rem">
-                <FlexBox justifyContent="center" alignItems="center" mb="1em">
-                  <FlexBox alignItems="center">
-                    <H2
-                      fontWeight="600"
-                      fontSize="26px"
-                      textAlign="center"
-                      lineHeight="1"
-                    >
-                      Our Clients
-                    </H2>
-                  </FlexBox>
-                </FlexBox>
-                <Grid container spacing={4}>
-                  {product.clients.map((item,index) => (
-                    <Grid
-                      item
-                      lg={2}
-                      md={2}
-                      sm={2}
-                      key={index+1}>
-                      <Box className="client client_related" mr="1rem">
-                        <HoverBox borderRadius={5} className="client__body">
-                          <img
-                            data-src={process.env.NEXT_PUBLIC_IMAGE_URL + item.imgUrl}
-                            alt={`Nobarun-Client-${item.title}`}
-                            className="client__image lazyload"
-                          />
-                        </HoverBox>
-                        <H4 fontSize="1.4rem" fontWeight="600" className="client__title">
-                          {item.title}
-                        </H4>
-                      </Box>
-                    </Grid>
-                  ))}
-                </Grid>
-              </Box>
+            {product?.clients?.length > 0 && (
+              <RelatedClients
+                clients={product?.clients}
+                slides={6}
+                isProductDetails
+              />
             )}
-
             {isTabPhone && product?.contact && (
               <>
                 <Contacts
@@ -287,50 +197,31 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
 ProductDetails.layout = NavbarLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
-  context.res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=30, stale-while-revalidate=59'
-  );
   const productId = context.params.productId;
-  let data:any=[];
-  let count=0;
-  let categories=[];
-  let schema={};
   try {
-    data = await useProductById(productId);
-  }
-  catch (e) {
+    //! We have to debug furthermore
+    let data = await ProductById(productId);
+    data=JSON.parse(JSON.stringify(data));
+    const count = await ProductCount();
+    let categories = await AllProductCategories();
+    categories=JSON.parse(JSON.stringify(categories));
 
-  }
-  try {
-    count = await useProductCount();
-  }
-  catch (e) {
-
-  }
-  try {
-    categories = await useAllProductCategories();
-  }
-  catch (e) {
-
-  }
-  try {
-    categories = JSON.parse(JSON.stringify(categories));
-    let imageName = "";
-    if (data && data.intro && data.intro.featuredImage && data.intro.featuredImage.src) {
+    let imageName=""
+    if(data && data.intro && data.intro.featuredImage && data.intro.featuredImage.src){
       let imagePath = data.intro.featuredImage.src.slice(0, 16);
-      if (imagePath) {
+      if(imagePath){
         imageName = imagePath.replace('media/', '');
       }
     }
-    schema = {
+
+    const schema = {
       '@context': 'https://schema.org/',
       '@type': 'Product',
       name: data?.intro?.productName,
       // image:
       //   'https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/' +
       //   data?.intro?.featuredImage?.src,
-      image: `https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/media/hallmark-${imageName}.png`,
+      image:`https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/media/hallmark-${imageName}.png`,
       description: data?.seo?.description,
       sku: data?.intro?.productCode,
       // offers: {
@@ -348,21 +239,25 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         worstRating: '1',
         reviewCount: data?.intro?.review,
       },
-    }
+    };
+
+    return {
+      props: {
+        slug: productId,
+        product: data,
+        schema,
+        count,
+        categories,
+        reviews: data?.reviews,
+        isError: false,
+      },
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      notFound: true,
+    };
   }
-  finally {
-      return {
-        props: {
-          slug: productId,
-          product: data,
-          schema,
-          count,
-          categories,
-          reviews: data?.reviews,
-          isError: false,
-        },
-      };
-    }
 };
 
 export default ProductDetails;
