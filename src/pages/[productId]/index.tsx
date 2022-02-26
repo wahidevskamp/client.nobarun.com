@@ -118,7 +118,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
                   </FlexBox>
                 </FlexBox>
                 <Grid container spacing={4}>
-                  {product.clients.map((item,index) => (
+                  {product.clients.filter((item,index)=>item && index<7).map((item,index) => (
                     <Grid
                       item
                       lg={2}
