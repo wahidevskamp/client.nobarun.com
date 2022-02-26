@@ -1,24 +1,70 @@
+import dynamic from 'next/dynamic'
 import Box from '@component/Box';
 import GoToTop from '@component/goToTop/GoToTop';
 import Grid from '@component/grid/Grid';
 import NavbarLayout from '@component/layout/NavbarLayout';
 import MobileNavigationBar from '@component/mobile-navigation/MobileNavigationBar';
 import AddQuery from '@component/Product/AddQuery';
-import AddReview from '@component/Product/AddReview';
-import Ammenities from '@component/Product/Ammenities';
-import Contacts from '@component/Product/Contacts';
-import CustomerMedia from '@component/Product/CustomerMedia';
+// import AddReview from '@component/Product/AddReview';
+const AddReview = dynamic(
+  () => import('../../components/Product/AddReview'),
+  { ssr: false }
+);
+// import Ammenities from '@component/Product/Ammenities';
+const Ammenities = dynamic(
+  () => import('../../components/Product/Ammenities'),
+  { ssr: false }
+);
+// import Contacts from '@component/Product/Contacts';
+const Contacts = dynamic(
+  () => import('../../components/Product/Contacts'),
+  { ssr: false }
+);
+// import CustomerMedia from '@component/Product/CustomerMedia';
+const CustomerMedia = dynamic(
+  () => import('../../components/Product/CustomerMedia'),
+  { ssr: false }
+);
 import DesktopStickyBar from '@component/Product/DesktopStickyBar';
 import Features from '@component/Product/Features';
 import MobileStickyBar from '@component/Product/MobileStickyBar';
 import ProductHead from '@component/Product/ProductHead';
 import ProductIntro from '@component/Product/ProductIntro';
-import Questions from '@component/Product/Questions';
-import RelatedProducts from '@component/Product/RelatedProducts';
-import RelatedReview from '@component/Product/RelatedReview';
-import SpecialFeatures from '@component/Product/SpecialFeatures';
-import Specifications from '@component/Product/Specifications';
-import Tags from '@component/Product/Tags';
+// import Questions from '@component/Product/Questions';
+const Questions = dynamic(
+  () => import('../../components/Product/Questions'),
+  { ssr: false }
+);
+// import RelatedProducts from '@component/Product/RelatedProducts';
+const RelatedProducts = dynamic(
+  () => import('../../components/Product/RelatedProducts'),
+  { ssr: false }
+);
+// import RelatedReview from '@component/Product/RelatedReview';
+const RelatedReview = dynamic(
+  () => import('../../components/Product/RelatedReview'),
+  { ssr: false }
+);
+// import SpecialFeatures from '@component/Product/SpecialFeatures';
+const SpecialFeatures = dynamic(
+  () => import('../../components/Product/SpecialFeatures'),
+  { ssr: false }
+);
+// import Specifications from '@component/Product/Specifications';
+const Specifications = dynamic(
+  () => import('../../components/Product/Specifications'),
+  { ssr: false }
+);
+// import Tags from '@component/Product/Tags';
+const Tags = dynamic(
+  () => import('../../components/Product/Tags'),
+  { ssr: false }
+);
+// import RelatedClients from '../../components/products/RelatedClients';
+// const RelatedClients = dynamic(
+//   () => import('../../components/products/RelatedClients'),
+//   { ssr: false }
+// );
 import useAllProductCategories from '@hook/Home/useAllProductCategories';
 import useProductById from '@hook/Product/useProductById';
 import useProductCount from '@hook/useNoOfProduct';
@@ -103,6 +149,13 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
             <section id="details">
               <ProductIntro data={product?.intro} />
             </section>
+            {/*{product?.clients?.length > 0 && (*/}
+              {/*<RelatedClients*/}
+                {/*clients={product?.clients}*/}
+                {/*slides={6}*/}
+                {/*isProductDetails*/}
+              {/*/>*/}
+            {/*)}*/}
             {product?.clients?.length > 0 &&(
               <Box pt="1em" mb="2rem">
                 <FlexBox justifyContent="center" alignItems="center" mb="1em">
@@ -142,6 +195,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
                 </Grid>
               </Box>
             )}
+
             {isTabPhone && product?.contact && (
               <>
                 <Contacts
