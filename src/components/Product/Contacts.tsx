@@ -103,25 +103,25 @@ Please send me more details.
           Get a Quote
         </Button>
       </Card>
-      {contact?.maps && (
-        <ProductCard
-          title={
-            day === 1
-              ? 'Today Closed'
-              : hours <= 9 || hours > 19
-              ? 'Today Closed'
-              : 'Today Open 09:00 am - 07:00 pm'
-          }
-        >
-          <iframe
-            data-src={contact?.maps}
-            style={{ width: '100%', height: '46.7rem', border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            className="lazyload"
-          />
-        </ProductCard>
-      )}
+      {/*{contact?.maps && (*/}
+        {/*<ProductCard*/}
+          {/*title={*/}
+            {/*day === 1*/}
+              {/*? 'Today Closed'*/}
+              {/*: hours <= 9 || hours > 19*/}
+              {/*? 'Today Closed'*/}
+              {/*: 'Today Open 09:00 am - 07:00 pm'*/}
+          {/*}*/}
+        {/*>*/}
+          {/*<iframe*/}
+            {/*data-src={contact?.maps}*/}
+            {/*style={{ width: '100%', height: '46.7rem', border: 0 }}*/}
+            {/*allowFullScreen*/}
+            {/*loading="lazy"*/}
+            {/*className="lazyload"*/}
+          {/*/>*/}
+        {/*</ProductCard>*/}
+      {/*)}*/}
     </Fragment>
   );
 };
