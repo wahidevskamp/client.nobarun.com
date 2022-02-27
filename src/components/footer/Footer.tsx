@@ -52,6 +52,11 @@ const Footer: React.FC = () => {
             <StyledLink>Contact Us</StyledLink>
           </a>
         </Link>
+        <Link href="/privacy-policy">
+          <a>
+            <StyledLink>Privacy Policy</StyledLink>
+          </a>
+        </Link>
       </div>
     </Grid>
   );

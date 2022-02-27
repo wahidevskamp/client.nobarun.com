@@ -2,15 +2,15 @@ import Button from '@component/buttons/Button';
 import Card from '@component/Card';
 import FlexBox from '@component/FlexBox';
 import Icon from '@component/icon/Icon';
-import ProductCard from '@component/product-cards/HeadlineCard';
+// import ProductCard from '@component/product-cards/HeadlineCard';
 import Typography, { H5, Paragraph } from '@component/Typography';
-import { getDay, getHours } from 'date-fns';
+// import { getDay, getHours } from 'date-fns';
 import React, { Fragment } from 'react';
 
 const Contacts = ({ slug, productName, productCode, contact, setIsOpen }) => {
-  const currentDate = new Date();
-  const day = getDay(currentDate);
-  const hours = getHours(currentDate);
+  // const currentDate = new Date();
+  // const day = getDay(currentDate);
+  // const hours = getHours(currentDate);
   const message = `Hello ${contact?.name},
 I want to know more about ${productName} Which Product Code is ${productCode}
 Product Link: https://www.nobarunbd.com/${slug}
