@@ -32,6 +32,7 @@ const getHallmarkImage = (imageObj: any) => {
 };
 
 const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
+
   const [isLoading, setIsLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState({ name: '', src: '' });
   const [isVideo, setIsVideo] = useState(false);
@@ -42,8 +43,10 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
   const isSmall = (width > 380 && width < 450) || (width > 230 && width < 330);
 
   useEffect(() => {
-    setSelectedImage(getHallmarkImage(data?.featuredImage));
-    setIsLoading(false);
+    if(data && data.featuredImage){
+      setSelectedImage(getHallmarkImage(data?.featuredImage));
+      setIsLoading(false);
+    }
   }, [data?.images[0]]);
 
   const handleImageClick = (ind, type) => () => {
@@ -184,7 +187,6 @@ const ProductIntro: React.FC<ProductIntroProps> = ({ data }) => {
       {data && data.stockStatus && <Box className="product__stock-status">{data.stockStatus}</Box>}
       <Box overflow="hidden" px="15px" py="5px">
         <H1 fontSize={width > 660 ? '32px' : '24px'}>{data?.productName}</H1>
-
         <FlexBox justifyContent="space-between" mb="1.1em">
           <Box width={isPhone ? '100%' : ''}>
             {!isPhone && (

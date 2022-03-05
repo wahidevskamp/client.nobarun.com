@@ -89,13 +89,13 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
         product={product}
         active={active}
         setIsOpen={setIsOpen}
-        reviewLength={product.intro.review}
+        reviewLength={product.intro && product.intro.review?product.intro.review:0}
       />
       <MobileStickyBar
         product={product}
         active={active}
         setIsOpen={setIsOpen}
-        reviewLength={product.intro.review}
+        reviewLength={product.intro && product.intro.review?product.intro.review:0}
       />
       <Grid container>
         <Grid item lg={width > 1600 ? 9 : 8} xs={width > 900 ? 8 : 12}>
@@ -146,8 +146,8 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
               <>
                 <Contacts
                   slug={slug}
-                  productName={product?.intro?.productName}
-                  productCode={product?.intro?.productCode}
+                  productName={product.intro && product.intro.productName?product.intro.productName:""}
+                  productCode={product.intro && product.intro.productCode?product.intro.productCode:""}
                   contact={product?.contact}
                   setIsOpen={setIsOpen}
                 />
@@ -170,8 +170,8 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
           {!isTabPhone && product?.contact && (
             <Contacts
               slug={slug}
-              productName={product?.intro?.productName}
-              productCode={product?.intro?.productCode}
+              productName={product.intro && product.intro.productName?product.intro.productName:""}
+              productCode={product.intro && product.intro.productCode?product.intro.productCode:""}
               contact={product?.contact}
               setIsOpen={setIsOpen}
             />
@@ -218,7 +218,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
               )}
             </section>
             <section id="addQuote">
-              <AddReview productCode={product.intro.productCode} />
+              <AddReview productCode={product.intro && product.intro.productCode?product.intro.productCode:""} />
             </section>
           </Box>
         </Grid>
@@ -242,6 +242,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   let count=0;
   let categories=[];
   let schema={};
+  let reviews=null;
   try {
     data = await useProductById(productId);
   }
@@ -269,16 +270,24 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         imageName = imagePath.replace('media/', '');
       }
     }
+    //Value
+    const name=data && data.intro && data.intro.productName?data.intro.productName:"";
+    const description=data && data.seo && data.seo.description?data.seo.description:"";
+    const sku=data && data.intro && data.intro.productCode?data.intro.productCode:"";
+    const ratingValue=data && data.intro && data.intro.rating?data.intro.rating:"";
+    const reviewCount=data && data.intro && data.intro.review?data.intro.review:"";
+    reviews=data && data.reviews?data.reviews:"";
+    //Schema
     schema = {
       '@context': 'https://schema.org/',
       '@type': 'Product',
-      name: data?.intro?.productName,
+      name: name,
       // image:
       //   'https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/' +
       //   data?.intro?.featuredImage?.src,
       image: `https://nobarunawsvideouploader.s3.ap-south-1.amazonaws.com/media/hallmark-${imageName}.png`,
-      description: data?.seo?.description,
-      sku: data?.intro?.productCode,
+      description: description,
+      sku: sku,
       // offers: {
       //   '@type': 'Offer',
       //   url: '',
@@ -289,12 +298,13 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
       // },
       aggregateRating: {
         '@type': 'AggregateRating',
-        ratingValue: data?.intro?.rating,
+        ratingValue: ratingValue,
         bestRating: '5',
         worstRating: '1',
-        reviewCount: data?.intro?.review,
+        reviewCount: reviewCount,
       },
-    }
+    };
+    schema = JSON.parse(JSON.stringify(schema));
   }
   finally {
       return {
@@ -304,7 +314,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
           schema,
           count,
           categories,
-          reviews: data?.reviews,
+          reviews: reviews,
           isError: false,
         },
       };
