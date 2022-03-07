@@ -238,29 +238,40 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     'public, s-maxage=30, stale-while-revalidate=59'
   );
   const productId = context.params.productId;
-  let data:any=[];
+  let data:any=null;
   let count=0;
   let categories=[];
   let schema={};
   let reviews=null;
+  //Query Product Detail
   try {
     data = await useProductById(productId);
+    if(!data){
+      return {
+        notFound: true,
+      };
+    }
   }
   catch (e) {
-
+    return {
+      notFound: true,
+    };
   }
+  //Count Product
   try {
     count = await useProductCount();
   }
   catch (e) {
 
   }
+  //Query All Category
   try {
     categories = await useAllProductCategories();
   }
   catch (e) {
 
   }
+  //Update Schema
   try {
     categories = JSON.parse(JSON.stringify(categories));
     let imageName = "";
@@ -306,19 +317,24 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     };
     schema = JSON.parse(JSON.stringify(schema));
   }
+  catch (e) {
+
+  }
+  //Finally Return To Page
   finally {
-      return {
-        props: {
-          slug: productId,
-          product: data,
-          schema,
-          count,
-          categories,
-          reviews: reviews,
-          isError: false,
-        },
-      };
-    }
+    return {
+      props: {
+        slug: productId,
+        product: data,
+        schema,
+        count,
+        categories,
+        reviews: reviews,
+        isError: false,
+      },
+    };
+  }
+
 };
 
 export default ProductDetails;
