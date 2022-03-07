@@ -5,4 +5,5 @@ const Client = new GraphQLClient('https://api.biznian.com/graphql', {
   headers: {},
 });
 
+
 export default Client;
