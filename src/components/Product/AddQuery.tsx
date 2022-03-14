@@ -45,7 +45,8 @@ const validateEmail = (email) => {
 
 const AddQuery = (props: AddQueryProps) => {
   // const { isOpen, setIsOpen, productId, productName, productCode, contact } = props;
-  const { isOpen, setIsOpen,productName, productCode, contact } = props;
+  // const { isOpen, setIsOpen,productName, productCode, contact } = props;
+  const { isOpen, setIsOpen, productCode,} = props;
   const [modalOpen, setModalOpen] = useState(false);
   const [isAgreed, setIsAgreed] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
@@ -130,6 +131,10 @@ const AddQuery = (props: AddQueryProps) => {
     }
     //
     try {
+      await Client.request(ADD_NEW_QUERY, { data: query });
+      setIsOpen(false);
+      setModalOpen(true);
+      /*
       const data = await Client.request(ADD_NEW_QUERY, { data: query });
       if (data) {
         fetch(`https://formsubmit.co/ajax/${contact?.email}`, {
@@ -166,6 +171,7 @@ const AddQuery = (props: AddQueryProps) => {
           })
           .catch((error) => console.error(JSON.stringify(error, undefined, 2)));
       }
+      */
     } catch (error) {
       console.error(JSON.stringify(error, undefined, 2));
     }
