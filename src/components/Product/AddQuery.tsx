@@ -132,6 +132,15 @@ const AddQuery = (props: AddQueryProps) => {
     //
     try {
       await Client.request(ADD_NEW_QUERY, { data: query });
+      setState({
+        fullName: '',
+        mobileNo: '',
+        email: '',
+        company: '',
+        address: '',
+        attachment: '',
+        message: '',
+      });
       setIsOpen(false);
       setModalOpen(true);
       /*
