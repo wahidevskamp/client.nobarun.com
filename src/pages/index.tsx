@@ -91,11 +91,11 @@ const IndexPage = ({
               </Link>
             </FlexBox>
             <Grid container spacing={0}>
-              {clients.filter((item,index)=>item && index<6).map((item,index) => (
+              {clients.filter((item,index)=>item && index<8).map((item,index) => (
                 <Grid
                   item
-                  lg={2}
-                  md={2}
+                  lg={1.5}
+                  md={1.5}
                   sm={4}
                   key={index+1}
                   className="featuredCategories">
