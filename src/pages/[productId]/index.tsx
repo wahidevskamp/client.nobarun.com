@@ -40,7 +40,8 @@ const INCREASE_VIEW = gql`
   }
 `;
 
-const ProductDetails = ({ schema, slug, product, reviews }) => {
+const ProductDetails = ({ schema, slug, product, reviews, reviewCount }) => {
+
   const router = useRouter();
   const pid = router.query.productId;
   const [active, setActive] = useState(false);
@@ -214,6 +215,7 @@ const ProductDetails = ({ schema, slug, product, reviews }) => {
                   title="Read all reviews"
                   slug={pid}
                   reviews={reviews}
+                  reviewCount={reviewCount}
                 />
               )}
             </section>
@@ -243,6 +245,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   let categories=[];
   let schema={};
   let reviews=null;
+  let reviewCount=0;
   //Query Product Detail
   try {
     data = await useProductById(productId);
@@ -286,7 +289,8 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     const description=data && data.seo && data.seo.description?data.seo.description:"";
     const sku=data && data.intro && data.intro.productCode?data.intro.productCode:"";
     const ratingValue=data && data.intro && data.intro.rating?data.intro.rating:"";
-    const reviewCount=data && data.intro && data.intro.review?data.intro.review:"";
+    reviewCount=data && data.intro && data.intro.review?data.intro.review:0;
+    // console.log(data.reviews)
     reviews=data && data.reviews?data.reviews:"";
     //Schema
     schema = {
@@ -330,6 +334,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         count,
         categories,
         reviews: reviews,
+        reviewCount: reviewCount,
         isError: false,
       },
     };

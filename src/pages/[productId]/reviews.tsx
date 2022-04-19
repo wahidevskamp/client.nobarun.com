@@ -116,6 +116,7 @@ const ReviewsPage = (props) => {
               title="Load All Reviews"
               reviews={reviews}
               slug={slug}
+              reviewCount={0}
             />
             {isTablet && <CustomerMedia reviews={reviews} />}
             <AddReview productCode={productCode} />
@@ -146,9 +147,10 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const slug = context.params.productId;
   try {
     //! We have to debug furthermore
-    const data = await useReviewsBySlug(slug);
-    const categories = await useAllProductCategories();
-    const count = await useProductCount();
+    let data = await useReviewsBySlug(slug);
+    let categories = await useAllProductCategories();
+    let count = await useProductCount();
+    categories = JSON.parse(JSON.stringify(categories));
 
     const reviewSchema = data.reviews.map((review) => ({
       '@type': 'Review',
@@ -202,6 +204,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
       },
     };
   } catch (err) {
+    console.log(err)
     return {
       notFound: true,
     };

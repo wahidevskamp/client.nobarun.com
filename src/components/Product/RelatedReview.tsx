@@ -13,7 +13,7 @@ import getYoutubeId from 'helpers/getYoutubeId';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-const RelatedReview = ({ title, reviews, slug }) => {
+const RelatedReview = ({ title, reviews, slug, reviewCount }) => {
   const width = useWindowSize();
   const MAX_INITIAL_DISPLAY = title === 'Read all reviews' ? 5 : 10;
   const [slice, setSlice] = useState(MAX_INITIAL_DISPLAY);
@@ -286,6 +286,28 @@ const RelatedReview = ({ title, reviews, slug }) => {
               </button>
             </Box>
           )}
+          {
+            reviewCount && reviewCount>MAX_INITIAL_DISPLAY ?
+              <Box textAlign="center" mt="4rem">
+                <Link href={`/${slug}/reviews`}>
+                  <a className="client_load-btn"
+                     style={{
+                        display:"inline-block",
+                        padding:"10px 40px",
+                        backgroundColor: '#d2d2d2',
+                        color: '#ec1c24',
+                        borderRadius: '2rem',
+                        width: '18.4rem',
+                        height: '4.9rem',
+                        fontWeight: 600,
+                        fontSize: '1.8rem'}}>
+                    Load More
+                  </a>
+                </Link>
+              </Box>
+              :
+              null
+          }
         </Box>
       </Card>
     </div>

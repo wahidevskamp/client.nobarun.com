@@ -86,7 +86,7 @@ const useProductById = async (pid) => {
   try {
     const data = await Client.request(GET_PRODUCT_BY_ID, { id: pid });
     const productById = data?.getPopulatedProductBySlug?.productData;
-    // console.log(productById.product);
+    // console.log(data?.getPopulatedProductBySlug);
     const product = {
       intro: {
         id: productById && productById.product && productById.product.id ? productById.product.id:null ,
