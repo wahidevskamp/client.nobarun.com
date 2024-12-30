@@ -66,7 +66,7 @@ const Clients: React.FC<ClientProps> = ({ isProductDetails, clients }) => {
             textAlign="center"
             lineHeight="1"
           >
-            Our Clients
+            Our Client
           </H2>
         </FlexBox>
       </FlexBox>
